@@ -1,0 +1,53 @@
+[
+    {
+        "title": "BeanFactory vs ApplicationContext - Overview",
+        "content": "### What is Spring Container?\nSpring provides containers to manage the lifecycle of Java objects (beans). The two main types are **BeanFactory** and **ApplicationContext**.",
+        "slide_type": "text"
+    },
+    {
+        "title": "BeanFactory - Definition",
+        "content": "### What is BeanFactory?\n- It is the basic container in Spring for managing beans.\n- Follows **lazy initialization** (beans are created only when requested).\n- Lightweight and consumes fewer resources.\n- Does not support advanced features like event handling or annotation-based configuration.",
+        "slide_type": "text"
+    },
+    {
+        "title": "BeanFactory - Code Example",
+        "content": "import org.springframework.beans.factory.BeanFactory;\nimport org.springframework.beans.factory.xml.XmlBeanFactory;\nimport org.springframework.core.io.ClassPathResource;\n\npublic class BeanFactoryExample {\n    public static void main(String[] args) {\n        BeanFactory factory = new XmlBeanFactory(new ClassPathResource(\"beans.xml\"));\n        MyBean myBean = (MyBean) factory.getBean(\"myBean\");\n        myBean.printMessage();\n    }\n}",
+        "slide_type": "code"
+    },
+    {
+        "title": "ApplicationContext - Definition",
+        "content": "### What is ApplicationContext?\n- It extends **BeanFactory** and provides additional features.\n- **Eagerly initializes** all beans at startup.\n- Supports **event handling, internationalization, annotation-based configuration, and AOP integration**.\n- Preferred for large-scale enterprise applications.",
+        "slide_type": "text"
+    },
+    {
+        "title": "ApplicationContext - Code Example",
+        "content": "import org.springframework.context.ApplicationContext;\nimport org.springframework.context.support.ClassPathXmlApplicationContext;\n\npublic class ApplicationContextExample {\n    public static void main(String[] args) {\n        ApplicationContext context = new ClassPathXmlApplicationContext(\"beans.xml\");\n        MyBean myBean = (MyBean) context.getBean(\"myBean\");\n        myBean.printMessage();\n    }\n}",
+        "slide_type": "code"
+    },
+    {
+        "title": "Annotation-Based Configuration in ApplicationContext",
+        "content": "### ApplicationContext supports annotation-based bean configuration\n- Uses `@Component` to define beans automatically.\n- Uses `@Autowired` to inject dependencies without XML configuration.\n- Improves readability and reduces boilerplate code.",
+        "slide_type": "text"
+    },
+    {
+        "title": "Annotation-Based Configuration - Code Example",
+        "content": "import org.springframework.context.ApplicationContext;\nimport org.springframework.context.annotation.AnnotationConfigApplicationContext;\nimport org.springframework.stereotype.Component;\n\n@Component\npublic class MyBean {\n    public void printMessage() {\n        System.out.println(\"Hello from MyBean!\");\n    }\n}\n\npublic class ApplicationContextAnnotationExample {\n    public static void main(String[] args) {\n        ApplicationContext context = new AnnotationConfigApplicationContext(MyBean.class);\n        MyBean myBean = context.getBean(MyBean.class);\n        myBean.printMessage();\n    }\n}",
+        "slide_type": "code"
+    },
+    {
+        "title": "Comparison Table - BeanFactory vs ApplicationContext",
+        "slide_type": "table",
+        "content": [
+            {"Feature": "Initialization", "BeanFactory": "Lazy", "ApplicationContext": "Eager"},
+            {"Feature": "Memory Efficiency", "BeanFactory": "Higher", "ApplicationContext": "Lower"},
+            {"Feature": "Event Handling", "BeanFactory": "Not Supported", "ApplicationContext": "Supported"},
+            {"Feature": "Annotation Support", "BeanFactory": "Not Supported", "ApplicationContext": "Supported"},
+            {"Feature": "Use Case", "BeanFactory": "Lightweight Applications", "ApplicationContext": "Enterprise Applications"}
+        ]
+    },
+    {
+        "title": "Conclusion",
+        "content": "### When to Use Which?\n- Use **BeanFactory** for **lightweight applications** where lazy initialization is beneficial.\n- Use **ApplicationContext** for **enterprise applications** where advanced features like event handling and annotation support are needed.",
+        "slide_type": "text"
+    }
+]
