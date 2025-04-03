@@ -1,0 +1,46 @@
+[  
+    {  
+        "title": "Spring Auto Wiring - Overview",
+        "content": "### What is Spring Auto Wiring?\nSpring Auto Wiring is a feature that allows the framework to automatically inject dependencies into beans without manual configuration. It simplifies dependency management and reduces boilerplate code.",
+        "slide_type": "text"
+    },
+    {  
+        "title": "Benefits of Auto Wiring",
+        "content": "### Why Use Auto Wiring?\n- **Reduces manual dependency injection**.\n- **Improves maintainability and scalability**.\n- **Automatically resolves dependencies based on type, name, or qualifier**.",
+        "slide_type": "text"
+    },
+    {  
+        "title": "Auto Wiring Example - Car and Engine",
+        "content": "Imagine a `Car` that needs an `Engine`. Instead of manually assigning the engine, Spring Auto Wiring automatically injects the correct dependency based on predefined rules.",
+        "slide_type": "text"
+    },
+    {  
+        "title": "Types of Auto Wiring",
+        "content": "### Different Types of Auto Wiring:\n- **By Type**: Matches dependencies by their class type.\n- **By Name**: Matches dependencies based on bean names.\n- **Using Qualifiers**: Used when multiple beans match the required type.",
+        "slide_type": "text"
+    },
+    {  
+        "title": "Potential Issues with Auto Wiring",
+        "content": "### Common Issues:\n- **Multiple beans of the same type** can cause conflicts.\n- **Spring may fail to resolve a dependency** if no matching bean exists.\n- **Qualifiers** are required when multiple matching beans exist.",
+        "slide_type": "text"
+    },
+    {  
+        "title": "Auto Wiring Example - Code Snippet",
+        "content": "// Example of Auto Wiring in Spring\n@Component\nclass Engine {}\n\n@Component\nclass Car {\n    @Autowired\n    private Engine engine;\n}",
+        "slide_type": "code"
+    },
+    {  
+        "title": "Comparison of Auto Wiring Methods",
+        "slide_type": "table",
+        "content": [
+            {"Method": "By Type", "Description": "Matches dependencies by class type"},
+            {"Method": "By Name", "Description": "Matches dependencies by bean name"},
+            {"Method": "Using Qualifiers", "Description": "Specifies the exact bean to inject when multiple exist"}
+        ]
+    },
+    {  
+        "title": "Final Thoughts on Auto Wiring",
+        "content": "Auto Wiring makes Spring applications more flexible and reduces the need for explicit configuration. However, it requires careful handling to avoid conflicts and ensure proper dependency resolution.",
+        "slide_type": "text"
+    }
+]
