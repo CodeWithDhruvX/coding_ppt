@@ -1,0 +1,42 @@
+[  
+    {  
+        "title": "What is Dependency Injection (DI) in Spring?",  
+        "content": "### Dependency Injection (DI) in Spring\n- DI is a design pattern that allows dependencies to be injected externally instead of being created inside a class.\n- It helps achieve **loose coupling** and improves **maintainability**.\n- Spring provides DI through **constructor injection, setter injection, and field injection**.",  
+        "slide_type": "text"  
+    },  
+    {  
+        "title": "Problem Without Dependency Injection",  
+        "content": "### Without DI (Tightly Coupled Code)\n- The class is responsible for creating its own dependencies.\n- This leads to **tight coupling**, making it hard to modify or test.",  
+        "slide_type": "text"  
+    },  
+    {  
+        "title": "Without Dependency Injection - Example",  
+        "content": "class Car {\n    private Engine engine;\n    public Car() {\n        this.engine = new Engine(); // Tightly Coupled\n    }\n    void drive() {\n        engine.start();\n        System.out.println(\"Car is running...\");\n    }\n}",  
+        "slide_type": "code"  
+    },  
+    {  
+        "title": "Solution: Using Dependency Injection",  
+        "content": "### Benefits of Using Dependency Injection\n- **Loose Coupling**: The class does not create dependencies.\n- **Easier Testing**: Mock dependencies can be injected for testing.\n- **Scalability**: Dependencies can be easily replaced without modifying the core logic.",  
+        "slide_type": "text"  
+    },  
+    {  
+        "title": "Constructor Injection - Example",  
+        "content": "class Car {\n    private Engine engine;\n    public Car(Engine engine) {\n        this.engine = engine; // Injected Dependency\n    }\n    void drive() {\n        engine.start();\n        System.out.println(\"Car is running...\");\n    }\n}",  
+        "slide_type": "code"  
+    },  
+    {  
+        "title": "Field Injection - Example",  
+        "content": "class Car {\n    @Autowired\n    private Engine engine;\n    void drive() {\n        engine.start();\n        System.out.println(\"Car is running...\");\n    }\n}",  
+        "slide_type": "code"  
+    },  
+    {  
+        "title": "Setter Injection - Explanation",  
+        "content": "### When to Use Setter Injection?\n- When dependencies are **optional**.\n- Allows **modifying dependencies** after object creation.\n- Useful when dealing with **configuration-based dependencies**.",  
+        "slide_type": "text"  
+    },  
+    {  
+        "title": "Final Thoughts on Dependency Injection",  
+        "content": "### Why Use Dependency Injection?\n- Makes applications **flexible, maintainable, and testable**.\n- Used extensively in Spring Boot for **injecting services like database connections, REST clients, logging, and business logic**.",  
+        "slide_type": "text"  
+    }  
+]
