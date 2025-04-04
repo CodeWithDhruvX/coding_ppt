@@ -1,0 +1,62 @@
+[
+    {
+        "title": "What is Component Scan in Spring?",
+        "content": "### What is Component Scan in Spring?\nComponent Scanning is a mechanism in the Spring Framework that automatically detects and registers beans (Spring components) in the application context. It helps reduce manual configuration by scanning the classpath for annotated components like `@Component`, `@Service`, `@Repository`, and `@Controller`.",
+        "slide_type": "text"
+    },
+    {
+        "title": "How Does Component Scan Work?",
+        "content": "### How Does Component Scan Work?\nSpring searches for classes annotated with specific stereotypes within a given package and registers them as Spring Beans.\n\n#### Common Annotations Used for Component Scanning:\n- `@Component` – Generic component\n- `@Service` – Service layer component\n- `@Repository` – DAO (Data Access Object) layer component\n- `@Controller` – MVC controller",
+        "slide_type": "text"
+    },
+    {
+        "title": "Enabling Component Scan - Using @ComponentScan",
+        "content": "### Using `@ComponentScan` Annotation (Explicit Package Scan)\nBy default, Spring Boot scans the package where the main application class is located. To scan additional packages, use `@ComponentScan`.",
+        "slide_type": "text"
+    },
+    {
+        "title": "Example: Explicit Package Scan",
+        "content": "```java\n@Configuration\n@ComponentScan(basePackages = {\"com.example.service\", \"com.example.repository\"})\npublic class AppConfig {\n}\n```",
+        "slide_type": "code"
+    },
+    {
+        "title": "Enabling Component Scan - Using @SpringBootApplication",
+        "content": "### Using `@SpringBootApplication` (Implicit Scan)\nIn Spring Boot applications, `@SpringBootApplication` includes `@ComponentScan`, so all components inside the same package and its sub-packages are scanned automatically.",
+        "slide_type": "text"
+    },
+    {
+        "title": "Example: Implicit Component Scan",
+        "content": "```java\n@SpringBootApplication\npublic class MyApp {\n    public static void main(String[] args) {\n        SpringApplication.run(MyApp.class, args);\n    }\n}\n```",
+        "slide_type": "code"
+    },
+    {
+        "title": "Explicit Package Scan in Spring Boot",
+        "content": "To scan specific packages explicitly in a Spring Boot application, use `scanBasePackages`:\n\n```java\n@SpringBootApplication(scanBasePackages = \"com.example\")\npublic class MyApp {\n}\n```",
+        "slide_type": "code"
+    },
+    {
+        "title": "Component Scan in Action - Define a Component",
+        "content": "### Defining a Component\nBelow is an example of a class that will be automatically registered as a Spring Bean due to `@Component` annotation.",
+        "slide_type": "text"
+    },
+    {
+        "title": "Example: Defining a Component",
+        "content": "```java\n@Component\npublic class MyComponent {\n    public void showMessage() {\n        System.out.println(\"Hello from MyComponent!\");\n    }\n}\n```",
+        "slide_type": "code"
+    },
+    {
+        "title": "Component Scan in Action - Using the Component",
+        "content": "### Using the Component\nThe `MyComponent` bean can be retrieved from the Spring context and used as shown below.",
+        "slide_type": "text"
+    },
+    {
+        "title": "Example: Using the Component",
+        "content": "```java\n@SpringBootApplication\npublic class MyApp {\n    public static void main(String[] args) {\n        ApplicationContext context = SpringApplication.run(MyApp.class, args);\n        MyComponent myComponent = context.getBean(MyComponent.class);\n        myComponent.showMessage();\n    }\n}\n```",
+        "slide_type": "code"
+    },
+    {
+        "title": "Key Points of Component Scanning",
+        "content": "### Key Points of Component Scanning\n✅ **Automatic Bean Registration** – Reduces manual bean definitions.\n✅ **Scans Specific Packages** – Can be customized using `@ComponentScan(basePackages = {...})`.\n✅ **Works with Different Annotations** – `@Component`, `@Service`, `@Repository`, `@Controller`.\n✅ **Default Behavior in Spring Boot** – Scans the package of the main class.",
+        "slide_type": "text"
+    }
+]

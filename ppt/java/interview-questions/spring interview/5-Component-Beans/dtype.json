@@ -1,0 +1,48 @@
+[
+    {
+      "title": "How Spring Knows Where to Search for Components",
+      "content": "Spring uses **Component Scanning** to automatically detect and register beans annotated with stereotypes like `@Component`, `@Service`, `@Repository`, and `@Controller`.",
+      "slide_type": "text"
+    },
+    {
+      "title": "Component Scanning Overview",
+      "content": "Spring looks into defined base packages to scan for components. These components are then registered as Spring Beans in the ApplicationContext.",
+      "slide_type": "text"
+    },
+    {
+      "title": "Using @ComponentScan Annotation",
+      "content": "```java\n@Configuration\n@ComponentScan(basePackages = \"com.example.myapp\")\npublic class AppConfig {\n}\n```",
+      "slide_type": "code"
+    },
+    {
+      "title": "Using @SpringBootApplication in Spring Boot",
+      "content": "```java\n@SpringBootApplication\npublic class MyApplication {\n    public static void main(String[] args) {\n        SpringApplication.run(MyApplication.class, args);\n    }\n}\n```",
+      "slide_type": "code"
+    },
+    {
+      "title": "Important Note on Package Structure",
+      "content": "📌 Spring Boot scans from the package of the main class **downward**, so it's best practice to keep your main class in a **top-level package**.",
+      "slide_type": "text"
+    },
+    {
+      "title": "XML Configuration (Legacy Method)",
+      "content": "```xml\n<context:component-scan base-package=\"com.example.myapp\"/>\n```",
+      "slide_type": "code"
+    },
+    {
+      "title": "Recognized Stereotype Annotations",
+      "slide_type": "table",
+      "content": [
+        { "Annotation": "@Component", "Usage": "Generic Spring-managed component" },
+        { "Annotation": "@Service", "Usage": "Service layer logic" },
+        { "Annotation": "@Repository", "Usage": "Persistence layer logic" },
+        { "Annotation": "@Controller", "Usage": "Web layer (Spring MVC)" }
+      ]
+    },
+    {
+      "title": "Summary",
+      "content": "- Spring finds Beans through **Component Scanning**.\n- Define where to scan using `@ComponentScan` or `@SpringBootApplication`.\n- Place the main class in a top-level package.\n- Use annotations like `@Component`, `@Service`, `@Repository`, and `@Controller` to define Beans.",
+      "slide_type": "text"
+    }
+  ]
+  

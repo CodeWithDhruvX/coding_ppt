@@ -1,0 +1,67 @@
+[
+    {
+        "title": "Introduction to Spring Application Context",
+        "content": "The ApplicationContext in Spring is the central container that manages the lifecycle and configuration of beans. It provides advanced features like event propagation, declarative mechanisms, and internationalization support.",
+        "slide_type": "text"
+    },
+    {
+        "title": "1. Using AnnotationConfigApplicationContext (Java-Based Configuration)",
+        "content": "This approach is used when you configure your Spring beans using Java-based configuration with annotations.",
+        "slide_type": "text"
+    },
+    {
+        "title": "Java Configuration Example",
+        "content": "```java\nimport org.springframework.context.ApplicationContext;\nimport org.springframework.context.annotation.AnnotationConfigApplicationContext;\nimport org.springframework.context.annotation.Bean;\nimport org.springframework.context.annotation.Configuration;\n\n@Configuration\nclass AppConfig {\n    @Bean\n    public MyService myService() {\n        return new MyService();\n    }\n}\n\nclass MyService {\n    public void doSomething() {\n        System.out.println(\"Hello from MyService!\");\n    }\n}\n\npublic class Main {\n    public static void main(String[] args) {\n        ApplicationContext context = new AnnotationConfigApplicationContext(AppConfig.class);\n        MyService service = context.getBean(MyService.class);\n        service.doSomething();\n    }\n}\n```",
+        "slide_type": "code"
+    },
+    {
+        "title": "2. Using ClassPathXmlApplicationContext (XML-Based Configuration)",
+        "content": "This approach is used when the Spring configuration is defined in an XML file.",
+        "slide_type": "text"
+    },
+    {
+        "title": "Spring XML Configuration Example",
+        "content": "```xml\n<beans xmlns=\"http://www.springframework.org/schema/beans\"\n       xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"\n       xsi:schemaLocation=\"http://www.springframework.org/schema/beans\n           http://www.springframework.org/schema/beans/spring-beans.xsd\">\n    <bean id=\"myService\" class=\"com.example.MyService\"/>\n</beans>\n```",
+        "slide_type": "code"
+    },
+    {
+        "title": "Java Code to Load XML Configuration",
+        "content": "```java\nimport org.springframework.context.ApplicationContext;\nimport org.springframework.context.support.ClassPathXmlApplicationContext;\n\npublic class Main {\n    public static void main(String[] args) {\n        ApplicationContext context = new ClassPathXmlApplicationContext(\"spring-config.xml\");\n        MyService service = context.getBean(MyService.class);\n        service.doSomething();\n    }\n}\n```",
+        "slide_type": "code"
+    },
+    {
+        "title": "3. Using AnnotationConfigWebApplicationContext (For Spring Web Applications)",
+        "content": "When building a Spring MVC or Spring Boot web application, use AnnotationConfigWebApplicationContext.",
+        "slide_type": "text"
+    },
+    {
+        "title": "Web Application Context Example",
+        "content": "```java\nimport org.springframework.web.context.support.AnnotationConfigWebApplicationContext;\n\npublic class WebAppInitializer {\n    public static void main(String[] args) {\n        AnnotationConfigWebApplicationContext context = new AnnotationConfigWebApplicationContext();\n        context.register(AppConfig.class);\n        context.refresh();\n    }\n}\n```",
+        "slide_type": "code"
+    },
+    {
+        "title": "4. Using Spring Boot’s SpringApplication",
+        "content": "If you're using Spring Boot, the easiest way to create an application context is through SpringApplication.run().",
+        "slide_type": "text"
+    },
+    {
+        "title": "Spring Boot Application Example",
+        "content": "```java\nimport org.springframework.boot.SpringApplication;\nimport org.springframework.boot.autoconfigure.SpringBootApplication;\nimport org.springframework.stereotype.Service;\n\n@SpringBootApplication\npublic class MySpringBootApplication {\n    public static void main(String[] args) {\n        SpringApplication.run(MySpringBootApplication.class, args);\n    }\n}\n\n@Service\nclass MyService {\n    public MyService() {\n        System.out.println(\"MyService Initialized!\");\n    }\n}\n```",
+        "slide_type": "code"
+    },
+    {
+        "title": "Comparison of ApplicationContext Implementations",
+        "slide_type": "table",
+        "content": [
+            {"Implementation": "AnnotationConfigApplicationContext", "Usage": "Java-based configuration"},
+            {"Implementation": "ClassPathXmlApplicationContext", "Usage": "XML-based configuration"},
+            {"Implementation": "AnnotationConfigWebApplicationContext", "Usage": "Spring Web applications"},
+            {"Implementation": "SpringApplication.run()", "Usage": "Spring Boot applications"}
+        ]
+    },
+    {
+        "title": "Conclusion",
+        "content": "Use AnnotationConfigApplicationContext for Java-based configuration, ClassPathXmlApplicationContext for XML-based configuration, AnnotationConfigWebApplicationContext for web applications, and SpringApplication.run() for Spring Boot applications.",
+        "slide_type": "text"
+    }
+]

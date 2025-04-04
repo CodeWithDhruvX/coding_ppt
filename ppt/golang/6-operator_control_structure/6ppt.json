@@ -1,0 +1,102 @@
+[  
+    {  
+        "title": "Arithmetic Operators",
+        "content": "### Arithmetic Operators in Golang\n- Used for basic mathematical operations like addition, subtraction, multiplication, and division.\n\n| Operator | Description | Example |\n|----------|------------|---------|\n| `+`  | Addition | `a + b` |\n| `-`  | Subtraction | `a - b` |\n| `*`  | Multiplication | `a * b` |\n| `/`  | Division | `a / b` |\n| `%`  | Modulus (Remainder) | `a % b` |",
+        "slide_type": "text"
+    },
+    {  
+        "title": "Arithmetic Operators - Code Example",
+        "content": "```go\npackage main\nimport \"fmt\"\n\nfunc main() {\n    a, b := 10, 3\n    fmt.Println(\"Addition:\", a+b)  \n    fmt.Println(\"Subtraction:\", a-b)  \n    fmt.Println(\"Multiplication:\", a*b)  \n    fmt.Println(\"Division:\", a/b)  \n    fmt.Println(\"Modulus:\", a%b)  \n}\n```",
+        "slide_type": "code"
+    },
+    {  
+        "title": "Assignment Operators",
+        "content": "### Assignment Operators in Golang\n- Used to assign values to variables with shorthand operations.\n\n| Operator | Example | Equivalent To |\n|----------|---------|--------------|\n| `=`  | `a = b` | Assign `b` to `a` |\n| `+=` | `a += b` | `a = a + b` |\n| `-=` | `a -= b` | `a = a - b` |\n| `*=` | `a *= b` | `a = a * b` |\n| `/=` | `a /= b` | `a = a / b` |\n| `%=` | `a %= b` | `a = a % b` |",
+        "slide_type": "text"
+    },
+    {  
+        "title": "Comparison Operators",
+        "content": "### Comparison Operators in Golang\n- Used to compare values and return boolean results (true or false).\n\n| Operator | Description | Example |\n|----------|------------|---------|\n| `==` | Equal to | `a == b` |\n| `!=` | Not equal to | `a != b` |\n| `>`  | Greater than | `a > b` |\n| `<`  | Less than | `a < b` |\n| `>=` | Greater than or equal to | `a >= b` |\n| `<=` | Less than or equal to | `a <= b` |",
+        "slide_type": "text"
+    },
+    {  
+        "title": "Comparison Operators - Code Example",
+        "content": "```go\npackage main\nimport \"fmt\"\n\nfunc main() {\n    a, b := 10, 20\n    fmt.Println(\"a == b:\", a == b)  \n    fmt.Println(\"a != b:\", a != b)  \n    fmt.Println(\"a > b:\", a > b)  \n    fmt.Println(\"a < b:\", a < b)  \n}\n```",
+        "slide_type": "code"
+    },
+    {  
+        "title": "Logical Operators",
+        "content": "### Logical Operators in Golang\n- Used to perform boolean logic operations like AND, OR, and NOT.\n\n| Operator | Description | Example |\n|----------|------------|---------|\n| `&&` | AND | `a > 10 && b < 20` |\n| `||` | OR | `a > 10 || b < 20` |\n| `!`  | NOT | `!(a > 10)` |",
+        "slide_type": "text"
+    },
+    {  
+        "title": "Logical Operators - Code Example",
+        "content": "```go\npackage main\nimport \"fmt\"\n\nfunc main() {\n    a, b := 15, 5\n    fmt.Println(\"AND:\", a > 10 && b < 10)  \n    fmt.Println(\"OR:\", a > 20 || b < 10)  \n    fmt.Println(\"NOT:\", !(a > 10))  \n}\n```",
+        "slide_type": "code"
+    },
+    {  
+        "title": "Bitwise Operators",
+        "content": "### Bitwise Operators in Golang\n- Used to perform bit-level operations like AND, OR, XOR, Left Shift, and Right Shift.",
+        "slide_type": "text"
+    },
+    {  
+        "title": "Bitwise Operators - Code Example",
+        "content": "```go\npackage main\nimport \"fmt\"\n\nfunc main() {\n    a, b := 5, 3  \n    fmt.Println(\"AND:\", a & b)  \n    fmt.Println(\"OR:\", a | b)  \n    fmt.Println(\"XOR:\", a ^ b)  \n    fmt.Println(\"Left Shift:\", a << 1)  \n    fmt.Println(\"Right Shift:\", a >> 1)  \n}\n```",
+        "slide_type": "code"
+    },
+    {  
+        "title": "Pointer Operators",
+        "content": "### Pointer Operators in Golang\n- Used to work with memory addresses using `*` (dereference) and `&` (address of) operators.",
+        "slide_type": "text"
+    },
+    {  
+        "title": "Pointer Operators - Code Example",
+        "content": "```go\npackage main\nimport \"fmt\"\n\nfunc main() {\n    a := 10\n    p := &a  // Address of a\n    fmt.Println(\"Address of a:\", p)\n    fmt.Println(\"Value at p:\", *p)  // Dereferencing\n}\n```",
+        "slide_type": "code"
+    },
+    
+    {
+        "title": "If-Else: Decision Making",
+        "content": "### When to Use If-Else:\n- Use when you need **conditional execution**.\n- Good for **binary decisions** (true/false conditions).\n- Supports **nested conditions** for complex logic.",
+        "slide_type": "text"
+    },
+    {
+        "title": "If-Else Example",
+        "content": "package main\n\nimport \"fmt\"\n\nfunc main() {\n    age := 20\n\n    if age >= 18 {\n        fmt.Println(\"Aap vote de sakte hain!\")\n    } else {\n        fmt.Println(\"Aap vote nahi de sakte!\")\n    }\n}",
+        "slide_type": "code"
+    },
+    {
+        "title": "For Loop: Iteration in Depth",
+        "content": "### When to Use For Loop:\n- When you need **repetitive execution**.\n- Use **range** for iterating over slices and maps.\n- Can be used as a **while loop** by omitting the init and post statements.",
+        "slide_type": "text"
+    },
+    {
+        "title": "For Loop Example",
+        "content": "package main\n\nimport \"fmt\"\n\nfunc main() {\n    for i := 1; i <= 5; i++ {\n        fmt.Println(\"Step:\", i)\n    }\n}",
+        "slide_type": "code"
+    },
+    {
+        "title": "Switch-Case: Multiple Conditions Handling",
+        "content": "### When to Use Switch-Case:\n- Use when you have **multiple conditional branches**.\n- More efficient than multiple **if-else** statements.\n- Can use **fallthrough** to execute next case explicitly.",
+        "slide_type": "text"
+    },
+    {
+        "title": "Switch-Case Example",
+        "content": "package main\n\nimport \"fmt\"\n\nfunc main() {\n    day := \"Monday\"\n\n    switch day {\n    case \"Monday\":\n        fmt.Println(\"Aaj kaam ka din hai!\")\n    case \"Saturday\", \"Sunday\":\n        fmt.Println(\"Aaj weekend hai, maze lo!\")\n    default:\n        fmt.Println(\"A normal day!\")\n    }\n}",
+        "slide_type": "code"
+    },
+    {
+        "title": "Control Structures Comparison Table",
+        "slide_type": "table",
+        "content": [
+            {"Control Structure": "If-Else", "Use Case": "Decision making based on conditions"},
+            {"Control Structure": "For Loop", "Use Case": "Iterating over a range, slice, or map"},
+            {"Control Structure": "Switch-Case", "Use Case": "Handling multiple conditions efficiently"}
+        ]
+    },
+    {
+        "title": "Best Practices for Control Structures",
+        "content": "- **Use short variable declaration in If-Else** for limited scope.\n- **Prefer range in For Loop** when iterating over slices/maps.\n- **Always include a default case in Switch** to handle unexpected values.\n- **Use break/continue wisely** to avoid infinite loops.\n- **Avoid excessive fallthrough in Switch**, as it's not default behavior.",
+        "slide_type": "text"
+    }
+]
