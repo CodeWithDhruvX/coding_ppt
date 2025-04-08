@@ -282,3 +282,7 @@ if __name__ == "__main__":
     root = tk.Tk()
     app = PPTCreatorApp(root)
     root.mainloop()
+
+
+
+    # Golang Interview Question - 2

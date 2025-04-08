@@ -1,0 +1,74 @@
+{
+    "slides": [
+        {
+            "title": "Spring Boot Overview",
+            "content": "### What is Spring Boot?\nSpring Boot is a framework that simplifies the development of production-ready Spring applications. It reduces boilerplate code, provides embedded servers, and supports auto-configuration.",
+            "slide_type": "text"
+        },
+        {
+            "title": "Project Setup",
+            "content": "### How to Set Up a Spring Boot Project:\n- Use [Spring Initializr](https://start.spring.io)\n- Choose dependencies (Spring Web, JPA, Security, etc.)\n- Generate and import into IDE",
+            "slide_type": "text"
+        },
+        {
+            "title": "Controller Layer - REST APIs",
+            "content": "### Create REST APIs:\nUse `@RestController` and map HTTP methods using annotations like `@GetMapping`, `@PostMapping`, etc.",
+            "slide_type": "text"
+        },
+        {
+            "title": "Controller Layer - Sample Code",
+            "content": "```java\n@RestController\n@RequestMapping(\"/api/users\")\npublic class UserController {\n    @GetMapping(\"/{id}\")\n    public ResponseEntity<User> getUser(@PathVariable Long id) {\n        return ResponseEntity.ok(service.getUserById(id));\n    }\n}\n```",
+            "slide_type": "code"
+        },
+        {
+            "title": "Service Layer",
+            "content": "### Business Logic Layer:\nUse `@Service` to define classes that handle core business logic.\nThese interact with the repository layer.",
+            "slide_type": "text"
+        },
+        {
+            "title": "Repository Layer",
+            "content": "### Database Access:\nUse Spring Data JPA by extending `JpaRepository` interface to avoid boilerplate CRUD code.",
+            "slide_type": "text"
+        },
+        {
+            "title": "Repository Layer - Sample Code",
+            "content": "```java\npublic interface UserRepository extends JpaRepository<User, Long> {\n    Optional<User> findByEmail(String email);\n}\n```",
+            "slide_type": "code"
+        },
+        {
+            "title": "Database Configuration",
+            "content": "### Set up DB Connection in application.properties:",
+            "slide_type": "text"
+        },
+        {
+            "title": "Database Configuration - Code",
+            "content": "```properties\nspring.datasource.url=jdbc:mysql://localhost:3306/mydb\nspring.datasource.username=root\nspring.datasource.password=pass\nspring.jpa.hibernate.ddl-auto=update\n```",
+            "slide_type": "code"
+        },
+        {
+            "title": "Spring Security Integration",
+            "content": "### Add Authentication and Authorization:\nUse Spring Security to secure endpoints, implement JWT or OAuth2 for token-based security.",
+            "slide_type": "text"
+        },
+        {
+            "title": "Spring Security - Sample Code",
+            "content": "```java\n@Configuration\n@EnableWebSecurity\npublic class SecurityConfig {\n    @Bean\n    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {\n        http.csrf().disable()\n            .authorizeHttpRequests()\n            .requestMatchers(\"/api/auth/**\").permitAll()\n            .anyRequest().authenticated();\n        return http.build();\n    }\n}\n```",
+            "slide_type": "code"
+        },
+        {
+            "title": "Testing in Spring Boot",
+            "content": "### Unit & Integration Testing:\nUse JUnit and Mockito for service layer testing, and `@SpringBootTest` for full context integration testing.",
+            "slide_type": "text"
+        },
+        {
+            "title": "Running and Deployment",
+            "content": "### How to Run:\n- Use `mvn spring-boot:run` or `java -jar app.jar`\n- Deploy to cloud (e.g., AWS, GCP) or use Docker for containerization.",
+            "slide_type": "text"
+        },
+        {
+            "title": "Real-World Use Case",
+            "content": "### Example from Experience:\nIn my recent project, I used Spring Boot to build a secure REST API with JWT, role-based access, PostgreSQL database, and deployed it using Docker on AWS ECS.",
+            "slide_type": "text"
+        }
+    ]
+}

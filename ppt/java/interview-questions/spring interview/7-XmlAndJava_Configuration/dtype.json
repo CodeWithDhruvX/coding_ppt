@@ -1,0 +1,31 @@
+[
+    {
+        "title": "Component Scan in XML Configuration",
+        "content": "### Definition:\nComponent scanning in XML allows Spring to automatically detect and register beans from a specified package.\n\n### Example Usage:\n- Uses `<context:component-scan>` in an XML configuration file.\n- Helps automatically register `@Component`, `@Service`, `@Repository`, and `@Controller` beans.\n- Reduces manual bean definitions in XML.",
+        "slide_type": "text"
+    },
+    {
+        "title": "Component Scan in XML Configuration - Code Example",
+        "content": "<beans xmlns=\"http://www.springframework.org/schema/beans\"\n       xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"\n       xmlns:context=\"http://www.springframework.org/schema/context\"\n       xsi:schemaLocation=\"http://www.springframework.org/schema/beans\n           http://www.springframework.org/schema/beans/spring-beans.xsd\n           http://www.springframework.org/schema/context\n           http://www.springframework.org/schema/context/spring-context.xsd\">\n\n    <!-- Enable component scanning for the specified package -->\n    <context:component-scan base-package=\"com.example.myapp\" />\n\n</beans>",
+        "slide_type": "code"
+    },
+    {
+        "title": "Component Scan in Java Configuration",
+        "content": "### Definition:\nJava-based component scanning allows Spring to automatically detect and register components using the `@ComponentScan` annotation.\n\n### Benefits:\n- More concise and type-safe compared to XML.\n- Recommended for modern Spring applications.\n- Can specify multiple packages for scanning.",
+        "slide_type": "text"
+    },
+    {
+        "title": "Component Scan in Java Configuration - Code Example",
+        "content": "import org.springframework.context.annotation.ComponentScan;\nimport org.springframework.context.annotation.Configuration;\n\n@Configuration\n@ComponentScan(basePackages = \"com.example.myapp\")\npublic class AppConfig {\n}",
+        "slide_type": "code"
+    },
+    {
+        "title": "Difference Between XML and Java Configuration",
+        "slide_type": "table",
+        "content": [
+            {"Feature": "Syntax", "XML Configuration": "`<context:component-scan>`", "Java Configuration": "`@ComponentScan`"},
+            {"Feature": "Flexibility", "XML Configuration": "More verbose, requires XML file", "Java Configuration": "More concise, preferred in modern applications"},
+            {"Feature": "Type Safety", "XML Configuration": "Not type-safe (String-based package name)", "Java Configuration": "Type-safe, compiler checks package names"}
+        ]
+    }
+]
