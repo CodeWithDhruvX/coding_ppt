@@ -286,3 +286,10 @@ if __name__ == "__main__":
 
 
     # Golang Interview Question - 2
+
+# playlist name:
+
+# Top Golang Interview Questions & Answers 🔥 | 1000+ Q&A Series | Crack Go Interviews
+# Golang Interview Shorts 🔥 | 1 Go Qn a Day | Crack Interviews Fast
+# Docker Interview Questions & Answers 🔥 | Crack DevOps Jobs in 2025 | Beginner to Advanced
+# Docker for DevOps Interviews 🔥 | Docker DevOps Shorts | Short Questions & Answers
