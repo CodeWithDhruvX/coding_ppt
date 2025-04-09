@@ -1,0 +1,33 @@
+[
+    {
+      "title": "What is Docker?",
+      "content": "Docker is a **platform that allows developers to package applications and their dependencies into a container**. These containers are portable, lightweight, and consistent across different environments such as development, staging, and production. Docker eliminates the 'it works on my machine' problem by ensuring the environment is the same everywhere the app runs.",
+      "slide_type": "text"
+    },
+    {
+      "title": "Key Concepts in Docker",
+      "content": "### Key Concepts:\n- **Container**: An isolated environment that includes everything needed to run a software application — code, runtime, libraries, and configurations.\n- **Image**: A read-only template used to create containers. It contains the application and all its dependencies baked in.\n- **Dockerfile**: A script containing step-by-step instructions to build a Docker image (e.g., install dependencies, copy files, define startup commands).\n- **Docker Hub**: A public registry (like GitHub for containers) where you can share and pull pre-built Docker images. It’s commonly used for official base images (e.g., Node, Python, Go, etc.).",
+      "slide_type": "text"
+    },
+    {
+      "title": "Why Use Docker?",
+      "content": "### Benefits of Docker:\n- **Consistency**: Ensures your application runs identically in development, testing, and production environments.\n- **Isolation**: Each container operates in its own isolated context, reducing conflicts between applications and their dependencies.\n- **Portability**: Docker containers can run on any platform that supports Docker, including Windows, macOS, and Linux.\n- **Efficiency**: Containers share the host system’s kernel and require fewer resources than full virtual machines, leading to faster startup times and better performance.",
+      "slide_type": "text"
+    },
+    {
+      "title": "Real-world Example: Go App with PostgreSQL",
+      "content": "Suppose you’re building a backend service in Go that connects to a PostgreSQL database. Instead of manually installing and configuring PostgreSQL locally, you can define both the Go app and PostgreSQL service in a `docker-compose.yml` file. This allows you to spin up your complete environment using just one command (`docker-compose up`) — making development, onboarding, and deployment easier and more reproducible.",
+      "slide_type": "text"
+    },
+    {
+      "title": "Dockerfile Example for Go App",
+      "content": "```Dockerfile\n# Use an official lightweight Golang image based on Alpine Linux\nFROM golang:1.20-alpine\n\n# Set the working directory inside the container\nWORKDIR /app\n\n# Copy go.mod (dependency definitions) first to leverage Docker cache\nCOPY go.mod .\n\n# Copy the rest of the application source code\nCOPY . .\n\n# Download module dependencies\nRUN go mod tidy\n\n# Build the Go app and output a binary named 'main'\nRUN go build -o main .\n\n# Command to run the app when the container starts\nCMD [\"./main\"]\n```",
+      "slide_type": "code"
+    },
+    {
+      "title": "docker-compose.yml Example",
+      "content": "```yaml\nversion: '3.8'  # Docker Compose file format version\n\nservices:\n  app:\n    build: .  # Build the Go app image from the Dockerfile in the current directory\n    ports:\n      - \"8080:8080\"  # Map container port 8080 to host port 8080\n    depends_on:\n      - db  # Ensure the database service starts before the app\n\n  db:\n    image: postgres:15  # Use the official PostgreSQL image (version 15)\n    environment:\n      POSTGRES_USER: user       # Set the database username\n      POSTGRES_PASSWORD: password  # Set the database password\n      POSTGRES_DB: mydb         # Set the default database name\n    ports:\n      - \"5432:5432\"  # Map container port 5432 to host port 5432\n```",
+      "slide_type": "code"
+    }
+  ]
+  
