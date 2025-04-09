@@ -1,0 +1,64 @@
+[
+    {
+        "title": "What is a Pod in Kubernetes?",
+        "content": "### A Pod is the smallest and simplest deployable unit in Kubernetes.\n- It represents a single instance of a running process in the cluster.\n- Think of it as a wrapper around one or more containers that are tightly coupled and share the same execution context.",
+        "slide_type": "text"
+    },
+    {
+        "title": "Single or Multiple Containers in a Pod",
+        "content": "### Most Pods contain:\n- A **single container** (most common use-case).\n- Or **multiple containers** that are tightly coupled and need to share resources like network and storage.\n\n> Example: A web server and a sidecar container that handles logging.",
+        "slide_type": "text"
+    },
+    {
+        "title": "Shared Resources in a Pod",
+        "content": "### Containers in a Pod share:\n- **Network namespace** (same IP, port space).\n- **Storage volumes** (for shared data).\n- **Process namespace** (optional).\n\nThis enables containers to communicate via `localhost` easily.",
+        "slide_type": "text"
+    },
+    {
+        "title": "Pod Lifecycle",
+        "content": "### Pods are ephemeral:\n- They are **not self-healing**.\n- If a Pod dies, Kubernetes does **not restart** the same Pod.\n- Instead, Controllers like **Deployments** or **ReplicaSets** recreate the Pod if needed.",
+        "slide_type": "text"
+    },
+    {
+        "title": "Networking in a Pod",
+        "content": "### Pod Networking:\n- Each Pod gets a **unique IP** within the cluster.\n- Containers communicate over `localhost`.\n- External access is provided via **Services** in Kubernetes.",
+        "slide_type": "text"
+    },
+    {
+        "title": "Volumes in a Pod",
+        "content": "### Pods can define shared volumes:\n- **Ephemeral or Persistent**.\n- Used for sharing data like logs or cache between containers.",
+        "slide_type": "text"
+    },
+    {
+        "title": "Pod Status Phases",
+        "content": "### A Pod may go through these phases:\n- `Pending`: Pod accepted, not running yet\n- `Running`: At least one container is running\n- `Succeeded`: All containers finished successfully\n- `Failed`: Containers terminated with errors\n- `Unknown`: State can’t be determined",
+        "slide_type": "text"
+    },
+    {
+        "title": "Real-World Example - Sidecar Pod",
+        "content": "### Example Scenario:\nYou want a Node.js app that logs to a file, and a sidecar that ships logs.\n\n- `node-app` container (serves traffic, logs to volume)\n- `log-shipper` container (reads from volume and ships logs)",
+        "slide_type": "text"
+    },
+    {
+        "title": "Sidecar Pod - YAML Example",
+        "content": "```yaml\napiVersion: v1\nkind: Pod\nmetadata:\n  name: logging-pod\nspec:\n  containers:\n  - name: node-app\n    image: node:18\n    volumeMounts:\n    - name: shared-logs\n      mountPath: /var/log/app\n  - name: log-shipper\n    image: alpine\n    command: [\"/bin/sh\", \"-c\", \"tail -f /var/log/app/app.log\"]\n    volumeMounts:\n    - name: shared-logs\n      mountPath: /var/log/app\n  volumes:\n  - name: shared-logs\n    emptyDir: {}\n```",
+        "slide_type": "code"
+    },
+    {
+        "title": "When Not to Use Multi-Container Pods",
+        "content": "### Best Practices:\n- Only use multiple containers in a Pod when they are **tightly coupled**.\n- If services are independent (like frontend & backend), use **separate Pods**.\n\nToo many containers in one Pod = **harder to manage and scale**.",
+        "slide_type": "text"
+    },
+    {
+        "title": "Summary - Pods in Kubernetes",
+        "slide_type": "table",
+        "content": [
+            { "Feature": "Definition", "Description": "Smallest deployable unit in Kubernetes" },
+            { "Feature": "Contains", "Description": "One or more tightly coupled containers" },
+            { "Feature": "Shares", "Description": "Network, Volumes, Process namespace (optional)" },
+            { "Feature": "Managed by", "Description": "Controllers like Deployment or ReplicaSet" },
+            { "Feature": "Lifecycle", "Description": "Ephemeral, replaced if it fails" },
+            { "Feature": "Communication", "Description": "Internal via localhost, external via Service" }
+        ]
+    }
+]
