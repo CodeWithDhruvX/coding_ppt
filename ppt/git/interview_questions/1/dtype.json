@@ -1,0 +1,59 @@
+[
+    {
+      "title": "What is Git?",
+      "content": "Git is a distributed version control system (VCS) designed to handle everything from small to very large projects with speed and efficiency. Unlike centralized systems, Git gives each developer a full copy of the project history. This allows them to work offline, create multiple branches, and experiment freely without affecting the main project. Git also ensures code integrity through SHA-1 hashing, which secures all commits and project history from tampering or corruption.",
+      "slide_type": "text"
+    },
+    {
+      "title": "History of Git",
+      "content": "Git was created in 2005 by Linus Torvalds, the creator of Linux, in response to the limitations of proprietary version control systems like BitKeeper. The goal was to build a system that was fast, reliable, and fully distributed. Git's architecture was inspired by the Linux kernel development workflow: distributed, with many contributors working asynchronously. Its data model, based on snapshots and cryptographic hashes, was a breakthrough in ensuring code traceability and integrity.",
+      "slide_type": "text"
+    },
+    {
+      "title": "Key Features of Git",
+      "content": "Git’s key strength lies in its robust feature set that supports modern development workflows:\n- **Distributed architecture** gives every contributor their own local repository.\n- **Lightweight branching** allows fast and flexible context switching.\n- **Data integrity** is maintained through SHA-1 checksums, ensuring every commit is unique and verifiable.\n- **Performance** is optimized for large codebases with minimal network usage.\n- **Collaboration** is seamless through tools like GitHub and GitLab, supporting pull requests, issue tracking, and more.",
+      "slide_type": "text"
+    },
+    {
+      "title": "How Git Works Internally",
+      "content": "Git operates on a fundamentally different principle than older version control systems. Instead of tracking differences between file versions (diffs), Git takes snapshots of your entire file system and saves them as commits. Internally, Git stores data as objects: blobs (file content), trees (directories), commits (snapshots), and tags (references). All of these objects are indexed by SHA-1 hashes, allowing Git to ensure content integrity and efficient storage through deduplication. This structure makes operations like branching and merging extremely fast.",
+      "slide_type": "text"
+    },
+    {
+      "title": "Core Concepts in Git",
+      "content": "Git uses several core components to manage code changes and enable collaborative development:\n- **Repository (repo)** is the project workspace where Git tracks changes.\n- **Commit** is a snapshot of the project with metadata (author, timestamp, message).\n- **Branch** acts as a movable pointer to a specific commit, allowing isolated work.\n- **Merge** is the process of integrating one branch into another.\n- **Clone** creates a full copy of a remote repository.\n- **Pull** combines `fetch` and `merge` operations to sync with remote changes.\n- **Push** updates the remote repository with local commits.\n- **Staging Area** allows users to preview and curate changes before committing.\n- **HEAD** is a reference to the current working commit or branch.",
+      "slide_type": "text"
+    },
+    {
+      "title": "Git Architecture Overview",
+      "content": "Git architecture is composed of four main layers:\n1. **Working Directory** – the actual files you’re editing on your machine.\n2. **Staging Area (Index)** – a preview of your next commit; here you selectively prepare files.\n3. **Local Repository** – the version-controlled history stored locally on your machine.\n4. **Remote Repository** – shared version history stored on platforms like GitHub or GitLab.\nThis architecture supports offline work, enables rollback to any previous state, and provides a powerful branching model that allows parallel development workflows.",
+      "slide_type": "text"
+    },
+    {
+      "title": "Real-World Use Cases of Git",
+      "content": "Git is used across industries for managing software development lifecycles:\n- **Team Collaboration**: Multiple developers can work simultaneously on different features or bugs.\n- **Open Source Contribution**: Anyone can fork public repositories, make changes, and submit pull requests.\n- **Version Tracking**: Easily roll back to stable states when bugs or regressions occur.\n- **Code Reviews and CI/CD**: Git integrations with tools like Jenkins, GitHub Actions, and GitLab CI enable automated testing, deployment, and reviews.\n- **Experimentation**: Developers can create isolated feature branches, test new ideas, and merge only when stable, reducing risks in production.",
+      "slide_type": "text"
+    },
+    {
+      "title": "Advanced Git Topics",
+      "content": "Beyond basic Git commands, advanced users leverage features like:\n- **Rebasing**: Rewriting commit history to create cleaner, linear logs for better readability.\n- **Cherry-pick**: Applying specific commits from one branch to another without merging all changes.\n- **Hooks**: Automated scripts that run during specific Git events (e.g., `pre-commit`, `post-merge`) to enforce quality checks or formatting.\n- **Submodules**: Link separate Git repositories inside a main repository, useful for managing dependencies.\nThese features are essential for large-scale teams managing complex release cycles, ensuring code quality and consistency.",
+      "slide_type": "text"
+    },
+    {
+      "title": "Popular Git Platforms",
+      "content": "Several cloud-based platforms provide hosting, collaboration, and CI/CD tools built on top of Git:\n- **GitHub**: The most popular Git platform, supports pull requests, actions, project boards, and integration with almost every tool.\n- **GitLab**: Offers a full DevOps lifecycle, from planning and coding to deployment and monitoring.\n- **Bitbucket**: Popular in enterprise environments, with integration into Atlassian tools like Jira.\n- **Azure DevOps**: Microsoft’s platform that combines Git with full CI/CD pipelines, backlog tracking, and test management.\nThese platforms enhance Git by adding visual interfaces, user management, automation pipelines, and team collaboration tools.",
+      "slide_type": "text"
+    },
+    {
+        "title": "Git vs Other Version Control Systems",
+        "slide_type": "table",
+        "content": [
+          {"Feature": "Type", "Git": "Distributed", "SVN": "Centralized"},
+          {"Feature": "Speed", "Git": "Very Fast", "SVN": "Server Dependent"},
+          {"Feature": "Offline Work", "Git": "Yes", "SVN": "No"},
+          {"Feature": "Branching", "Git": "Lightweight", "SVN": "Heavyweight"},
+          {"Feature": "Data Integrity", "Git": "Strong (SHA-1)", "SVN": "Weaker"}
+        ]
+      }
+  ]
+  

@@ -1,0 +1,80 @@
+[
+    {
+        "title": "Git vs GitHub - Overview",
+        "slide_type": "table",
+        "content": [
+          { "Feature": "Type", "Git": "Version Control System (VCS)", "GitHub": "Cloud-based Git repository hosting service" },
+          { "Feature": "Function", "Git": "Manages source code locally", "GitHub": "Hosts repositories and facilitates collaboration" },
+          { "Feature": "Usage", "Git": "Command-line or GUI tools", "GitHub": "Web interface with additional tools" },
+          { "Feature": "Ownership", "Git": "Open-source (by Linus Torvalds)", "GitHub": "Owned by Microsoft" }
+        ]
+      },
+    {
+      "title": "What is Git?",
+      "content": "### Git: A Distributed Version Control System\n- Tracks **changes** in source code.\n- Works **locally** without requiring internet.\n- Enables **branching and merging**.\n- Every user has a **full copy** of the repo.",
+      "slide_type": "text"
+    },
+    {
+      "title": "Git - Real World Analogy",
+      "content": "Think of Git as your **personal notebook**. You can write, edit, and save different versions. It’s your local record of everything you've worked on.",
+      "slide_type": "text"
+    },
+    {
+      "title": "What is GitHub?",
+      "content": "### GitHub: A Cloud-Based Git Hosting Platform\n- Hosts your Git repositories **online**.\n- Facilitates **collaboration**, issue tracking, and code review.\n- Offers **CI/CD** and integrations.\n- Enables public and private project sharing.",
+      "slide_type": "text"
+    },
+    {
+      "title": "GitHub - Real World Analogy",
+      "content": "GitHub is like a **shared workspace or library** where your team can access your notebook (Git repo), suggest changes, and contribute.",
+      "slide_type": "text"
+    },
+    {
+        "title": "Git vs GitHub - Technical Differences",
+        "slide_type": "table",
+        "content": [
+          { "Aspect": "Installation", "Git": "Local setup via CLI or GUI", "GitHub": "Web-based (no install) or GitHub Desktop" },
+          { "Aspect": "Data Location", "Git": "Stored on local machine", "GitHub": "Cloud-hosted remote repositories" },
+          { "Aspect": "Access Control", "Git": "Manual via SSH or Git config", "GitHub": "Built-in roles, permissions, and collaboration tools" },
+          { "Aspect": "Code Sharing", "Git": "Manual via patch/email or scripts", "GitHub": "Seamless with Pull Requests and Forks" },
+          { "Aspect": "UI", "Git": "Command-line preferred", "GitHub": "Web UI with graphs, PRs, diff views" },
+          { "Aspect": "Collaboration", "Git": "Peer-to-peer", "GitHub": "Centralized and team-focused" }
+        ]
+      },
+    {
+      "title": "Git Local Workflow - Example",
+      "content": "### Git Local Commands:\n```bash\ngit init\ngit add .\ngit commit -m \"Initial commit\"\n```",
+      "slide_type": "code"
+    },
+    {
+      "title": "GitHub Integration - Example",
+      "content": "### Push to GitHub:\n```bash\ngit remote add origin https://github.com/user/repo.git\ngit push -u origin main\n```",
+      "slide_type": "code"
+    },
+    {
+      "title": "Git & GitHub Workflow",
+      "content": "### Combined Usage:\n1. Work locally with Git.\n2. Push to GitHub for collaboration.\n3. Open pull requests, assign issues, and review code.",
+      "slide_type": "text"
+    },
+    {
+      "title": "How Git and GitHub Work Together",
+      "content": "### Side-by-side Roles:\n| Task                  | Tool        |\n|-----------------------|-------------|\n| Version Control       | Git         |\n| Remote Backup         | GitHub      |\n| Collaboration         | GitHub      |\n| Code Review           | GitHub      |\n| Offline Work          | Git         |\n| Deployment Pipelines  | GitHub      |",
+      "slide_type": "text"
+    },
+    {
+      "title": "Alternatives to GitHub",
+      "content": "- **GitLab**: With built-in CI/CD pipelines.\n- **Bitbucket**: Integrates well with Jira.\n- **SourceForge**: Open-source repository.\n- **Azure DevOps Repos**: Enterprise-ready Git hosting by Microsoft.",
+      "slide_type": "text"
+    },
+    {
+        "title": "Final Summary - Git vs GitHub",
+        "slide_type": "table",
+        "content": [
+          { "Comparison": "Tool Type", "Git": "Local tool for version control", "GitHub": "Cloud platform built around Git" },
+          { "Comparison": "Connectivity", "Git": "No internet required", "GitHub": "Internet-based collaboration" },
+          { "Comparison": "Core Function", "Git": "Tracks code history", "GitHub": "Hosts and shares code" },
+          { "Comparison": "Ownership", "Git": "You own everything locally", "GitHub": "GitHub manages shared access & features" }
+        ]
+      }
+  ]
+  

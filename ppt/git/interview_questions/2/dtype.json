@@ -1,0 +1,108 @@
+[
+    {
+      "title": "What is GitHub?",
+      "content": "GitHub is a **web-based platform** that allows developers to **store, manage, and collaborate** on code projects. It enhances Git (a version control system) with a user-friendly interface and powerful collaboration tools.",
+      "slide_type": "text"
+    },
+    {
+      "title": "Core Concept",
+      "content": "**GitHub = Git + Collaboration + Cloud**\nIt allows you to:\n- Host and manage code in repositories\n- Collaborate with teams\n- Automate workflows\n- Track and review code changes",
+      "slide_type": "text"
+    },
+    {
+      "title": "Repositories (Repos)",
+      "content": "A **repository** is a container for your project, including files, folders, branches, and commit history. Repos can be public or private, and include README, LICENSE, and other files at setup.",
+      "slide_type": "text"
+    },
+    {
+      "title": "Commits and History",
+      "content": "Each **commit** captures a snapshot of the codebase. GitHub displays the history of commits with author info, timestamps, and messages, making collaboration and tracking easy.",
+      "slide_type": "text"
+    },
+    {
+      "title": "Branches",
+      "content": "A **branch** is a separate working copy of your code, ideal for experimenting with features or fixes. The default branch is usually `main` or `master`.",
+      "slide_type": "text"
+    },
+    {
+      "title": "Pull Requests (PRs)",
+      "content": "A **Pull Request** is a proposal to merge code from one branch into another. It includes code review, discussion, automated checks, and merge options.",
+      "slide_type": "text"
+    },
+    {
+      "title": "Forking Repositories",
+      "content": "A **fork** creates a personal copy of a repository. It’s commonly used to contribute to open-source projects without affecting the original repository.",
+      "slide_type": "text"
+    },
+    {
+      "title": "Issues",
+      "content": "GitHub **Issues** help manage bugs, features, and tasks. You can assign, label, and comment on issues for better project management.",
+      "slide_type": "text"
+    },
+    {
+      "title": "GitHub Projects",
+      "content": "**Projects** is a Kanban-style tool in GitHub for organizing issues, pull requests, and tasks using columns like 'To Do', 'In Progress', and 'Done'.",
+      "slide_type": "text"
+    },
+    {
+      "title": "GitHub Actions (Automation)",
+      "content": "GitHub Actions enables **CI/CD automation** using workflows written in YAML.\nExample: Run tests on push to main.",
+      "slide_type": "text"
+    },
+    {
+      "title": "GitHub Actions - Sample Workflow",
+      "content": "name: Run Tests on Push\n\non:\n  push:\n    branches: [ main ]\n\njobs:\n  test:\n    runs-on: ubuntu-latest\n    steps:\n      - uses: actions/checkout@v2\n      - name: Run Tests\n        run: npm test",
+      "slide_type": "code"
+    },
+    {
+      "title": "Security Features",
+      "content": "GitHub scans code and dependencies for **vulnerabilities**, alerts on **secret leaks**, and integrates **Dependabot** for automatic updates.",
+      "slide_type": "text"
+    },
+    {
+      "title": "Code Review Tools",
+      "content": "GitHub allows **inline comments**, **multiple reviewers**, and **approval settings** on pull requests, helping ensure code quality and standards.",
+      "slide_type": "text"
+    },
+    {
+      "title": "Collaboration Tools",
+      "content": "Features like @mentions, Markdown formatting, GitHub Discussions, and notifications make GitHub a powerful space for **collaboration**.",
+      "slide_type": "text"
+    },
+    {
+      "title": "GitHub Pages",
+      "content": "**GitHub Pages** lets you host static websites directly from your repo. It supports Jekyll themes and custom domains.",
+      "slide_type": "text"
+    },
+    {
+      "title": "Wiki",
+      "content": "Each repository can include a **Wiki**, used to write documentation, developer guides, and notes for your project.",
+      "slide_type": "text"
+    },
+    {
+      "title": "Insights and Analytics",
+      "content": "GitHub provides contribution graphs, commit activity, code frequency, pull request stats, and more to visualize project health.",
+      "slide_type": "text"
+    },
+    {
+      "title": "Permissions & Access Control",
+      "content": "Control repository access with roles like **Read**, **Write**, and **Admin**. GitHub supports team management within organizations.",
+      "slide_type": "text"
+    },
+    {
+      "title": "GitHub Ecosystem",
+      "content": "- **GitHub CLI**: Command-line tool for interacting with GitHub\n- **GitHub Copilot**: AI pair programmer\n- **GitHub Marketplace**: Tools and integrations\n- **GitHub Sponsors**: Monetize open-source work",
+      "slide_type": "text"
+    },
+    {
+      "title": "Who Uses GitHub?",
+      "content": "- Individual developers for personal projects and portfolios\n- Open-source contributors and communities\n- Startups and enterprises\n- Educational institutions and students",
+      "slide_type": "text"
+    },
+    {
+      "title": "Why Use GitHub?",
+      "content": "✔ Easy to use interface\n✔ Great for collaboration\n✔ Seamless integration with tools\n✔ Strong open-source support\n✔ Built-in security and automation",
+      "slide_type": "text"
+    }
+  ]
+  
