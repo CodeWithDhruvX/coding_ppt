@@ -1,0 +1,134 @@
+[
+    {
+      "title": "What is GraphQL?",
+      "content": "GraphQL is a **query language** for APIs and a runtime for executing those queries. Instead of relying on multiple endpoints like REST, it exposes a single endpoint through which clients can request exactly the data they need. This makes APIs more flexible, efficient, and developer-friendly. It was created by Facebook to handle complex data needs in large-scale applications and was released as an open standard in 2015.",
+      "slide_type": "text"
+    },
+    {
+      "title": "GraphQL Syntax Example",
+      "content": "{\n  user(id: \"1\") {\n    name\n    email\n  }\n}",
+      "slide_type": "code"
+    },
+    {
+      "title": "Strongly Typed Schema",
+      "content": "In GraphQL, the API is defined by a **strongly typed schema** that acts as a contract between the client and the server. Every query is validated against this schema before execution, ensuring type safety and eliminating runtime errors due to invalid queries. Types describe the shape of your data and what queries and mutations are supported, which helps both tooling and documentation. This enables features like autocompletion, introspection, and static analysis.",
+      "slide_type": "text"
+    },
+    {
+      "title": "GraphQL Type Definition Example",
+      "content": "type User {\n  id: ID!\n  name: String!\n  email: String!\n}",
+      "slide_type": "code"
+    },
+    {
+      "title": "Single Endpoint",
+      "content": "GraphQL replaces the need for multiple REST endpoints by exposing a **single, unified endpoint** (typically `/graphql`) for all data interactions. The structure and content of the response are determined entirely by the client’s query. This centralized design simplifies client-server communication and enhances consistency across different frontend platforms (web, mobile, etc.).",
+      "slide_type": "text"
+    },
+    {
+      "title": "Client-Driven Queries",
+      "content": "One of the most powerful aspects of GraphQL is that it puts the **control in the hands of the client**. Clients can specify exactly what fields they need and in what structure, leading to more efficient data retrieval and fewer server round-trips. This removes the rigidity found in RESTful responses and makes APIs highly customizable without any backend changes.",
+      "slide_type": "text"
+    },
+    {
+      "title": "Mutations - Writing Data",
+      "content": "In GraphQL, **mutations** are used to modify server-side data—such as creating, updating, or deleting records. Each mutation is defined in the schema and works similarly to queries but always results in a write operation. Mutations also return a predictable response shape defined by the schema, allowing clients to know exactly what data was affected or returned after the operation.",
+      "slide_type": "text"
+    },
+    {
+      "title": "Mutation Example",
+      "content": "mutation {\n  createUser(name: \"Alice\", email: \"alice@example.com\") {\n    id\n    name\n  }\n}",
+      "slide_type": "code"
+    },
+    {
+      "title": "Subscriptions - Real-time Updates",
+      "content": "GraphQL **subscriptions** provide a way to receive real-time data updates from the server using a persistent WebSocket connection. Subscriptions are ideal for use cases like chat applications, notifications, stock tickers, or live dashboards. They allow clients to 'subscribe' to specific events, and receive updates whenever those events occur on the server.",
+      "slide_type": "text"
+    },
+    {
+      "title": "Subscription Example",
+      "content": "subscription {\n  newMessage {\n    content\n    sender\n  }\n}",
+      "slide_type": "code"
+    },
+    {
+      "title": "Resolvers - Connecting Schema to Data",
+      "content": "**Resolvers** are functions that resolve the data for each field in a GraphQL schema. When a query is executed, GraphQL invokes the appropriate resolvers to fetch and return data. These functions can pull data from databases, REST APIs, other GraphQL services, or even in-memory data. The resolver system decouples schema definition from the actual data-fetching logic, making it modular and reusable.",
+      "slide_type": "text"
+    },
+    {
+      "title": "Resolver Example",
+      "content": "const resolvers = {\n  Query: {\n    user: (_, { id }) => getUserById(id),\n  },\n};",
+      "slide_type": "code"
+    },
+    {
+      "title": "Benefits of GraphQL",
+      "slide_type": "table",
+      "content": [
+        {
+          "Feature": "Precise Data Fetching",
+          "Benefit": "Only get what you ask for"
+        },
+        {
+          "Feature": "Strongly Typed",
+          "Benefit": "Predictable, self-documented APIs"
+        },
+        {
+          "Feature": "Single Endpoint",
+          "Benefit": "Simplifies client-server interaction"
+        },
+        {
+          "Feature": "Built-in Introspection",
+          "Benefit": "Helps developers explore APIs"
+        },
+        {
+          "Feature": "Real-time Support",
+          "Benefit": "Subscriptions via WebSockets"
+        }
+      ]
+    },
+    {
+      "title": "GraphQL vs REST",
+      "slide_type": "table",
+      "content": [
+        {
+          "Feature": "Endpoints",
+          "REST": "Multiple",
+          "GraphQL": "Single"
+        },
+        {
+          "Feature": "Data Fetching",
+          "REST": "Fixed structure",
+          "GraphQL": "Flexible, client-defined"
+        },
+        {
+          "Feature": "Overfetching",
+          "REST": "Common",
+          "GraphQL": "Avoided"
+        },
+        {
+          "Feature": "Schema",
+          "REST": "Not enforced",
+          "GraphQL": "Strongly typed"
+        },
+        {
+          "Feature": "Versioning",
+          "REST": "Often needed",
+          "GraphQL": "Usually not required"
+        }
+      ]
+    },
+    {
+      "title": "Real-World Example - REST",
+      "content": "To fetch a blog post with author and comments:\n- GET /posts/123\n- GET /users/456\n- GET /comments?postId=123",
+      "slide_type": "code"
+    },
+    {
+      "title": "Real-World Example - GraphQL",
+      "content": "{\n  post(id: \"123\") {\n    title\n    content\n    author {\n      name\n    }\n    comments {\n      text\n      author {\n        name\n      }\n    }\n  }\n}",
+      "slide_type": "code"
+    },
+    {
+      "title": "Summary",
+      "content": "GraphQL offers a robust, flexible, and modern approach to API development. It resolves many of the limitations found in RESTful architectures, such as over-fetching, under-fetching, and rigid endpoints. With a strongly typed schema, single endpoint, client-defined queries, and support for real-time data via subscriptions, GraphQL is particularly suited for applications that require highly interactive UIs, such as mobile apps, SPAs, and large-scale platforms.",
+      "slide_type": "text"
+    }
+  ]
