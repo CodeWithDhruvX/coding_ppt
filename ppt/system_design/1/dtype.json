@@ -1,0 +1,87 @@
+[
+    {
+        "title": "What is System Design?",
+        "content": "System design is the process of defining the architecture, components, modules, interfaces, and data for a system to satisfy specified requirements. It focuses on creating scalable, reliable, and maintainable systems that solve real-world problems.\n\nIt involves high-level decision-making like how to structure services, databases, APIs, and data flow, and low-level concerns like class diagrams and database indexes. System design is the bridge between abstract business requirements and real-world engineering implementations.",
+        "slide_type": "text"
+    },
+    {
+        "title": "Importance of System Design",
+        "content": "### Why System Design Matters:\n- ✅ **Scalability** – Handle growth in users/data.\n- ✅ **Reliability** – Stay functional even during failures.\n- ✅ **Maintainability** – Easy to modify and extend.\n- ✅ **Performance** – Fast and responsive system.\n- ✅ **Cost-Efficiency** – Uses resources optimally.\n\nGood system design ensures your application can evolve with changing business needs while delivering a consistent user experience and minimizing downtime and technical debt.",
+        "slide_type": "text"
+    },
+    {
+        "title": "Types of System Design",
+        "content": "### High-Level Design (HLD)\nHLD provides a macro perspective, focusing on system architecture, service interaction, protocols, and technology stack. It includes components like API gateways, databases, load balancers, and external integrations.\n\n### Low-Level Design (LLD)\nLLD zooms into specific modules and involves detailed implementation plans including class diagrams, logic flow, function signatures, and data types. It converts HLD into working software modules.",
+        "slide_type": "text"
+    },
+    {
+        "title": "Core Concepts in System Design",
+        "content": "Includes key areas such as:\n- **Scalability**: System's ability to handle increased load.\n- **Load Balancing**: Efficient distribution of traffic.\n- **Caching**: Temporarily storing data for fast retrieval.\n- **Database Design**: Structuring data storage for performance.\n- **Data Consistency Models**: Maintaining accuracy across systems.\n- **Microservices vs Monolith**: Architectural patterns.\n- **API Design**: How systems interact with each other.\n- **Security**: Protecting the system and data.\n- **Monitoring & Logging**: Observability of system health.\n\nMastering these concepts enables engineers to build robust and scalable systems that deliver excellent user experiences.",
+        "slide_type": "text"
+    },
+    {
+        "title": "Scalability",
+        "content": "### Types of Scalability:\n- **Horizontal Scaling**: Add more servers or instances to handle increased load.\n- **Vertical Scaling**: Upgrade a single machine's CPU, memory, or storage.\n\nScalability ensures that the system can grow seamlessly with user demand. It also involves techniques like partitioning, replication, and using distributed computing frameworks.",
+        "slide_type": "text"
+    },
+    {
+        "title": "Load Balancing",
+        "content": "### What is Load Balancing?\nLoad balancing distributes incoming network traffic across multiple backend servers to avoid overload and ensure high availability and reliability.\n\nCommon algorithms include round-robin, least connections, and IP hash. Load balancers can be hardware appliances or software-based solutions like HAProxy, Nginx, or cloud-native tools like AWS ELB.",
+        "slide_type": "text"
+    },
+    {
+        "title": "Caching",
+        "content": "### Caching Basics:\nCaching stores frequently accessed data in memory to avoid repeated computation or database access.\n\nTypes include:\n- **Client-side caching**\n- **Server-side caching** (e.g., Redis, Memcached)\n- **CDN caching**\n\nIt helps reduce latency and increases throughput. A good cache strategy includes setting eviction policies and handling cache invalidation.",
+        "slide_type": "text"
+    },
+    {
+        "title": "Database Design",
+        "content": "### SQL vs NoSQL:\n- **SQL** databases like MySQL and PostgreSQL are relational and enforce ACID properties.\n- **NoSQL** databases like MongoDB and Cassandra offer scalability and flexibility with eventual consistency.\n\nDatabase design impacts system performance, scalability, and maintainability. It includes normalization, indexing, partitioning, and replication strategies.",
+        "slide_type": "text"
+    },
+    {
+        "title": "CAP Theorem",
+        "content": "### CAP Theorem:\nIn a distributed system, you can only achieve two of the following three guarantees:\n- **Consistency**: Every read receives the most recent write.\n- **Availability**: Every request gets a response, without guarantee it contains the latest write.\n- **Partition Tolerance**: The system continues to operate despite network partitions.\n\nThis theorem helps choose trade-offs based on the system’s requirements.",
+        "slide_type": "text"
+    },
+    {
+        "title": "Message Queues",
+        "content": "### Asynchronous Communication:\nMessage queues like Kafka, RabbitMQ, and SQS enable components to communicate without waiting for each other.\n\nThey are essential for decoupling services, buffering load, and ensuring eventual consistency in microservice architectures.",
+        "slide_type": "text"
+    },
+    {
+        "title": "Microservices vs Monolith",
+        "content": "### Monolith:\n- Single codebase, tightly integrated.\n- Easier to develop initially but hard to scale.\n\n### Microservices:\n- Services are independently deployable.\n- Allows for better scalability and team ownership.\n\nMicroservices introduce complexity in communication, monitoring, and deployment but offer better agility for large-scale systems.",
+        "slide_type": "text"
+    },
+    {
+        "title": "API Design",
+        "content": "### Common API Styles:\n- **REST** – Resource-based, HTTP-based, simple.\n- **GraphQL** – Query exactly what you need.\n- **gRPC** – High performance, suitable for internal service-to-service communication.\n\nAPI design affects system flexibility, scalability, and integration capability.",
+        "slide_type": "text"
+    },
+    {
+        "title": "Security",
+        "content": "### Key Security Elements:\n- **Authentication**: Verifying identity (OAuth, JWT).\n- **Authorization**: Verifying permissions.\n- **Data Encryption**: Protecting data in transit and at rest.\n- **Rate Limiting**: Prevent abuse and DoS attacks.\n\nSecurity must be embedded at every layer of the system from APIs to databases.",
+        "slide_type": "text"
+    },
+    {
+        "title": "Monitoring & Logging",
+        "content": "### Observability:\n- **Logs**: Help diagnose issues and audit events.\n- **Metrics**: Track performance and system health.\n- **Alerts**: Notify of anomalies or failures.\n\nMonitoring tools like Prometheus, Grafana, and ELK Stack help in maintaining uptime and improving system reliability.",
+        "slide_type": "text"
+    },
+    {
+        "title": "System Design Process",
+        "content": "### Step-by-Step Approach:\n1. **Clarify Requirements** – Functional vs Non-functional.\n2. **Define APIs & Use Cases** – Input/output, data flow.\n3. **Design Data Models** – Schema, relationships, indexes.\n4. **Choose Architecture** – Monolith, microservices, hybrid.\n5. **Plan for Scalability** – Load balancing, caching, sharding.\n6. **Handle Failures** – Retry logic, redundancy, monitoring.\n7. **Secure the System** – Authentication, authorization, encryption.\n8. **Set Up Monitoring** – Logging, metrics, alerts.\n\nThis iterative and collaborative process ensures the system is robust, efficient, and adaptable.",
+        "slide_type": "text"
+    },
+    {
+        "title": "Example: Design a URL Shortener",
+        "content": "### Components:\n- **API Layer**: Handles POST and GET requests.\n- **Hash Generator**: Converts long URLs to short hashes.\n- **Database**: Stores long ↔ short URL mappings.\n- **Cache**: For frequently accessed short URLs.\n- **Analytics Service**: Tracks URL clicks and usage.\n- **Rate Limiter**: Prevents spamming.\n\nChallenges include collision handling, scalability, and tracking analytics without performance loss.",
+        "slide_type": "text"
+    },
+    {
+        "title": "Example: Design Netflix",
+        "content": "### Key Features:\n- **Content Delivery**: Use CDNs to stream video content globally.\n- **User Authentication**: Secure login and session management.\n- **Recommendation Engine**: ML-based personalized content.\n- **Scalable Backend**: Microservices architecture.\n- **Video Storage**: Use cold and hot storage strategies.\n\nHigh availability, minimal buffering, and seamless cross-device experience are crucial design goals.",
+        "slide_type": "text"
+    }
+]

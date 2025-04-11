@@ -1,0 +1,73 @@
+[
+    {
+      "title": "High-Level Design (HLD) – The Blueprint",
+      "content": "### What is HLD?\nHigh-Level Design is the **macro-level architectural planning** of a system that outlines the overall structure and design principles. It shows how various components, services, and modules interact without getting into the specifics of implementation. HLD helps stakeholders and architects agree on system boundaries, technologies to use, and the high-level interaction flow. It is created in the early stages of a project and acts as the foundation upon which the low-level details will be built.",
+      "slide_type": "text"
+    },
+    {
+      "title": "High-Level Design - Key Elements",
+      "content": "### Key Components of HLD:\n- **System Architecture**: Defines if the system will be monolithic, microservice-based, serverless, etc.\n- **Major Modules**: Breaks the system into services or layers like Auth Service, Product Catalog, Payment Gateway.\n- **Data Flow**: Shows how data travels between modules and external systems.\n- **Communication Protocols**: REST, gRPC, messaging queues used for communication.\n- **Technology Stack**: Programming languages, frameworks, databases, and APIs.\n- **Security Strategy**: Authentication/authorization models, encryption, firewalls.\n- **Deployment View**: Cloud service usage, CI/CD pipelines, scalability strategies.\n\nThese decisions have a long-term impact on performance, reliability, scalability, and cost.",
+      "slide_type": "text"
+    },
+    {
+      "title": "High-Level Design - Example (E-Commerce App)",
+      "content": "### HLD Example:\nIn an e-commerce app:\n- **Frontend** (React) makes calls to the **Backend** (Spring Boot).\n- The backend is split into services like **User Management**, **Product Catalog**, **Shopping Cart**, and **Order Management**.\n- A **PostgreSQL** database handles product and order data.\n- **Stripe** is used for payment processing, and **SendGrid** for email notifications.\n- Data flows between frontend and backend via REST APIs.\n\nThis level of abstraction helps align business goals with technical feasibility, giving a shared vision across teams.",
+      "slide_type": "text"
+    },
+    {
+      "title": "Low-Level Design (LLD) – The Technical Blueprint",
+      "content": "### What is LLD?\nLow-Level Design is the **detailed, technical specification** of how each system component will function internally. It builds on the HLD by specifying classes, methods, interfaces, database schemas, and logic. LLD is used by developers to write actual code and by testers to write test cases. It ensures every technical requirement is mapped clearly, reducing ambiguity. LLD also defines performance optimization strategies, failure handling, caching mechanisms, and design patterns to be used within each module.",
+      "slide_type": "text"
+    },
+    {
+      "title": "Low-Level Design - Key Elements",
+      "content": "### Key Components of LLD:\n- **Class Diagrams**: Show relationships (inheritance, aggregation, association) among classes.\n- **Method Definitions**: Include method names, arguments, return types, and access levels.\n- **Database Design**: Table structures, foreign key constraints, indexes.\n- **Internal APIs**: Contract definitions for internal services.\n- **Validation Logic**: Input validation, business rules, and data constraints.\n- **Error Handling**: Retry strategies, fallback logic, logging.\n- **Flow Diagrams**: Step-by-step process diagrams showing logic execution order.\n\nLLD brings clarity, consistency, and precision to the development lifecycle and improves maintainability.",
+      "slide_type": "text"
+    },
+    {
+      "title": "Low-Level Design - Example (Order Service)",
+      "content": "### LLD Example for Order Service:\n- Define a `OrderController` to handle HTTP requests (e.g., POST /orders).\n- `OrderService` contains business logic like validating the cart and checking stock.\n- `OrderRepository` interfaces with the database.\n- Entity classes like `Order`, `OrderItem`, `Payment` use annotations to map to DB tables.\n- The `createOrder(userId, cartItems)` method checks user identity, validates cart, calculates total, and processes payment.\n- On success, the order is saved and a confirmation email is sent.\n\nThis level of detail helps developers implement exact behavior and logic without ambiguity.",
+      "slide_type": "text"
+    },
+    {
+      "title": "HLD vs LLD - Real-World Analogy",
+      "content": "### Analogy:\nImagine you're building a **car**:\n- HLD: You decide it's an electric SUV with a lithium battery, four wheels, infotainment system, and autonomous driving support. You plan the layout of components.\n- LLD: You define each part — the electric motor specs, wiring diagrams, control unit logic, battery cell arrangement, software architecture for infotainment.\n\nSimilarly in software:\n- HLD is **what the system looks like** from a 10,000-ft view.\n- LLD is **how the system functions under the hood**.",
+      "slide_type": "text"
+    },
+    {
+      "title": "HLD vs LLD - Comparison Table",
+      "slide_type": "table",
+      "content": [
+        {
+          "Aspect": "Focus",
+          "High-Level Design": "Architecture & Interaction",
+          "Low-Level Design": "Internal Component Details"
+        },
+        {
+          "Aspect": "Audience",
+          "High-Level Design": "Architects, Tech Leads",
+          "Low-Level Design": "Developers, Testers"
+        },
+        {
+          "Aspect": "Abstraction Level",
+          "High-Level Design": "High",
+          "Low-Level Design": "Low"
+        },
+        {
+          "Aspect": "Documentation",
+          "High-Level Design": "Flowcharts, Component Descriptions",
+          "Low-Level Design": "Class Diagrams, Method Specs"
+        },
+        {
+          "Aspect": "Used In",
+          "High-Level Design": "Early Design Phase",
+          "Low-Level Design": "Just Before Implementation"
+        }
+      ]
+    },
+    {
+      "title": "Summary - HLD vs LLD",
+      "content": "### Quick Recap:\n- HLD gives an **abstract architectural view**, guiding how components are laid out.\n- LLD gives a **granular technical view**, guiding how developers implement each piece.\n- HLD is about **modularization, interactions, and system boundaries**.\n- LLD is about **internal logic, data modeling, and algorithm implementation**.\n- Both are essential: HLD ensures the system is scalable and robust; LLD ensures it is functional and maintainable.",
+      "slide_type": "text"
+    }
+  ]

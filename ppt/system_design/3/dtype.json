@@ -1,0 +1,96 @@
+[
+    {
+      "title": "What is Scalability?",
+      "content": "Scalability is the ability of a system to handle increased load (like users, data, traffic) **without compromising performance**. It determines how well a system can grow and adapt to changes.\n\nIn technical terms, a scalable system can manage increased demand by efficiently using resources such as CPU, memory, network, and storage — while continuing to deliver a consistent experience to users.\n\nScalability is not just about adding hardware — it's about smart design, distributed architecture, load balancing, and efficient processing.",
+      "slide_type": "text"
+    },
+    {
+      "title": "Why is Scalability Important?",
+      "content": "- Supports growing users or data volumes\n- Ensures good performance under heavy traffic\n- Enables cost-effective growth\n- Essential for modern apps like Netflix, Amazon, Facebook\n\nWithout scalability, systems may crash or slow down under pressure, leading to poor user experience, lost revenue, and reputational damage.\n\nScalable systems are more reliable, future-proof, and easier to expand when the business grows.",
+      "slide_type": "text"
+    },
+    {
+      "title": "Types of Scalability",
+      "content": "- Vertical Scalability (Scale-Up): Upgrade the existing machine to handle more load.\n- Horizontal Scalability (Scale-Out): Add more machines or instances to handle more users or requests.\n- Database Scalability: Adjust how data is stored and accessed using sharding or replication.\n- Network Scalability: Handle increased network traffic with CDNs, load balancers, and edge servers.\n- Software/Application Scalability: Optimize the code and architecture to efficiently handle more traffic and processing tasks.\n\nEach type requires different planning, tools, and architectural considerations to implement effectively.",
+      "slide_type": "text"
+    },
+    {
+      "title": "Vertical Scalability (Scale-Up)",
+      "content": "You increase the capacity of a **single machine** — by adding more CPU, RAM, or storage.\n\nExample: Upgrading a server from 8GB RAM to 64GB.\n\nThis is often the first step in scaling a system because it’s simple and doesn't require changing the architecture. However, it's limited by the maximum specs a single machine can support, and may result in a single point of failure.",
+      "slide_type": "text"
+    },
+    {
+      "title": "Vertical Scalability - Pros & Cons",
+      "content": "✅ Pros:\n- Easier to implement\n- No major code changes\n- Quick performance boost\n\n❌ Cons:\n- Hardware limits exist\n- Single point of failure\n- Expensive\n\nUse vertical scaling when your app is still growing and doesn't yet require a distributed system — but plan for horizontal scaling in the future.",
+      "slide_type": "text"
+    },
+    {
+      "title": "Horizontal Scalability (Scale-Out)",
+      "content": "You add more machines to the system and distribute the load across them.\n\nExample: Adding more servers behind a load balancer to handle traffic.\n\nThis approach is ideal for large-scale systems. It enables fault tolerance, high availability, and geo-distribution. It may require redesigning the application to make it stateless or distributed, using shared storage or distributed coordination.",
+      "slide_type": "text"
+    },
+    {
+      "title": "Horizontal Scalability - Pros & Cons",
+      "content": "✅ Pros:\n- Highly fault-tolerant\n- Virtually unlimited growth\n- Better uptime and resilience\n\n❌ Cons:\n- Complex to manage\n- May need app architecture redesign\n- Requires orchestration and distributed data handling\n\nHorizontal scaling is the foundation of modern cloud-native and microservices-based architectures.",
+      "slide_type": "text"
+    },
+    {
+      "title": "Database Scalability",
+      "content": "Vertical DB Scaling: Upgrade hardware (CPU, RAM, SSDs) for the database server.\nHorizontal DB Scaling: Use sharding (splitting the database into smaller parts) and replication (duplicating data across nodes) to manage growth.\n\nDistributed databases like Cassandra, CockroachDB, and Amazon DynamoDB are designed to scale horizontally across many nodes, ensuring high availability and massive throughput.\n\nScalability in databases is critical because a slow or overloaded DB can bottleneck the entire system.",
+      "slide_type": "text"
+    },
+    {
+      "title": "Network Scalability",
+      "content": "A system must be able to handle growing traffic with strategies like:\n- CDNs (Content Delivery Networks) to cache content near users\n- Load Balancers to distribute requests\n- Edge Servers for localized processing\n\nNetwork scalability ensures minimal latency, high availability, and efficient traffic routing.\nIt’s especially critical for global services that need to serve users in different geographic regions efficiently.",
+      "slide_type": "text"
+    },
+    {
+      "title": "Software/Application Scalability",
+      "content": "Your code must scale too! Even the best hardware can't help bad architecture.\n\nOptimize using:\n- Microservices (each service can scale independently)\n- Caching (e.g., Redis) to reduce database load\n- Queues (e.g., Kafka, RabbitMQ) to process tasks asynchronously\n- Load testing to identify and fix bottlenecks\n\nDesigning scalable applications also involves choosing statelessness, modularity, and distributed state management when needed.",
+      "slide_type": "text"
+    },
+    {
+      "title": "Real-Life Example - Netflix",
+      "content": "Netflix uses horizontal scaling, microservices, CDNs, and Cassandra to stream content to millions of users worldwide.\n\nThey use AWS to dynamically scale services, global edge servers to reduce latency, and personalized content caching to deliver high-quality video efficiently.\n\nTheir architecture is built to survive failures, handle spikes (e.g., new season releases), and scale globally across regions.",
+      "slide_type": "text"
+    },
+    {
+      "title": "Scalability Architecture Tools",
+      "content": "- Load Balancers (e.g., NGINX, AWS ELB) for traffic distribution\n- Microservices for independently scaling modules\n- Queues (Kafka, RabbitMQ) for async task processing\n- CDNs (CloudFront, Akamai) for static content delivery\n- Caching (Redis, Memcached) for fast data access\n\nChoosing the right combination of these tools helps create a flexible, resilient, and scalable system.",
+      "slide_type": "text"
+    },
+    {
+      "title": "Performance vs Scalability vs Reliability",
+      "content": "| Concept      | Focus                                |\n|--------------|---------------------------------------|\n| **Scalability** | How well a system grows with demand |\n| **Performance** | How fast a system responds          |\n| **Reliability** | How consistently a system works     |\n\nThese three traits are often interconnected. Improving one may impact the others. Scalability aims to grow the system **without reducing** performance or reliability.",
+      "slide_type": "text"
+    },
+    {
+      "title": "Quick Summary of Core Scalability Types",
+      "slide_type": "table",
+      "content": [
+        {
+          "Type": "Vertical Scalability",
+          "Scale Method": "Upgrade Machine",
+          "Example": "Add RAM/CPU",
+          "Limitations": "Hardware limits, Single point of failure"
+        },
+        {
+          "Type": "Horizontal Scalability",
+          "Scale Method": "Add Machines",
+          "Example": "Add servers behind a Load Balancer",
+          "Limitations": "Complex, Distributed coordination required"
+        },
+        {
+          "Type": "Database Scalability",
+          "Scale Method": "Shard/Replicate DB",
+          "Example": "MongoDB, Cassandra",
+          "Limitations": "Consistency and partitioning issues"
+        }
+      ]
+    },
+    {
+      "title": "Takeaway",
+      "content": "Scalability isn’t just about hardware — it’s about smart, distributed, well-architected systems that grow efficiently.\n\nIt involves anticipating growth, designing modular components, using scalable databases, caching, cloud resources, and real-time monitoring.\n\nAlways design for scale early to avoid re-engineering later. Test under load, monitor continuously, and iterate intelligently.",
+      "slide_type": "text"
+    }
+  ]
