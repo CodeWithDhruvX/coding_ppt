@@ -1,0 +1,70 @@
+[
+    {
+      "title": "Introduction to Error Handling",
+      "content": "Error handling is a critical part of writing reliable Go programs. In Go, errors are treated as values, and functions that can fail return an error as their last return value.",
+      "slide_type": "text"
+    },
+    {
+      "title": "Basic Error Handling Syntax",
+      "content": "```go\npackage main\nimport (\n    \"fmt\"\n    \"errors\"\n)\n\nfunc divide(a, b int) (int, error) {\n    if b == 0 {\n        return 0, errors.New(\"cannot divide by zero\")\n    }\n    return a / b, nil\n}\n\nfunc main() {\n    result, err := divide(10, 0)\n    if err != nil {\n        fmt.Println(\"Error:\", err)\n    } else {\n        fmt.Println(\"Result:\", result)\n    }\n}\n```",
+      "slide_type": "code"
+    },
+    {
+      "title": "Error Handling Pattern",
+      "content": "- Always check if `err != nil`\n- Handle the error appropriately (log, return, or recover)\n- Don’t ignore errors unless you're certain it's safe",
+      "slide_type": "text"
+    },
+    {
+      "title": "Creating Custom Errors",
+      "content": "```go\nimport \"fmt\"\n\ntype MyError struct {\n    Message string\n}\n\nfunc (e *MyError) Error() string {\n    return fmt.Sprintf(\"Custom Error: %s\", e.Message)\n}\n\nfunc doSomething() error {\n    return &MyError{Message: \"something went wrong\"}\n}\n```",
+      "slide_type": "code"
+    },
+    {
+      "title": "Using fmt.Errorf for Context",
+      "content": "```go\nimport (\n    \"fmt\"\n    \"errors\"\n)\n\nfunc readFile() error {\n    err := errors.New(\"file not found\")\n    return fmt.Errorf(\"readFile failed: %w\", err)\n}\n```",
+      "slide_type": "code"
+    },
+    {
+      "title": "Unwrapping Errors",
+      "content": "Go 1.13+ introduced error wrapping and unwrapping using `errors.Is()` and `errors.As()`.\n\n```go\nimport (\n    \"errors\"\n    \"fmt\"\n)\n\nvar ErrNotFound = errors.New(\"not found\")\n\nfunc getItem() error {\n    return fmt.Errorf(\"getItem failed: %w\", ErrNotFound)\n}\n\nfunc main() {\n    err := getItem()\n    if errors.Is(err, ErrNotFound) {\n        fmt.Println(\"Item not found\")\n    }\n}\n```",
+      "slide_type": "code"
+    },
+    {
+      "title": "Panic vs Error",
+      "content": "- Use **errors** for expected issues (e.g., file not found)\n- Use **panic** only for unrecoverable situations (e.g., nil dereference)\n- Recover from panic using `recover()` inside deferred functions",
+      "slide_type": "text"
+    },
+    {
+      "title": "Handling Multiple Errors",
+      "content": "You can combine errors using packages like `golang.org/x/sync/errgroup` or handle them manually using error slices.\n\n```go\nvar errs []error\n\nif err := doTask1(); err != nil {\n    errs = append(errs, err)\n}\nif err := doTask2(); err != nil {\n    errs = append(errs, err)\n}\n```",
+      "slide_type": "code"
+    },
+    {
+      "title": "Common Error Handling Functions",
+      "content": [
+        {
+          "Function": "errors.New",
+          "Description": "Creates a new error with a static message"
+        },
+        {
+          "Function": "fmt.Errorf",
+          "Description": "Formats and optionally wraps an error"
+        },
+        {
+          "Function": "errors.Is",
+          "Description": "Checks if an error is a specific value"
+        },
+        {
+          "Function": "errors.As",
+          "Description": "Checks and casts error to a specific type"
+        }
+      ],
+      "slide_type": "table"
+    },
+    {
+      "title": "Best Practices",
+      "content": "- Always return errors when something can go wrong\n- Don’t panic unnecessarily\n- Add context to errors using `fmt.Errorf`\n- Use error wrapping and inspection in Go 1.13+\n- Handle or log every error",
+      "slide_type": "text"
+    }
+  ]
+  
