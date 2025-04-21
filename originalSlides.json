@@ -1,70 +1,63 @@
 [
-    {
-      "title": "Introduction to Error Handling",
-      "content": "Error handling is a critical part of writing reliable Go programs. In Go, errors are treated as values, and functions that can fail return an error as their last return value.",
-      "slide_type": "text"
-    },
-    {
-      "title": "Basic Error Handling Syntax",
-      "content": "```go\npackage main\nimport (\n    \"fmt\"\n    \"errors\"\n)\n\nfunc divide(a, b int) (int, error) {\n    if b == 0 {\n        return 0, errors.New(\"cannot divide by zero\")\n    }\n    return a / b, nil\n}\n\nfunc main() {\n    result, err := divide(10, 0)\n    if err != nil {\n        fmt.Println(\"Error:\", err)\n    } else {\n        fmt.Println(\"Result:\", result)\n    }\n}\n```",
-      "slide_type": "code"
-    },
-    {
-      "title": "Error Handling Pattern",
-      "content": "- Always check if `err != nil`\n- Handle the error appropriately (log, return, or recover)\n- Don’t ignore errors unless you're certain it's safe",
-      "slide_type": "text"
-    },
-    {
-      "title": "Creating Custom Errors",
-      "content": "```go\nimport \"fmt\"\n\ntype MyError struct {\n    Message string\n}\n\nfunc (e *MyError) Error() string {\n    return fmt.Sprintf(\"Custom Error: %s\", e.Message)\n}\n\nfunc doSomething() error {\n    return &MyError{Message: \"something went wrong\"}\n}\n```",
-      "slide_type": "code"
-    },
-    {
-      "title": "Using fmt.Errorf for Context",
-      "content": "```go\nimport (\n    \"fmt\"\n    \"errors\"\n)\n\nfunc readFile() error {\n    err := errors.New(\"file not found\")\n    return fmt.Errorf(\"readFile failed: %w\", err)\n}\n```",
-      "slide_type": "code"
-    },
-    {
-      "title": "Unwrapping Errors",
-      "content": "Go 1.13+ introduced error wrapping and unwrapping using `errors.Is()` and `errors.As()`.\n\n```go\nimport (\n    \"errors\"\n    \"fmt\"\n)\n\nvar ErrNotFound = errors.New(\"not found\")\n\nfunc getItem() error {\n    return fmt.Errorf(\"getItem failed: %w\", ErrNotFound)\n}\n\nfunc main() {\n    err := getItem()\n    if errors.Is(err, ErrNotFound) {\n        fmt.Println(\"Item not found\")\n    }\n}\n```",
-      "slide_type": "code"
-    },
-    {
-      "title": "Panic vs Error",
-      "content": "- Use **errors** for expected issues (e.g., file not found)\n- Use **panic** only for unrecoverable situations (e.g., nil dereference)\n- Recover from panic using `recover()` inside deferred functions",
-      "slide_type": "text"
-    },
-    {
-      "title": "Handling Multiple Errors",
-      "content": "You can combine errors using packages like `golang.org/x/sync/errgroup` or handle them manually using error slices.\n\n```go\nvar errs []error\n\nif err := doTask1(); err != nil {\n    errs = append(errs, err)\n}\nif err := doTask2(); err != nil {\n    errs = append(errs, err)\n}\n```",
-      "slide_type": "code"
-    },
-    {
-      "title": "Common Error Handling Functions",
-      "content": [
-        {
-          "Function": "errors.New",
-          "Description": "Creates a new error with a static message"
-        },
-        {
-          "Function": "fmt.Errorf",
-          "Description": "Formats and optionally wraps an error"
-        },
-        {
-          "Function": "errors.Is",
-          "Description": "Checks if an error is a specific value"
-        },
-        {
-          "Function": "errors.As",
-          "Description": "Checks and casts error to a specific type"
-        }
-      ],
-      "slide_type": "table"
-    },
-    {
-      "title": "Best Practices",
-      "content": "- Always return errors when something can go wrong\n- Don’t panic unnecessarily\n- Add context to errors using `fmt.Errorf`\n- Use error wrapping and inspection in Go 1.13+\n- Handle or log every error",
-      "slide_type": "text"
-    }
-  ]
-  
+  {
+    "title": "Introduction to len() and cap()",
+    "content": "In Go, `len()` and `cap()` are built-in functions used to inspect slices, arrays, maps, and channels. They help developers understand how much data is stored and how much space is available.",
+    "slide_type": "text"
+  },
+  {
+    "title": "What does len() do?",
+    "content": "`len()` returns the number of elements currently present in:\n\n- A **slice or array**: number of actual elements.\n- A **map**: number of key-value pairs.\n- A **channel**: number of elements currently buffered.\n\n📌 It tells you how many items are there _right now_.",
+    "slide_type": "text"
+  },
+  {
+    "title": "What does cap() do?",
+    "content": "`cap()` returns the total capacity — the maximum number of elements that the slice, array, or channel can hold **without allocating more memory**.\n\nIt is mostly used with:\n\n- **Slices**: total size of the underlying array.\n- **Channels**: buffer capacity.\n\n⚠️ Not applicable to maps.",
+    "slide_type": "text"
+  },
+  {
+    "title": "len() and cap() with Slices",
+    "content": "package main\n\nimport \"fmt\"\n\nfunc main() {\n    nums := make([]int, 3, 5)\n    fmt.Println(\"len:\", len(nums)) // Output: 3\n    fmt.Println(\"cap:\", cap(nums)) // Output: 5\n}",
+    "slide_type": "code"
+  },
+  {
+    "title": "len() with Maps and Channels",
+    "content": "package main\n\nimport \"fmt\"\n\nfunc main() {\n    m := map[string]int{\"a\": 1, \"b\": 2}\n    fmt.Println(\"Map len:\", len(m))\n\n    ch := make(chan int, 4)\n    ch <- 1\n    ch <- 2\n    fmt.Println(\"Channel len:\", len(ch))\n    fmt.Println(\"Channel cap:\", cap(ch))\n}",
+    "slide_type": "code"
+  },
+  {
+    "title": "Difference Between len() and cap()",
+    "content": [
+      {
+        "Property": "len()",
+        "Description": "Returns the current number of elements."
+      },
+      {
+        "Property": "cap()",
+        "Description": "Returns the maximum number of elements that can be held."
+      },
+      {
+        "Property": "Applicable To",
+        "Description": "len(): slices, arrays, maps, channels | cap(): slices, arrays, channels"
+      },
+      {
+        "Property": "Maps",
+        "Description": "Only len() works; cap() is not applicable."
+      },
+      {
+        "Property": "Purpose",
+        "Description": "len() shows usage; cap() shows potential space."
+      }
+    ],
+    "slide_type": "table"
+  },
+  {
+    "title": "Why It Matters",
+    "content": "- Helps optimize memory usage\n- Prevents unnecessary reallocations\n- Useful in performance-critical code\n- Understanding these helps write efficient Go programs",
+    "slide_type": "text"
+  },
+  {
+    "title": "Quick Recap",
+    "content": "- Use **`len()`** to get the current number of elements\n- Use **`cap()`** to get the total capacity\n- Not all types support both\n- Ideal for understanding slices and channels behavior",
+    "slide_type": "text"
+  }
+]

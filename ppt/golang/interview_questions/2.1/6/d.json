@@ -1,0 +1,48 @@
+[
+    {
+      "title": "What is a Multi-Dimensional Slice?",
+      "content": "A **multi-dimensional slice** in Go is a slice of slices. It's used to represent structures like matrices, grids, or tables where you need rows and columns.\n\nUnlike arrays, slices are dynamic, so each inner slice can have a different length.",
+      "slide_type": "text"
+    },
+    {
+      "title": "Declaration Syntax",
+      "content": "```go\nvar matrix [][]int\n``` \nThis declares a slice of slices of integers. Initially, it’s nil and needs to be initialized before use.",
+      "slide_type": "code"
+    },
+    {
+      "title": "Initializing a Multi-Dimensional Slice",
+      "content": "```go\nrows := 3\ncols := 4\n\nmatrix := make([][]int, rows)\nfor i := range matrix {\n    matrix[i] = make([]int, cols)\n}\n``` \nThis creates a 3x4 matrix with all values initialized to zero.",
+      "slide_type": "code"
+    },
+    {
+      "title": "Accessing Elements",
+      "content": "```go\nmatrix[0][1] = 5\nfmt.Println(matrix[0][1]) // Output: 5\n```\nUse index notation to access or modify elements, just like a 2D array.",
+      "slide_type": "code"
+    },
+    {
+      "title": "Uneven Inner Slices",
+      "content": "```go\nmatrix := [][]int{\n    {1, 2, 3},\n    {4, 5},\n    {6},\n}\n``` \nGo allows inner slices to have different lengths, giving flexibility for jagged arrays.",
+      "slide_type": "code"
+    },
+    {
+      "title": "Use Cases of Multi-Dimensional Slices",
+      "content": "- Representing matrices and tables\n- Grids in games\n- Dynamic tabular data structures\n- Storing graph adjacency lists",
+      "slide_type": "text"
+    },
+    {
+      "title": "Comparison: Array vs Slice",
+      "content": [
+        { "Feature": "Fixed Size", "Array": "Yes", "Slice": "No" },
+        { "Feature": "Resizable", "Array": "No", "Slice": "Yes" },
+        { "Feature": "Can Hold Slices", "Array": "No", "Slice": "Yes" },
+        { "Feature": "Memory Efficient", "Array": "No (if oversize)", "Slice": "Yes" }
+      ],
+      "slide_type": "table"
+    },
+    {
+      "title": "Key Takeaways",
+      "content": "- Multi-dimensional slices in Go are slices of slices.\n- They are dynamic and flexible compared to arrays.\n- Initialization requires nested `make()` calls.\n- Inner slices can have different lengths.",
+      "slide_type": "text"
+    }
+  ]
+  

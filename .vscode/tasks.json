@@ -17,6 +17,20 @@
             "runOptions": {
                 "runOn": "folderOpen"
             },
+        },
+        {
+            "label": "Go modified object",
+            "type": "shell",
+            "command": "go run replace.go",
+            "args": [
+                
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "problemMatcher": [],
+            "detail": "Run json_to_ppt_v8.py to convert JSON into PowerPoint."
         }
     ]
 }
