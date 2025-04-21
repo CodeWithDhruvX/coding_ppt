@@ -1,0 +1,43 @@
+[
+    {
+      "title": "Introduction to Zero Value in Go",
+      "content": "In Go, every variable is given a default value when declared but not explicitly initialized. This default is known as the **zero value**.",
+      "slide_type": "text"
+    },
+    {
+      "title": "Why Zero Value Matters",
+      "content": "- Helps prevent undefined or garbage values\n- Makes code safer by ensuring variables are always initialized\n- Supports Go's design philosophy of simplicity and safety",
+      "slide_type": "text"
+    },
+    {
+      "title": "Zero Value Examples in Go",
+      "content": "package main\n\nimport \"fmt\"\n\nfunc main() {\n    var i int           // zero value: 0\n    var f float64       // zero value: 0.0\n    var b bool          // zero value: false\n    var s string        // zero value: \"\"\n\n    fmt.Println(i, f, b, s)\n}",
+      "slide_type": "code"
+    },
+    {
+      "title": "Zero Value Table",
+      "content": [
+        { "Type": "int", "Zero Value": "0" },
+        { "Type": "float64", "Zero Value": "0.0" },
+        { "Type": "bool", "Zero Value": "false" },
+        { "Type": "string", "Zero Value": "\"\"" },
+        { "Type": "pointer", "Zero Value": "nil" },
+        { "Type": "slice", "Zero Value": "nil" },
+        { "Type": "map", "Zero Value": "nil" },
+        { "Type": "channel", "Zero Value": "nil" },
+        { "Type": "interface", "Zero Value": "nil" },
+        { "Type": "function", "Zero Value": "nil" }
+      ],
+      "slide_type": "table"
+    },
+    {
+      "title": "Zero Value in Structs",
+      "content": "type Person struct {\n    name string\n    age  int\n}\n\nfunc main() {\n    var p Person // name: \"\", age: 0 (zero values for fields)\n    fmt.Println(p)\n}",
+      "slide_type": "code"
+    },
+    {
+      "title": "Key Takeaways",
+      "content": "- Zero values are Go's default initial values for variables\n- Helps avoid uninitialized variables\n- Always know the default behavior when declaring variables without initialization",
+      "slide_type": "text"
+    }
+  ]

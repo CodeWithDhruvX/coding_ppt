@@ -1,0 +1,86 @@
+[
+    {
+      "title": "What is Kubernetes?",
+      "content": "Kubernetes (K8s) is an open-source container orchestration platform designed to automate the deployment, scaling, and management of containerized applications. It was originally developed by Google based on their internal system called Borg and is now maintained by the Cloud Native Computing Foundation (CNCF). Kubernetes abstracts the underlying infrastructure and offers a powerful, flexible way to run distributed systems reliably. It supports multiple container runtimes like Docker and containerd and integrates with various cloud providers and on-premise data centers.",
+      "slide_type": "text"
+    },
+    {
+      "title": "Why Kubernetes?",
+      "content": "Before Kubernetes, deploying applications across multiple servers was manual, inconsistent, and error-prone. Kubernetes revolutionized the process through declarative configuration, meaning users define what they want, not how to achieve it. It automates load balancing, scaling, self-healing, and rollback. This reduces downtime and operational overhead, enabling DevOps and SRE teams to manage systems with greater resilience and repeatability.",
+      "slide_type": "text"
+    },
+    {
+      "title": "Kubernetes Architecture Overview",
+      "content": "Kubernetes follows a master-worker (control plane-node) architecture. The Control Plane makes global decisions (e.g., scheduling), maintains cluster state, and manages lifecycle events. Worker Nodes run actual containerized workloads. Key components include: API Server (frontend to the cluster), Scheduler (assigns workloads), Controller Manager (ensures desired state), etcd (key-value store), kubelet (runs containers), and kube-proxy (network routing).",
+      "slide_type": "text"
+    },
+    {
+      "title": "Kubernetes Control Plane Components",
+      "content": "### Control Plane:\n- **API Server**: Acts as the central gateway, validating and processing REST operations and managing the cluster state through etcd.\n- **etcd**: A highly available, consistent key-value store used as Kubernetes' backing store for all cluster data.\n- **Controller Manager**: Runs various background controllers to monitor the cluster and reconcile its current state with the desired state.\n- **Scheduler**: Assigns newly created Pods to appropriate nodes based on resource requirements and constraints like affinity or taints.",
+      "slide_type": "text"
+    },
+    {
+      "title": "Kubernetes Node Components",
+      "content": "### Node:\n- **kubelet**: An agent that ensures containers described in PodSpecs are running and healthy on the node. It communicates with the control plane and reports back node status.\n- **kube-proxy**: Manages networking rules on nodes, allowing network communication to your Pods from inside or outside the cluster using services.\n- **Container Runtime**: The software responsible for running containers (e.g., Docker, containerd, CRI-O), complying with Kubernetes Container Runtime Interface (CRI).",
+      "slide_type": "text"
+    },
+    {
+      "title": "Core Concepts in Kubernetes",
+      "slide_type": "table",
+      "content": [
+        {"Concept": "Pod", "Description": "Smallest deployable unit, encapsulates containers."},
+        {"Concept": "Service", "Description": "Stable network endpoint for a set of Pods."},
+        {"Concept": "Deployment", "Description": "Manages ReplicaSets and ensures desired state."},
+        {"Concept": "ReplicaSet", "Description": "Ensures a specified number of Pods are running."},
+        {"Concept": "ConfigMap", "Description": "Stores configuration data for apps."},
+        {"Concept": "Secret", "Description": "Stores sensitive data like passwords."},
+        {"Concept": "Namespace", "Description": "Logical partitioning for multi-tenancy."},
+        {"Concept": "Ingress", "Description": "Manages external access to services."},
+        {"Concept": "Volume", "Description": "Provides persistent storage to Pods."},
+        {"Concept": "StatefulSet", "Description": "Manages stateful apps with stable identities."},
+        {"Concept": "DaemonSet", "Description": "Runs a Pod copy on every (or some) Node."},
+        {"Concept": "Job / CronJob", "Description": "Run batch or scheduled tasks."}
+      ]
+    },
+    {
+      "title": "Basic Kubernetes YAML Example",
+      "content": "```yaml\napiVersion: v1\nkind: Pod\nmetadata:\n  name: my-app\nspec:\n  containers:\n  - name: app-container\n    image: nginx\n    ports:\n    - containerPort: 80\n```",
+      "slide_type": "code"
+    },
+    {
+      "title": "How Kubernetes Works",
+      "content": "1. You define your application and infrastructure requirements in a YAML file using Kubernetes objects like Pod, Deployment, or Service.\n2. You submit this file using the `kubectl apply -f` command.\n3. The API Server validates the configuration and stores the desired state in etcd.\n4. The Scheduler watches for unassigned Pods and places them on appropriate Nodes.\n5. Kubelet on those Nodes reads the PodSpec and starts the necessary containers using the Container Runtime.\n6. Controllers continuously monitor the cluster and take action to ensure the actual state matches the desired state (e.g., restarting failed Pods).",
+      "slide_type": "text"
+    },
+    {
+      "title": "Kubernetes Ecosystem Tools",
+      "content": "### Popular Tools:\n- **Helm**: A package manager that simplifies deployment using reusable charts and templated YAML files.\n- **Prometheus & Grafana**: Collect and visualize metrics for performance monitoring and alerting.\n- **Istio / Linkerd**: Service mesh tools that provide traffic routing, security (mTLS), and observability between services.\n- **Argo CD**: A declarative GitOps tool for managing Kubernetes resources directly from Git repositories.\n- **Kustomize**: Allows customization of raw YAML without modifying the original configuration using overlays and patches.",
+      "slide_type": "text"
+    },
+    {
+      "title": "Key Benefits of Kubernetes",
+      "content": "- **Scalability**: Automatically scale applications horizontally based on CPU/memory usage or custom metrics.\n- **High Availability**: Handles failures gracefully with features like replica management, health checks, and Pod rescheduling.\n- **Portability**: Can run on any platform, including public cloud, private data centers, or developer laptops.\n- **Extensibility**: Offers CRDs (Custom Resource Definitions), webhooks, and operator patterns to extend its capabilities.\n- **Declarative Management**: Uses YAML manifests to declare the desired state of the cluster, which Kubernetes continuously enforces.",
+      "slide_type": "text"
+    },
+    {
+      "title": "Common Use Cases of Kubernetes",
+      "content": "- **Microservices Architecture**: Run distributed microservices with isolated environments, independent scaling, and service discovery.\n- **CI/CD Pipelines**: Automate application testing, building, and deployment using tools like Jenkins, Argo CD, or Tekton on Kubernetes.\n- **Real-time Data Processing**: Use with Kafka, Spark, or Flink for high-throughput event stream processing.\n- **Machine Learning Pipelines**: Train, deploy, and monitor ML models using tools like Kubeflow and MLflow.\n- **Edge Computing**: Run workloads at the edge (e.g., IoT gateways) with lightweight K8s distributions like K3s.\n- **SaaS Deployment**: Manage multi-tenant SaaS apps using Namespaces, Network Policies, and resource quotas.",
+      "slide_type": "text"
+    },
+    {
+      "title": "Security Features in Kubernetes",
+      "content": "- **RBAC (Role-Based Access Control)**: Assign fine-grained permissions to users and services, controlling access to Kubernetes resources.\n- **Secrets Management**: Store and manage sensitive information like tokens and passwords securely, with integration to external vaults.\n- **Network Policies**: Define rules to allow or restrict network traffic between Pods, enhancing zero-trust security posture.\n- **PodSecurityPolicies (Deprecated)**: Once used to enforce security standards at the Pod level; now replaced by more flexible tools like:\n  - **Kyverno**: Kubernetes-native policy engine.\n  - **OPA Gatekeeper**: Enforces policies via Open Policy Agent with constraint templates.",
+      "slide_type": "text"
+    },
+    {
+      "title": "Real-world Kubernetes Examples",
+      "content": "- **Airbnb**: Uses Kubernetes for running and scaling microservices, improving development velocity with self-service environments.\n- **Spotify**: Leverages Kubernetes to manage its backend services and workflows, enabling faster deployments and resilience.\n- **CERN**: Uses Kubernetes for orchestrating scientific workloads and managing compute clusters in physics research.",
+      "slide_type": "text"
+    },
+    {
+      "title": "Kubernetes Alternatives",
+      "content": "- **Docker Swarm**: Simple native Docker orchestration tool, easier for beginners but lacks Kubernetes’ flexibility and ecosystem.\n- **HashiCorp Nomad**: Lightweight orchestrator that supports containers and non-container workloads (like Java apps or VMs).\n- **OpenShift**: Enterprise Kubernetes distribution by Red Hat with built-in CI/CD, RBAC, and developer tools.\n- **Amazon ECS**: AWS-native container orchestration with deep integration into other AWS services; simpler but less portable than Kubernetes.",
+      "slide_type": "text"
+    }
+  ]
+  

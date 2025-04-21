@@ -1,0 +1,194 @@
+🎬 [INTRO SLIDE: “Introduction to var, :=, and const”]
+
+👋 Hey everyone! Welcome back to the channel! Today, we’re diving into something super foundational in Go—variables and constants.
+
+You might’ve seen var, :=, and const floating around in Go code. At first glance, they all look like different ways of creating variables, right? But they each have a unique personality and purpose.
+
+Think of them like different tools in a toolbox. You don’t use a hammer for everything—you pick the right tool for the job. And knowing when to use var, :=, or const will make your Go code cleaner, faster, and easier to read.
+
+Let’s start by unpacking these one by one.
+
+📦 [SLIDE: “Using var for Variable Declaration”]
+👨‍🏫 Let’s talk about var first. It’s the classic, full-form way of declaring a variable in Go.
+
+go
+Copy
+Edit
+var age int = 25
+var name = "Alice" // Type inferred
+Alright—so what’s happening here?
+
+👉 In the first line:
+
+go
+Copy
+Edit
+var age int = 25
+We’re telling Go: Hey! I want a variable named age, it should be of type int, and I want to set it to 25.
+
+It's like introducing someone by name, age, and job title all at once.
+
+Now in the second line:
+
+go
+Copy
+Edit
+var name = "Alice"
+We're using var, but we’re not explicitly saying the type. Go is smart enough to look at "Alice" and go, “Ah! This is a string,” and it sets the type accordingly.
+
+🔍 So here’s the key takeaway:
+
+var lets you declare variables globally or locally.
+
+You can either explicitly state the type, or let Go figure it out for you.
+
+💡 And why might you want to use var instead of the short form? Well, maybe you're declaring something at the package level, or you want the compiler to catch type errors early.
+
+⚡ [SLIDE: “Using := for Short Variable Declaration”]
+
+Alright, now let’s move on to the cool kid of variable declarations: :=
+
+go
+Copy
+Edit
+age := 25
+name := "Alice"
+🚀 This is shorthand. It’s fast. It’s clean. But there’s a catch.
+
+You can only use := inside functions.
+
+So if you're writing some code inside your main() function or any other function, := is your best friend.
+
+Think of it as texting shorthand. Instead of saying “I am going to be late,” you say “g2g l8.” Quick, casual, but only works in the right setting.
+
+Also, notice that with :=, you can’t specify the type. Go figures it out. If you write:
+
+go
+Copy
+Edit
+score := 99.5
+Go’s like, “Hmm… looks like a float64,” and just rolls with it.
+
+But remember:
+
+:= must be used inside a function.
+
+The type is always inferred, not declared.
+
+You must initialize the variable at the time of declaration.
+
+No shortcuts without actual content—Go wants values right away.
+
+🧱 [SLIDE: “Using const for Constants”]
+
+Now let’s talk about const.
+
+go
+Copy
+Edit
+const Pi = 3.14
+const AppName = "MyApp"
+Constants are like set-in-stone facts in your code. Once you declare them, they’re unchangeable. You can’t modify them later.
+
+So why use const?
+
+Because it tells everyone—including Go and your future self—that this value is not meant to change. Ever.
+
+Real-life examples?
+
+The value of Pi 🧠 (3.14)
+
+Your app’s name (unless you're rebranding mid-execution, which you probably aren't)
+
+Version numbers, max retry counts, timeouts, etc.
+
+💥 Bonus tip: constants can actually make your code faster, because the compiler can optimize for them better.
+
+Also, constants:
+
+Work globally or locally.
+
+Require initialization immediately.
+
+Cannot be changed later.
+
+So basically, if it’s a value you want locked in for good—go with const.
+
+📊 [SLIDE: “Comparison Table”]
+
+Let’s line all this up side by side and compare them.
+
+
+Keyword	Can Infer Type	Scope	Changeable	Requires Initialization
+var	Yes	Global and Local	Yes	No
+:=	Yes	Local (in functions only)	Yes	Yes
+const	Yes	Global and Local	No	Yes
+So what does this table tell us?
+
+All three allow type inference, which is great—Go does a lot of heavy lifting for us.
+
+var and const can be declared globally—so you can use them outside functions.
+
+:= is more limited—it only works inside functions.
+
+Only const is unchangeable. Once set, it's frozen.
+
+🧠 Pattern here?
+Use const when things should never change.
+Use := when you want quick declarations inside functions.
+Use var for everything else—especially if you're outside a function or want to be explicit.
+
+💡 [SLIDE: “Best Practices”]
+
+Alright, best practices time!
+
+✔ Use const for values that never change—like Pi, version numbers, or app-wide configs.
+
+✔ Use := for short, local declarations inside functions. It keeps your code clean and readable.
+
+✔ Use var when you're outside functions, need to declare something without initializing it, or want to specify the type clearly.
+
+Think of this like cooking:
+
+const is your salt container—it always stays on the shelf.
+
+:= is like tossing in ingredients quickly while cooking.
+
+var is when you're prepping ingredients ahead of time.
+
+⚠️ [SLIDE: “Common Mistakes to Avoid”]
+
+Here’s where beginners often trip up:
+
+❌ Using := outside a function.
+Go will immediately throw an error. It’s like trying to wear flip-flops to a formal dinner—just not allowed!
+
+❌ Forgetting to initialize a const.
+Constants must have a value when declared. Go needs to know what it’s locking in.
+
+❌ Declaring with var but never using it.
+Go doesn’t like unused variables. If you declare something and don’t use it, it’ll complain. This is actually a good thing—it keeps your code clean!
+
+🎯 [SLIDE: “Takeaway”]
+
+So here’s the big picture:
+
+Use var when you need flexibility or global scope.
+
+Use := when you're writing quick, local logic inside functions.
+
+Use const to lock down values that should never change.
+
+Understanding these three keywords sets the foundation for writing clean, efficient, and idiomatic Go code.
+
+🎉 [OUTRO]
+
+And that’s it for today’s deep dive! 🚀
+
+If you’re just starting out with Go, mastering these basics will give you a huge leg up. Everything you build—APIs, CLI tools, web apps—will rely on these variable declarations.
+
+👍 If this helped clarify things, drop a like!
+💬 Got questions or want me to cover structs or loops next? Let me know in the comments.
+🔔 And don’t forget to subscribe for more beginner-friendly tech breakdowns like this.
+
+Catch you in the next one—and happy coding in Go! 💻✨

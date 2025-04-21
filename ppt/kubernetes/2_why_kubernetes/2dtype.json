@@ -1,0 +1,106 @@
+[
+    {
+      "title": "Why Do We Use Kubernetes?",
+      "content": "### Kubernetes is an open-source container orchestration platform.\nIt helps developers and DevOps teams manage containerized applications across a cluster of machines. Kubernetes abstracts away the complexity of deploying and managing applications by automating tasks like container scheduling, service discovery, load balancing, scaling, and self-healing. It ensures high availability, fault tolerance, and scalability of applications, making it a fundamental tool in modern cloud-native architecture.",
+      "slide_type": "text"
+    },
+    {
+      "title": "1. Container Orchestration",
+      "content": "### Managing containers at scale\nIn a production environment, you may run hundreds or even thousands of containers. Manually managing their lifecycle—starting, stopping, rescheduling on failure—is error-prone and inefficient. Kubernetes solves this by orchestrating container deployment across multiple servers, ensuring containers are placed optimally and are always running as expected. It automates the deployment, scaling, and operations of application containers across clusters of hosts.",
+      "slide_type": "text"
+    },
+    {
+      "title": "2. Automated Deployments & Rollbacks",
+      "content": "### Continuous delivery and zero downtime\nKubernetes enables you to deploy new versions of your application using rolling updates, which means only a subset of the pods are updated at a time to avoid downtime. If something goes wrong, Kubernetes allows you to roll back to the previous stable version automatically. This capability is crucial for continuous integration and delivery (CI/CD) pipelines where frequent updates are made to production systems.",
+      "slide_type": "text"
+    },
+    {
+      "title": "3. Self-Healing",
+      "content": "### Maintaining desired state automatically\nKubernetes constantly monitors the health of nodes and containers. If a container crashes or becomes unresponsive, Kubernetes automatically restarts it or reschedules it on another node. It also removes containers that don’t pass health checks and ensures that the cluster always matches the desired state defined in your configuration files. This reduces the need for manual intervention and increases the reliability of your system.",
+      "slide_type": "text"
+    },
+    {
+      "title": "4. Auto-Scaling",
+      "content": "### Dynamic resource management\nKubernetes includes a feature called Horizontal Pod Autoscaler, which monitors metrics such as CPU or memory usage and automatically adjusts the number of pods to meet demand. This ensures that your application can handle increased traffic during peak hours and reduces resource usage during low demand, optimizing cost and performance without manual scaling.",
+      "slide_type": "text"
+    },
+    {
+      "title": "5. Load Balancing and Service Discovery",
+      "content": "### Traffic routing and service abstraction\nKubernetes assigns each service a stable IP and DNS name, and it uses kube-proxy to handle internal load balancing. It distributes network traffic evenly across healthy pods, ensuring high availability and reliability. Developers don’t need to worry about pod IPs changing due to failures or rescheduling—the service abstraction handles everything behind the scenes.",
+      "slide_type": "text"
+    },
+    {
+      "title": "6. Better Resource Utilization",
+      "content": "### Efficient container placement\nKubernetes uses a technique called bin packing to schedule containers based on resource requirements and availability. You can define requests (minimum needed) and limits (maximum allowed) for CPU and memory per container. This allows Kubernetes to pack workloads efficiently across nodes, avoiding both over-provisioning and underutilization, thereby optimizing infrastructure costs.",
+      "slide_type": "text"
+    },
+    {
+      "title": "7. Multi-Cloud & Hybrid Cloud Support",
+      "content": "### Avoiding vendor lock-in\nKubernetes works across all major cloud providers (AWS, Azure, GCP) and on-premises environments, making it cloud-agnostic. This enables businesses to adopt hybrid cloud or multi-cloud strategies, improving flexibility, redundancy, and cost optimization. You can migrate workloads between clouds or run them simultaneously in multiple environments without changing your application code.",
+      "slide_type": "text"
+    },
+    {
+      "title": "8. Security & Configuration Management",
+      "content": "### Secure by design\nKubernetes offers built-in tools for security and configuration management. **Secrets** store sensitive information like API keys, while **ConfigMaps** manage environment-specific configurations. Role-Based Access Control (RBAC) limits who can access or modify resources. Additionally, you can define network policies to isolate workloads and apply Pod Security Policies to enforce compliance and security standards.",
+      "slide_type": "text"
+    },
+    {
+      "title": "9. Declarative Configuration",
+      "content": "### Infrastructure as code (IaC)\nYou describe your desired infrastructure using YAML or JSON manifests. Kubernetes reads these manifests and ensures that the current state of the system matches the desired state. This approach is repeatable, version-controlled, and auditable, which improves collaboration, reduces errors, and makes disaster recovery and rollback easier.",
+      "slide_type": "text"
+    },
+    {
+      "title": "10. Extensibility and Ecosystem",
+      "content": "### A modular and pluggable architecture\nKubernetes is not just a container platform—it's an extensible ecosystem. It supports custom controllers, Custom Resource Definitions (CRDs), and integrates with a wide range of tools like Helm (for package management), ArgoCD (for GitOps deployment), Prometheus (for monitoring), and Istio (for service mesh). You can also write operators to automate complex workflows tailored to your environment.",
+      "slide_type": "text"
+    },
+    {
+      "title": "Bonus: Desired State Management",
+      "content": "### Declarative + reconciliation\nOne of Kubernetes’ core strengths is its reconciliation loop. You declare the desired state (e.g., 3 replicas of a pod), and Kubernetes constantly compares this to the actual state. If it detects a drift (e.g., only 2 replicas running), it will take corrective actions automatically. This guarantees consistency and high reliability in production systems.",
+      "slide_type": "text"
+    },
+    {
+      "title": "Summary Table: Key Kubernetes Features",
+      "slide_type": "table",
+      "content": [
+        {
+          "Feature": "Container Orchestration",
+          "What It Does": "Manages deployment and lifecycle of containers"
+        },
+        {
+          "Feature": "Self-Healing",
+          "What It Does": "Auto restarts, replaces, and manages unhealthy containers"
+        },
+        {
+          "Feature": "Auto-Scaling",
+          "What It Does": "Scales apps based on traffic or metrics"
+        },
+        {
+          "Feature": "Load Balancing",
+          "What It Does": "Distributes traffic across pods"
+        },
+        {
+          "Feature": "Multi-Cloud Support",
+          "What It Does": "Run anywhere – cloud or on-prem"
+        },
+        {
+          "Feature": "Declarative Configuration",
+          "What It Does": "YAML-based infrastructure as code"
+        },
+        {
+          "Feature": "Security Management",
+          "What It Does": "Secrets, RBAC, network policies"
+        },
+        {
+          "Feature": "Extensibility",
+          "What It Does": "Custom plugins, CRDs, third-party integrations"
+        }
+      ]
+    },
+    {
+      "title": "Real-World Use Case: Netflix-Like App",
+      "content": "### Large-scale system management with Kubernetes\nA real-world scenario like Netflix involves hundreds of microservices (authentication, payment, video streaming, recommendations, etc.). These services need to be deployed independently, scaled dynamically, and updated frequently. Kubernetes helps manage this complexity with features like service discovery, auto-scaling, zero-downtime deployments, health checks, and observability tools. It empowers DevOps teams to maintain agility, reliability, and scalability even under high traffic and complexity.",
+      "slide_type": "text"
+    }
+  ]
+  

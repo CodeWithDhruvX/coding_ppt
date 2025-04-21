@@ -1,0 +1,53 @@
+[
+    {
+        "title": "Git Merge vs Rebase - Overview",
+        "content": "Understanding the difference between `merge` and `rebase` helps maintain a clean, efficient Git history. Both serve to integrate changes from one branch into another, but they do so differently.",
+        "slide_type": "text"
+    },
+    {
+        "title": "What is Git Merge?",
+        "content": "### Merge:\n- Combines two branches by creating a new commit.\n- Keeps full history intact.\n- Best used for shared/team branches.\n- Does NOT rewrite history.",
+        "slide_type": "text"
+    },
+    {
+        "title": "Git Merge - Visual Representation",
+        "content": "*---*---*---*         (main)\n         \\\n          *---*---*   (feature)\n                   \\\n                    * (merge commit)",
+        "slide_type": "code"
+    },
+    {
+        "title": "What is Git Rebase?",
+        "content": "### Rebase:\n- Moves commits to a new base tip (changes commit history).\n- Creates a linear, cleaner commit history.\n- Best for personal/feature branches.\n- Avoid rebasing shared branches!",
+        "slide_type": "text"
+    },
+    {
+        "title": "Git Rebase - Visual Representation",
+        "content": "*---*---*---*---*---*  (main after rebase and merge)",
+        "slide_type": "code"
+    },
+    {
+        "title": "Golden Rule of Rebase",
+        "content": "🚨 Never rebase shared/public branches!\nDoing so rewrites history and may cause conflicts for your teammates. Use rebase only for local/feature branches before pushing.",
+        "slide_type": "text"
+    },
+    {
+        "title": "Decision Guide: Rebase vs Merge",
+        "slide_type": "table",
+        "content": [
+            {"Situation": "Working with team on shared branch", "Use Merge": "✅", "Use Rebase": "❌"},
+            {"Situation": "Preparing feature branch before merging", "Use Merge": "❌", "Use Rebase": "✅"},
+            {"Situation": "Want a clear development timeline", "Use Merge": "✅", "Use Rebase": "❌"},
+            {"Situation": "Want a linear history", "Use Merge": "❌", "Use Rebase": "✅"},
+            {"Situation": "Already pushed to shared repo", "Use Merge": "✅", "Use Rebase": "❌"}
+        ]
+    },
+    {
+        "title": "Real Git Demo - Commands",
+        "content": "```bash\n# Create and switch to a feature branch\ngit checkout -b feature\n\n# Make some commits\necho 'feature A' >> file.txt\ngit commit -am \"Add feature A\"\necho 'feature B' >> file.txt\ngit commit -am \"Add feature B\"\n\n# Go back to main and add a new commit\ngit checkout main\necho 'hotfix' >> file.txt\ngit commit -am \"Hotfix in main\"\n\n# Merge example\ngit merge feature\n\n# OR rebase example\n# git checkout feature\n# git rebase main\n# git checkout main\n# git merge feature  # fast-forward\n```",
+        "slide_type": "code"
+    },
+    {
+        "title": "Merge vs Rebase - Final Comparison",
+        "content": "### Merge:\n- ✅ Keeps original history\n- ✅ Better for team collaboration\n- ❌ Messy history with many branches\n\n### Rebase:\n- ✅ Clean, linear history\n- ✅ Great for solo work\n- ❌ Risky if used on shared branches",
+        "slide_type": "text"
+    }
+]
