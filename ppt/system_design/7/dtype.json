@@ -1,0 +1,68 @@
+[
+    {
+        "title": "What is a Reverse Proxy?",
+        "content": "A reverse proxy is a type of server that acts as an intermediary between clients and backend servers. Instead of the client communicating directly with the server, the request goes to the reverse proxy. The reverse proxy then determines which backend server will handle the request, forwards it, collects the response, and sends it back to the client. This abstraction allows for enhanced security, performance optimization, and scalability across large-scale applications.",
+        "slide_type": "text"
+    },
+    {
+        "title": "Why is it Called 'Reverse' Proxy?",
+        "content": "In traditional or 'forward' proxy scenarios, the proxy acts on behalf of the client, hiding the client's identity from the server. In contrast, a reverse proxy sits in front of one or more servers and acts on their behalf. It intercepts incoming client requests and routes them to the appropriate internal server. This reversal of direction in responsibility—from client-side to server-side—is why it's termed a 'reverse' proxy. Clients are typically unaware that a reverse proxy even exists.",
+        "slide_type": "text"
+    },
+    {
+        "title": "How Reverse Proxy Works - Step by Step",
+        "content": "1. A user requests a resource (e.g., webpage or API) via their browser.\n2. The reverse proxy server receives the request instead of the backend application server.\n3. The proxy analyzes the request (URL path, headers, etc.) to determine the target backend server.\n4. It forwards the request to the appropriate backend server for processing.\n5. The backend server sends the response back to the reverse proxy.\n6. The reverse proxy returns the response to the original client.\nThis model allows seamless scaling, better monitoring, and flexible traffic control in modern architectures.",
+        "slide_type": "text"
+    },
+    {
+        "title": "Key Benefits of a Reverse Proxy",
+        "content": "✔ Load Balancing: Distributes incoming traffic across multiple servers to prevent overloading and ensure high availability.\n✔ Improved Security: Hides internal server details from the outside world and serves as a buffer against attacks like DDoS.\n✔ SSL Termination: Handles SSL encryption and decryption, offloading this resource-intensive task from backend servers.\n✔ Content Caching: Stores and serves static content (like images, videos, CSS, JS) to reduce backend load and improve speed.\n✔ Compression: Compresses responses before sending them to clients to save bandwidth.\n✔ Authentication & Authorization: Enforces access control at the edge, before requests reach backend systems.\n✔ Path-Based Routing: Directs specific request paths to different services, which is especially useful in microservice architectures.",
+        "slide_type": "text"
+    },
+    {
+        "title": "Real-World Analogy",
+        "content": "Imagine a large office building where visitors must first go through a receptionist at the front desk. Visitors (clients) never directly interact with internal departments (servers). The receptionist (reverse proxy) assesses the visitor's needs and routes them to the correct department. If any paperwork needs to be filled or signed, the receptionist manages it before passing the request to the department. Once the department responds, the receptionist delivers the message or solution to the visitor. This keeps internal operations secure, organized, and efficient—just like a reverse proxy in a software system.",
+        "slide_type": "text"
+    },
+    {
+        "title": "Use Case: Microservices Architecture",
+        "content": "In a microservices-based system, each service (authentication, payments, catalog, etc.) is developed and deployed independently. A reverse proxy simplifies the client-side logic by serving as a single point of access. It intelligently routes requests based on paths or subdomains to the appropriate microservice. For example:\n- `/auth/login` → Authentication Service\n- `/products` → Product Service\n- `/orders` → Order Service\nThis not only improves modularity but also allows for independent scaling, deployment, and fault isolation of individual components.",
+        "slide_type": "text"
+    },
+    {
+        "title": "Reverse Proxy vs Forward Proxy",
+        "slide_type": "table",
+        "content": [
+            {
+                "Feature": "Acts for",
+                "Forward Proxy": "Client (user)",
+                "Reverse Proxy": "Server (application)"
+            },
+            {
+                "Feature": "Hides",
+                "Forward Proxy": "Client identity from the internet",
+                "Reverse Proxy": "Server identity from the client"
+            },
+            {
+                "Feature": "Main Purpose",
+                "Forward Proxy": "Access control, anonymity",
+                "Reverse Proxy": "Load balancing, scalability, security"
+            },
+            {
+                "Feature": "Common Users",
+                "Forward Proxy": "End users in restricted networks",
+                "Reverse Proxy": "Organizations hosting web services"
+            }
+        ]
+    },    
+    {
+        "title": "Popular Reverse Proxy Software",
+        "content": "- **Nginx**: A high-performance server used for reverse proxying, load balancing, and caching.\n- **Apache HTTP Server (mod_proxy)**: Versatile and widely-used, supports complex reverse proxy setups.\n- **HAProxy**: Industry-standard for high-availability environments, especially in load balancing.\n- **Traefik**: A modern reverse proxy built with dynamic routing and microservices in mind, supports Docker and Kubernetes.\n- **AWS ALB**: Cloud-native reverse proxy and load balancer integrated with the AWS ecosystem.",
+        "slide_type": "text"
+    },
+    {
+        "title": "Nginx Reverse Proxy Configuration",
+        "content": "server {\n    listen 80;\n    server_name mywebsite.com;\n\n    location / {\n        proxy_pass http://localhost:3000;\n        proxy_set_header Host $host;\n        proxy_set_header X-Real-IP $remote_addr;\n    }\n}",
+        "slide_type": "code"
+    }
+]

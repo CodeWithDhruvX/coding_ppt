@@ -1,0 +1,93 @@
+[
+    {
+      "title": "Vertical vs Horizontal Scaling - Introduction",
+      "content": "Scaling in system design is all about efficiently handling growing demands—whether it’s user traffic, processing power, or storage. Two primary approaches to scaling exist: **Vertical Scaling** (scale up by improving one machine) and **Horizontal Scaling** (scale out by adding more machines). Each approach has its own trade-offs in terms of complexity, cost, and scalability. Choosing the right strategy depends on your application's architecture, growth expectations, and tolerance for downtime or complexity.",
+      "slide_type": "text"
+    },
+    {
+      "title": "Vertical Scaling - Definition",
+      "content": "**Vertical Scaling**, also known as *scaling up*, means increasing the computational power of a single machine. This includes adding more CPU cores, more RAM, faster SSDs, or better GPUs to make the server more powerful. It's a straightforward way to enhance performance without redesigning your architecture.",
+      "slide_type": "text"
+    },
+    {
+      "title": "Vertical Scaling - Deep Understanding",
+      "content": "Think of a server like a restaurant kitchen. Vertical scaling is like renovating that kitchen to add a bigger oven, better ventilation, and more skilled chefs—all under the same roof. You're not adding more kitchens; you're upgrading the existing one to handle more customers. It’s ideal for systems where redesigning for distribution is overkill or where latency must be minimized. However, there’s a ceiling—you can only upgrade hardware to a certain point before physical limits or cost becomes a bottleneck.",
+      "slide_type": "text"
+    },
+    {
+      "title": "Vertical Scaling - Pros and Cons",
+      "content": "### ✅ Advantages:\n- **Simple architecture**: No need for distributed systems or replication.\n- **Lower latency**: All data and processes are on one server, avoiding network delays.\n- **Quick to implement**: Scaling can be as simple as upgrading the cloud instance.\n\n### ❌ Limitations:\n- **Hardware limitations**: There's a physical cap on how much you can upgrade.\n- **Downtime risk**: Many upgrades require a reboot or downtime.\n- **Single point of failure**: If that one server crashes, the whole system fails.",
+      "slide_type": "text"
+    },
+    {
+      "title": "Horizontal Scaling - Definition",
+      "content": "**Horizontal Scaling**, or *scaling out*, is the process of adding more machines to a system and distributing the workload among them. Instead of making one machine stronger, you use many machines together to handle more users or requests. This is the foundation of modern, distributed, cloud-native architectures.",
+      "slide_type": "text"
+    },
+    {
+      "title": "Horizontal Scaling - Deep Understanding",
+      "content": "Imagine a single restaurant kitchen can’t serve a city’s demand. Instead of making that kitchen bigger endlessly, you open multiple branches, each handling its local customers. That’s horizontal scaling—cloning your servers (or microservices), balancing the load among them, and ensuring they can fail gracefully without affecting the whole system. It allows for nearly infinite scalability, but demands advanced techniques like load balancing, stateless services, distributed storage, and message queues.",
+      "slide_type": "text"
+    },
+    {
+      "title": "Horizontal Scaling - Pros and Cons",
+      "content": "### ✅ Advantages:\n- **High fault tolerance**: Redundancy ensures one server’s failure doesn’t crash the system.\n- **Scalability**: You can scale to millions of users by just adding more machines.\n- **Elastic infrastructure**: Cloud platforms support auto-scaling based on demand.\n\n### ❌ Challenges:\n- **Increased complexity**: Requires service orchestration, synchronization, and data consistency.\n- **Cost overhead**: More nodes mean more infrastructure, monitoring, and network cost.\n- **Debugging is harder**: Tracing bugs in distributed systems is more complex.",
+      "slide_type": "text"
+    },
+    {
+      "title": "Real-World Example - Vertical Scaling",
+      "content": "Let’s say you host a PostgreSQL database on a 4-core, 16GB RAM virtual machine. As traffic increases, queries slow down. To fix it, you upgrade the server to 16 cores and 64GB RAM. The application remains the same, just faster. This is classic **vertical scaling**, ideal for fast performance boosts without changing code or infrastructure—but only up to a point.",
+      "slide_type": "text"
+    },
+    {
+      "title": "Real-World Example - Horizontal Scaling",
+      "content": "Suppose your PostgreSQL database now faces massive read traffic. Instead of upgrading the server further, you create multiple **read replicas** and use a **load balancer** to distribute read queries among them. Or, you adopt a distributed database like **Cassandra**, where data is automatically partitioned and replicated across nodes. This strategy enables handling very high workloads, resilience to failures, and better regional performance.",
+      "slide_type": "text"
+    },
+    {
+      "title": "Vertical vs Horizontal Scaling - Comparison Table",
+      "slide_type": "table",
+      "content": [
+        {
+          "Factor": "Simplicity",
+          "Vertical Scaling": "Easier to manage",
+          "Horizontal Scaling": "More complex"
+        },
+        {
+          "Factor": "Limits",
+          "Vertical Scaling": "Hardware-bound",
+          "Horizontal Scaling": "Virtually limitless"
+        },
+        {
+          "Factor": "Fault Tolerance",
+          "Vertical Scaling": "Low (SPOF)",
+          "Horizontal Scaling": "High (redundancy)"
+        },
+        {
+          "Factor": "Cost",
+          "Vertical Scaling": "Cheaper short-term",
+          "Horizontal Scaling": "Cost-effective long-term"
+        },
+        {
+          "Factor": "Use Case",
+          "Vertical Scaling": "Smaller systems",
+          "Horizontal Scaling": "Distributed, cloud-native apps"
+        }
+      ]
+    },
+    {
+      "title": "Hybrid Scaling Strategy",
+      "content": "Most real-world systems adopt a -**hybrid approach**. Initially, they scale vertically—getting maximum performance from a single node. Once resource limits are reached or high availability becomes critical, they switch to horizontal scaling. For example, you might vertically scale your web server to handle peak loads, while horizontally scaling your stateless API layer and caching layer (e.g., Redis clusters) to meet traffic surges without downtime.",
+      "slide_type": "text"
+    },
+    {
+      "title": "Summary - When to Use What?",
+      "content": "### Choose Vertical Scaling:\n- Your application is monolithic.\n- You have a quick performance need.\n- Budget is tight for infrastructure redesign.\n\n### Choose Horizontal Scaling:\n- You need high availability and fault tolerance.\n- Your system needs to support unpredictable growth.\n- You are cloud-native or containerized (Kubernetes, microservices).\n\nThink of vertical scaling as upgrading your race car, and horizontal scaling as building a fleet of delivery trucks. Use both strategically to meet your application's demand at different stages of growth.",
+      "slide_type": "text"
+    },
+    {
+      "title": "Code Example - Horizontal Scaling (Golang worker processes)",
+      "content": "package main\n\nimport (\n\t\"fmt\"\n\t\"os\"\n\t\"os/exec\"\n\t\"runtime\"\n)\n\nfunc main() {\n\tnumCPUs := runtime.NumCPU()\n\tfmt.Printf(\"Master process: Spawning %d workers...\\n\", numCPUs)\n\n\tfor i := 0; i < numCPUs; i++ {\n\t\tcmd := exec.Command(\"go\", \"run\", \"worker.go\") // Worker script\n\t\tcmd.Stdout = os.Stdout\n\t\tcmd.Stderr = os.Stderr\n\n\t\terr := cmd.Start()\n\t\tif err != nil {\n\t\t\tfmt.Printf(\"Failed to start worker %d: %v\\n\", i, err)\n\t\t} else {\n\t\t\tfmt.Printf(\"Worker %d started with PID %d\\n\", i, cmd.Process.Pid)\n\t\t}\n\t}\n}",
+      "slide_type": "code"
+    }  
+  ]

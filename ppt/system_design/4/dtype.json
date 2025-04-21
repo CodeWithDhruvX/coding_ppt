@@ -1,0 +1,89 @@
+[
+    {
+      "title": "What is a Load Balancer?",
+      "content": "A **load balancer** is a software or hardware component that **distributes incoming network or application traffic** across multiple backend servers. It acts like a traffic controller, ensuring no single server is overwhelmed. This distribution helps prevent downtime, ensures efficient use of resources, and improves responsiveness. Load balancers also act as a single point of entry into your application, allowing for centralized management of routing and security policies. They are essential for maintaining reliability in high-traffic environments and scaling applications dynamically.",
+      "slide_type": "text"
+    },
+    {
+      "title": "Why Use a Load Balancer?",
+      "content": "### Benefits of Load Balancing:\n- ✅ **Improved Performance**: Requests are distributed evenly, which reduces response time and avoids overload.\n- 🔁 **High Availability & Redundancy**: If one server fails, others take over without disrupting service.\n- 📈 **Scalability**: Easily handle increasing traffic by adding more servers behind the load balancer.\n- 🔐 **Security**: Load balancers can terminate SSL, protect backend infrastructure, and offer DDoS mitigation. In cloud-native architectures, they are vital for seamless blue-green deployments and rolling updates, enabling zero-downtime releases.",
+      "slide_type": "text"
+    },
+    {
+      "title": "Real-Life Analogy",
+      "content": "Imagine a restaurant with many cashiers. A person at the entrance directs customers to the cashier with the shortest line. This is similar to how a load balancer distributes traffic among multiple servers. Without this traffic controller, customers (users) would crowd one line (server), causing delays and frustration. The analogy highlights how load balancers optimize the flow of requests, reduce congestion, and improve the overall user experience in large-scale applications.",
+      "slide_type": "text"
+    },
+    {
+      "title": "Load Balancing Algorithms",
+      "content": "### Common Algorithms:\n1. **Round Robin** – Equal turn for all servers, ideal when all servers have equal capability.\n2. **Least Connections** – Directs traffic to the server with the fewest active sessions. Best for sessions of unpredictable length.\n3. **IP Hash** – Hashes the client's IP address to route consistently to the same server, useful for session persistence.\n4. **Weighted Round Robin** – Distributes based on server capacity or weight. Heavier-weighted servers receive more traffic.\n5. **Random** – Simple and lightweight; useful when traffic is not intense or predictable. These algorithms ensure optimal resource usage and allow customizable routing policies based on real-time load and application needs.",
+      "slide_type": "text"
+    },
+    {
+      "title": "Types of Load Balancers",
+      "slide_type": "table",
+      "content": [
+        {
+          "Type": "Layer 4 (L4)",
+          "Description": "Operates at Transport Layer (TCP/UDP). Routes based on IP & Port. Very fast."
+        },
+        {
+          "Type": "Layer 7 (L7)",
+          "Description": "Operates at Application Layer (HTTP/HTTPS). Routes based on URL, headers, cookies."
+        },
+        {
+          "Type": "Hardware",
+          "Description": "Physical appliances (e.g., F5). High performance, costly."
+        },
+        {
+          "Type": "Software",
+          "Description": "Installed on servers (e.g., NGINX, HAProxy). Flexible and cost-effective."
+        },
+        {
+          "Type": "Cloud",
+          "Description": "Managed services (e.g., AWS ELB, Azure LB). Scalable, easy to use."
+        }
+      ]
+    },
+    {
+      "title": "How Load Balancers Work",
+      "content": "1. User makes a request to a domain like `example.com`.\n2. DNS resolves it to the load balancer's IP address.\n3. The load balancer evaluates the request (using algorithms or health checks).\n4. It selects a healthy backend server and forwards the request.\n5. If a server is down, the load balancer skips it until it recovers.\nLoad balancers can also modify the request/response (at Layer 7), perform SSL termination, compress data, and monitor latency. Their presence abstracts backend complexities from clients while enhancing fault tolerance and overall system resilience.",
+      "slide_type": "text"
+    },
+    {
+      "title": "Health Checks",
+      "content": "Load balancers continuously monitor backend servers using health checks — typically HTTP/HTTPS/TCP pings. If a server fails these checks (e.g., returns a 500 status or doesn’t respond), it is marked as unhealthy and removed from the routing pool. This mechanism allows load balancers to avoid sending requests to failed servers and helps with automatic recovery and self-healing of applications. Health checks ensure application uptime and responsiveness, especially during traffic spikes or infrastructure changes.",
+      "slide_type": "text"
+    },
+    {
+      "title": "Load Balancer in Modern Architecture",
+      "content": "In microservices, cloud-native apps, and Kubernetes environments, load balancers go beyond simple request routing. They enable:\n- **Service Discovery**: Dynamically find and route to available services\n- **Traffic Splitting**: For canary or blue-green deployments\n- **Security Layer**: Centralized SSL, authentication, and request validation\n- **Observability**: Metrics, tracing, and logging integration\nIn platforms like Istio or Linkerd, load balancing is handled at the sidecar proxy level, empowering smart routing decisions with retries, rate limiting, and circuit breaking features. Load balancers in these systems support complex scenarios like multi-cluster failover, geo-routing, and tenant-based isolation.",
+      "slide_type": "text"
+    },
+    {
+      "title": "Load Balancer vs Reverse Proxy",
+      "slide_type": "table",
+      "content": [
+        {
+          "Feature": "Purpose",
+          "Load Balancer": "Distributes traffic across servers",
+          "Reverse Proxy": "Forwards requests to one or more servers"
+        },
+        {
+          "Feature": "Scope",
+          "Load Balancer": "Focused on load distribution",
+          "Reverse Proxy": "Handles caching, SSL, compression"
+        },
+        {
+          "Feature": "Examples",
+          "Load Balancer": "AWS ELB, HAProxy",
+          "Reverse Proxy": "NGINX, Apache, Traefik"
+        }
+      ]
+    },
+    {
+      "title": "Summary - Key Takeaways",
+      "content": "- A **load balancer** is a foundational component in modern distributed systems.\n- It ensures availability, performance, and seamless failover.\n- Operates at Layer 4 (TCP/UDP) and Layer 7 (HTTP/HTTPS) depending on needs.\n- It integrates with cloud infrastructure, service meshes, and container orchestration platforms.\n- Load balancing supports horizontal scalability and zero-downtime deployments, making it essential for building high-performance, cloud-native applications.",
+      "slide_type": "text"
+    }
+  ]
