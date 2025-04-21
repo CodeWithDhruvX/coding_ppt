@@ -1,0 +1,22 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "Run JSON to PPT",
+            "type": "shell",
+            "command": "python",
+            "args": [
+                "creation/json_to_ppt_v8.py"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "problemMatcher": [],
+            "detail": "Run json_to_ppt_v8.py to convert JSON into PowerPoint.",
+            "runOptions": {
+                "runOn": "folderOpen"
+            },
+        }
+    ]
+}

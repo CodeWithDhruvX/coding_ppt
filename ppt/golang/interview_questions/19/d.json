@@ -1,0 +1,59 @@
+[
+    {
+      "title": "Introduction to Blank Identifiers",
+      "content": "In Go, a **blank identifier** is represented by an underscore (`_`). It acts as a **placeholder** for a value that you want to ignore. It is commonly used when a value is required syntactically but is not needed in the logic.",
+      "slide_type": "text"
+    },
+    {
+      "title": "Syntax of Blank Identifier",
+      "content": "The blank identifier is simply written as `_` and can be used in place of any variable where the value is not required.\n\nExamples:\n```go\nvalue, _ := someFunction()\n_, err := anotherFunction()\n```",
+      "slide_type": "code"
+    },
+    {
+      "title": "Common Use Cases",
+      "content": "- Ignoring return values from functions\n- Skipping unused loop variables\n- Discarding values in multiple assignments\n- Implementing interfaces with unused methods\n- Importing packages only for side-effects",
+      "slide_type": "text"
+    },
+    {
+      "title": "Ignoring Return Values",
+      "content": "```go\nresult, _ := divide(10, 2) // Ignore error if it's not needed\nfmt.Println(\"Result:\", result)\n```",
+      "slide_type": "code"
+    },
+    {
+      "title": "Skipping Loop Variables",
+      "content": "```go\nvalues := []int{1, 2, 3}\nfor _, v := range values {\n    fmt.Println(v) // We don't need the index, so we use _\n}\n```",
+      "slide_type": "code"
+    },
+    {
+      "title": "Discarding Values in Assignments",
+      "content": "```go\nx, _ := getCoordinates() // We only need x, ignore y\n```",
+      "slide_type": "code"
+    },
+    {
+      "title": "Interface Implementation",
+      "content": "Even if you don’t use all methods in a struct that implements an interface, Go requires them to be defined. Use `_` to avoid compiler errors:\n\n```go\nfunc (_ MyStruct) UnusedMethod() {}\n```",
+      "slide_type": "code"
+    },
+    {
+      "title": "Import for Side Effects",
+      "content": "```go\nimport _ \"net/http/pprof\" // Import only for init() side effects\n```",
+      "slide_type": "code"
+    },
+    {
+      "title": "Why Blank Identifiers Matter",
+      "content": "Go enforces that **all declared variables must be used**. The blank identifier helps you intentionally ignore values without breaking compilation. This promotes cleaner and more intentional code.",
+      "slide_type": "text"
+    },
+    {
+      "title": "Summary of Blank Identifier Uses",
+      "content": [
+        { "use_case": "Ignore return value", "example": "_, err := doSomething()" },
+        { "use_case": "Ignore loop index", "example": "for _, val := range items" },
+        { "use_case": "Skip assignment", "example": "x, _ := getData()" },
+        { "use_case": "Ignore unused method in interface", "example": "func (_ T) Unused() {}" },
+        { "use_case": "Import for side-effect", "example": "import _ \"module\"" }
+      ],
+      "slide_type": "table"
+    }
+  ]
+  

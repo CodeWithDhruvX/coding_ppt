@@ -16,7 +16,7 @@
     },
     {
       "title": "Creating Custom Errors",
-      "content": "```go\nimport \"fmt\"\n\ntype MyError struct {\n    Message string\n}\n\nfunc (e *MyError) Error() string {\n    return fmt.Sprintf(\"Custom Error: %s\", e.Message)\n}\n\nfunc doSomething() error {\n    return &MyError{Message: \"something went wrong\"}\n}\n```",
+      "content": "```go\nimport \"fmt\"\n\ntype MyError struct {\n    Message string\n}\n\nfunc (e *MyError) Error() string {\n    return fmt.Sprintf(\"Custom Error: %s\", e.Message)\n}\n\nfunc doSomething() error {\n    return \u0026MyError{Message: \"something went wrong\"}\n}\n```",
       "slide_type": "code"
     },
     {
@@ -43,20 +43,20 @@
       "title": "Common Error Handling Functions",
       "content": [
         {
-          "Function": "errors.New",
-          "Description": "Creates a new error with a static message"
+          "Description": "Creates a new error with a static message",
+          "Function": "errors.New"
         },
         {
-          "Function": "fmt.Errorf",
-          "Description": "Formats and optionally wraps an error"
+          "Description": "Formats and optionally wraps an error",
+          "Function": "fmt.Errorf"
         },
         {
-          "Function": "errors.Is",
-          "Description": "Checks if an error is a specific value"
+          "Description": "Checks if an error is a specific value",
+          "Function": "errors.Is"
         },
         {
-          "Function": "errors.As",
-          "Description": "Checks and casts error to a specific type"
+          "Description": "Checks and casts error to a specific type",
+          "Function": "errors.As"
         }
       ],
       "slide_type": "table"
