@@ -1,0 +1,5 @@
+{
+    "templates": [
+        "Generate a JSON array of slides for a presentation titled 'Explain JavaScript'. Each slide should be a JSON object with the following fields:\n\n- \"title\": A short, descriptive title summarizing the slide's content.\n- \"content\": The main content of the slide. \n  - For \"text\" slides, write a clear explanation as a plain string.\n  - For \"code\" slides, include code as a single string.\n  - For \"table\" slides, structure the content as an array of objects, where each object represents a row of the table.\n- \"slide_type\": Must be one of the following values — \"text\", \"code\", or \"table\".\n\nGenerate at least 3 informative slide objects to provide a solid introduction and explanation of JavaScript. Ensure the output is valid JSON and Provide the description of an object with no additional tags or metadata included. Create an object that contains a title, content with detailed explanations formatted in markdown."
+    ]
+}
