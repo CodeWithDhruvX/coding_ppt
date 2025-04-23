@@ -1,0 +1,58 @@
+[
+    {
+      "title": "Introduction to Kubernetes Cluster",
+      "content": "A **Kubernetes Cluster** is the fundamental architecture where Kubernetes manages and runs containerized applications. It consists of multiple machines (called nodes) that work together. These nodes can be physical servers or virtual machines. Kubernetes orchestrates these nodes to ensure that applications run reliably, can scale on demand, and recover from failures automatically. It abstracts the underlying infrastructure, allowing developers to focus on building applications without worrying about the hardware.",
+      "slide_type": "text"
+    },
+    {
+      "title": "Core Components of a Cluster",
+      "content": "- **Master Node (Control Plane)**: Acts as the brain of the cluster. It makes decisions about the cluster such as scheduling, detecting and responding to events.\n- **Worker Nodes**: Machines where your application actually runs. These are managed by the control plane.\n- **Kubelet**: An agent on each worker node that makes sure containers are running in a Pod as expected.\n- **Pods**: The smallest and simplest Kubernetes object. A Pod represents a single instance of a running process in the cluster and may contain one or more containers.",
+      "slide_type": "text"
+    },
+    {
+      "title": "Kubernetes Cluster Architecture",
+      "content": "```plaintext\n+-----------------------------+\n|         Control Plane       |\n|-----------------------------|\n|  API Server | Scheduler     |\n|  Controller Manager | etcd  |\n+-----------------------------+\n        |          |\n        v          v\n+-----------------------------+\n|         Worker Nodes        |\n|-----------------------------|\n|  Kubelet | Kube Proxy | Pods |\n+-----------------------------+\n```",
+      "slide_type": "code"
+    },
+    {
+      "title": "Control Plane Components",
+      "content": "- **API Server**: The front-end for the Kubernetes control plane. It handles RESTful requests from users and communicates with the rest of the cluster components.\n- **Scheduler**: Watches for newly created Pods and assigns them to a suitable node based on resource availability and other constraints.\n- **Controller Manager**: Maintains the desired state of the cluster by handling controllers like ReplicationController and NodeController.\n- **etcd**: A distributed key-value store used to store all cluster data, ensuring that Kubernetes always knows the current state and desired state of the system.",
+      "slide_type": "text"
+    },
+    {
+      "title": "Worker Node Components",
+      "content": "- **Kubelet**: Ensures that containers are running in a Pod. It gets instructions from the API Server and reports back on the status.\n- **Kube Proxy**: Maintains network rules and handles network traffic to and from Pods, enabling communication between services.\n- **Container Runtime**: The software that is responsible for running containers. Docker was traditionally used, but alternatives like containerd and CRI-O are also supported.\n- **Pods**: Each Pod runs one or more containers and shares storage and network resources, making it a basic deployable unit in Kubernetes.",
+      "slide_type": "text"
+    },
+    {
+      "title": "Cluster Benefits",
+      "content": "- **High availability of applications**: Kubernetes automatically distributes workloads and reschedules failed containers, ensuring minimal downtime.\n- **Automatic scaling**: Based on real-time metrics, Kubernetes can increase or decrease the number of Pods to match demand.\n- **Self-healing**: Kubernetes continuously monitors the state of applications and automatically replaces containers that crash or become unresponsive.\n- **Centralized configuration**: Use ConfigMaps and Secrets to manage app settings and credentials without hardcoding them into your app.",
+      "slide_type": "text"
+    },
+    {
+      "title": "Cluster Use Cases",
+      "content": "- **Deploying microservices**: Easily manage many loosely coupled services using Kubernetes' service discovery and networking.\n- **Running CI/CD pipelines**: Automate builds, tests, and deployments with Kubernetes-based tooling like Jenkins and Argo CD.\n- **Hosting scalable web applications**: Automatically handle varying traffic loads using Horizontal Pod Autoscaler.\n- **Processing large-scale batch jobs**: Run scheduled and on-demand data processing jobs across many nodes using Kubernetes Jobs and CronJobs.",
+      "slide_type": "text"
+    },
+    {
+      "title": "Control Plane vs Worker Nodes",
+      "content": [
+        {
+          "component": "Control Plane",
+          "example_services": "API Server, Scheduler, Controller Manager",
+          "role": "Manages cluster state and orchestration"
+        },
+        {
+          "component": "Worker Nodes",
+          "example_services": "Kubelet, Kube Proxy, Pods",
+          "role": "Executes containers and workloads"
+        }
+      ],
+      "slide_type": "table"
+    },
+    {
+      "title": "Summary",
+      "content": "A **Kubernetes Cluster** brings together the resources and tools needed to run modern applications at scale. By dividing responsibilities between the control plane and worker nodes, Kubernetes ensures resilient, scalable, and efficient deployment of containers. Understanding how these components interact helps you effectively design, deploy, and manage production-grade applications in the cloud or on-premises.",
+      "slide_type": "text"
+    }
+  ]

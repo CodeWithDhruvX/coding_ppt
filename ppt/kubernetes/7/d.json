@@ -1,0 +1,78 @@
+[
+    {
+      "title": "Introduction to Docker and Kubernetes",
+      "content": "**Docker** and **Kubernetes** are critical tools in the modern DevOps toolkit, enabling the deployment and scaling of applications in a consistent, efficient, and automated way.\n\n- **Docker** focuses on *containerization*, a method of packaging applications with their dependencies into isolated environments.\n- **Kubernetes** is a *container orchestration system* that manages containers in production, ensuring high availability, scaling, and fault tolerance.\n\nTogether, they allow developers and operations teams to build, ship, and run applications at scale in cloud-native architectures.",
+      "slide_type": "text"
+    },
+    {
+      "title": "What is Docker?",
+      "content": "**Docker** is an open-source platform that enables developers to create, deploy, and run applications inside lightweight, portable containers.\n\nContainers are standardized units of software that package up code and all its dependencies, so the application runs quickly and reliably in any computing environment. This solves the classic problem of “it works on my machine” by ensuring the environment is consistent across development, testing, and production.\n\nDocker also provides tools to build container images, run containers, manage container lifecycles, and share images through registries like Docker Hub.",
+      "slide_type": "text"
+    },
+    {
+      "title": "What is Kubernetes?",
+      "content": "**Kubernetes** is an open-source container orchestration platform originally developed by Google and now maintained by the Cloud Native Computing Foundation (CNCF).\n\nIt automates the deployment, scaling, and operation of application containers across clusters of machines. Kubernetes provides advanced features such as:\n\n- **Self-healing**: Automatically replaces failed containers\n- **Load balancing**: Distributes traffic evenly\n- **Auto-scaling**: Scales applications based on demand\n- **Rolling updates**: Updates applications with zero downtime\n\nKubernetes abstracts the underlying infrastructure, allowing developers to focus on deploying applications instead of managing servers.",
+      "slide_type": "text"
+    },
+    {
+      "title": "Key Differences Between Docker and Kubernetes",
+      "content": [
+        {
+          "docker": "Packages and runs containers",
+          "feature": "Function",
+          "kubernetes": "Manages and orchestrates containers"
+        },
+        {
+          "docker": "Single container or host",
+          "feature": "Scope",
+          "kubernetes": "Multiple containers across clusters"
+        },
+        {
+          "docker": "Manual or via Docker Swarm",
+          "feature": "Scaling",
+          "kubernetes": "Automatic and highly scalable"
+        },
+        {
+          "docker": "Basic container networking",
+          "feature": "Networking",
+          "kubernetes": "Advanced networking with service discovery"
+        },
+        {
+          "docker": "Supports volumes and mounts",
+          "feature": "Storage",
+          "kubernetes": "Manages persistent volumes and storage classes"
+        },
+        {
+          "docker": "Simple and lightweight",
+          "feature": "Complexity",
+          "kubernetes": "Complex but powerful"
+        }
+      ],
+      "slide_type": "table"
+    },
+    {
+      "title": "Docker Workflow Example",
+      "content": "```bash\n# Docker example to build and run a container\n$ docker build -t myapp .\n$ docker run -d -p 8080:80 myapp\n```",
+      "slide_type": "code"
+    },
+    {
+      "title": "Kubernetes Workflow Example",
+      "content": "```yaml\n# Simple Kubernetes deployment YAML\napiVersion: apps/v1\nkind: Deployment\nmetadata:\n  name: myapp-deployment\nspec:\n  replicas: 3\n  selector:\n    matchLabels:\n      app: myapp\n  template:\n    metadata:\n      labels:\n        app: myapp\n    spec:\n      containers:\n      - name: myapp\n        image: myapp:latest\n        ports:\n        - containerPort: 80\n```",
+      "slide_type": "code"
+    },
+    {
+      "title": "When to Use Docker vs Kubernetes",
+      "content": "**Docker** and **Kubernetes** solve different but complementary problems.\n\n- **Use Docker** when you need a lightweight solution to package and run your app. It's ideal for development, testing, and deploying microservices or small applications on a single host.\n- **Use Kubernetes** when you want to manage complex, distributed applications in production. It's best suited for teams requiring high availability, automated deployments, and robust scaling capabilities.\n\nIn large-scale systems, Docker is often used to create containers, while Kubernetes is used to orchestrate and manage those containers across clusters.",
+      "slide_type": "text"
+    },
+    {
+      "title": "Can Docker and Kubernetes Work Together?",
+      "content": "Yes — Docker and Kubernetes are often used **together** in modern DevOps workflows.\n\n- Docker is used to build and package application containers.\n- Kubernetes uses those Docker images to run containers at scale across multiple machines.\n\nKubernetes pulls container images (often Docker images) from registries and deploys them based on defined configurations. While Kubernetes can use other container runtimes (like containerd), Docker is still widely used in the container creation and CI/CD phase.\n\nThus, Kubernetes extends Docker by managing container deployment, health, networking, and scaling.",
+      "slide_type": "text"
+    },
+    {
+      "title": "Summary: Docker vs Kubernetes",
+      "content": "To summarize the relationship and distinction:\n\n- **Docker** enables the creation of containers, which are isolated environments for running applications.\n- **Kubernetes** manages those containers, handling where and how they run in large-scale deployments.\n\nThink of Docker as the tool to *build and ship* containers, and Kubernetes as the tool to *run and manage* them reliably in production.\n\nUnderstanding both is essential for deploying robust and scalable cloud-native applications, especially in microservices and CI/CD environments.",
+      "slide_type": "text"
+    }
+  ]

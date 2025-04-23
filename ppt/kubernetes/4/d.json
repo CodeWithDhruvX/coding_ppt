@@ -1,0 +1,60 @@
+[
+  {
+    "title": "Introduction to Node in Kubernetes",
+    "content": "**A Node** in Kubernetes is the fundamental unit of computing in a Kubernetes cluster. It is either a virtual machine (VM) or a physical server that runs containerized applications. Each node includes the services required to run Pods, such as the container runtime, kubelet, and kube-proxy. Kubernetes relies on these nodes to schedule and manage application workloads efficiently across a distributed system.",
+    "slide_type": "text"
+  },
+  {
+    "title": "Node Types in Kubernetes",
+    "content": "Kubernetes classifies nodes into two main types:\n\n- **Master Node**: This node manages the cluster and orchestrates the scheduling and deployment of containers. It runs the control plane components like the API server, scheduler, and controller manager.\n\n- **Worker Node**: These are the machines where application workloads (in the form of Pods) actually run. Worker nodes are managed by the master and must report their status regularly to stay part of the cluster.\n\nThis separation allows Kubernetes to maintain high availability and scalability by distributing workloads intelligently.",
+    "slide_type": "text"
+  },
+  {
+    "title": "Key Components of a Node",
+    "content": "Each node runs a few critical components that make it functional within the Kubernetes ecosystem:\n\n- **kubelet**: An agent that runs on every node and ensures containers are running as expected. It communicates with the control plane to receive instructions.\n- **kube-proxy**: Handles network routing and traffic forwarding between services within the cluster. It also manages NAT rules.\n- **Container Runtime**: Responsible for running containers. Popular runtimes include containerd and Docker. It interfaces with the operating system to start, stop, and manage containers.\n\nTogether, these components make a node capable of hosting and managing containerized applications securely and reliably.",
+    "slide_type": "text"
+  },
+  {
+    "title": "Node Example (YAML Description)",
+    "content": "apiVersion: v1\nkind: Node\nmetadata:\n  name: example-node\nspec:\n  podCIDR: 10.244.0.0/24\n  providerID: aws:///us-west-2a/i-0abcd1234efgh5678\nstatus:\n  conditions:\n    - type: Ready\n      status: \"True\"",
+    "slide_type": "code"
+  },
+  {
+    "title": "Node Lifecycle States",
+    "content": [
+      {
+        "Description": "Node is healthy and can accept Pods.",
+        "State": "Ready"
+      },
+      {
+        "Description": "Node is unreachable or unhealthy.",
+        "State": "NotReady"
+      },
+      {
+        "Description": "Node status can't be retrieved due to network issues.",
+        "State": "Unknown"
+      }
+    ],
+    "slide_type": "table"
+  },
+  {
+    "title": "How Nodes are Added to a Cluster",
+    "content": "Nodes are typically added to a Kubernetes cluster using tools like `kubeadm`, which provides commands to bootstrap a node and connect it securely to the control plane.\n\nFor example, a new worker node can join the cluster using the `kubeadm join` command, which includes a token and the master node’s address. In cloud-native environments, nodes can also be provisioned dynamically through auto-scaling and infrastructure-as-code tools.\n\nOnce joined, the control plane schedules pods onto the new node based on available resources, tolerations, affinity rules, and policies. This dynamic and scalable mechanism allows clusters to grow or shrink depending on workload demands.",
+    "slide_type": "text"
+  },
+  {
+    "title": "Inspecting Nodes via CLI",
+    "content": "```bash\n# List all nodes\nkubectl get nodes\n\n# Get detailed info about a specific node\nkubectl describe node \u003cnode-name\u003e\n```",
+    "slide_type": "code"
+  },
+  {
+    "title": "Taints and Tolerations on Nodes",
+    "content": "Taints and tolerations are mechanisms Kubernetes uses to control which pods can be scheduled on specific nodes. This ensures that sensitive or specialized workloads only run on appropriate hardware.\n\n- **Taints** are applied to nodes and repel pods that do not tolerate them.\n- **Tolerations** are applied to pods and allow them to be scheduled on nodes with matching taints.\n\nThis feature is useful for:\n- Running high-performance workloads on dedicated hardware.\n- Isolating certain applications for compliance or security reasons.\n- Preventing resource contention by ensuring critical apps aren't disrupted by less important ones.\n\nUsing taints and tolerations allows fine-grained control over workload placement in production clusters.",
+    "slide_type": "text"
+  },
+  {
+    "title": "Conclusion",
+    "content": "In summary, **Nodes are the execution units** of a Kubernetes cluster. They host all the essential components required to run containerized applications. Whether you're working in a public cloud, private data center, or on-premise infrastructure, understanding how nodes work is crucial to managing scalability, reliability, and performance.\n\nMastering node management, including resource allocation, network handling, and scheduling policies, gives DevOps teams the power to optimize infrastructure usage and maintain a stable and secure environment for cloud-native applications.",
+    "slide_type": "text"
+  }
+]

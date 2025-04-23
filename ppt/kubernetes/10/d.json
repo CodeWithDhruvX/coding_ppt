@@ -1,0 +1,68 @@
+[
+    {
+      "title": "Introduction to kubectl",
+      "content": "kubectl is the **command-line interface (CLI)** tool for Kubernetes. It acts as a bridge between the user and the Kubernetes API server. With kubectl, users can control all aspects of their Kubernetes cluster — from launching applications to viewing logs and scaling services. It is one of the first tools every Kubernetes user should learn, as it offers the fastest and most flexible way to interact with your cluster.",
+      "slide_type": "text"
+    },
+    {
+      "title": "kubectl Purpose",
+      "content": "- **Communicate with the Kubernetes API Server**: kubectl sends commands to the cluster using the Kubernetes API.\n- **Manage Cluster Resources**: It can create, update, and delete pods, services, deployments, and other resources.\n- **Apply Configurations**: You can use YAML/JSON files to define the desired state of your resources and apply them using kubectl.\n- **Debug and Monitor**: It allows you to inspect logs, exec into containers, and view real-time status of the cluster components. This makes it invaluable for developers and DevOps engineers troubleshooting issues.",
+      "slide_type": "text"
+    },
+    {
+      "title": "Basic kubectl Command Format",
+      "content": "```\nkubectl [command] [type] [name] [flags]\n```",
+      "slide_type": "code"
+    },
+    {
+      "title": "Common kubectl Commands",
+      "content": [
+        {
+          "Command": "kubectl get pods",
+          "Description": "List all pods in the current namespace"
+        },
+        {
+          "Command": "kubectl get nodes",
+          "Description": "List all nodes in the cluster"
+        },
+        {
+          "Command": "kubectl describe pod \u003cpod-name\u003e",
+          "Description": "Show detailed info about a specific pod"
+        },
+        {
+          "Command": "kubectl apply -f \u003cfile\u003e.yaml",
+          "Description": "Create or update resources from a YAML file"
+        },
+        {
+          "Command": "kubectl delete pod \u003cpod-name\u003e",
+          "Description": "Delete a specific pod"
+        }
+      ],
+      "slide_type": "table"
+    },
+    {
+      "title": "kubectl with YAML Files",
+      "content": "kubectl can apply, delete, or replace Kubernetes resources using YAML configuration files.\n\nExample:\n```\nkubectl apply -f deployment.yaml\n```",
+      "slide_type": "code"
+    },
+    {
+      "title": "kubectl Configuration",
+      "content": "- **kubeconfig File**: This file stores the details of your cluster, user authentication credentials, and contexts.\n- **Default Location**: `~/.kube/config` on most systems.\n- **Multiple Contexts**: You can manage and switch between multiple clusters using contexts in the kubeconfig file. This is especially useful in environments where you operate different staging, dev, and production clusters.",
+      "slide_type": "text"
+    },
+    {
+      "title": "Setting Context with kubectl",
+      "content": "```\nkubectl config use-context \u003ccontext-name\u003e\n```  \nUse this command to switch between different Kubernetes clusters.",
+      "slide_type": "code"
+    },
+    {
+      "title": "kubectl Tips for Beginners",
+      "content": "- Use `kubectl get all` to see all resource types in the current namespace.\n- Use `kubectl explain \u003cresource\u003e` to explore the fields and schema of a resource. Great for learning YAML structures.\n- Add `--namespace \u003cname\u003e` to target specific namespaces. Helps avoid accidental changes in production or wrong environments.\n- Use `-o wide` or `-o json/yaml` to customize your output format depending on what you need to debug or automate.",
+      "slide_type": "text"
+    },
+    {
+      "title": "Conclusion",
+      "content": "kubectl is a **powerful and versatile tool** that gives you full control over your Kubernetes cluster. It is essential for both beginners and advanced users to understand its core functionality, syntax, and best practices. Whether you're deploying applications or debugging complex issues, kubectl is your primary interface with the cluster. Mastering kubectl means mastering Kubernetes itself.",
+      "slide_type": "text"
+    }
+  ]

@@ -1,0 +1,60 @@
+[
+  {
+    "title": "Introduction to Kubelet",
+    "content": "Kubelet is the primary 'node agent' in Kubernetes. It runs on every node in the cluster and communicates with the control plane to ensure that the containers described in PodSpecs are running and healthy. It acts as the bridge between the Kubernetes master and the local container runtime. Without Kubelet, a node cannot register itself in the cluster or run workloads.",
+    "slide_type": "text"
+  },
+  {
+    "title": "What Does Kubelet Do?",
+    "content": "Kubelet is responsible for several core tasks:\n\n- **Pod Lifecycle Management**: Ensures that containers are started and kept running as defined in PodSpecs.\n- **Status Reporting**: Continuously reports node and pod status back to the Kubernetes API server.\n- **Resource Monitoring**: Works with the container runtime to monitor CPU, memory, and disk usage.\n- **Health Probing**: Performs liveness and readiness checks to maintain application reliability.\n- **Volume Mounting**: Mounts storage volumes to pods if needed.\n\nThis makes Kubelet a central piece in orchestrating and managing workloads on a node.",
+    "slide_type": "text"
+  },
+  {
+    "title": "Kubelet Workflow",
+    "content": "The lifecycle of Kubelet’s work includes:\n\n1. **Registration**: Registers the node with the Kubernetes cluster during startup.\n2. **PodSpec Watch**: Watches for PodSpec changes from the API server using the Kubernetes watch mechanism.\n3. **Container Runtime Invocation**: Uses the Container Runtime Interface (CRI) to start, stop, and manage containers.\n4. **Health Checks**: Periodically checks if containers are alive and ready using liveness/readiness probes.\n5. **Status Sync**: Sends regular heartbeat and pod status updates to the control plane.\n\nThis continuous loop allows Kubernetes to maintain desired state and handle failures gracefully.",
+    "slide_type": "text"
+  },
+  {
+    "title": "Kubelet Code Example",
+    "content": "apiVersion: v1\nkind: Pod\nmetadata:\n  name: sample-pod\nspec:\n  containers:\n  - name: nginx\n    image: nginx\n    ports:\n    - containerPort: 80",
+    "slide_type": "code"
+  },
+  {
+    "title": "Kubelet vs Kube-Proxy vs Kube-Controller",
+    "content": [
+      {
+        "Component": "Kubelet",
+        "Role": "Manages containers on a node"
+      },
+      {
+        "Component": "Kube-Proxy",
+        "Role": "Handles network rules and service routing"
+      },
+      {
+        "Component": "Kube-Controller",
+        "Role": "Manages control loops for resource management"
+      }
+    ],
+    "slide_type": "table"
+  },
+  {
+    "title": "Key Responsibilities of Kubelet",
+    "content": "Here are the key responsibilities in more detail:\n\n- **Running Containers**: Kubelet ensures containers defined in each pod are running.\n- **Pod Status Updates**: It sends frequent updates to the API server, enabling real-time health checks and monitoring.\n- **Monitoring Health**: Kubelet runs health probes and restarts containers if necessary.\n- **Interfacing with Runtime**: Talks to Docker, containerd, or CRI-O via the Container Runtime Interface.\n- **Mounting Volumes**: Manages the mounting of storage for persistent or ephemeral use.\n\nIn short, Kubelet ensures your applications run reliably on each node.",
+    "slide_type": "text"
+  },
+  {
+    "title": "Kubelet Health Checks",
+    "content": "Kubelet supports two important types of health probes:\n\n- **Liveness Probe**: Detects if a container is in a broken state. If it fails, the container is restarted automatically. Useful for detecting deadlocks.\n- **Readiness Probe**: Indicates whether a container is ready to accept traffic. It helps control when a pod is added to the service endpoint list.\n\nThese probes enhance the resilience and availability of applications by enabling intelligent restarts and controlled traffic routing.",
+    "slide_type": "text"
+  },
+  {
+    "title": "Kubelet Logs",
+    "content": "To debug Kubelet issues, you can check its logs:\n```bash\njournalctl -u kubelet\n```\nOr if not using systemd:\n```bash\n/var/log/kubelet.log\n```",
+    "slide_type": "code"
+  },
+  {
+    "title": "Conclusion",
+    "content": "In summary, the Kubelet plays a pivotal role in the Kubernetes ecosystem. It serves as the node-level controller that makes sure containerized applications are running correctly and reliably. It interfaces with the control plane to receive instructions and with the container runtime to execute them. Understanding how Kubelet works is crucial for debugging node-level issues, optimizing performance, and ensuring high availability in production environments.",
+    "slide_type": "text"
+  }
+]

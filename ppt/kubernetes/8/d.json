@@ -1,0 +1,91 @@
+[
+    {
+      "title": "Introduction to Minikube",
+      "content": "Minikube is a lightweight Kubernetes implementation that creates a single-node cluster on your local machine. It helps developers test and learn Kubernetes locally without needing a full-fledged cloud setup.",
+      "slide_type": "text"
+    },
+    {
+      "title": "Why Use Minikube?",
+      "content": "- ✅ Easy to set up and use on local machines\n- ⚙️ Ideal for learning and development\n- 🧪 Supports most Kubernetes features\n- 🔄 Quickly test apps without cloud costs",
+      "slide_type": "text"
+    },
+    {
+      "title": "How Minikube Works",
+      "content": "Minikube runs a virtual machine or container on your local system and installs Kubernetes components inside it. This forms a local Kubernetes cluster that simulates real-world behavior.",
+      "slide_type": "text"
+    },
+    {
+      "title": "Minikube Architecture",
+      "content": "Minikube consists of:\n- A **driver** (e.g., Docker, VirtualBox, Hyper-V) to run the VM/container\n- A **Kubernetes control plane** with API server, scheduler, and controller manager\n- A **worker node** that runs containers",
+      "slide_type": "text"
+    },
+    {
+      "title": "Install Minikube",
+      "content": "```bash\n# On macOS (using Homebrew)\nbrew install minikube\n\n# On Ubuntu\ncurl -LO https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64\nsudo install minikube-linux-amd64 /usr/local/bin/minikube\n```",
+      "slide_type": "code"
+    },
+    {
+      "title": "Start a Minikube Cluster",
+      "content": "```bash\n# Start the local Kubernetes cluster\nminikube start\n\n# Check status\nminikube status\n```",
+      "slide_type": "code"
+    },
+    {
+      "title": "Accessing the Dashboard",
+      "content": "Minikube offers a web-based dashboard for visual management:\n\n```bash\nminikube dashboard\n```",
+      "slide_type": "code"
+    },
+    {
+      "title": "Minikube vs Kubernetes",
+      "content": [
+        {
+          "Feature": "Purpose",
+          "Minikube": "Local development",
+          "Kubernetes": "Production & large-scale deployment"
+        },
+        {
+          "Feature": "Cluster Type",
+          "Minikube": "Single-node",
+          "Kubernetes": "Multi-node"
+        },
+        {
+          "Feature": "Deployment",
+          "Minikube": "Local VM or container",
+          "Kubernetes": "Cloud/on-premises infrastructure"
+        },
+        {
+          "Feature": "Use Case",
+          "Minikube": "Learning, testing",
+          "Kubernetes": "Scalable application deployment"
+        }
+      ],
+      "slide_type": "table"
+    },
+    {
+      "title": "Common Minikube Commands",
+      "content": [
+        {
+          "Command": "minikube start",
+          "Description": "Starts the local Kubernetes cluster"
+        },
+        {
+          "Command": "minikube stop",
+          "Description": "Stops the cluster"
+        },
+        {
+          "Command": "minikube delete",
+          "Description": "Deletes the cluster"
+        },
+        {
+          "Command": "minikube dashboard",
+          "Description": "Opens the Kubernetes dashboard"
+        }
+      ],
+      "slide_type": "table"
+    },
+    {
+      "title": "Summary",
+      "content": "Minikube is a great way to get hands-on experience with Kubernetes on a local machine. It replicates the behavior of a real Kubernetes cluster and is ideal for development, testing, and learning.",
+      "slide_type": "text"
+    }
+  ]
+  

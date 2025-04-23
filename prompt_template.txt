@@ -1,5 +1,5 @@
-Generate structured JSON data for the topic: "What is the difference between shallow and deep copy in structs in Go?".
-
+Generate structured JSON data for the topic: "What is kubectl in   Kubernetes?".
+ 
 Use the following format for each slide:
 
 [
