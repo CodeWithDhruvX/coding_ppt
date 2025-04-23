@@ -15,7 +15,15 @@ def generate_script():
         if not (title and content and slide_type):
             raise ValueError("Slide must include title, content, and slide_type.")
 
-        output = f"""I’m creating a 15–20 minute educational YouTube video about Golang, aimed at beginner programmers in India.
+        # Get video duration from entry (default to 5 if invalid)
+        try:
+            minute = int(duration_entry.get().strip())
+            if minute <= 0:
+                raise ValueError
+        except:
+            minute = 5
+
+        output = f"""I’m creating a {minute} minute educational YouTube video about Golang, aimed at beginner programmers in India.
 
 Here are the slides in JSON format:
 
@@ -81,6 +89,11 @@ root.title("Golang Slide Prompt Formatter")
 tk.Label(root, text="Enter Single Slide JSON:").pack(anchor='w', padx=10, pady=(10, 0))
 input_text = scrolledtext.ScrolledText(root, wrap=tk.WORD, height=10)
 input_text.pack(fill=tk.BOTH, expand=True, padx=10, pady=5)
+
+tk.Label(root, text="Video Duration (in minutes):").pack(anchor='w', padx=10, pady=(10, 0))
+duration_entry = tk.Entry(root)
+duration_entry.insert(0, "5")  # default value
+duration_entry.pack(fill=tk.X, padx=10, pady=(0, 5))
 
 tk.Button(root, text="Generate YouTube Prompt", command=generate_script).pack(pady=5)
 
