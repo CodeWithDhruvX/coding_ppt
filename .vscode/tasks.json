@@ -31,6 +31,20 @@
             },
             "problemMatcher": [],
             "detail": "Run json_to_ppt_v8.py to convert JSON into PowerPoint."
-        }
+        },
+        {
+            "label": "Run My EXE",
+            "type": "shell",
+            "command": "powershell",
+            "args": [
+              "-Command",
+              "& '${workspaceFolder}\\creation\\dist\\english_prompt_creator.exe'"
+            ],
+            "group": {
+              "kind": "build",
+              "isDefault": true
+            },
+            "problemMatcher": []
+          }
     ]
 }
