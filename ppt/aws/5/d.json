@@ -1,0 +1,53 @@
+[
+    {
+      "title": "Introduction to EC2 Instance States",
+      "content": "Amazon EC2 instances can be in different states: running, stopped, and terminated. Understanding the difference between stopping and terminating an instance is important for managing costs and operational efficiency. Each state has its specific use case and billing implications, so knowing when to stop an instance and when to terminate it can save costs and help manage resources effectively. In this slide, we'll explore the details of both states and the practical considerations for each.",
+      "slide_type": "text"
+    },
+    {
+      "title": "Stopping an EC2 Instance",
+      "content": "When you stop an EC2 instance, the instance is shut down but not deleted. The virtual server remains in the 'stopped' state, which means you can restart it later. The data on attached EBS volumes remains intact, and the instance's private IP address is also preserved. However, while the instance is stopped, you'll still incur charges for the EBS storage (if used) and any other resources like Elastic IPs or additional services attached to the instance.\n\n**Key Points:**\n- The EC2 instance's configuration (e.g., installed software, data on EBS volumes) is preserved.\n- Billing continues for attached EBS volumes, Elastic IPs (if any), and other persistent resources, but there is no charge for the instance's compute power.\n- The instance can be restarted at any time, and it will retain its private IP address and any attached storage.\n- You can use this approach when you want to temporarily stop the instance and resume later without losing any data or configuration.",
+      "slide_type": "text"
+    },
+    {
+      "title": "Terminating an EC2 Instance",
+      "content": "Terminating an EC2 instance is a permanent action. When you terminate an instance, it is removed from the infrastructure, and all its associated resources are freed. Any data on instance store volumes (temporary storage) is lost immediately upon termination, but data on EBS volumes may persist unless the volume is configured to be deleted on termination.\n\nTermination means that you will no longer incur charges for the instance's compute power, but charges for EBS volumes and other resources may continue unless manually deleted. Termination is irreversible; once terminated, the instance cannot be restarted. This action is suitable for instances that are no longer needed, and you want to stop all related costs.\n\n**Key Points:**\n- The instance is permanently deleted, and all data on instance store volumes (local disks) is lost.\n- EBS volumes can be retained or deleted based on the instance termination settings.\n- Billing for the instance stops, but EBS volumes and other resources may still incur charges.\n- Elastic IP addresses, if associated with the terminated instance, are released unless re-associated with another running instance.",
+      "slide_type": "text"
+    },
+    {
+      "title": "Comparison Table: Stopping vs Terminating EC2",
+      "content": [
+        {
+          "feature": "Instance Preservation",
+          "stopped": "Yes, instance can be restarted.",
+          "terminated": "No, instance is permanently deleted."
+        },
+        {
+          "feature": "Data Persistence",
+          "stopped": "EBS volumes persist (unless manually deleted).",
+          "terminated": "Data is lost unless backed up."
+        },
+        {
+          "feature": "Cost",
+          "stopped": "Billing for EBS and other resources continues.",
+          "terminated": "No billing for the instance, but EBS volumes might incur charges."
+        },
+        {
+          "feature": "Elastic IP",
+          "stopped": "Elastic IP remains attached.",
+          "terminated": "Elastic IP is released (if not associated with another instance)."
+        }
+      ],
+      "slide_type": "table"
+    },
+    {
+      "title": "Use Cases for Stopping an EC2 Instance",
+      "content": "Stopping an EC2 instance is a practical choice when you anticipate needing the instance again in the future, but you don't need it running constantly. It is commonly used during maintenance windows, scheduled downtime, or development/testing scenarios where you need the instance to remain intact for later use. It allows you to pause operations while still maintaining the instance's data and configuration. For example, if you're running a web application in a development environment, you might stop the instance to save costs during off-hours and restart it when needed.\n\n**Typical Scenarios for Stopping EC2 Instances:**\n- You need to stop the instance for maintenance and plan to restart it later.\n- You’re running the instance intermittently, like for development or testing purposes.\n- You need to temporarily shut down the instance but want to keep its data and configuration intact.\n- You want to pause the instance during times of low usage to save on compute costs while still incurring charges for EBS storage.",
+      "slide_type": "text"
+    },
+    {
+      "title": "Use Cases for Terminating an EC2 Instance",
+      "content": "Terminating an EC2 instance is used when the instance is no longer needed, and you want to fully decommission it. This action is irreversible, so it is crucial to ensure that any important data is backed up before proceeding. Termination is ideal when you are scaling down your infrastructure, finishing a project, or decommissioning test environments. It is also helpful when you need to free up resources and stop incurring any charges for unused instances. If the instance was part of a larger auto-scaling group, termination will typically lead to a new instance being spun up to maintain the desired state.\n\n**Typical Scenarios for Terminating EC2 Instances:**\n- You’re done using the instance, and there's no need for it to be restarted or preserved.\n- You need to stop billing for an instance and permanently remove it from your infrastructure.\n- You want to decommission old or unused instances in order to optimize your AWS environment.\n- The instance is part of a temporary or short-lived application (e.g., for testing or a temporary project).",
+      "slide_type": "text"
+    }
+  ]

@@ -1,53 +1,79 @@
 [
   {
-    "title": "Introduction to kubectl",
-    "content": "kubectl is the **command-line tool** used to interact with Kubernetes clusters. It allows you to deploy applications, inspect and manage cluster resources, and view logs.",
+    "title": "Introduction to AWS Glacier",
+    "content": "**Amazon Glacier** (now part of **Amazon S3 Glacier**) is a low-cost cloud storage service by AWS designed for **data archiving** and **long-term backup**.\n\nIt's ideal for data that is infrequently accessed but must be retained for compliance or historical purposes.",
     "slide_type": "text"
   },
   {
-    "title": "kubectl Purpose",
-    "content": "- Communicate with the Kubernetes API Server\n- Manage and inspect resources like pods, services, deployments\n- Apply configurations from YAML files\n- Debug and monitor your Kubernetes environment",
+    "title": "Key Features of AWS Glacier",
+    "content": "- **Low cost**: As low as $0.004 per GB per month\n- **Secure**: Supports encryption and access controls\n- **Durable**: 99.999999999% (11 9's) durability\n- **Scalable**: Automatically scales with your data\n- **Data Retrieval Options**: Flexible speeds (Expedited, Standard, Bulk)",
     "slide_type": "text"
   },
   {
-    "title": "Basic kubectl Command Format",
-    "content": "```\nkubectl [command] [type] [name] [flags]\n```",
-    "slide_type": "code"
+    "title": "Use Cases for AWS Glacier",
+    "content": "- Compliance archives (e.g., medical, legal)\n- Long-term media storage (e.g., videos, logs)\n- Digital preservation (e.g., research data)\n- Backup archives for disaster recovery",
+    "slide_type": "text"
   },
   {
-    "title": "Common kubectl Commands",
+    "title": "Glacier vs Standard S3",
     "content": [
-      { "Command": "kubectl get pods", "Description": "List all pods in the current namespace" },
-      { "Command": "kubectl get nodes", "Description": "List all nodes in the cluster" },
-      { "Command": "kubectl describe pod <pod-name>", "Description": "Show detailed info about a specific pod" },
-      { "Command": "kubectl apply -f <file>.yaml", "Description": "Create or update resources from a YAML file" },
-      { "Command": "kubectl delete pod <pod-name>", "Description": "Delete a specific pod" }
+      {
+        "Aspect": "Storage Cost",
+        "S3 Standard": "Higher",
+        "S3 Glacier": "Much Lower"
+      },
+      {
+        "Aspect": "Access Time",
+        "S3 Standard": "Milliseconds",
+        "S3 Glacier": "Minutes to Hours"
+      },
+      {
+        "Aspect": "Use Case",
+        "S3 Standard": "Frequent Access",
+        "S3 Glacier": "Long-Term Archiving"
+      }
     ],
     "slide_type": "table"
   },
   {
-    "title": "kubectl with YAML Files",
-    "content": "kubectl can apply, delete, or replace Kubernetes resources using YAML configuration files.\n\nExample:\n```\nkubectl apply -f deployment.yaml\n```",
+    "title": "Data Retrieval Options",
+    "content": [
+      {
+        "Type": "Expedited",
+        "Speed": "1-5 minutes",
+        "Cost": "Highest"
+      },
+      {
+        "Type": "Standard",
+        "Speed": "3-5 hours",
+        "Cost": "Moderate"
+      },
+      {
+        "Type": "Bulk",
+        "Speed": "5-12 hours",
+        "Cost": "Lowest"
+      }
+    ],
+    "slide_type": "table"
+  },
+  {
+    "title": "How to Upload Data to Glacier (via S3)",
+    "content": "```bash\n# Step 1: Create S3 bucket\naws s3 mb s3://my-archive-bucket\n\n# Step 2: Upload file with Glacier storage class\naws s3 cp mydata.zip s3://my-archive-bucket/ --storage-class GLACIER\n```",
     "slide_type": "code"
   },
   {
-    "title": "kubectl Configuration",
-    "content": "- Configuration is stored in the **kubeconfig** file\n- Default path: `~/.kube/config`\n- It contains cluster info, user credentials, and context settings",
+    "title": "Cost Considerations",
+    "content": "- **Storage cost** is very low.\n- **Retrieval cost** varies by speed and size.\n- **Minimum storage duration**: 90 days (early deletion incurs charges).\n- **Data retrieval and request fees** apply.",
     "slide_type": "text"
   },
   {
-    "title": "Setting Context with kubectl",
-    "content": "```\nkubectl config use-context <context-name>\n```  \nUse this command to switch between different Kubernetes clusters.",
-    "slide_type": "code"
-  },
-  {
-    "title": "kubectl Tips for Beginners",
-    "content": "- Use `kubectl get all` to see all resources\n- Use `kubectl explain <resource>` to understand resource structure\n- Combine with `--namespace` to target specific namespaces",
+    "title": "When NOT to Use Glacier",
+    "content": "- When you need **frequent** or **real-time access** to data\n- For **transactional** or **interactive** applications\n- When you need access in **milliseconds or seconds**",
     "slide_type": "text"
   },
   {
-    "title": "Conclusion",
-    "content": "kubectl is a **powerful tool** to control and manage Kubernetes clusters. Mastering it is essential for any Kubernetes developer or administrator.",
+    "title": "Summary",
+    "content": "**AWS Glacier** is perfect for long-term, low-cost storage needs where retrieval speed is not critical. It balances **durability**, **security**, and **cost-effectiveness**, making it ideal for backups, compliance data, and archives.",
     "slide_type": "text"
   }
 ]

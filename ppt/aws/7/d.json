@@ -1,0 +1,73 @@
+[
+    {
+      "title": "Introduction to Auto Scaling",
+      "content": "**AWS Auto Scaling** is a cloud-native service that dynamically adjusts your application’s compute capacity based on demand. This means it can automatically increase or decrease the number of Amazon EC2 instances or other AWS services as traffic to your app changes. The goal is to maintain application performance while minimizing cost. It works in real-time and removes the need for manual intervention.",
+      "slide_type": "text"
+    },
+    {
+      "title": "Why Use Auto Scaling?",
+      "content": "- **Handles variable workloads**: Auto Scaling ensures that your application can handle increased load during peak times and scale down during idle periods.\n- **High availability**: Keeps your application running even if some instances fail.\n- **Operational efficiency**: Reduces the need for manual monitoring and intervention.\n- **Cost-effective**: Automatically removes unused instances, so you only pay for what you use.",
+      "slide_type": "text"
+    },
+    {
+      "title": "How Auto Scaling Works",
+      "content": "1. **Auto Scaling Group (ASG)**: A logical grouping of EC2 instances that AWS manages collectively.\n2. **Launch Configuration or Template**: Defines the configuration (AMI, instance type, etc.) for new instances.\n3. **Scaling Policies**: Define the conditions under which the system should scale in or out.\n4. **CloudWatch Alarms**: Trigger scaling policies based on metrics like CPU utilization.\n5. **Scaling Actions**: Add or remove instances as needed to match demand with supply.",
+      "slide_type": "text"
+    },
+    {
+      "title": "Key Components of Auto Scaling",
+      "content": "- **Launch Template/Configuration**: Specifies the configuration for launching EC2 instances. It includes AMI ID, instance type, security groups, key pairs, and more.\n- **Auto Scaling Group (ASG)**: The core of Auto Scaling. It maintains a specified number of instances across multiple Availability Zones.\n- **Scaling Policies**: These are rules based on performance metrics or schedules that instruct AWS when to scale up or down. They can be simple thresholds or advanced step adjustments.",
+      "slide_type": "text"
+    },
+    {
+      "title": "Example: Scaling Policy (Code)",
+      "content": "aws autoscaling put-scaling-policy \\\n  --auto-scaling-group-name my-asg \\\n  --policy-name scale-out \\\n  --scaling-adjustment 1 \\\n  --adjustment-type ChangeInCapacity",
+      "slide_type": "code"
+    },
+    {
+      "title": "Types of Auto Scaling",
+      "content": "- **Dynamic Scaling**: Automatically scales resources based on real-time metrics. For example, add instances when CPU usage exceeds 70%.\n- **Scheduled Scaling**: Useful for predictable load patterns. You can schedule scale actions (e.g., every weekday at 9 AM).\n- **Predictive Scaling**: Uses machine learning to analyze historical trends and forecast future traffic, allowing AWS to proactively adjust capacity before demand changes.",
+      "slide_type": "text"
+    },
+    {
+      "title": "Auto Scaling Group Configuration (Code)",
+      "content": "aws autoscaling create-auto-scaling-group \\\n  --auto-scaling-group-name my-asg \\\n  --launch-configuration-name my-launch-config \\\n  --min-size 1 --max-size 5 --desired-capacity 2 \\\n  --vpc-zone-identifier subnet-12345abc",
+      "slide_type": "code"
+    },
+    {
+      "title": "Benefits of AWS Auto Scaling",
+      "content": "- **High availability**: Ensures consistent performance by replacing unhealthy instances automatically.\n- **Cost efficiency**: Reduces waste by terminating idle instances.\n- **Reduced manual work**: Automatically reacts to load changes without human input.\n- **Scalable architecture**: Adapts easily to growth and user demands, making it perfect for modern, microservice-oriented cloud applications.",
+      "slide_type": "text"
+    },
+    {
+      "title": "Auto Scaling vs Manual Scaling",
+      "content": [
+        {
+          "Aspect": "Scaling Method",
+          "Auto Scaling": "Automated by rules",
+          "Manual Scaling": "Manually adjusted"
+        },
+        {
+          "Aspect": "Response Time",
+          "Auto Scaling": "Fast and real-time",
+          "Manual Scaling": "Slow and reactive"
+        },
+        {
+          "Aspect": "Cost Optimization",
+          "Auto Scaling": "Efficient resource usage",
+          "Manual Scaling": "Prone to over-provisioning"
+        },
+        {
+          "Aspect": "Effort Required",
+          "Auto Scaling": "Minimal",
+          "Manual Scaling": "High"
+        }
+      ],
+      "slide_type": "table"
+    },
+    {
+      "title": "Summary",
+      "content": "AWS Auto Scaling is essential for any application that requires high availability, responsiveness, and cost-efficiency. By automating the management of compute resources, it ensures your application stays resilient under varying traffic conditions without unnecessary manual effort. It supports both reactive and proactive scaling strategies, making it highly adaptable for modern cloud-native architectures.",
+      "slide_type": "text"
+    }
+  ]

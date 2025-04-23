@@ -1,0 +1,68 @@
+[
+    {
+      "title": "Introduction to Amazon S3",
+      "content": "**Amazon S3 (Simple Storage Service)** is a fully managed, scalable, and durable object storage service provided by **Amazon Web Services (AWS)**. It allows users to store and retrieve any amount of data from anywhere on the web. Whether you're saving backup files, hosting static websites, or storing application data, S3 is designed for high availability and performance. It supports data integrity, versioning, and secure access through robust APIs and SDKs.",
+      "slide_type": "text"
+    },
+    {
+      "title": "Key Features of Amazon S3",
+      "content": "- **Durability**: S3 is designed for 99.999999999% (11 9’s) durability by automatically storing multiple copies of data across different facilities.\n- **Scalability**: No need to provision storage — it automatically scales as you store more data.\n- **Availability**: S3 ensures 99.99% availability for the S3 Standard storage class, ensuring data is accessible when you need it.\n- **Security**: S3 offers built-in support for encryption (server-side and client-side), integration with AWS IAM for access control, and bucket policies for fine-grained access.\n- **Cost-Effectiveness**: You only pay for what you use, with different storage classes optimized for various use cases (frequent vs. infrequent access).",
+      "slide_type": "text"
+    },
+    {
+      "title": "Amazon S3 Storage Classes",
+      "content": [
+        {
+          "Class": "S3 Standard",
+          "Use Case": "Frequent access",
+          "Durability": "99.999999999%",
+          "Availability": "99.99%"
+        },
+        {
+          "Class": "S3 Intelligent-Tiering",
+          "Use Case": "Unknown or changing access patterns",
+          "Durability": "99.999999999%",
+          "Availability": "99.9% to 99.99%"
+        },
+        {
+          "Class": "S3 Standard-IA",
+          "Use Case": "Infrequent access",
+          "Durability": "99.999999999%",
+          "Availability": "99.9%"
+        },
+        {
+          "Class": "S3 Glacier",
+          "Use Case": "Archiving",
+          "Durability": "99.999999999%",
+          "Availability": "99.99% (after retrieval)"
+        }
+      ],
+      "slide_type": "table"
+    },
+    {
+      "title": "Amazon S3 Bucket and Object Basics",
+      "content": "- **Bucket**: A bucket is a logical container for storing objects. Each AWS account can create up to 100 buckets by default. Bucket names must be globally unique.\n- **Object**: Objects are the actual data stored in buckets. An object consists of the data, a key (unique name), and optional metadata.\n- **Key**: Every object inside a bucket is identified by a key, which acts like a file path in a traditional file system.\n- **Region**: Buckets are created in specific AWS regions, which helps in reducing latency and meeting compliance or data residency requirements.",
+      "slide_type": "text"
+    },
+    {
+      "title": "How to Upload a File to S3 (AWS CLI)",
+      "content": "```bash\naws s3 cp myfile.txt s3://my-bucket-name/\n```",
+      "slide_type": "code"
+    },
+    {
+      "title": "S3 Access Control Options",
+      "content": "- **Bucket Policies**: These are resource-based permissions that allow you to control who can access data at the bucket level using JSON policy documents.\n- **IAM Policies**: Identity-based policies that define access permissions for users, groups, or roles across AWS services.\n- **ACLs (Access Control Lists)**: A legacy mechanism to manage individual object permissions. Still supported but less recommended for new applications.\n- **Presigned URLs**: Temporary URLs that grant time-limited access to specific objects without needing full credentials. Useful for secure, limited sharing.",
+      "slide_type": "text"
+    },
+    {
+      "title": "S3 Use Cases",
+      "content": "- **Website Hosting**: Host static websites directly from S3 with custom domains and HTTPS.\n- **Backup and Restore**: Store snapshots, database dumps, and application backups with lifecycle rules for cost control.\n- **Disaster Recovery**: S3 serves as a cost-efficient disaster recovery solution due to its replication and versioning support.\n- **Data Lakes and Analytics**: S3 can act as the central repository for big data, supporting tools like Amazon Athena, Redshift Spectrum, and AWS Glue.\n- **Media Hosting and Delivery**: Store and stream videos, images, and other static content with integration into CloudFront for global CDN support.\n- **Software Delivery**: Use S3 to host downloadable software, updates, or installer files with version control.",
+      "slide_type": "text"
+    },
+    {
+      "title": "Conclusion",
+      "content": "Amazon S3 offers a robust foundation for cloud storage, supporting a wide range of workloads from startups to enterprise-level applications. With its ease of use, high durability, and integration with the broader AWS ecosystem, S3 enables developers to build resilient, secure, and scalable systems. Whether you're storing a few megabytes or petabytes, S3 is built to grow with your needs.",
+      "slide_type": "text"
+    }
+  ]
+  

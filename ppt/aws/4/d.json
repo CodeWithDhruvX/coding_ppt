@@ -1,0 +1,77 @@
+[
+    {
+      "title": "Introduction to AMI",
+      "content": "An **Amazon Machine Image (AMI)** is a pre-configured virtual machine image that contains all the necessary information to launch an EC2 (Elastic Compute Cloud) instance. This includes the operating system, application server, and any additional software and configurations you wish to include. AMIs make it easier to replicate environments and deploy instances consistently, saving time and reducing errors.",
+      "slide_type": "text"
+    },
+    {
+      "title": "Purpose of AMI",
+      "content": "The primary purpose of an AMI is to serve as a template for launching EC2 instances in AWS. By using an AMI, you can quickly deploy instances with your preferred software, settings, and configurations. This allows for **faster setup** compared to manual configuration and ensures consistency across different environments. AMIs are often used for scaling, testing, and disaster recovery purposes.",
+      "slide_type": "text"
+    },
+    {
+      "title": "Components of an AMI",
+      "content": "An AMI consists of three key components:\n\n1. **Root Volume**: This is the primary storage volume that holds the operating system and software stack. It's essentially the 'brain' of the AMI.\n\n2. **Block Device Mapping**: This specifies the additional storage volumes (EBS volumes) that will be attached to the EC2 instance upon launch. It can include multiple volumes, such as databases or log storage.\n\n3. **Launch Permissions**: These permissions control who can launch instances using the AMI. The owner of the AMI can define whether it is public, shared with specific AWS accounts, or private (available only to the account that created it).",
+      "slide_type": "text"
+    },
+    {
+      "title": "Creating an AMI",
+      "content": "To create an AMI, you typically select an existing EC2 instance and use the AWS Management Console, CLI, or API to create an image. The process involves the following steps:\n\n1. **Select EC2 Instance**: Choose an instance that you wish to create an image of.\n\n2. **Create Image**: Go to **Actions** \u003e **Create Image** and provide a name for your AMI. You can also select options like whether to include the instance's volumes.\n\n3. **Snapshot Creation**: AWS will take a snapshot of the instance’s root volume and other attached volumes to create the AMI. The image will be stored in Amazon S3, allowing you to use it across different regions or even share it with others.",
+      "slide_type": "text"
+    },
+    {
+      "title": "Using an AMI to Launch EC2 Instances",
+      "content": "Once an AMI is created, you can use it to launch new EC2 instances. Here's how it works:\n\n1. In the AWS Console, select **Launch Instance**.\n2. In the **Choose an AMI** step, select your custom AMI or one of the available default AMIs.\n3. AWS will launch a new EC2 instance with the configuration defined in the AMI.\n\nThis process helps you replicate the environment of the original instance or deploy multiple instances with identical configurations, saving time and reducing the risk of misconfiguration.",
+      "slide_type": "text"
+    },
+    {
+      "title": "AMI Types",
+      "content": "AWS offers several types of AMIs to meet different use cases:\n\n1. **Amazon Linux AMI**: A lightweight Linux distribution optimized for the AWS cloud environment. It's regularly updated and comes with AWS CLI tools pre-installed.\n\n2. **Windows AMI**: A Windows-based AMI that can be used to launch instances running Windows Server or other Microsoft products.\n\n3. **Custom AMI**: These are AMIs created by users from existing EC2 instances. Custom AMIs allow users to pre-configure environments and deploy them across multiple instances or regions.\n\n4. **Marketplace AMI**: Third-party AMIs available in the AWS Marketplace. These can include pre-configured environments for specific software applications, databases, or other frameworks.",
+      "slide_type": "text"
+    },
+    {
+      "title": "Benefits of AMIs",
+      "content": "AMIs offer several key benefits:\n\n1. **Speed**: AMIs allow for **quick deployment** of EC2 instances with predefined configurations, making it faster than setting up new instances manually.\n\n2. **Consistency**: Since the configuration is predefined in the AMI, every instance launched from it will be identical, ensuring consistency across your environments.\n\n3. **Scalability**: With AMIs, you can easily scale by launching multiple instances with the same setup. Whether you need to add more application servers or scale horizontally for a web app, AMIs help in quickly expanding your infrastructure.\n\n4. **Disaster Recovery**: AMIs help with disaster recovery by providing a way to recreate environments if an instance fails. You can launch a new instance from an AMI backup to restore the system quickly.",
+      "slide_type": "text"
+    },
+    {
+      "title": "AMI vs Snapshot",
+      "content": "Though snapshots and AMIs both involve creating backups of EC2 instances, there are distinct differences:\n\n1. **Snapshot**: A snapshot is a backup of an EBS (Elastic Block Store) volume, which is a block-level copy of the data on the volume. Snapshots are typically used for backup purposes but don't contain information about the instance's configuration or OS.\n\n2. **AMI**: An AMI is a complete package that includes not only the snapshots of the root volume and additional volumes but also all configuration details (like instance type, network settings, and security settings). This allows you to launch a new instance using the same configuration as the original one.",
+      "slide_type": "text"
+    },
+    {
+      "title": "AMI Permissions",
+      "content": "AMI permissions control who can access and use your AMI. The available options are:\n\n1. **Public**: Anyone can use the AMI to launch EC2 instances.\n\n2. **Private**: The AMI is restricted to the AWS account that created it. Only the owner can launch instances using the AMI.\n\n3. **Shared**: You can share your AMI with specific AWS accounts. This allows you to share custom configurations or software stacks with colleagues or partners.",
+      "slide_type": "text"
+    },
+    {
+      "title": "AMI Lifecycle",
+      "content": "The lifecycle of an AMI involves creation, usage, and deregistration:\n\n1. **Creation**: AMIs are created from existing EC2 instances or through Amazon-provided default images.\n\n2. **Usage**: AMIs are used to launch EC2 instances. You can reuse the same AMI to deploy multiple instances or share it with others.\n\n3. **Deregistration**: When you no longer need an AMI, you can deregister it. Deregistration removes the AMI from the list of available images but does not delete the underlying snapshots. You can delete the snapshots separately if needed.",
+      "slide_type": "text"
+    },
+    {
+      "title": "AMI vs EC2 Instance Store",
+      "content": "AMIs and EC2 Instance Store serve different purposes:\n\n1. **EC2 Instance Store**: Provides temporary storage that is directly attached to the instance. The data is lost if the instance is stopped or terminated. It's useful for temporary data that doesn't need to persist across instance stops.\n\n2. **AMI**: Provides persistent storage that includes the operating system, applications, and configurations. An AMI is ideal for creating reproducible environments that you can use to launch instances at any time, regardless of instance stop/termination events.",
+      "slide_type": "text"
+    },
+    {
+      "title": "AMI in AWS Console",
+      "content": "You can manage your AMIs using the **AWS Management Console** by navigating to the EC2 Dashboard and selecting **AMIs** under the **Images** section. From here, you can create, share, launch, and delete AMIs. The Console also allows you to filter AMIs based on criteria such as ownership, AMI type, and operating system.\n\nAdditionally, you can use the AWS CLI or API for more automated management of AMIs.",
+      "slide_type": "text"
+    },
+    {
+      "title": "AMI Example",
+      "content": "Here’s a code snippet for launching an EC2 instance using an AMI ID in AWS CLI:\n\n```bash\naws ec2 run-instances --image-id ami-0abcdef1234567890 --count 1 --instance-type t2.micro\n```",
+      "slide_type": "code"
+    },
+    {
+      "title": "AMI Pricing",
+      "content": "While AMIs themselves do not incur extra costs, the underlying storage used for the AMI, specifically the EBS snapshots, does incur charges. These charges depend on the size of the snapshot and the region in which it's stored. Additionally, if you're using a **Marketplace AMI**, the AMI creator might charge a licensing fee in addition to standard AWS fees for storage and compute resources.",
+      "slide_type": "text"
+    },
+    {
+      "title": "Key Takeaways",
+      "content": "1. **AMI** is a pre-configured template used to launch EC2 instances, including the operating system and software stack.\n2. It allows for **quick deployment** of consistent environments, making it easier to scale and replicate systems.\n3. **Snapshots** are just backups of volumes, whereas an **AMI** includes configuration data to launch new instances.\n4. AMIs can be **private, shared**, or **public**, giving flexibility in terms of access and distribution.",
+      "slide_type": "text"
+    }
+  ]

@@ -1,0 +1,58 @@
+[
+    {
+      "title": "Introduction to Elastic Load Balancer (ELB)",
+      "content": "Elastic Load Balancer (ELB) is a fully managed service provided by AWS that automatically distributes incoming application traffic across multiple targets, such as EC2 instances, containers, and IP addresses, within one or more Availability Zones (AZs). This helps ensure high availability and fault tolerance for applications. ELB works by balancing the traffic load evenly across healthy targets, so your application can handle increased traffic without performance degradation. ELB is integrated with other AWS services like EC2, ECS, and Lambda, offering a reliable solution for dynamic and scalable web applications.",
+      "slide_type": "text"
+    },
+    {
+      "title": "Types of ELB",
+      "content": "AWS offers three main types of Elastic Load Balancers (ELBs), each suited to different use cases:\n\n1. **Classic Load Balancer (CLB)**: CLB is the original version of the ELB service, primarily designed for simple load balancing of HTTP/HTTPS traffic. It is ideal for legacy applications that are not dependent on modern load balancing features.\n\n2. **Application Load Balancer (ALB)**: ALB is designed for modern, scalable web applications. It operates at the application layer (HTTP/HTTPS) and offers advanced routing features, including host-based routing, path-based routing, and WebSocket support. ALB is best for microservices and containerized applications.\n\n3. **Network Load Balancer (NLB)**: NLB operates at the transport layer (TCP/UDP) and is designed to handle high-throughput, low-latency traffic. NLB is ideal for applications that require extreme performance, such as real-time gaming or video streaming, and it supports static IP addresses for load balancing.",
+      "slide_type": "text"
+    },
+    {
+      "title": "How ELB Works",
+      "content": "ELB helps ensure that incoming traffic is efficiently routed to healthy resources. Here's how it works:\n\n1. **Traffic Distribution**: When a user sends a request to your application, ELB determines the best target (like an EC2 instance) based on a set of rules. It then forwards the request to the appropriate target.\n\n2. **Health Monitoring**: ELB continuously checks the health of each target in the pool using health check protocols. Targets that fail the health check will be removed from the pool until they recover.\n\n3. **Auto Scaling Integration**: ELB integrates with Auto Scaling, allowing it to automatically scale the number of instances in response to traffic patterns. This ensures that your application can handle fluctuating traffic loads without manual intervention.\n\n4. **Cross-Zone Load Balancing**: ELB can distribute traffic across multiple Availability Zones, ensuring high availability and fault tolerance. If one AZ becomes unavailable, ELB will route traffic to healthy instances in other AZs.",
+      "slide_type": "text"
+    },
+    {
+      "title": "Key Benefits of ELB",
+      "content": "* **Scalability**: ELB automatically adjusts to handle millions of requests per second, making it easy to scale your application as traffic grows. It supports horizontal scaling, which involves adding more instances as demand increases.\n* **High Availability**: ELB routes traffic to multiple Availability Zones (AZs) to improve fault tolerance. This means that if one AZ experiences issues, traffic is automatically rerouted to healthy instances in other AZs.\n* **Fault Tolerance**: ELB can detect unhealthy instances and stop sending traffic to them. It also integrates with Auto Scaling, automatically adding or removing instances based on traffic levels.\n* **Security**: ELB supports SSL/TLS termination to encrypt traffic between clients and load balancers. It integrates with AWS Web Application Firewall (WAF) to protect against common web exploits and supports IAM policies to control access to load balancers.",
+      "slide_type": "text"
+    },
+    {
+      "title": "ELB Traffic Routing",
+      "content": "ELB supports several routing mechanisms to efficiently distribute traffic to the appropriate targets. These include:\n\n1. **Host-based Routing**: Routes requests based on the domain name (e.g., app.example.com). This allows you to route traffic to different services based on the hostname in the request URL.\n\n2. **Path-based Routing**: Routes traffic based on the URL path (e.g., /api/* or /images/*). This is useful for directing different types of requests to different services or backends.\n\n3. **Priority-based Routing**: Allows you to assign weights to multiple targets within a target group. This enables traffic distribution based on priority, which can be useful for A/B testing or gradual traffic migration.\n\n4. **Query String Parameter-based Routing**: Routes traffic based on specific query parameters in the URL, enabling dynamic content delivery based on user-specific input or preferences.",
+      "slide_type": "text"
+    },
+    {
+      "title": "ELB Security Features",
+      "content": "ELB offers several security features to protect your applications and data:\n\n1. **SSL/TLS Termination**: ELB supports SSL/TLS termination, which offloads the encryption/decryption process from your backend servers, improving performance. You can configure SSL certificates on ELB to secure communication between clients and the load balancer.\n\n2. **Web Application Firewall (WAF) Integration**: ELB integrates with AWS WAF, allowing you to protect your applications from common web exploits like SQL injection and cross-site scripting (XSS).\n\n3. **Identity and Access Management (IAM)**: You can control access to ELB resources using AWS IAM policies, which ensure that only authorized users can modify load balancer settings or access backend targets.\n\n4. **Access Logs**: ELB provides access logs that capture detailed information about incoming requests, helping you monitor traffic and detect security incidents.",
+      "slide_type": "text"
+    },
+    {
+      "title": "Example of Setting Up ELB",
+      "content": "To set up an Application Load Balancer using AWS CLI, use the following command:\n```bash\naws elb create-load-balancer --load-balancer-name my-load-balancer --listeners 'Protocol=HTTP,LoadBalancerPort=80,InstanceProtocol=HTTP,InstancePort=80' --availability-zones us-west-2a\n```\nThis command creates an ALB that listens on HTTP (port 80) and forwards requests to backend instances running in the `us-west-2a` Availability Zone.",
+      "slide_type": "code"
+    },
+    {
+      "title": "ELB Monitoring and Health Checks",
+      "content": "ELB performs continuous health checks on all registered targets. If a target fails to meet the health check criteria, ELB stops routing traffic to that target and redirects it to healthy targets. The health check can be customized with various parameters such as:\n\n1. **Protocol**: The protocol used for the health check (e.g., HTTP, HTTPS, TCP).\n2. **Port**: The port on which the health check is performed.\n3. **Path**: The URL path that ELB uses for HTTP/HTTPS health checks (e.g., `/health`).\n4. **Thresholds**: Number of consecutive successful or failed health checks required before marking a target as healthy or unhealthy.\n\nThis ensures that only healthy instances receive traffic, improving application reliability.",
+      "slide_type": "text"
+    },
+    {
+      "title": "ELB vs Other Load Balancers",
+      "content": "ELB is a fully managed service, unlike traditional load balancers that require manual setup and maintenance. Here’s how it compares to traditional load balancers:\n\n1. **Managed Service**: ELB is fully managed, meaning AWS handles the scaling, maintenance, and patching. Traditional load balancers require manual configuration and maintenance.\n2. **Integration with AWS Ecosystem**: ELB integrates seamlessly with other AWS services like EC2, ECS, Lambda, and RDS, simplifying application architecture. Traditional load balancers often require separate configuration and integration.\n3. **Auto Scaling**: ELB works with AWS Auto Scaling to automatically add or remove instances based on demand. Traditional load balancers require manual intervention to scale.\n4. **High Availability and Fault Tolerance**: ELB provides built-in support for multiple Availability Zones and automatically reroutes traffic in case of failure. Traditional load balancers may require additional configuration for fault tolerance.",
+      "slide_type": "text"
+    },
+    {
+      "title": "ELB Pricing Overview",
+      "content": "ELB pricing is based on two factors:\n\n1. **Hourly Charges**: You are charged for each hour that the load balancer is running, with a rate depending on the type of load balancer (CLB, ALB, or NLB).\n2. **Data Processing Charges**: You are charged for the amount of data processed by the load balancer. This includes both incoming and outgoing traffic.\n\nAdditional charges may apply for features like SSL termination and cross-zone load balancing. It’s important to monitor your usage to optimize costs and prevent overprovisioning.",
+      "slide_type": "text"
+    },
+    {
+      "title": "Summary of ELB Features",
+      "content": "| Feature                   | Description                                                                 |\n|---------------------------|-----------------------------------------------------------------------------|\n| Scalability               | Automatically scales to handle increased traffic without manual intervention. |\n| High Availability         | Distributes traffic across multiple availability zones for fault tolerance. |\n| Health Checks             | Monitors the health of targets and reroutes traffic to healthy ones.       |\n| Security Features         | Supports SSL/TLS termination, integrates with WAF and IAM for enhanced security. |",
+      "slide_type": "table"
+    }
+  ]
+  

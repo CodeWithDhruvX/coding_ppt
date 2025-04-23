@@ -1,0 +1,79 @@
+[
+    {
+      "title": "Introduction to AWS Glacier",
+      "content": "**Amazon Glacier**, now integrated as **Amazon S3 Glacier**, is a cloud-based storage solution by AWS specifically built for **data archiving** and **long-term backups**. It's designed to store large amounts of infrequently accessed data at a **significantly lower cost** compared to regular storage options. Glacier is suitable for organizations that need to retain data for years due to **regulatory compliance**, **internal audits**, or **disaster recovery purposes**, without the need for instant access.",
+      "slide_type": "text"
+    },
+    {
+      "title": "Key Features of AWS Glacier",
+      "content": "AWS Glacier offers a robust set of features tailored for long-term archival:\n\n- **Low cost**: Storage costs can be as low as **$0.004 per GB/month**, making it ideal for massive archives.\n- **High security**: Data is automatically encrypted using **AES-256**, and integrates with **AWS IAM** for fine-grained access control.\n- **Extreme durability**: Glacier is engineered for **11 nines (99.999999999%)** of durability, ensuring data safety even over decades.\n- **Seamless scalability**: As a fully managed service, it scales without requiring user intervention.\n- **Multiple retrieval speeds**: Users can choose retrieval options—**Expedited, Standard, or Bulk**—based on urgency and budget.",
+      "slide_type": "text"
+    },
+    {
+      "title": "Use Cases for AWS Glacier",
+      "content": "AWS Glacier is best suited for scenarios where data must be kept but doesn't require real-time access:\n\n- **Compliance and Regulatory Storage**: Healthcare, finance, and government institutions often have legal mandates to retain data for several years.\n- **Media Archiving**: Video production houses and broadcasters use Glacier to archive footage for future use.\n- **Scientific Research Preservation**: Academic institutions and research facilities use it to store large datasets.\n- **Backup and Disaster Recovery**: Acts as a cost-effective layer for long-term backup strategies in enterprises.",
+      "slide_type": "text"
+    },
+    {
+      "title": "Glacier vs Standard S3",
+      "content": [
+        {
+          "Aspect": "Storage Cost",
+          "S3 Glacier": "Much Lower",
+          "S3 Standard": "Higher"
+        },
+        {
+          "Aspect": "Access Time",
+          "S3 Glacier": "Minutes to Hours",
+          "S3 Standard": "Milliseconds"
+        },
+        {
+          "Aspect": "Use Case",
+          "S3 Glacier": "Long-Term Archiving",
+          "S3 Standard": "Frequent Access"
+        }
+      ],
+      "slide_type": "table"
+    },
+    {
+      "title": "Data Retrieval Options",
+      "content": [
+        {
+          "Cost": "Highest",
+          "Speed": "1-5 minutes",
+          "Type": "Expedited"
+        },
+        {
+          "Cost": "Moderate",
+          "Speed": "3-5 hours",
+          "Type": "Standard"
+        },
+        {
+          "Cost": "Lowest",
+          "Speed": "5-12 hours",
+          "Type": "Bulk"
+        }
+      ],
+      "slide_type": "table"
+    },
+    {
+      "title": "How to Upload Data to Glacier (via S3)",
+      "content": "```bash\n# Step 1: Create S3 bucket\naws s3 mb s3://my-archive-bucket\n\n# Step 2: Upload file with Glacier storage class\naws s3 cp mydata.zip s3://my-archive-bucket/ --storage-class GLACIER\n```",
+      "slide_type": "code"
+    },
+    {
+      "title": "Cost Considerations",
+      "content": "While Glacier is **extremely affordable for storage**, there are some important cost factors to keep in mind:\n\n- **Storage Cost**: At ~$0.004 per GB per month, it's cheaper than standard S3.\n- **Retrieval Costs**: Vary based on the retrieval tier (Expedited, Standard, Bulk). Faster retrievals are more expensive.\n- **Early Deletion Fee**: There's a **90-day minimum storage duration**, so deleting files before this period incurs additional charges.\n- **API and Lifecycle Costs**: Accessing or transitioning data using lifecycle policies can incur charges, especially when performed frequently.",
+      "slide_type": "text"
+    },
+    {
+      "title": "When NOT to Use Glacier",
+      "content": "While Glacier is highly efficient for archiving, it's **not a fit for all workloads**:\n\n- **Real-Time Applications**: If your application requires data access within seconds or milliseconds, Glacier’s retrieval delay is a bottleneck.\n- **Frequently Accessed Data**: It’s optimized for ‘write once, read rarely’ scenarios. Frequent access can lead to high retrieval costs.\n- **Interactive Workloads**: User-facing applications (e.g., dashboards, web apps) that depend on instant access should use faster storage classes like **S3 Standard or S3 Intelligent-Tiering**.",
+      "slide_type": "text"
+    },
+    {
+      "title": "Summary",
+      "content": "In summary, **Amazon S3 Glacier** is a powerful solution for storing massive amounts of data affordably and reliably over the long term. It provides:\n\n- **Low-cost storage** for rarely accessed data\n- **Flexible retrieval options** based on speed and budget\n- **High durability and encryption**, ensuring long-term safety\n\nIt is **not suitable for active data workloads** but shines in areas like **regulatory compliance**, **digital preservation**, and **archival backups**. Organizations looking to optimize their storage costs without compromising data integrity will find Glacier a valuable addition to their AWS toolkit.",
+      "slide_type": "text"
+    }
+  ]

@@ -1,53 +1,32 @@
 [
   {
-    "title": "Introduction to kubectl",
-    "content": "kubectl is the **command-line interface (CLI)** tool for Kubernetes. It acts as a bridge between the user and the Kubernetes API server. With kubectl, users can control all aspects of their Kubernetes cluster — from launching applications to viewing logs and scaling services. It is one of the first tools every Kubernetes user should learn, as it offers the fastest and most flexible way to interact with your cluster.",
+    "title": "Introduction to AWS Glacier",
+    "content": "**Amazon Glacier**, now integrated as **Amazon S3 Glacier**, is a cloud-based storage solution by AWS specifically built for **data archiving** and **long-term backups**. It's designed to store large amounts of infrequently accessed data at a **significantly lower cost** compared to regular storage options. Glacier is suitable for organizations that need to retain data for years due to **regulatory compliance**, **internal audits**, or **disaster recovery purposes**, without the need for instant access.",
     "slide_type": "text"
   },
   {
-    "title": "kubectl Purpose",
-    "content": "- **Communicate with the Kubernetes API Server**: kubectl sends commands to the cluster using the Kubernetes API.\n- **Manage Cluster Resources**: It can create, update, and delete pods, services, deployments, and other resources.\n- **Apply Configurations**: You can use YAML/JSON files to define the desired state of your resources and apply them using kubectl.\n- **Debug and Monitor**: It allows you to inspect logs, exec into containers, and view real-time status of the cluster components. This makes it invaluable for developers and DevOps engineers troubleshooting issues.",
+    "title": "Key Features of AWS Glacier",
+    "content": "AWS Glacier offers a robust set of features tailored for long-term archival:\n\n- **Low cost**: Storage costs can be as low as **$0.004 per GB/month**, making it ideal for massive archives.\n- **High security**: Data is automatically encrypted using **AES-256**, and integrates with **AWS IAM** for fine-grained access control.\n- **Extreme durability**: Glacier is engineered for **11 nines (99.999999999%)** of durability, ensuring data safety even over decades.\n- **Seamless scalability**: As a fully managed service, it scales without requiring user intervention.\n- **Multiple retrieval speeds**: Users can choose retrieval options—**Expedited, Standard, or Bulk**—based on urgency and budget.",
     "slide_type": "text"
   },
   {
-    "title": "Basic kubectl Command Format",
-    "content": "```\nkubectl [command] [type] [name] [flags]\n```",
-    "slide_type": "code"
-  },
-  {
-    "title": "Common kubectl Commands",
-    "content": [
-      { "Command": "kubectl get pods", "Description": "List all pods in the current namespace" },
-      { "Command": "kubectl get nodes", "Description": "List all nodes in the cluster" },
-      { "Command": "kubectl describe pod <pod-name>", "Description": "Show detailed info about a specific pod" },
-      { "Command": "kubectl apply -f <file>.yaml", "Description": "Create or update resources from a YAML file" },
-      { "Command": "kubectl delete pod <pod-name>", "Description": "Delete a specific pod" }
-    ],
-    "slide_type": "table"
-  },
-  {
-    "title": "kubectl with YAML Files",
-    "content": "kubectl can apply, delete, or replace Kubernetes resources using YAML configuration files.\n\nExample:\n```\nkubectl apply -f deployment.yaml\n```",
-    "slide_type": "code"
-  },
-  {
-    "title": "kubectl Configuration",
-    "content": "- **kubeconfig File**: This file stores the details of your cluster, user authentication credentials, and contexts.\n- **Default Location**: `~/.kube/config` on most systems.\n- **Multiple Contexts**: You can manage and switch between multiple clusters using contexts in the kubeconfig file. This is especially useful in environments where you operate different staging, dev, and production clusters.",
+    "title": "Use Cases for AWS Glacier",
+    "content": "AWS Glacier is best suited for scenarios where data must be kept but doesn't require real-time access:\n\n- **Compliance and Regulatory Storage**: Healthcare, finance, and government institutions often have legal mandates to retain data for several years.\n- **Media Archiving**: Video production houses and broadcasters use Glacier to archive footage for future use.\n- **Scientific Research Preservation**: Academic institutions and research facilities use it to store large datasets.\n- **Backup and Disaster Recovery**: Acts as a cost-effective layer for long-term backup strategies in enterprises.",
     "slide_type": "text"
   },
   {
-    "title": "Setting Context with kubectl",
-    "content": "```\nkubectl config use-context <context-name>\n```  \nUse this command to switch between different Kubernetes clusters.",
-    "slide_type": "code"
-  },
-  {
-    "title": "kubectl Tips for Beginners",
-    "content": "- Use `kubectl get all` to see all resource types in the current namespace.\n- Use `kubectl explain <resource>` to explore the fields and schema of a resource. Great for learning YAML structures.\n- Add `--namespace <name>` to target specific namespaces. Helps avoid accidental changes in production or wrong environments.\n- Use `-o wide` or `-o json/yaml` to customize your output format depending on what you need to debug or automate.",
+    "title": "Cost Considerations",
+    "content": "While Glacier is **extremely affordable for storage**, there are some important cost factors to keep in mind:\n\n- **Storage Cost**: At ~$0.004 per GB per month, it's cheaper than standard S3.\n- **Retrieval Costs**: Vary based on the retrieval tier (Expedited, Standard, Bulk). Faster retrievals are more expensive.\n- **Early Deletion Fee**: There's a **90-day minimum storage duration**, so deleting files before this period incurs additional charges.\n- **API and Lifecycle Costs**: Accessing or transitioning data using lifecycle policies can incur charges, especially when performed frequently.",
     "slide_type": "text"
   },
   {
-    "title": "Conclusion",
-    "content": "kubectl is a **powerful and versatile tool** that gives you full control over your Kubernetes cluster. It is essential for both beginners and advanced users to understand its core functionality, syntax, and best practices. Whether you're deploying applications or debugging complex issues, kubectl is your primary interface with the cluster. Mastering kubectl means mastering Kubernetes itself.",
+    "title": "When NOT to Use Glacier",
+    "content": "While Glacier is highly efficient for archiving, it's **not a fit for all workloads**:\n\n- **Real-Time Applications**: If your application requires data access within seconds or milliseconds, Glacier’s retrieval delay is a bottleneck.\n- **Frequently Accessed Data**: It’s optimized for ‘write once, read rarely’ scenarios. Frequent access can lead to high retrieval costs.\n- **Interactive Workloads**: User-facing applications (e.g., dashboards, web apps) that depend on instant access should use faster storage classes like **S3 Standard or S3 Intelligent-Tiering**.",
+    "slide_type": "text"
+  },
+  {
+    "title": "Summary",
+    "content": "In summary, **Amazon S3 Glacier** is a powerful solution for storing massive amounts of data affordably and reliably over the long term. It provides:\n\n- **Low-cost storage** for rarely accessed data\n- **Flexible retrieval options** based on speed and budget\n- **High durability and encryption**, ensuring long-term safety\n\nIt is **not suitable for active data workloads** but shines in areas like **regulatory compliance**, **digital preservation**, and **archival backups**. Organizations looking to optimize their storage costs without compromising data integrity will find Glacier a valuable addition to their AWS toolkit.",
     "slide_type": "text"
   }
 ]

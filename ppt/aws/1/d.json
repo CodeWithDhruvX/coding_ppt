@@ -1,0 +1,73 @@
+[
+    {
+      "title": "Introduction to AWS",
+      "content": "**Amazon Web Services (AWS)** is a cloud computing platform launched by Amazon in 2006. It provides on-demand access to a wide array of IT resources over the internet, including servers, storage, databases, networking, analytics, machine learning, and more. AWS helps businesses eliminate the need for physical infrastructure, allowing them to build and scale applications faster, with greater flexibility and cost-efficiency.",
+      "slide_type": "text"
+    },
+    {
+      "title": "What AWS Offers",
+      "content": "- **Compute (EC2, Lambda)**: Run virtual servers or serverless functions based on demand.\n- **Storage (S3, EBS, Glacier)**: Store files, backups, or archived data with durability and scalability.\n- **Databases (RDS, DynamoDB)**: Use relational or NoSQL databases without managing infrastructure.\n- **Networking (VPC, Route 53, CloudFront)**: Build secure and globally distributed networks.\n- **Machine Learning (SageMaker, Rekognition)**: Train, deploy, and scale ML models with managed infrastructure.\n- **Security \u0026 Identity (IAM, KMS)**: Control access to resources and encrypt data.\n- **Developer Tools (CodeBuild, CodeDeploy, CodePipeline)**: Automate software development and delivery.\n- **Monitoring \u0026 Management (CloudWatch, CloudTrail)**: Gain operational visibility and ensure compliance.",
+      "slide_type": "text"
+    },
+    {
+      "title": "Why AWS is Popular",
+      "content": "- **Market Dominance**: AWS was the first major cloud provider and continues to hold a leading market share, trusted by startups, enterprises, and governments.\n- **Global Infrastructure**: AWS has data centers across 30+ regions and 100+ availability zones, ensuring high availability and low latency.\n- **Scalability \u0026 Performance**: Automatically scale up/down resources to meet real-time demand, supporting applications from small to global scale.\n- **Flexible Pricing Models**: Offers pay-as-you-go, reserved instances, and spot pricing to optimize cost.\n- **Robust Security**: Provides encryption, identity access management, compliance certifications, and DDoS protection.\n- **Rapid Innovation**: Continuously rolls out new services and improvements, enabling cutting-edge solutions.\n- **Strong Community \u0026 Ecosystem**: Huge knowledge base, user forums, certified professionals, and partner network.",
+      "slide_type": "text"
+    },
+    {
+      "title": "AWS vs Traditional Hosting",
+      "content": [
+        {
+          "AWS": "Automatic, instant",
+          "Feature": "Resource Scaling",
+          "Traditional Hosting": "Manual, slow"
+        },
+        {
+          "AWS": "Pay-as-you-go",
+          "Feature": "Pricing Model",
+          "Traditional Hosting": "Fixed monthly/yearly"
+        },
+        {
+          "AWS": "Minutes with few clicks",
+          "Feature": "Infrastructure Setup",
+          "Traditional Hosting": "Takes days"
+        },
+        {
+          "AWS": "Multiple regions worldwide",
+          "Feature": "Global Reach",
+          "Traditional Hosting": "Limited"
+        },
+        {
+          "AWS": "Built-in features like backups, failover",
+          "Feature": "Disaster Recovery",
+          "Traditional Hosting": "Manual setup"
+        }
+      ],
+      "slide_type": "table"
+    },
+    {
+      "title": "Basic AWS Architecture",
+      "content": "```plaintext\n+--------------+      +--------------+      +--------------+\n|   Internet   | ---\u003e |   Load       | ---\u003e |   EC2        |\n|              |      |   Balancer   |      |   Instances  |\n+--------------+      +--------------+      +--------------+\n                               |\n                               v\n                         +-------------+\n                         |    RDS DB   |\n                         +-------------+\n```",
+      "slide_type": "code"
+    },
+    {
+      "title": "Getting Started with AWS",
+      "content": "- **Sign Up**: Begin by creating a free account at [aws.amazon.com](https://aws.amazon.com). New users get access to the Free Tier for 12 months.\n- **AWS Free Tier**: Offers limited usage of key services like EC2, S3, RDS, and Lambda without any cost.\n- **AWS Management Console**: A user-friendly web interface to manage AWS resources.\n- **AWS CLI \u0026 SDKs**: Use command-line tools and programming language SDKs to automate tasks.\n- **Training \u0026 Documentation**: AWS provides detailed tutorials, whitepapers, and certification programs to help you learn.\n- **Experiment Safely**: Use budgets and billing alerts to avoid unexpected charges during learning.",
+      "slide_type": "text"
+    },
+    {
+      "title": "Use Cases of AWS",
+      "content": "- **Web Hosting**: Easily host and scale static and dynamic websites using services like S3, EC2, and Route 53.\n- **App Deployment**: Deploy full-stack web and mobile applications using Elastic Beanstalk or Lambda.\n- **Data Storage \u0026 Backup**: Store critical files securely in S3 or Glacier with automatic backups and lifecycle management.\n- **Machine Learning \u0026 AI**: Build and deploy AI models using SageMaker or use pre-trained models for vision, speech, and language tasks.\n- **IoT Solutions**: Connect, manage, and analyze data from IoT devices with AWS IoT Core.\n- **Big Data \u0026 Analytics**: Process large-scale datasets in real time using Redshift, EMR, and Kinesis for data insights.",
+      "slide_type": "text"
+    },
+    {
+      "title": "Popular Companies Using AWS",
+      "content": "- **Netflix**: Streams billions of hours of video content monthly using AWS for scalability and performance.\n- **Airbnb**: Runs its global vacation rental platform on AWS, ensuring high availability.\n- **NASA**: Uses AWS for storing and sharing large space datasets.\n- **Samsung**: Leverages AWS for mobile services, app hosting, and data analytics.\n- **Adobe**: Runs its Creative Cloud and Document Cloud on AWS infrastructure.\n- **BMW**: Uses AWS for connected car applications, data analytics, and mobility services.\nThese companies choose AWS due to its proven reliability, scalability, and global support infrastructure.",
+      "slide_type": "text"
+    },
+    {
+      "title": "Key Takeaway",
+      "content": "**AWS has revolutionized how businesses build and manage digital infrastructure.**\nIts popularity stems from being a secure, scalable, and cost-effective cloud platform that supports a wide range of applications—from small web apps to enterprise-level AI and big data solutions. Learning AWS opens doors to cloud careers and modern development workflows.",
+      "slide_type": "text"
+    }
+  ]

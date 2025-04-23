@@ -1,0 +1,99 @@
+[
+    {
+      "title": "Introduction to S3 Storage Classes",
+      "content": "Amazon S3 (Simple Storage Service) provides **highly scalable, durable, and secure object storage**. To optimize storage costs and access performance, AWS offers various **storage classes**, each tailored to different data access needs. \n\nFor example, data that’s accessed frequently, like images on a website, can be stored in the **S3 Standard** class, whereas backup logs or compliance archives can go into **S3 Glacier** or **Deep Archive** for long-term, low-cost storage.",
+      "slide_type": "text"
+    },
+    {
+      "title": "Why Use Different Storage Classes?",
+      "content": "Not all data is accessed equally. Some files are downloaded frequently (like user photos), while others (like old logs or monthly reports) may sit untouched for years. AWS lets you choose the **right storage class** to align with your access frequency, performance needs, and budget.\n\nAdditionally, AWS allows you to set **lifecycle policies** to automate transitions between classes, like moving files from S3 Standard to Glacier after 90 days of inactivity — saving cost without manual intervention.",
+      "slide_type": "text"
+    },
+    {
+      "title": "Overview of S3 Storage Classes",
+      "content": [
+        {
+          "Availability": "99.99%",
+          "Class Name": "S3 Standard",
+          "Durability": "99.999999999%",
+          "Use Case": "Frequently accessed data"
+        },
+        {
+          "Availability": "99.9%",
+          "Class Name": "S3 Intelligent-Tiering",
+          "Durability": "99.999999999%",
+          "Use Case": "Unknown or changing access patterns"
+        },
+        {
+          "Availability": "99.9%",
+          "Class Name": "S3 Standard-IA",
+          "Durability": "99.999999999%",
+          "Use Case": "Infrequently accessed data"
+        },
+        {
+          "Availability": "99.5%",
+          "Class Name": "S3 One Zone-IA",
+          "Durability": "99.999999999%",
+          "Use Case": "Infrequent access, lower redundancy"
+        },
+        {
+          "Availability": "Varies",
+          "Class Name": "S3 Glacier",
+          "Durability": "99.999999999%",
+          "Use Case": "Archival, minutes to hours retrieval"
+        },
+        {
+          "Availability": "Varies",
+          "Class Name": "S3 Glacier Deep Archive",
+          "Durability": "99.999999999%",
+          "Use Case": "Long-term backup, 12+ hours retrieval"
+        }
+      ],
+      "slide_type": "table"
+    },
+    {
+      "title": "S3 Standard",
+      "content": "The **S3 Standard** class is optimized for **frequent access**, offering high throughput and low latency. It's perfect for use cases like:\n- Hosting static website assets\n- App and mobile data storage\n- Real-time analytics\n\nIt provides **99.99% availability** and **eleven 9s durability (99.999999999%)**, making it highly reliable for mission-critical data.",
+      "slide_type": "text"
+    },
+    {
+      "title": "S3 Intelligent-Tiering",
+      "content": "S3 Intelligent-Tiering automatically analyzes access patterns and moves your data between tiers:\n- **Frequent Access Tier**\n- **Infrequent Access Tier**\n\nThis helps save money on rarely accessed files while avoiding manual data management. It's best when you can't predict access patterns — such as with user-generated content or unpredictable workloads.\n\nThere’s a small monitoring fee per object, but the savings from automatic tiering often outweigh this.",
+      "slide_type": "text"
+    },
+    {
+      "title": "S3 Standard-IA",
+      "content": "S3 Standard-Infrequent Access is great for **data that’s read occasionally but must remain immediately available when needed**. Think of it like a storage room that’s rarely opened, but must be fully stocked.\n\nYou’ll pay lower storage fees than Standard, but **pay per retrieval**, making it ideal for:\n- Backup files\n- Disaster recovery snapshots\n- Data archives that are read once in a while",
+      "slide_type": "text"
+    },
+    {
+      "title": "S3 One Zone-IA",
+      "content": "Unlike other classes that replicate across **multiple Availability Zones**, S3 One Zone-IA stores your data in **a single AZ**.\n\nThis results in **cheaper storage**, but reduced resilience. If the AZ goes down, your data might become unavailable or lost.\n\nUse this only for **non-critical data** that can be re-created easily, like processed logs, thumbnails, or backups of non-essential systems.",
+      "slide_type": "text"
+    },
+    {
+      "title": "S3 Glacier",
+      "content": "S3 Glacier is ideal for **archiving data you rarely access**, but still might need occasionally. It provides low-cost storage and supports retrieval in:\n- **Expedited** (1–5 minutes)\n- **Standard** (3–5 hours)\n- **Bulk** (5–12 hours)\n\nCommon use cases include:\n- Financial records\n- Compliance documentation\n- Raw data archives\n\nIt’s not instant, but it’s incredibly cost-effective for historical data storage.",
+      "slide_type": "text"
+    },
+    {
+      "title": "S3 Glacier Deep Archive",
+      "content": "S3 Glacier Deep Archive is the **cheapest AWS storage option**, designed for data that’s **accessed once or twice a year**, if at all. Retrieval can take **12 to 48 hours**, so it’s not suitable for anything that needs urgent access.\n\nExamples:\n- Regulatory data retention (7–10 years)\n- Old medical records\n- Legal archives or security camera footage\n\nIt's the equivalent of storing documents in a secure underground vault — safe and cheap, but slow to get to.",
+      "slide_type": "text"
+    },
+    {
+      "title": "How to Choose a Storage Class",
+      "content": "Making the right choice comes down to asking:\n\n- **Do I need frequent access?** → Use **S3 Standard**.\n- **Is access unpredictable?** → Try **Intelligent-Tiering**.\n- **Is it rarely accessed but must be instantly available?** → Use **Standard-IA**.\n- **Can I tolerate risk for cost savings?** → **One Zone-IA**.\n- **Is it archival?** → Choose **Glacier**.\n- **Is it deep archival (compliance/long term)?** → **Glacier Deep Archive**.\n\nAlso consider using **lifecycle policies** to migrate data automatically between classes over time.",
+      "slide_type": "text"
+    },
+    {
+      "title": "Sample Code: Upload with Storage Class",
+      "content": "```python\nimport boto3\n\ns3 = boto3.client('s3')\n\ns3.upload_file(\n    Filename='myfile.txt',\n    Bucket='mybucket',\n    Key='myfile.txt',\n    ExtraArgs={'StorageClass': 'STANDARD_IA'}\n)\n```",
+      "slide_type": "code"
+    },
+    {
+      "title": "Takeaway",
+      "content": "S3 storage classes give you **powerful control** over how you store and access data — from fast and frequent to deep and dormant.\n\n- Understand your **data access patterns**\n- Leverage **cost-efficient storage tiers**\n- Use **automated transitions** for optimal performance and savings\n\nThis flexibility is key in building scalable, efficient, and budget-friendly cloud applications.",
+      "slide_type": "text"
+    }
+  ]

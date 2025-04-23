@@ -1,0 +1,78 @@
+[
+    {
+      "title": "Introduction to AWS Services",
+      "content": "Amazon Web Services (AWS) is a leading cloud computing platform offering a wide range of services that help organizations build scalable, secure, and cost-effective applications. These services are accessed over the internet and are categorized to support different layers of cloud infrastructure such as computing power, storage, networking, databases, and advanced technologies like machine learning and analytics. AWS enables businesses to pay only for what they use, reducing upfront infrastructure costs and accelerating innovation.",
+      "slide_type": "text"
+    },
+    {
+      "title": "Compute Services",
+      "content": "**Amazon EC2 (Elastic Compute Cloud):** Offers resizable virtual machines (instances) in the cloud. You can choose the operating system, instance type, and scale resources up or down as needed.\n\n**AWS Lambda:** A serverless compute service that lets you run code in response to events without managing servers. Ideal for automation, real-time file processing, and backend services.\n\n**Amazon ECS \u0026 EKS:** ECS (Elastic Container Service) manages Docker containers, while EKS (Elastic Kubernetes Service) lets you run Kubernetes clusters without needing to install, operate, or maintain the Kubernetes control plane.\n\n**AWS Elastic Beanstalk:** A platform-as-a-service (PaaS) that automatically handles deployment, load balancing, scaling, and monitoring of web applications written in languages like Java, .NET, PHP, Node.js, Python, and more.",
+      "slide_type": "text"
+    },
+    {
+      "title": "Storage Services",
+      "content": "**Amazon S3 (Simple Storage Service):** A highly scalable, durable, and secure object storage service used to store and retrieve any amount of data from anywhere on the web. Ideal for backups, media hosting, and big data.\n\n**Amazon EBS (Elastic Block Store):** Provides persistent block storage volumes for use with EC2 instances, similar to a virtual hard drive. Useful for databases, file systems, and enterprise applications.\n\n**Amazon Glacier / S3 Glacier:** Low-cost cloud storage designed for data archiving and long-term backup. Retrieval times can range from minutes to hours, depending on the selected access tier.\n\n**AWS Storage Gateway:** A hybrid cloud storage solution that connects on-premises environments with AWS cloud storage, enabling seamless data backup and migration.",
+      "slide_type": "text"
+    },
+    {
+      "title": "Database Services",
+      "content": "**Amazon RDS (Relational Database Service):** A managed service that makes it easy to set up, operate, and scale a relational database in the cloud. Supports databases like MySQL, PostgreSQL, Oracle, and SQL Server.\n\n**Amazon DynamoDB:** A fully managed NoSQL database service that delivers single-digit millisecond performance at any scale. Ideal for mobile apps, IoT, gaming, and real-time bidding platforms.\n\n**Amazon Aurora:** A MySQL- and PostgreSQL-compatible relational database engine built for the cloud, offering high performance and availability with up to 5x better performance than standard MySQL.\n\n**Amazon Redshift:** A fully managed petabyte-scale data warehouse that allows you to run complex analytical queries across large datasets quickly and cost-effectively.",
+      "slide_type": "text"
+    },
+    {
+      "title": "Networking \u0026 Content Delivery",
+      "content": "**Amazon VPC (Virtual Private Cloud):** Enables you to provision a logically isolated section of the AWS cloud to launch AWS resources in a virtual network that you define. Offers full control over your network configuration.\n\n**AWS CloudFront:** A global content delivery network (CDN) that securely delivers content to users with low latency and high transfer speeds using edge locations.\n\n**Elastic Load Balancing (ELB):** Automatically distributes incoming application traffic across multiple targets, such as EC2 instances, in multiple availability zones to increase fault tolerance.\n\n**AWS Direct Connect:** Establishes a dedicated network connection from your premises to AWS, offering more consistent network performance and lower latency compared to internet-based connections.",
+      "slide_type": "text"
+    },
+    {
+      "title": "Security \u0026 Identity Services",
+      "content": "**AWS IAM (Identity and Access Management):** Enables you to securely manage access to AWS services and resources for users and applications by defining permissions and roles.\n\n**AWS KMS (Key Management Service):** A managed service that makes it easy to create and control encryption keys used to encrypt data, ensuring secure information storage and compliance.\n\n**AWS Shield \u0026 WAF:** Shield provides DDoS protection for web applications running on AWS. WAF (Web Application Firewall) lets you monitor and block malicious traffic based on specific rules.\n\n**AWS Cognito:** Provides user sign-up, sign-in, and access control for mobile and web applications. Supports social identity providers and enterprise identity systems.",
+      "slide_type": "text"
+    },
+    {
+      "title": "Analytics Services",
+      "content": "**Amazon Athena:** An interactive query service that makes it easy to analyze data directly in Amazon S3 using standard SQL. No need to set up or manage infrastructure.\n\n**Amazon EMR (Elastic MapReduce):** A cloud-native big data platform to process vast amounts of data using open-source tools such as Apache Hadoop and Spark.\n\n**Amazon Kinesis:** Offers services to process and analyze real-time streaming data, enabling use cases like video stream processing, log analytics, and event detection.\n\n**AWS Glue:** A serverless data integration service that simplifies the process of discovering, preparing, and combining data for analytics and machine learning.",
+      "slide_type": "text"
+    },
+    {
+      "title": "AI \u0026 Machine Learning Services",
+      "content": "**Amazon SageMaker:** Provides tools to build, train, and deploy machine learning models quickly. Offers built-in algorithms, Jupyter notebooks, and model hosting with auto-scaling.\n\n**Amazon Rekognition:** Uses deep learning to analyze images and videos for facial recognition, object detection, and scene analysis.\n\n**Amazon Lex:** Powers conversational interfaces using the same technology behind Amazon Alexa. Allows developers to build chatbots and voice-powered applications.\n\n**Amazon Comprehend:** A natural language processing (NLP) service that uses machine learning to find insights and relationships in text, such as sentiment analysis and entity recognition.",
+      "slide_type": "text"
+    },
+    {
+      "title": "Popular AWS Services Summary",
+      "content": [
+        {
+          "Category": "Compute",
+          "Description": "Virtual servers in the cloud",
+          "Service": "Amazon EC2"
+        },
+        {
+          "Category": "Storage",
+          "Description": "Scalable object storage",
+          "Service": "Amazon S3"
+        },
+        {
+          "Category": "Database",
+          "Description": "Managed relational databases",
+          "Service": "Amazon RDS"
+        },
+        {
+          "Category": "Security",
+          "Description": "Manage access and identities",
+          "Service": "AWS IAM"
+        },
+        {
+          "Category": "Networking",
+          "Description": "Global CDN",
+          "Service": "Amazon CloudFront"
+        }
+      ],
+      "slide_type": "table"
+    },
+    {
+      "title": "Conclusion",
+      "content": "AWS provides a vast ecosystem of over 200 cloud-based services designed to support all aspects of IT infrastructure and modern application development. These services allow businesses of all sizes to build and scale applications quickly and securely, reducing operational overhead while ensuring global reach. Whether you're just hosting a static website or running complex machine learning models, AWS offers the flexibility and tools to support your vision.",
+      "slide_type": "text"
+    }
+  ]
