@@ -106,16 +106,6 @@
       "slide_type": "text"
     },
     {
-      "title": "Special Identifier _ (Underscore)",
-      "content": "Go uses a special blank identifier `_` to ignore values that you do not intend to use. This is especially useful when calling functions that return multiple values but you only care about one or some of them. The blank identifier is a powerful feature in Go that prevents unused variable compilation errors while maintaining clarity in code.",
-      "slide_type": "text"
-    },
-    {
-      "title": "Example - Blank Identifier",
-      "content": "val, _ := someFunction()\n\n// The second returned value is intentionally ignored using `_`.",
-      "slide_type": "code"
-    },
-    {
       "title": "Summary - Variable Declarations",
       "slide_type": "table",
       "content": [

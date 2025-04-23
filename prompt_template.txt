@@ -35,3 +35,14 @@ add depth information in the content where slide_type is text.
 
 
 add depth information in the content where slide_type is code
+
+
+===================================================================================
+
+
+give me the full code 
+
+
+===================================================================================
+
+give 1 minute script and outro for the youtube
