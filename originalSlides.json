@@ -1,63 +1,68 @@
 [
   {
-    "title": "Introduction to len() and cap()",
-    "content": "In Go, `len()` and `cap()` are built-in functions used to inspect slices, arrays, maps, and channels. They help developers understand how much data is stored and how much space is available.",
+    "title": "Introduction to Copying in Go",
+    "content": "In Go, when working with structs, it's important to understand how copying works. There are two main types of copying:\n\n- **Shallow Copy**: This creates a new instance of the struct but does not copy the contents of any reference types (like pointers, slices, or maps) inside the struct. Instead, it just copies the references.\n- **Deep Copy**: This creates a completely independent copy of the struct and all its nested data, including reference types. This ensures that changes made to the copied struct don't affect the original struct.\n\nThese two types of copying affect how data is stored and accessed, especially with nested or reference types, and can have significant performance and behavior implications.",
     "slide_type": "text"
   },
   {
-    "title": "What does len() do?",
-    "content": "`len()` returns the number of elements currently present in:\n\n- A **slice or array**: number of actual elements.\n- A **map**: number of key-value pairs.\n- A **channel**: number of elements currently buffered.\n\n📌 It tells you how many items are there _right now_.",
+    "title": "What is a Shallow Copy?",
+    "content": "A **shallow copy** duplicates the struct itself but not the data that is referenced by pointers or slices inside the struct. Instead, the references to those elements are shared between the original and the copied struct. This means that any changes to the data referenced by these pointers will affect both the original and the copy.\n\nFor example, if a struct contains a pointer to an array or slice, the shallow copy will only copy the pointer, not the actual array or slice. This can lead to unintended side effects if both the original and the copy modify the same underlying data.",
     "slide_type": "text"
   },
   {
-    "title": "What does cap() do?",
-    "content": "`cap()` returns the total capacity — the maximum number of elements that the slice, array, or channel can hold **without allocating more memory**.\n\nIt is mostly used with:\n\n- **Slices**: total size of the underlying array.\n- **Channels**: buffer capacity.\n\n⚠️ Not applicable to maps.",
-    "slide_type": "text"
-  },
-  {
-    "title": "len() and cap() with Slices",
-    "content": "package main\n\nimport \"fmt\"\n\nfunc main() {\n    nums := make([]int, 3, 5)\n    fmt.Println(\"len:\", len(nums)) // Output: 3\n    fmt.Println(\"cap:\", cap(nums)) // Output: 5\n}",
+    "title": "Shallow Copy Example",
+    "content": "```go\npackage main\nimport \"fmt\"\n\ntype Person struct {\n    Name string\n    Tags *[]string\n}\n\nfunc main() {\n    tags := []string{\"Go\", \"Dev\"}\n    p1 := Person{\"Alice\", &tags}\n    p2 := p1 // shallow copy\n\n    (*p2.Tags)[0] = \"Golang\"\n\n    fmt.Println(p1.Tags) // [Golang Dev]\n    fmt.Println(p2.Tags) // [Golang Dev]\n}\n```",
     "slide_type": "code"
   },
   {
-    "title": "len() with Maps and Channels",
-    "content": "package main\n\nimport \"fmt\"\n\nfunc main() {\n    m := map[string]int{\"a\": 1, \"b\": 2}\n    fmt.Println(\"Map len:\", len(m))\n\n    ch := make(chan int, 4)\n    ch <- 1\n    ch <- 2\n    fmt.Println(\"Channel len:\", len(ch))\n    fmt.Println(\"Channel cap:\", cap(ch))\n}",
+    "title": "What is a Deep Copy?",
+    "content": "A **deep copy** creates an entirely new copy of the struct along with independent copies of all the data referenced by pointers, slices, or maps inside the struct. This ensures that changes made to the copied struct do not affect the original struct, and vice versa.\n\nIn Go, performing a deep copy requires creating new instances of the referenced data structures (like arrays or slices) and copying their contents. This can be done manually by writing custom copy functions or using libraries that support deep copying.",
+    "slide_type": "text"
+  },
+  {
+    "title": "Deep Copy Example",
+    "content": "```go\npackage main\nimport \"fmt\"\n\ntype Person struct {\n    Name string\n    Tags *[]string\n}\n\nfunc deepCopy(p Person) Person {\n    newTags := make([]string, len(*p.Tags))\n    copy(newTags, *p.Tags)\n    return Person{p.Name, &newTags}\n}\n\nfunc main() {\n    tags := []string{\"Go\", \"Dev\"}\n    p1 := Person{\"Alice\", &tags}\n    p2 := deepCopy(p1)\n\n    (*p2.Tags)[0] = \"Golang\"\n\n    fmt.Println(p1.Tags) // [Go Dev]\n    fmt.Println(p2.Tags) // [Golang Dev]\n}\n```",
     "slide_type": "code"
   },
   {
-    "title": "Difference Between len() and cap()",
+    "title": "Shallow vs Deep Copy - Comparison",
     "content": [
       {
-        "Property": "len()",
-        "Description": "Returns the current number of elements."
+        "Aspect": "Definition",
+        "Shallow Copy": "Copies top-level structure only (does not copy the actual data inside references)",
+        "Deep Copy": "Copies entire struct including all referenced data, creating independent copies"
       },
       {
-        "Property": "cap()",
-        "Description": "Returns the maximum number of elements that can be held."
+        "Aspect": "Memory Sharing",
+        "Shallow Copy": "References to nested data are shared, meaning any changes to referenced data affect both the original and the copy",
+        "Deep Copy": "New memory allocations for nested data ensure no shared references, so changes to the copy do not affect the original"
       },
       {
-        "Property": "Applicable To",
-        "Description": "len(): slices, arrays, maps, channels | cap(): slices, arrays, channels"
+        "Aspect": "Performance",
+        "Shallow Copy": "Faster, as it only copies the top-level struct and references",
+        "Deep Copy": "Slower, due to the need to create new instances and copy nested data"
       },
       {
-        "Property": "Maps",
-        "Description": "Only len() works; cap() is not applicable."
-      },
-      {
-        "Property": "Purpose",
-        "Description": "len() shows usage; cap() shows potential space."
+        "Aspect": "Use Case",
+        "Shallow Copy": "Used when you only need to copy the struct but not the referenced data, typically when the data will not be modified independently",
+        "Deep Copy": "Used when you need to ensure that changes to the copy do not affect the original, particularly for structs with mutable reference types"
       }
     ],
     "slide_type": "table"
   },
   {
-    "title": "Why It Matters",
-    "content": "- Helps optimize memory usage\n- Prevents unnecessary reallocations\n- Useful in performance-critical code\n- Understanding these helps write efficient Go programs",
+    "title": "Common Mistake: Copying Slices",
+    "content": "A common mistake when working with slices is that copying a slice directly only copies the slice header (the reference to the underlying array), not the array itself. This means that modifications to one slice will affect both the original and the copy.\n\nIn Go, a slice contains a pointer to an array, along with its length and capacity. Copying the slice only copies this metadata, not the underlying data. This can lead to unexpected behavior if the copied slice is modified.\n\nHere’s an example of this mistake:\n\n```go\noriginal := []int{1, 2, 3}\ncopy := original\ncopy[0] = 99\nfmt.Println(original) // [99 2 3] — original is modified too!\n```",
     "slide_type": "text"
   },
   {
-    "title": "Quick Recap",
-    "content": "- Use **`len()`** to get the current number of elements\n- Use **`cap()`** to get the total capacity\n- Not all types support both\n- Ideal for understanding slices and channels behavior",
+    "title": "Correct Way to Copy Slices",
+    "content": "To correctly copy a slice, you need to allocate a new slice and copy the underlying data into it. This can be done using the `copy` function in Go:\n\n```go\noriginal := []int{1, 2, 3}\ncopy := make([]int, len(original))\ncopy(copy, original)\ncopy[0] = 99\nfmt.Println(original) // [1 2 3] — original is unchanged\n```",
+    "slide_type": "code"
+  },
+  {
+    "title": "Takeaways",
+    "content": "- Use **shallow copy** when references are acceptable and you don't need to modify the referenced data independently.\n- Use **deep copy** when you need to create completely independent copies of the struct and its data.\n- Always be cautious when copying slices, maps, and pointers, as they are reference types and could lead to unintended modifications.\n- Consider writing utility functions for deep copying complex structs with nested data.",
     "slide_type": "text"
   }
 ]
