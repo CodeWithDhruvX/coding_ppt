@@ -1,0 +1,52 @@
+[
+    {
+      "title": "Introduction to Scheduler",
+      "content": "A **scheduler** is a system component responsible for controlling the execution of tasks or processes at specified times or intervals. It ensures that tasks run automatically, without manual intervention, optimizing system operations. Schedulers are used in various systems like operating systems, cloud platforms, and task automation systems to ensure that important processes are executed on time and in a managed sequence, making operations more efficient and predictable.",
+      "slide_type": "text"
+    },
+    {
+      "title": "Types of Schedulers",
+      "content": "Schedulers can be categorized into different types based on their operation and environment:\n\n- **Job Scheduler**: Manages jobs or tasks based on a time schedule. It is widely used for tasks like backups, batch processing, and periodic updates. It ensures that tasks are performed at regular intervals, based on defined schedules like daily, weekly, or monthly.\n\n- **Process Scheduler**: Found in operating systems, it is responsible for deciding which process to execute next based on priority, CPU availability, and other factors. It aims to ensure fair distribution of CPU time among processes and may employ various algorithms for process selection.\n\n- **Real-Time Scheduler**: Critical in systems where timing is paramount, such as embedded systems or control systems. It ensures that tasks meet their strict timing constraints and deadlines. For example, in a real-time operating system (RTOS), tasks like signal processing in medical devices must meet deadlines to function correctly.",
+      "slide_type": "text"
+    },
+    {
+      "title": "Role of Scheduler in OS",
+      "content": "In an operating system, the scheduler plays a vital role in managing system resources, particularly the **CPU**. It works by selecting processes from the **ready queue** (which holds processes waiting for CPU time) and placing them in the **CPU queue** for execution. The scheduler aims to ensure the efficient and fair allocation of CPU time to processes, preventing any single process from monopolizing the CPU. Different scheduling strategies like **preemptive** and **non-preemptive scheduling** are used to decide when and which process gets executed. The scheduler's goal is to balance **throughput**, **latency**, and **fairness** across all processes.",
+      "slide_type": "text"
+    },
+    {
+      "title": "Scheduler Algorithms",
+      "content": "Schedulers use various algorithms to manage tasks efficiently. These algorithms determine the order and priority of task execution. Common algorithms include:\n\n- **FCFS (First Come First Serve)**: This is a simple scheduling algorithm where the first process to arrive is the first to be executed. While it is easy to implement, it can lead to long wait times for processes with smaller execution times (known as the **convoy effect**).\n\n- **SJF (Shortest Job First)**: This algorithm prioritizes jobs that have the shortest execution time. It reduces average wait time but may suffer from **starvation**, where longer tasks are continually postponed.\n\n- **RR (Round Robin)**: In this algorithm, each process is given a fixed time slice (or **quantum**) to execute. If a process doesn't finish within its time slice, it is moved to the back of the queue. This approach ensures fairness but can lead to high turnaround times for tasks with shorter execution times.\n\n- **Priority Scheduling**: In this method, each process is assigned a priority. The process with the highest priority is executed first. However, this can also cause **starvation** for low-priority processes, which can be mitigated by using aging techniques.",
+      "slide_type": "text"
+    },
+    {
+      "title": "Example Code - Simple Scheduler in Golang",
+      "content": "```go\npackage main\n\nimport (\n\t\"fmt\"\n\t\"time\"\n)\n\nfunc task1() {\n\tfmt.Println(\"Task 1 executed\")\n}\n\nfunc task2() {\n\tfmt.Println(\"Task 2 executed\")\n}\n\nfunc main() {\n\tgo task1()\n\ttime.Sleep(2 * time.Second)\n\tgo task2()\n\ttime.Sleep(3 * time.Second)\n}\n```",
+      "slide_type": "code"
+    },
+    {
+      "title": "Common Scheduler Use Cases",
+      "content": "Schedulers are critical for automating tasks and improving efficiency in many systems. Some common use cases include:\n\n- **Automated Backups**: Schedulers can be used to automate the process of creating backups at specific intervals, such as daily or weekly. This reduces the risk of data loss and ensures that backup processes are executed without human intervention.\n\n- **System Maintenance**: Operating systems and server environments rely on schedulers to perform maintenance tasks like disk cleanup, log rotation, or updates at specified times to ensure system stability and security.\n\n- **Data Processing**: Schedulers are often used in data pipelines to execute data processing tasks at regular intervals, such as ETL (Extract, Transform, Load) operations, ensuring timely data updates and processing without manual involvement.",
+      "slide_type": "text"
+    },
+    {
+      "title": "Scheduler Configuration Example",
+      "content": "Schedulers can be configured using **cron expressions**, which define the time intervals for task execution. Some examples of cron syntax are:\n\n- **Every 5 minutes**: `*/5 * * * *`\n- **At midnight every day**: `0 0 * * *`\n- **On the first of every month**: `0 0 1 * *`\n\nCron expressions provide a flexible and powerful way to configure task schedules. They are widely used in UNIX-like operating systems, cloud platforms like AWS Lambda, and automation tools like Jenkins or Kubernetes CronJobs.",
+      "slide_type": "text"
+    },
+    {
+      "title": "Scheduler in Kubernetes",
+      "content": "In Kubernetes, the **CronJob** resource is used to run tasks on a scheduled basis. A **CronJob** runs a pod at specified times, similar to a Unix cron job, allowing users to automate tasks like periodic backups, cleanup jobs, and report generation. Kubernetes CronJobs use cron expressions to define schedules and support retry policies, so tasks are retried if they fail. CronJobs can scale based on workload, and are highly useful in microservices environments where tasks need to be executed at regular intervals.",
+      "slide_type": "text"
+    },
+    {
+      "title": "Scheduler vs Task Queue",
+      "content": "Schedulers and task queues serve different purposes, but they can complement each other in automation systems. Here's a comparison:\n\n| Feature           | Scheduler                     | Task Queue                   |\n|-------------------|-------------------------------|------------------------------|\n| **Timing**        | Time-based execution          | Event-driven execution       |\n| **Use Case**      | Periodic tasks like backups   | Distributed task execution   |\n| **Execution**     | Tasks execute at fixed intervals | Tasks are processed as resources become available |\n| **Example**       | CronJobs in Kubernetes, automated backups | Task queues in message brokers like RabbitMQ, worker queues in Celery |",
+      "slide_type": "table"
+    },
+    {
+      "title": "Takeaways",
+      "content": "Schedulers play a crucial role in automating task execution based on time schedules. They are used in various systems, from operating systems to cloud environments, to automate essential tasks like backups, system maintenance, and data processing. Understanding the different types of schedulers and their algorithms allows you to choose the right approach for your automation needs. Additionally, schedulers can be configured flexibly, and modern systems like Kubernetes provide advanced scheduling features for scalable task execution.",
+      "slide_type": "text"
+    }
+  ]

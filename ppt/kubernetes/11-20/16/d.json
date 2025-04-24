@@ -1,0 +1,42 @@
+[
+    {
+      "title": "Introduction to API Server",
+      "content": "The **API Server** is one of the core components of Kubernetes, serving as the **central management endpoint** for interacting with the Kubernetes cluster. It exposes the Kubernetes API, allowing users, administrators, and internal services to interact with the cluster. Any operation within the Kubernetes ecosystem, such as creating a pod or scaling a deployment, is done through the API Server using RESTful requests. It ensures that Kubernetes remains **stateless**, with no single point of failure in the control plane.",
+      "slide_type": "text"
+    },
+    {
+      "title": "Role of API Server",
+      "content": "The **API Server** is responsible for processing all client requests, whether they come from users (via `kubectl`), other Kubernetes components, or external systems. It plays the following key roles:\n\n- **Request Handling**: It accepts and processes REST API requests sent to it from clients.\n- **Validation and Authentication**: It validates the request to ensure it adheres to the Kubernetes schema and authenticates the client to verify their identity.\n- **State Management**: The API Server interacts with **etcd**, a distributed key-value store, to manage the state of the cluster, storing critical cluster data like pod status, deployment configurations, and more.\n- **Control Plane Communication**: The API Server communicates with other control plane components like the controller manager, scheduler, and etcd to manage the cluster state.",
+      "slide_type": "text"
+    },
+    {
+      "title": "API Server Communication Flow",
+      "content": "The flow of communication through the API Server can be broken down as follows:\n\n1. **Request Initiation**: A client, such as `kubectl` or a service, sends a request to the API Server. The request can be to create, modify, or read a Kubernetes resource like a pod, deployment, or service.\n2. **Request Validation and Authentication**: The API Server authenticates the identity of the client using certificates, tokens, or other methods and validates the request against its API schema.\n3. **Authorization**: The API Server checks if the client has permission to perform the requested action by consulting Kubernetes' **Role-Based Access Control (RBAC)** policies.\n4. **State Management**: After authorization, the API Server interacts with **etcd** to either update the cluster state (e.g., creating a pod) or retrieve information about the current cluster state (e.g., listing pods).\n5. **Response**: Finally, the API Server sends a response back to the client, providing the result of the request (success, failure, or data).",
+      "slide_type": "text"
+    },
+    {
+      "title": "API Server Components",
+      "content": "The API Server is composed of several subcomponents that work together to ensure efficient operation and security in a Kubernetes cluster:\n\n- **Authentication**: The API Server ensures only authorized clients can interact with the cluster. This is done using mechanisms like certificates, bearer tokens, or third-party authentication providers.\n- **Authorization**: Once a client is authenticated, the API Server checks if they have permission to perform the requested action using **Role-Based Access Control (RBAC)**.\n- **Admission Control**: This component intercepts incoming requests before they are processed and can be used to validate, modify, or reject requests. For example, it can enforce policies like requiring resource limits on pods.\n- **API Aggregation Layer**: This layer allows Kubernetes to extend its API to external components, enabling the use of third-party APIs to interact with the cluster. It ensures Kubernetes can evolve and accommodate new resource types.",
+      "slide_type": "text"
+    },
+    {
+      "title": "API Server Security",
+      "content": "Security is a critical aspect of the API Server, as it manages all interactions with the Kubernetes cluster. The following security mechanisms are implemented:\n\n- **Authentication**: The API Server uses several methods to authenticate clients, such as client certificates, bearer tokens, or integrating with external identity providers like OAuth or LDAP.\n- **Authorization**: After authenticating a client, the API Server uses **RBAC** to check whether the client has permission to access or modify specific resources in the cluster.\n- **Encryption**: Kubernetes employs **TLS** (Transport Layer Security) to secure communication between clients and the API Server, as well as between the API Server and other components (e.g., etcd, controllers).\n- **Audit Logs**: The API Server can generate detailed audit logs that record all interactions with the cluster. These logs are valuable for security monitoring and compliance.",
+      "slide_type": "text"
+    },
+    {
+      "title": "API Server Endpoints",
+      "content": "The API Server exposes several RESTful endpoints that clients can use to interact with the Kubernetes cluster. Some key endpoints include:\n\n- **/api**: This is the main entry point for accessing the Kubernetes API. Clients can send requests to this endpoint to interact with core resources like pods, services, and deployments.\n- **/apis**: This endpoint is used to access extended APIs, like custom resources or third-party extensions. It supports different API groups.\n- **/healthz**: This is a health check endpoint that provides the health status of the API Server. It helps monitor the API Server’s availability.\n- **/metrics**: Exposes performance and resource usage metrics, which can be scraped by monitoring systems like Prometheus for cluster performance tracking.",
+      "slide_type": "text"
+    },
+    {
+      "title": "API Server Configuration Example",
+      "content": "```yaml\napiVersion: v1\nkind: Config\nclusters:\n  - name: kubernetes\n    cluster:\n      server: https://api-server.k8s.local:6443\n      certificate-authority-data: \u003cCA-Certificate-Data\u003e\ncontexts:\n  - name: kubernetes-context\n    context:\n      cluster: kubernetes\n      user: admin\ncurrent-context: kubernetes-context\nusers:\n  - name: admin\n    user:\n      client-certificate-data: \u003cClient-Certificate-Data\u003e\n      client-key-data: \u003cClient-Key-Data\u003e\n```",
+      "slide_type": "code"
+    },
+    {
+      "title": "Common API Server Errors",
+      "content": "| Error Type        | Description                                      |\n|-------------------|--------------------------------------------------|\n| 401 Unauthorized  | The client did not provide valid credentials.     |\n| 403 Forbidden     | The client does not have sufficient permissions.  |\n| 404 Not Found     | The requested resource could not be found.       |\n| 500 Internal Error| A server-side error occurred in the API Server.  |",
+      "slide_type": "table"
+    }
+  ]

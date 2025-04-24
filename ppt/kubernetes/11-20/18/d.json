@@ -1,0 +1,69 @@
+[
+    {
+      "title": "Introduction to DaemonSets",
+      "content": "In Kubernetes, a **DaemonSet** is a controller that ensures that a specific pod runs on every node in a cluster. It is used to run a copy of a pod on each node or a subset of nodes to perform tasks that need to run continuously on all nodes, such as monitoring, logging, or system management tasks. DaemonSets are particularly useful for applications that need to interact with the underlying infrastructure or monitor node-level resources.\n\nWhen a DaemonSet is deployed, it automatically creates a pod on every eligible node in the cluster, ensuring consistent deployment of applications across nodes. As new nodes are added to the cluster, the DaemonSet automatically schedules pods on them. Conversely, when nodes are removed, the associated pods are also cleaned up, preventing orphaned pods from remaining on the removed nodes.",
+      "slide_type": "text"
+    },
+    {
+      "title": "Use Cases for DaemonSets",
+      "content": "DaemonSets are useful in scenarios where you need a consistent presence of a pod across all nodes in the cluster. Some of the most common use cases include:\n\n1. **Cluster Monitoring**: Tools like Prometheus or Datadog are often deployed as DaemonSets to collect metrics from every node in the cluster.\n2. **Logging**: DaemonSets are used to deploy logging agents like Fluentd, Logstash, or Filebeat, which collect and forward logs from nodes to central log storage.\n3. **Network Proxies**: Some network applications, like proxy servers or service meshes (e.g., Istio), use DaemonSets to ensure the proxy runs on every node, ensuring communication between services.\n4. **Security Agents**: Security tools such as intrusion detection systems (IDS) or vulnerability scanners may run as DaemonSets to ensure they are monitoring each node in real-time.\n\nThese use cases highlight the ability of DaemonSets to ensure node-level applications are deployed and running continuously across all nodes in a Kubernetes cluster.",
+      "slide_type": "text"
+    },
+    {
+      "title": "How DaemonSets Work",
+      "content": "A **DaemonSet** works by ensuring that one or more copies of a pod are running on each selected node in a Kubernetes cluster. When a DaemonSet is created, Kubernetes automatically schedules a pod on every node. As new nodes are added to the cluster, the DaemonSet automatically schedules pods on them.\n\nDaemonSets are typically used for workloads that need to run on all nodes, such as monitoring agents or logging tools, but they can also be configured to run on a subset of nodes based on node labels, taints, and tolerations.\n\nIn addition to providing a consistent presence across nodes, DaemonSets also manage pod lifecycle events. If a node is removed from the cluster, the DaemonSet ensures that the pods running on that node are also terminated, preventing unnecessary resource consumption and orphaned pods. DaemonSets are dynamic; they automatically scale as the cluster grows or shrinks, ensuring that the required pods are always available on the appropriate nodes.",
+      "slide_type": "text"
+    },
+    {
+      "title": "DaemonSet Configuration Example",
+      "content": "Here's a simple example of how to create a DaemonSet in Kubernetes:\n```yaml\napiVersion: apps/v1\nkind: DaemonSet\nmetadata:\n  name: my-daemonset\nspec:\n  selector:\n    matchLabels:\n      name: my-daemonset\n  template:\n    metadata:\n      labels:\n        name: my-daemonset\n    spec:\n      containers:\n        - name: my-container\n          image: my-image\n```",
+      "slide_type": "code"
+    },
+    {
+      "title": "DaemonSet vs ReplicaSet",
+      "content": "A **DaemonSet** and a **ReplicaSet** are both controllers in Kubernetes, but they serve different purposes and have key differences:\n\n1. **DaemonSet**: Ensures that a pod runs on every node or a subset of nodes. It is used for applications that need to be deployed on each node, such as monitoring agents or security tools.\n2. **ReplicaSet**: Ensures that a specified number of replicas of a pod are running at any time. Unlike DaemonSets, ReplicaSets do not ensure that a pod runs on every node. Instead, they manage the desired number of replicas, which may be distributed across nodes based on resource availability.\n\nWhile DaemonSets are useful for applications that need a consistent presence across all nodes (e.g., logging, monitoring), ReplicaSets are more suited for ensuring high availability of stateless applications, where replicas can be spread across different nodes based on demand and node capacity.",
+      "slide_type": "text"
+    },
+    {
+      "title": "DaemonSet Scheduling",
+      "content": "DaemonSets support several advanced scheduling options, allowing you to fine-tune which nodes the pods are deployed on:\n\n1. **nodeSelector**: You can use `nodeSelector` to specify which nodes the DaemonSet should run on based on node labels. This is a simple way to direct DaemonSets to certain types of nodes (e.g., only on nodes with certain hardware).\n\n2. **Affinity and Anti-Affinity**: You can use **node affinity** and **pod affinity/anti-affinity** to create more sophisticated rules for scheduling DaemonSet pods. Node affinity allows you to specify which nodes the DaemonSet should run on based on node labels and other properties, while pod affinity and anti-affinity allow you to define rules about which pods should or should not be placed together on the same node.\n\n3. **Taints and Tolerations**: Nodes can be **tainted** to repel pods unless the pods explicitly **tolerate** the taints. This allows you to control which nodes DaemonSets are scheduled on by setting node taints and pod tolerations. For example, you could schedule DaemonSets only on dedicated nodes by using taints to mark those nodes and tolerations in your DaemonSet configuration.",
+      "slide_type": "text"
+    },
+    {
+      "title": "DaemonSet Lifecycle",
+      "content": "The lifecycle of a **DaemonSet** includes several stages:\n\n1. **Creation**: A DaemonSet is created by the user, typically using a YAML configuration file that defines the desired pod specification and scheduling rules.\n2. **Scheduling**: When the DaemonSet is created, Kubernetes automatically schedules the defined pods on the nodes in the cluster based on the specified criteria (e.g., nodeSelector, affinity).\n3. **Scaling**: As the cluster grows or shrinks (e.g., new nodes are added or removed), the DaemonSet automatically adjusts, creating pods on newly added nodes and terminating pods on removed nodes.\n4. **Deletion**: When a DaemonSet is deleted, Kubernetes automatically removes the associated pods from the cluster. This ensures that the system is clean of unused resources and that any monitoring or logging agents are no longer running after the DaemonSet is deleted.",
+      "slide_type": "text"
+    },
+    {
+      "title": "DaemonSet Management with kubectl",
+      "content": "You can manage DaemonSets using the following `kubectl` commands:\n\n- **Create a DaemonSet**: Use `kubectl apply -f daemonset.yaml` to create a DaemonSet from a YAML configuration file.\n- **List DaemonSets**: Run `kubectl get daemonsets` to list all DaemonSets in the current namespace.\n- **Get DaemonSet Details**: Use `kubectl describe daemonset \u003cname\u003e` to get detailed information about a specific DaemonSet.\n- **Delete a DaemonSet**: To delete a DaemonSet, run `kubectl delete daemonset \u003cname\u003e`. This will remove the DaemonSet and its associated pods from the cluster.\n\nThese commands allow you to effectively manage DaemonSets in Kubernetes, making it easy to deploy, inspect, and clean up your DaemonSet resources.",
+      "slide_type": "text"
+    },
+    {
+      "title": "DaemonSet Example in a Table",
+      "content": [
+        {
+          "description": "The name of the DaemonSet.",
+          "name": "DaemonSet Name"
+        },
+        {
+          "description": "Defines the pod specifications, including containers, volumes, etc.",
+          "name": "Pod Template"
+        },
+        {
+          "description": "Specifies the nodes where the DaemonSet should run.",
+          "name": "Node Affinity"
+        },
+        {
+          "description": "Allows pods to tolerate node taints and be scheduled on those nodes.",
+          "name": "Tolerations"
+        }
+      ],
+      "slide_type": "table"
+    },
+    {
+      "title": "Benefits of DaemonSets",
+      "content": "DaemonSets offer several benefits in Kubernetes clusters, particularly for workloads that need to run across all nodes or subsets of nodes:\n\n1. **Consistency**: DaemonSets ensure that the same pod is running on every node (or specific nodes) in the cluster, providing consistency for node-level tasks like monitoring, logging, and network proxies.\n2. **Simplicity**: DaemonSets simplify the deployment of node-level services by automatically managing the pod deployment and lifecycle on all nodes.\n3. **Scalability**: As your cluster grows or shrinks, DaemonSets automatically scale to ensure the right number of pods are deployed on the right nodes.\n4. **Resource Efficiency**: DaemonSets ensure that node-level workloads are distributed efficiently, without the need for manual intervention as nodes are added or removed from the cluster.\n5. **Automatic Cleanup**: When nodes are removed from the cluster, DaemonSets automatically remove the associated pods, preventing orphaned resources.",
+      "slide_type": "text"
+    }
+  ]

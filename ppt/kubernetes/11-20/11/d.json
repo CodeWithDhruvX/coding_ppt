@@ -1,0 +1,68 @@
+[
+    {
+      "title": "Introduction to Kubernetes Architecture",
+      "content": "Kubernetes is an open-source container orchestration platform that automates the deployment, scaling, and management of containerized applications. Its architecture is designed for scalability and fault tolerance. Kubernetes follows a **master-worker architecture**, where the control plane (master) makes global decisions about the cluster (like scheduling), and the worker nodes are responsible for running the application workloads. This separation ensures centralized control and decentralized execution.",
+      "slide_type": "text"
+    },
+    {
+      "title": "High-Level Components",
+      "content": "Kubernetes is built around several key components:\n\n- **Control Plane**: This acts as the brain of the cluster, managing the overall state.\n- **Worker Nodes**: These nodes actually run the applications in containers.\n- **etcd**: A distributed, consistent key-value store used for storing all cluster data like node information, secrets, and configurations.\n- **API Server**: The central communication hub that all Kubernetes components and users interact with using RESTful APIs.\n\nTogether, these components provide the foundation for Kubernetes’ desired state management and automation.",
+      "slide_type": "text"
+    },
+    {
+      "title": "Control Plane Components",
+      "content": "The control plane consists of multiple services that run Kubernetes’ core logic:\n\n- **kube-apiserver**: Acts as the front-end for the Kubernetes control plane. It exposes the Kubernetes API and is the only component that communicates directly with `etcd`.\n- **etcd**: A highly available key-value store that persists cluster state and configuration.\n- **kube-scheduler**: Assigns pods to the most appropriate nodes based on resource requirements, policies, and constraints.\n- **kube-controller-manager**: Manages various controllers that regulate the state of the cluster. For example, the replication controller ensures that a specified number of pod replicas are running at any time.\n- **cloud-controller-manager**: Integrates with cloud providers for managing load balancers, volumes, and more. This allows Kubernetes to run across different cloud environments seamlessly.",
+      "slide_type": "text"
+    },
+    {
+      "title": "Worker Node Components",
+      "content": "Each worker node is responsible for running pods, which host the application containers. Core components include:\n\n- **kubelet**: An agent that ensures containers are running in a pod as expected. It communicates with the API server and executes pod specifications.\n- **kube-proxy**: Manages the networking rules to allow communication to and from pods. It supports service discovery and load balancing.\n- **Container Runtime**: Software responsible for pulling container images and running them. Kubernetes supports multiple runtimes like Docker, containerd, and CRI-O.\n\nThese components work together to maintain and monitor the health of application workloads.",
+      "slide_type": "text"
+    },
+    {
+      "title": "Kubernetes API Interaction",
+      "content": "```bash\nkubectl get pods\nkubectl apply -f deployment.yaml\nkubectl describe node\n```",
+      "slide_type": "code"
+    },
+    {
+      "title": "Kubernetes Architecture Diagram (Textual View)",
+      "content": "```plaintext\n+---------------------+\n|   Control Plane     |\n+---------------------+\n| kube-apiserver      |\n| etcd                |\n| kube-scheduler      |\n| controller-manager  |\n+---------------------+\n        ||\n        ||\n+------------------+       +------------------+\n|  Worker Node 1   |       |  Worker Node 2   |\n+------------------+       +------------------+\n| kubelet          |       | kubelet          |\n| kube-proxy       |       | kube-proxy       |\n| Container Runtime|       | Container Runtime|\n+------------------+       +------------------+\n```",
+      "slide_type": "code"
+    },
+    {
+      "title": "Component Responsibilities",
+      "content": [
+        {
+          "Component": "kube-apiserver",
+          "Responsibility": "Handles REST operations and cluster communication"
+        },
+        {
+          "Component": "etcd",
+          "Responsibility": "Stores all cluster data persistently"
+        },
+        {
+          "Component": "kube-scheduler",
+          "Responsibility": "Schedules workloads onto worker nodes"
+        },
+        {
+          "Component": "kubelet",
+          "Responsibility": "Maintains pod lifecycle on a node"
+        },
+        {
+          "Component": "kube-proxy",
+          "Responsibility": "Handles networking and routing"
+        }
+      ],
+      "slide_type": "table"
+    },
+    {
+      "title": "Flow of a Deployment",
+      "content": "Here’s how a typical deployment works in Kubernetes:\n\n1. A user issues a command like `kubectl apply -f deployment.yaml`, defining the desired application state.\n2. The **kube-apiserver** receives the request and stores the new configuration in **etcd**.\n3. The **scheduler** reviews unscheduled pods and assigns them to appropriate worker nodes.\n4. The **kubelet** on the selected node retrieves the pod specification and pulls the necessary container image using the container runtime.\n5. The application containers are started and monitored for health.\n6. Any changes in pod or container status are reported back to the API server, updating the cluster’s current state.\n\nThis loop ensures Kubernetes continuously tries to match the current state with the desired state.",
+      "slide_type": "text"
+    },
+    {
+      "title": "Summary of Kubernetes Architecture",
+      "content": "Kubernetes architecture is designed to be robust, scalable, and extensible. Key takeaways include:\n\n- **Modular Design**: Different responsibilities are clearly separated among control plane and node components.\n- **Declarative Configuration**: Kubernetes uses YAML/JSON files to define the desired state, enabling automation and repeatability.\n- **Self-Healing**: If a pod or node fails, Kubernetes detects the failure and recreates resources to maintain the desired state.\n- **Scalability**: Kubernetes clusters can scale horizontally by adding more nodes or vertically by increasing resources.\n- **Cloud-Agnostic**: Its architecture supports both on-premise and multi-cloud deployments, offering consistent behavior everywhere.\n\nUnderstanding the architecture is essential for operating, troubleshooting, and building on top of Kubernetes.",
+      "slide_type": "text"
+    }
+  ]

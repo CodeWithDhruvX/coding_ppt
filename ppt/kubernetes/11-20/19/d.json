@@ -1,0 +1,55 @@
+[
+    {
+      "title": "Introduction to kube-proxy",
+      "content": "**kube-proxy** is a core networking component in Kubernetes that runs on every node. Its main job is to manage network communication within the cluster. It does this by maintaining rules that allow pods to communicate with services. kube-proxy enables **service abstraction**, meaning users and applications can access a service using a stable IP address or DNS name, even if the underlying pods change dynamically.",
+      "slide_type": "text"
+    },
+    {
+      "title": "What Does kube-proxy Do?",
+      "content": "kube-proxy plays a critical role in **routing network traffic** inside the Kubernetes cluster. Here's what it does:\n\n- **Routes traffic** to the correct backend pod that matches the service selector.\n- Performs **round-robin load balancing** among the available pods to ensure even distribution.\n- Maintains and updates **iptables or IPVS rules** to define how traffic is forwarded.\n- Constantly watches the Kubernetes API to stay updated with the changes in services and endpoints.\n\nThis dynamic behavior ensures reliable communication between services and workloads in Kubernetes.",
+      "slide_type": "text"
+    },
+    {
+      "title": "kube-proxy Operating Modes",
+      "content": [
+        {
+          "Description": "Routes traffic through a userspace proxy process. Deprecated and less efficient.",
+          "Mode": "userspace"
+        },
+        {
+          "Description": "Uses iptables rules to redirect traffic. More efficient and widely used.",
+          "Mode": "iptables"
+        },
+        {
+          "Description": "Uses IP Virtual Server for advanced load balancing. Most scalable and performant.",
+          "Mode": "IPVS"
+        }
+      ],
+      "slide_type": "table"
+    },
+    {
+      "title": "kube-proxy Workflow Example",
+      "content": "To understand kube-proxy better, let’s walk through a simplified workflow:\n\n1. **Service Creation**: When you create a service in Kubernetes, kube-proxy gets notified through the API server.\n2. **Rule Update**: kube-proxy updates iptables/IPVS rules to route traffic based on the new service's configuration.\n3. **Request Routing**: When a client pod sends traffic to the service's ClusterIP, the rules forward it to one of the matching backend pods.\n4. **Automatic Failover**: If a pod goes down or is removed, kube-proxy detects it and updates the routing rules automatically, ensuring no broken connections.\n\nThis automation keeps your applications resilient and scalable.",
+      "slide_type": "text"
+    },
+    {
+      "title": "Example: Service Traffic Routing",
+      "content": "apiVersion: v1\nkind: Service\nmetadata:\n  name: my-service\nspec:\n  selector:\n    app: my-app\n  ports:\n    - protocol: TCP\n      port: 80\n      targetPort: 9376",
+      "slide_type": "code"
+    },
+    {
+      "title": "Why kube-proxy Is Important",
+      "content": "**kube-proxy** is essential for maintaining seamless connectivity between services and workloads. Here's why it's crucial:\n\n- It hides the complexity of managing multiple pods behind a **single access point (Service IP)**.\n- It provides **high availability** by forwarding traffic only to healthy pods.\n- It **simplifies application deployment**, as developers don’t need to hard-code IPs or manage DNS manually.\n- It ensures **network policies and firewall rules** are always up to date with the current state of the cluster.\n\nWithout kube-proxy, Kubernetes would not be able to provide stable service access across its dynamic environment.",
+      "slide_type": "text"
+    },
+    {
+      "title": "Common Issues with kube-proxy",
+      "content": "Even though kube-proxy is powerful, it's not without challenges:\n\n- **Latency in rule updates** can occur when many services or pods are added or removed quickly.\n- Misconfigurations in **iptables or IPVS** rules can lead to failed service access or intermittent connectivity issues.\n- In large clusters, kube-proxy can consume more **CPU and memory**, especially in `iptables` mode due to a linear rule-matching process.\n- When using custom network plugins, kube-proxy behavior might conflict with plugin logic, leading to unexpected routing behavior.\n\nUnderstanding these limitations is key to tuning and troubleshooting your Kubernetes networking.",
+      "slide_type": "text"
+    },
+    {
+      "title": "Summary",
+      "content": "To sum up, **kube-proxy** acts as the network traffic controller in Kubernetes. It ensures that requests to services are correctly routed to the right pods. By managing network rules dynamically using iptables or IPVS, it provides the backbone for **service discovery**, **load balancing**, and **high availability** within the cluster.\n\nWhether you're running a small or large-scale application, kube-proxy ensures your internal networking remains robust, scalable, and easy to manage.",
+      "slide_type": "text"
+    }
+  ]

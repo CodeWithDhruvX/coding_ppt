@@ -1,0 +1,68 @@
+[
+  {
+    "title": "Introduction to etcd",
+    "content": "**etcd** is a fast, reliable, and distributed key-value store that plays a crucial role in Kubernetes. It is responsible for storing all the configuration data, state information, and metadata of the Kubernetes cluster. This means that every change you make to the cluster—like deploying an application, updating a configuration, or scaling services—is stored in etcd. It is written in Go and uses the **Raft consensus algorithm** to maintain consistency across multiple nodes, even in the case of network failures or crashes.",
+    "slide_type": "text"
+  },
+  {
+    "title": "Why etcd is Critical in Kubernetes",
+    "content": "In Kubernetes, **etcd acts as the cluster’s memory**. Without etcd, Kubernetes would not know what resources exist, how they are configured, or what state they should be in. It:\n- **Persists cluster state** even if a control plane node is restarted\n- **Stores sensitive configurations** like Secrets and ConfigMaps securely\n- **Ensures strong consistency**, which means all nodes see the same cluster state at any given time\n- **Supports high availability**, enabling Kubernetes to function correctly even if some etcd nodes go down\nThis makes etcd essential for the reliability and correctness of the entire cluster.",
+    "slide_type": "text"
+  },
+  {
+    "title": "What Data is Stored in etcd?",
+    "content": "**etcd stores nearly everything that defines and maintains your Kubernetes cluster.** This includes:\n- **Pods and nodes state**: etcd keeps track of all running pods and the health of nodes\n- **ConfigMaps and Secrets**: for application configurations and sensitive data\n- **Service discovery data**: such as IPs and endpoints for Kubernetes Services\n- **Resource definitions**: like deployments, replica sets, and autoscalers\n- **RBAC rules and user permissions**: to manage cluster access\nThis centralization allows the Kubernetes control plane to function smoothly and consistently.",
+    "slide_type": "text"
+  },
+  {
+    "title": "Kubernetes ↔ etcd Interaction Flow",
+    "content": "**etcd is not accessed directly by users or most components.** Instead, Kubernetes components like the API server, controller manager, and scheduler interact with etcd to read or update the cluster state.\nHere’s how it works:\n1. **API Server** receives user requests (like creating a pod)\n2. It **validates** the request and **writes the object** to etcd\n3. **Controllers** (like ReplicaSetController) and the **scheduler** watch etcd for updates\n4. They take action based on the current state stored in etcd (e.g., schedule pod on a node)\nThis design ensures separation of concerns and enables the system to recover gracefully if a component fails.",
+    "slide_type": "text"
+  },
+  {
+    "title": "Example: etcd Key-Value Pair",
+    "content": "Key: `/registry/pods/default/nginx-pod`\nValue:\n```json\n{\n  \"metadata\": {\n    \"name\": \"nginx-pod\",\n    \"namespace\": \"default\"\n  },\n  \"spec\": {\n    \"containers\": [\n      { \"name\": \"nginx\", \"image\": \"nginx:latest\" }\n    ]\n  }\n}\n```",
+    "slide_type": "code"
+  },
+  {
+    "title": "etcd vs Traditional Databases",
+    "content": [
+      {
+        "Aspect": "Purpose",
+        "Traditional DB": "Application data store",
+        "etcd": "Cluster state store"
+      },
+      {
+        "Aspect": "Data Model",
+        "Traditional DB": "Relational / NoSQL",
+        "etcd": "Key-value pairs"
+      },
+      {
+        "Aspect": "Consistency",
+        "Traditional DB": "Depends on DB",
+        "etcd": "Strong (via Raft)"
+      },
+      {
+        "Aspect": "Usage in Kubernetes",
+        "Traditional DB": "Not used",
+        "etcd": "Stores all control plane data"
+      }
+    ],
+    "slide_type": "table"
+  },
+  {
+    "title": "Best Practices with etcd",
+    "content": "**Since etcd is the backbone of Kubernetes, it must be protected and managed carefully.** Here are some best practices:\n- **Back up etcd regularly** to avoid data loss in case of failure\n- **Secure etcd with TLS** to prevent unauthorized access and data leaks\n- **Use authentication and role-based access control** to enforce security policies\n- **Monitor etcd** for performance, disk usage, and latency using Prometheus or other tools\n- **Deploy etcd as a clustered service** with an odd number of nodes (e.g., 3, 5) to ensure quorum-based consensus and high availability\nBy following these, you can maintain a healthy and resilient Kubernetes cluster.",
+    "slide_type": "text"
+  },
+  {
+    "title": "What Happens if etcd Fails?",
+    "content": "**If etcd becomes unavailable, Kubernetes loses access to its single source of truth.** Here’s what happens:\n- The **API Server cannot read or write cluster state**, making any new requests (like creating or deleting pods) fail\n- The **scheduler and controllers can't make decisions** based on the latest state\n- However, **existing workloads will continue to run** on worker nodes until they need updates\n- To recover, you must **restore etcd from a snapshot** or fix the existing cluster\nThis underlines the importance of backups and high availability configurations for etcd.",
+    "slide_type": "text"
+  },
+  {
+    "title": "Summary of etcd’s Role",
+    "content": "**etcd is the most important component in the Kubernetes control plane.** It holds the authoritative state of the entire cluster, ensuring all decisions and configurations are consistent across nodes. Without etcd:\n- Kubernetes can’t remember what resources exist or how they should behave\n- Controllers can’t reconcile the actual state with the desired state\n- The API server cannot respond to user requests\nIn short, etcd acts like the *brain and memory* of Kubernetes. Understanding and maintaining it is key to running a stable, secure, and scalable cluster.",
+    "slide_type": "text"
+  }
+]

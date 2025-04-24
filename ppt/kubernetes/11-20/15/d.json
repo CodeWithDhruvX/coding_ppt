@@ -1,0 +1,73 @@
+[
+    {
+      "title": "What is the Controller Manager?",
+      "content": "The Controller Manager is a core component of Kubernetes responsible for running controllers that ensure the current state of the cluster matches the desired state. Controllers are control loops that continuously monitor the state of various resources in the cluster and perform corrective actions if the actual state does not match the desired state. This helps maintain the health and availability of the system. The Controller Manager is typically run as a process in the Kubernetes control plane, ensuring that different controllers function correctly and continuously.",
+      "slide_type": "text"
+    },
+    {
+      "title": "Role of Controller Manager",
+      "content": "The Controller Manager is integral to the functioning of Kubernetes because it is responsible for running key controllers, which manage essential resources within the cluster. Some examples include:\n\n- **ReplicationController**: Ensures that the specified number of identical pods are running. If a pod is terminated, it creates a new one to maintain the desired replica count.\n- **Node Controller**: Monitors the health of nodes in the cluster. If a node becomes unreachable, it takes corrective actions like marking it as `NotReady`.\n- **Job Controller**: Manages batch jobs by running them until completion, ensuring the required number of successful completions.\n- **Deployment Controller**: Manages the lifecycle of applications by ensuring the specified number of replicas are running and ensuring updates are rolled out smoothly.\n\nEach of these controllers helps Kubernetes maintain a stable and desired environment, making the Controller Manager a vital component of the cluster.",
+      "slide_type": "text"
+    },
+    {
+      "title": "How Controller Manager Works",
+      "content": "The Controller Manager works by continuously comparing the actual state of the cluster to the desired state. It watches for changes in the cluster state (like pod creation, deletion, or failures) and makes changes to the system to bring it closer to the desired state. This process includes:\n\n- **Polling**: The Controller Manager polls the Kubernetes API server for changes in the state of resources like pods, nodes, and services.\n- **Reconciliation**: When discrepancies are found, the controller reconciles them by taking corrective action, such as creating new pods or rescheduling pods on different nodes.\n- **Event-driven Logic**: Controllers are event-driven, meaning they act when an event occurs (e.g., a node failure triggers a recovery process).\n\nFor example, the ReplicationController will check the state of the pods it manages and, if it detects that the number of pods has dropped below the desired count, it will create new pods to meet the target count.",
+      "slide_type": "text"
+    },
+    {
+      "title": "Example of Controller Manager in Action",
+      "content": "Imagine you have a Deployment with 3 replicas of a web application running in a Kubernetes cluster. If one of the pods crashes, the ReplicationController managed by the Controller Manager will detect this and immediately create a new pod to replace the one that failed, maintaining the desired replica count. This ensures that your application remains highly available, even when individual pods fail. Similarly, if a node becomes unavailable, the Controller Manager will attempt to reschedule the affected pods onto other available nodes to maintain system availability.",
+      "slide_type": "text"
+    },
+    {
+      "title": "Controller Manager Components",
+      "content": "The Controller Manager is composed of several individual controllers, each managing a different aspect of the cluster. These controllers work independently but are managed by the same Controller Manager process. Some key controllers include:\n\n- **Replicaset Controller**: Ensures the desired number of pod replicas are maintained.\n- **Deployment Controller**: Handles deployments and ensures that changes are rolled out safely to the desired state.\n- **StatefulSet Controller**: Ensures the correct ordering and stable identities for pods in a StatefulSet.\n- **DaemonSet Controller**: Ensures that a specific pod is running on all or some nodes in the cluster.\n- **Job Controller**: Manages the execution and completion of batch jobs.\n\nEach of these controllers performs a specialized function, ensuring that different aspects of the system are in the desired state.",
+      "slide_type": "text"
+    },
+    {
+      "title": "Controller Manager Architecture",
+      "content": "The Controller Manager runs as a single process that is typically deployed as part of the Kubernetes control plane. It communicates with the Kubernetes API server to monitor and manage resources like pods, services, and nodes. Each controller within the Controller Manager watches a specific resource and makes decisions based on the current state of that resource. For example, the ReplicationController watches the pods it manages, while the Job Controller watches job resources.\n\nThe architecture is designed for flexibility and scalability, allowing Kubernetes to handle a variety of workload types and adapt to different operational requirements. While the Controller Manager is a single process, it can manage multiple controllers simultaneously, each handling different aspects of the cluster's operations.",
+      "slide_type": "text"
+    },
+    {
+      "title": "Controller Manager Configuration",
+      "content": "The Controller Manager is configured via command-line flags that define which controllers should run, what parameters they should use, and how they should interact with the cluster. The basic command to start the Controller Manager looks like this:\n```\nkube-controller-manager --kubeconfig=/etc/kubernetes/kubeconfig --controllers=*,replicaset,deployment\n```\nThis configuration specifies which controllers to activate and which resources to manage. You can also configure additional options, such as enabling or disabling certain controllers based on your needs. The flexibility of these flags allows administrators to fine-tune the functionality of the Controller Manager based on the cluster's needs.",
+      "slide_type": "code"
+    },
+    {
+      "title": "Common Controller Manager Commands",
+      "content": "Here are some common commands related to the Controller Manager:\n- `kube-controller-manager --help`: Displays the help documentation for the Controller Manager.\n- `kube-controller-manager --enable-hostpath-provisioner`: Enables the use of the HostPath provisioner to dynamically provision storage.\n- `kube-controller-manager --controllers=*`: Runs all available controllers, which is useful for debugging or testing.\n\nThese commands help configure and troubleshoot the Controller Manager to ensure it is running as expected in the cluster.",
+      "slide_type": "code"
+    },
+    {
+      "title": "Controller Manager Failures",
+      "content": "If the Controller Manager fails, controllers will not be able to perform their reconciliation tasks, leading to a mismatch between the actual and desired state of the cluster. For example, if the Deployment Controller stops working, new pods might not be deployed, or failed pods might not be recreated. This can lead to application downtime, unavailable resources, and overall instability in the cluster. It is important to monitor the Controller Manager’s health and have redundancy mechanisms, like running it on multiple nodes or using high-availability setups, to minimize the risk of failure.",
+      "slide_type": "text"
+    },
+    {
+      "title": "Summary Table of Key Controllers",
+      "content": [
+        {
+          "Controller": "ReplicationController",
+          "Description": "Ensures the correct number of pod replicas are running by creating or deleting pods as necessary.",
+          "State": "Active"
+        },
+        {
+          "Controller": "Node Controller",
+          "Description": "Monitors node health and performs actions like marking nodes as `NotReady` or evicting pods when nodes fail.",
+          "State": "Active"
+        },
+        {
+          "Controller": "Job Controller",
+          "Description": "Manages batch jobs, ensuring that they run until successful completion.",
+          "State": "Active"
+        },
+        {
+          "Controller": "Deployment Controller",
+          "Description": "Ensures the deployment of applications by managing pod replicas and handling updates safely.",
+          "State": "Active"
+        }
+      ],
+      "slide_type": "table"
+    }
+  ]

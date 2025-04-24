@@ -1,79 +1,57 @@
 [
   {
-    "title": "Introduction to AWS Glacier",
-    "content": "**Amazon Glacier** (now part of **Amazon S3 Glacier**) is a low-cost cloud storage service by AWS designed for **data archiving** and **long-term backup**.\n\nIt's ideal for data that is infrequently accessed but must be retained for compliance or historical purposes.",
+    "title": "Introduction to Service Discovery",
+    "content": "In Kubernetes, **service discovery** allows pods to find and communicate with each other without hardcoding IP addresses. It dynamically assigns and resolves service locations, making communication between microservices seamless.",
     "slide_type": "text"
   },
   {
-    "title": "Key Features of AWS Glacier",
-    "content": "- **Low cost**: As low as $0.004 per GB per month\n- **Secure**: Supports encryption and access controls\n- **Durable**: 99.999999999% (11 9's) durability\n- **Scalable**: Automatically scales with your data\n- **Data Retrieval Options**: Flexible speeds (Expedited, Standard, Bulk)",
+    "title": "Why Service Discovery is Needed",
+    "content": "- Pods in Kubernetes are ephemeral and can be restarted anytime\n- IP addresses of pods change frequently\n- Manually updating IPs is impractical\n- Service discovery ensures **reliable communication** despite these changes",
     "slide_type": "text"
   },
   {
-    "title": "Use Cases for AWS Glacier",
-    "content": "- Compliance archives (e.g., medical, legal)\n- Long-term media storage (e.g., videos, logs)\n- Digital preservation (e.g., research data)\n- Backup archives for disaster recovery",
+    "title": "Kubernetes Services as Discovery Mechanism",
+    "content": "Kubernetes uses **Service objects** to abstract a group of pods and provide a stable IP and DNS name. This abstraction enables **automatic service discovery**.",
     "slide_type": "text"
   },
   {
-    "title": "Glacier vs Standard S3",
+    "title": "Service Types in Kubernetes",
     "content": [
-      {
-        "Aspect": "Storage Cost",
-        "S3 Standard": "Higher",
-        "S3 Glacier": "Much Lower"
-      },
-      {
-        "Aspect": "Access Time",
-        "S3 Standard": "Milliseconds",
-        "S3 Glacier": "Minutes to Hours"
-      },
-      {
-        "Aspect": "Use Case",
-        "S3 Standard": "Frequent Access",
-        "S3 Glacier": "Long-Term Archiving"
-      }
+      { "Type": "ClusterIP", "Description": "Default type. Accessible only within the cluster." },
+      { "Type": "NodePort", "Description": "Exposes the service on a static port on each node." },
+      { "Type": "LoadBalancer", "Description": "Creates an external load balancer in supported cloud providers." },
+      { "Type": "ExternalName", "Description": "Maps service to an external DNS name." }
     ],
     "slide_type": "table"
   },
   {
-    "title": "Data Retrieval Options",
-    "content": [
-      {
-        "Type": "Expedited",
-        "Speed": "1-5 minutes",
-        "Cost": "Highest"
-      },
-      {
-        "Type": "Standard",
-        "Speed": "3-5 hours",
-        "Cost": "Moderate"
-      },
-      {
-        "Type": "Bulk",
-        "Speed": "5-12 hours",
-        "Cost": "Lowest"
-      }
-    ],
-    "slide_type": "table"
+    "title": "DNS-Based Service Discovery",
+    "content": "Kubernetes runs a **DNS pod and service** by default which watches the API server for new services and creates DNS records for them.\n\nPods can reach a service using:\n- `service-name`\n- `service-name.namespace`\n- `service-name.namespace.svc.cluster.local`",
+    "slide_type": "text"
   },
   {
-    "title": "How to Upload Data to Glacier (via S3)",
-    "content": "```bash\n# Step 1: Create S3 bucket\naws s3 mb s3://my-archive-bucket\n\n# Step 2: Upload file with Glacier storage class\naws s3 cp mydata.zip s3://my-archive-bucket/ --storage-class GLACIER\n```",
+    "title": "How Cluster DNS Resolves Services",
+    "content": "When a pod sends a request to a service name, **CoreDNS** resolves it to the ClusterIP of that service using internal DNS resolution.",
+    "slide_type": "text"
+  },
+  {
+    "title": "Example: Accessing a Service via DNS",
+    "content": "```bash\ncurl http://my-service.default.svc.cluster.local\n```",
     "slide_type": "code"
   },
   {
-    "title": "Cost Considerations",
-    "content": "- **Storage cost** is very low.\n- **Retrieval cost** varies by speed and size.\n- **Minimum storage duration**: 90 days (early deletion incurs charges).\n- **Data retrieval and request fees** apply.",
+    "title": "Environment Variable Based Discovery",
+    "content": "When a pod starts, Kubernetes injects environment variables for all services available at that time.\n\nExample:\n- `MY_SERVICE_SERVICE_HOST=10.0.0.1`\n- `MY_SERVICE_SERVICE_PORT=80`",
     "slide_type": "text"
   },
   {
-    "title": "When NOT to Use Glacier",
-    "content": "- When you need **frequent** or **real-time access** to data\n- For **transactional** or **interactive** applications\n- When you need access in **milliseconds or seconds**",
+    "title": "Limitations of Environment Variable Discovery",
+    "content": "- Works only for services existing at pod startup\n- Doesn’t detect services added later\n- DNS-based discovery is preferred for dynamic environments",
     "slide_type": "text"
   },
   {
-    "title": "Summary",
-    "content": "**AWS Glacier** is perfect for long-term, low-cost storage needs where retrieval speed is not critical. It balances **durability**, **security**, and **cost-effectiveness**, making it ideal for backups, compliance data, and archives.",
+    "title": "Recap: Kubernetes Service Discovery",
+    "content": "- Uses **Service** abstraction for stable endpoints\n- Relies on **DNS (CoreDNS)** for name resolution\n- **Environment variables** provide static info at startup\n- **ClusterIP** is the most used service type for internal discovery",
     "slide_type": "text"
   }
 ]

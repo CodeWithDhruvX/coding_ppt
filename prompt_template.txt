@@ -1,4 +1,4 @@
-Generate structured JSON data for the topic: "What is Glacier in AWS?".
+Generate structured JSON data for the topic: "What is the role of etcd in Kubernetes".
  
 Use the following format for each slide:
 

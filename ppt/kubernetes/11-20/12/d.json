@@ -1,0 +1,68 @@
+[
+    {
+      "title": "Introduction to Master Node",
+      "content": "In Kubernetes, the **Master Node** is the control plane responsible for managing the entire cluster. It makes global decisions about the cluster and ensures that the desired state of applications is achieved and maintained. The Master Node orchestrates and manages the Worker Nodes, where the actual workloads (pods) run. It is responsible for scheduling, cluster state management, and handling API requests. Without a functioning Master Node, a Kubernetes cluster cannot operate efficiently.",
+      "slide_type": "text"
+    },
+    {
+      "title": "Key Components of the Master Node",
+      "content": "The Master Node is composed of several core components, each playing a crucial role in the management and orchestration of Kubernetes clusters. These components include:\n\n- **kube-apiserver**: The API server, which serves as the entry point for all REST commands used to control the cluster.\n- **etcd**: A consistent, highly-available key-value store that stores all cluster data.\n- **kube-scheduler**: The component that decides where new pods will run based on available resources.\n- **kube-controller-manager**: Manages controllers to regulate the state of the cluster.\n- **cloud-controller-manager**: Handles cloud-specific control logic, integrating with the cloud provider's API.\n\nEach of these components has specific functions, which together ensure that the Kubernetes cluster operates smoothly and consistently.",
+      "slide_type": "text"
+    },
+    {
+      "title": "kube-apiserver",
+      "content": "The **kube-apiserver** is a crucial component in the Kubernetes Master Node and serves as the front-end for the Kubernetes control plane. It is responsible for exposing the Kubernetes API, which is the primary interface for interacting with the cluster.\n\n- It accepts REST API requests from users or other components and processes them.\n- It handles validation and configuration of API objects, such as Pods, Services, and Deployments.\n- As the central hub, it communicates with all other components, ensuring they are in sync.\n- It also exposes a secure API for both internal and external access, ensuring that communication remains safe and authorized.\n\nIn short, **kube-apiserver** is the mediator between the user, the cluster, and other control plane components.",
+      "slide_type": "text"
+    },
+    {
+      "title": "etcd",
+      "content": "The **etcd** component is a highly available and consistent key-value store that is used by Kubernetes to store all of its cluster state. It is the single source of truth for the cluster’s configuration and data.\n\n- **etcd** stores important data such as cluster state, configurations, secrets, and other critical information.\n- It ensures that all components in the Kubernetes control plane have consistent and synchronized data.\n- **etcd** is designed to be highly available and fault-tolerant, with replication and backups being critical for disaster recovery.\n- Changes to the cluster, such as scaling applications or modifying configurations, are all recorded in **etcd**, and the system ensures that the data is preserved across failures.\n\nIn essence, **etcd** enables Kubernetes to maintain the consistency and availability of critical cluster data, even during failures.",
+      "slide_type": "text"
+    },
+    {
+      "title": "kube-scheduler",
+      "content": "The **kube-scheduler** is the component of the Kubernetes control plane that is responsible for selecting a node for newly created pods. It ensures that the pods are scheduled based on available resources and other constraints.\n\n- The **scheduler** watches for newly created pods that have no assigned node.\n- It selects a node based on factors such as available resources (CPU, memory), node affinity/anti-affinity, taints and tolerations, and custom scheduling rules.\n- The scheduler also considers workloads already running on the nodes to avoid overloading any specific node.\n- It ensures that the cluster is optimally utilized by distributing workloads in a balanced and resource-efficient way.\n\nIn summary, the **kube-scheduler** ensures that the right workloads are assigned to the right nodes based on resource availability and scheduling policies.",
+      "slide_type": "text"
+    },
+    {
+      "title": "kube-controller-manager",
+      "content": "The **kube-controller-manager** is responsible for running various controllers within the Kubernetes cluster. Each controller ensures that the cluster is operating in the desired state by continuously monitoring and correcting any discrepancies between the actual and desired states.\n\n- **Node Controller**: Manages node health, detects node failures, and updates the cluster state accordingly.\n- **Replication Controller**: Ensures that the desired number of pod replicas are running in the cluster, automatically replacing pods when they fail or are deleted.\n- **Endpoints Controller**: Manages the network endpoints for services.\n- Other controllers handle resources like namespaces, service accounts, and persistent volumes.\n\nBy running these controllers, the **kube-controller-manager** helps automate routine cluster management tasks, ensuring that the cluster state is always aligned with user specifications.",
+      "slide_type": "text"
+    },
+    {
+      "title": "cloud-controller-manager",
+      "content": "The **cloud-controller-manager** allows Kubernetes to interact with cloud provider APIs for managing cloud-specific resources such as load balancers, storage volumes, and network configurations.\n\n- It is particularly useful in cloud-based Kubernetes environments like AWS, GCP, or Azure.\n- It manages cloud-specific tasks, such as adding or removing nodes based on the cloud provider's API, managing persistent storage volumes, and configuring cloud load balancers.\n- The **cloud-controller-manager** also helps Kubernetes integrate seamlessly with cloud services like storage, networking, and auto-scaling.\n- It is an optional component and is only used in cloud-based deployments.\n\nThis component extends Kubernetes' capabilities by enabling cloud-native features to be seamlessly integrated into the orchestration workflow.",
+      "slide_type": "text"
+    },
+    {
+      "title": "Master Node Components - Summary Table",
+      "content": [
+        {
+          "Component": "kube-apiserver",
+          "Role": "Handles API requests, central communication hub, exposes secure API"
+        },
+        {
+          "Component": "etcd",
+          "Role": "Stores configuration, state data, and ensures consistency across the cluster"
+        },
+        {
+          "Component": "kube-scheduler",
+          "Role": "Schedules pods on nodes based on available resources and constraints"
+        },
+        {
+          "Component": "kube-controller-manager",
+          "Role": "Manages controllers to regulate cluster state and ensures desired state"
+        },
+        {
+          "Component": "cloud-controller-manager",
+          "Role": "Manages cloud-specific resources and integrates with cloud provider APIs"
+        }
+      ],
+      "slide_type": "table"
+    },
+    {
+      "title": "Conclusion",
+      "content": "The Master Node in Kubernetes is the heart of the cluster, overseeing critical processes such as scheduling, configuration management, and maintaining cluster state. Each of its components—the **kube-apiserver**, **etcd**, **kube-scheduler**, **kube-controller-manager**, and **cloud-controller-manager**—work in harmony to ensure the efficient operation of the Kubernetes cluster. Without these components, Kubernetes would not be able to orchestrate containerized applications effectively or maintain the desired state of workloads.",
+      "slide_type": "text"
+    }
+  ]

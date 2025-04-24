@@ -1,0 +1,50 @@
+[
+    {
+      "title": "Introduction to Worker Nodes",
+      "content": "In Kubernetes, a **worker node** is a physical or virtual machine that executes application workloads in the form of **Pods**. A worker node hosts the necessary components to run and manage containers (which are packaged applications) in a Kubernetes cluster. The worker nodes are controlled by the **master node**, which manages cluster-level operations like scheduling and orchestration. Worker nodes are critical because they run the actual applications that users interact with, making them a central part of the Kubernetes architecture. The worker nodes are responsible for ensuring that the desired number of replicas of each Pod are running and available, and they also handle the networking, storage, and compute resources necessary for these applications to function.",
+      "slide_type": "text"
+    },
+    {
+      "title": "Components of a Worker Node",
+      "content": "A worker node is made up of several key components that enable it to run containers effectively and interact with the Kubernetes cluster:\n\n- **Kubelet**: The **kubelet** is an agent running on each worker node that ensures containers are running in Pods as expected. It watches the Pod's lifecycle and reports back to the master node. If any container in a Pod fails or is terminated, the kubelet ensures it is restarted to maintain the desired state.\n\n- **Container Runtime**: The container runtime is responsible for running containers. It pulls images from container registries, creates containers, and manages their execution. Kubernetes supports several container runtimes, including Docker, containerd, and CRI-O. The container runtime is vital because it interacts directly with the operating system to launch and manage containers.\n\n- **Kube-proxy**: **Kube-proxy** manages the network rules and ensures that network traffic is correctly routed between the Pods. It operates at the networking layer and is responsible for ensuring that requests are properly load-balanced and forwarded to the correct containers, whether for internal Pod communication or for external requests coming from users or other services.",
+      "slide_type": "text"
+    },
+    {
+      "title": "Role of the Worker Node",
+      "content": "The primary role of a worker node is to **run Pods**, which are the smallest deployable units in Kubernetes. A Pod can contain one or more containers that work together, sharing the same storage, networking, and other resources. These containers run in isolation, but within the same Pod, they can communicate directly with each other.\n\nWorker nodes communicate with the master node to receive instructions about which Pods need to be scheduled. The master node determines which worker node a Pod should run on based on resource availability, affinity, and other factors. Once a Pod is scheduled, the worker node uses the kubelet to pull the necessary container images, create containers, and ensure they are running and healthy. If a container fails, the kubelet will restart it automatically. The worker node is also responsible for networking, ensuring that Pods can communicate with each other as well as with external services, often through kube-proxy.\n\nIn summary, while the master node coordinates the overall state of the cluster, the worker node ensures that the actual application workloads (Pods) are executed and functioning correctly.",
+      "slide_type": "text"
+    },
+    {
+      "title": "Worker Node vs Master Node",
+      "content": "The Kubernetes architecture consists of two main types of nodes: **master nodes** and **worker nodes**.\n\n- **Master Node**: The master node is the control plane of the Kubernetes cluster. It handles the cluster's management, such as scheduling Pods, maintaining the desired state of the cluster, and handling API requests. The master node runs components like the **API server**, **controller manager**, **scheduler**, and **etcd** (a key-value store used for persistent cluster data). The master node's role is to make high-level decisions about the cluster, such as when and where to run a Pod, but it doesn't actually execute any of the workloads itself.\n\n- **Worker Node**: The worker node is where the application workloads (Pods) actually run. Worker nodes are managed by the master node and are responsible for hosting the containers that make up the application. The worker node is made up of components like the kubelet, container runtime, and kube-proxy, which work together to ensure containers are running, healthy, and accessible. Unlike the master node, the worker node is focused on executing the applications.\n\nThus, the master node provides the intelligence and coordination for the cluster, while the worker node provides the execution environment for application containers.",
+      "slide_type": "text"
+    },
+    {
+      "title": "Example: Worker Node Configuration",
+      "content": "To check the status of the worker nodes in a Kubernetes cluster, you can use the following command:\n\n```bash\n# List all nodes in the cluster\nkubectl get nodes\n\n# Sample output:\nNAME            STATUS   ROLES    AGE   VERSION\nworker-node-1   Ready    \u003cnone\u003e   1d    v1.18.6\nworker-node-2   Ready    \u003cnone\u003e   1d    v1.18.6\n``` \n\nThe `kubectl get nodes` command will return a list of nodes in the cluster along with their **status**, **roles**, **age**, and **Kubernetes version**. The **STATUS** column shows whether the node is healthy and ready to run Pods. The **ROLES** column can indicate whether the node is a master or worker node (though worker nodes typically don't have specific roles listed). The **AGE** shows how long the node has been part of the cluster. This information is essential for understanding the health and configuration of worker nodes in your cluster.",
+      "slide_type": "code"
+    },
+    {
+      "title": "Worker Node Health Monitoring",
+      "content": "Kubernetes continuously monitors the health of worker nodes using the **kubelet**. The kubelet checks the health of the containers within the Pods on the worker node. If a Pod is not running as expected or if the node becomes unresponsive, the kubelet reports the issue to the master node.\n\nIn the case of node failure, Kubernetes supports **node recovery** mechanisms that ensure the workloads are moved to other healthy worker nodes. The **scheduler** on the master node will reschedule Pods onto other available worker nodes if a node becomes unhealthy. This self-healing feature of Kubernetes ensures that applications remain available, even in the event of infrastructure failures. Kubernetes also supports **health checks** (such as liveness and readiness probes) to check the health of both individual containers and Pods, further enhancing the robustness of worker node management.",
+      "slide_type": "text"
+    },
+    {
+      "title": "Summary Table: Key Components of Worker Node",
+      "content": [
+        {
+          "component": "Kubelet",
+          "description": "An agent running on each worker node, ensuring containers are running and reporting back to the master node. The kubelet ensures containers are started, healthy, and terminated as needed."
+        },
+        {
+          "component": "Container Runtime",
+          "description": "Software responsible for running containers (e.g., Docker, containerd). The runtime handles pulling images, creating containers, and managing the lifecycle of containers on the node."
+        },
+        {
+          "component": "Kube-proxy",
+          "description": "Responsible for managing network rules that control traffic between Pods and services. It ensures correct load balancing and routing of requests between the containers running in the cluster."
+        }
+      ],
+      "slide_type": "table"
+    }
+  ]

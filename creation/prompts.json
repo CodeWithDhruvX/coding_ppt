@@ -1,0 +1,15 @@
+{
+    "summarize": {
+      "title": "English Prompt",
+      "prompt": "Generate structured JSON data for the topic: <Your Topic Here>. \n\nUse the following format for each slide:\n\n[\n  {\n    \"title\": \"<Slide Title>\",\n    \"content\": \"<Formatted content in markdown if text or raw if code>\",\n    \"slide_type\": \"text | code | table\"\n  }\n]\n\nRules:\n1. Use slide_type as one of text, code, or table.\n2. Use Markdown formatting in content for text slides.\n3. Keep code examples in content for code slides with proper formatting.\n4. For table slides, provide a JSON array of objects representing rows.\n5. Keep titles concise and meaningful.\n6. Each JSON object should represent one slide.\n7. Ensure content is beginner-friendly, structured, and informative."
+    },
+    "slide_text": {
+      "title": "Slide Type Text",
+      "prompt": "add depth information in the content where slide_type is text. "
+    },
+    "slide_code": {
+      "title": "Slide Type Code",
+      "prompt": "add depth information in the content where slide_type is code"
+    }
+  }
+  
