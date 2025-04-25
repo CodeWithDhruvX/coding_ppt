@@ -1,0 +1,58 @@
+[
+    {
+      "title": "Introduction to Git Add Commands",
+      "content": "In Git, `git add` is the command used to stage changes, preparing them to be included in the next commit. There are different options available when using `git add`, two of the most commonly used are `git add .` and `git add -A`. These commands help you control which changes are added to the staging area, but they behave differently when it comes to handling file deletions and the scope of changes they include.\n\nLet’s dive into the specific behaviors of these two commands and understand their differences in more detail.",
+      "slide_type": "text"
+    },
+    {
+      "title": "What is git add .?",
+      "content": "`git add .` is used to stage changes within the current directory and its subdirectories. It includes:\n\n- **Modified files**: Any changes to existing files will be staged.\n- **New files**: Any files that have been added to the directory but have not yet been tracked by Git will also be staged.\n\nHowever, it **does not stage deletions**. This means that if you remove a file from your working directory, Git will not mark it for deletion in the next commit unless you explicitly run `git rm` to remove it from version control.\n\nThis command is useful when you’re working within a specific directory and only want to add modifications or new files within that scope, without affecting file deletions.",
+      "slide_type": "text"
+    },
+    {
+      "title": "What is git add -A?",
+      "content": "`git add -A` stages **all changes** in the repository, regardless of which directory you're in. It stages the following changes:\n\n- **Modified files**: Any changes made to already tracked files will be staged.\n- **New files**: Newly created files in the repository will be staged as well.\n- **Deleted files**: Files that were removed from your working directory will be staged for removal from Git.\n\nThis is important because, unlike `git add .`, `git add -A` ensures that all types of changes, including file deletions, are included in the staging area. This is particularly useful if you have made file deletions and want to track those deletions in your commit.",
+      "slide_type": "text"
+    },
+    {
+      "title": "Key Differences Between git add . and git add -A",
+      "content": "The primary difference between `git add .` and `git add -A` lies in how they handle file deletions:\n\n- `git add .`: This command **does not stage deletions**. If you delete files from the repository, these deletions will not be staged for commit unless you run a separate command like `git rm`.\n- `git add -A`: This command stages **all changes**, including file deletions. This means that if you delete a file, Git will automatically stage that deletion for the next commit.\n\nIn practice, `git add -A` is a more comprehensive command that ensures all changes are staged, including removals, while `git add .` is more selective, only adding new and modified files within the current directory and subdirectories.",
+      "slide_type": "text"
+    },
+    {
+      "title": "Comparison Table",
+      "content": [
+        {
+          "command": "git add .",
+          "stages_modified_files": "Yes",
+          "stages_new_files": "Yes",
+          "stages_deleted_files": "No",
+          "scope": "Current directory and subdirectories"
+        },
+        {
+          "command": "git add -A",
+          "stages_modified_files": "Yes",
+          "stages_new_files": "Yes",
+          "stages_deleted_files": "Yes",
+          "scope": "Entire repository"
+        }
+      ],
+      "slide_type": "table"
+    },
+    {
+      "title": "Example: git add .",
+      "content": "```bash\n# Stage changes in the current directory, excluding deletions\ngit add .\n```",
+      "slide_type": "code"
+    },
+    {
+      "title": "Example: git add -A",
+      "content": "```bash\n# Stage all changes, including deletions\ngit add -A\n```",
+      "slide_type": "code"
+    },
+    {
+      "title": "When to Use Each Command",
+      "content": "- Use `git add .` when you want to stage **only the modifications** or **new files** in the current directory and its subdirectories, and you do not need to track file deletions.\n\n- Use `git add -A` when you want to **stage all changes across the entire repository**, including **deleted files**, to make sure every modification is tracked.\n\nIt’s good practice to use `git add .` if you’re working on specific changes in one part of your project and want to avoid accidentally staging deletions. On the other hand, use `git add -A` when you’re cleaning up or restructuring the repository and need to account for file removals as well.",
+      "slide_type": "text"
+    }
+  ]
+  

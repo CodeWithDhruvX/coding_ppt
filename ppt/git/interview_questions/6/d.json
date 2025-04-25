@@ -1,0 +1,47 @@
+[
+  {
+    "title": "What is `git status`?",
+    "content": "The `git status` command is one of the most frequently used commands in Git. It helps you understand the current state of your working directory and staging area. It displays important information, such as which files are staged for the next commit, which files have been modified but not staged, and which files are untracked (new files that Git is not yet tracking). This command does not modify your repository, it simply provides information about your current Git environment.",
+    "slide_type": "text"
+  },
+  {
+    "title": "Checking Staged Changes",
+    "content": "`git status` shows files that have been staged for the next commit. These are files that you have modified and then added to the staging area using `git add <file>`. Staged files are ready to be committed. The section showing staged changes will tell you what files are ready for inclusion in the next commit, and the command will also prompt you with how to unstage them if needed, using `git reset <file>`.",
+    "slide_type": "text"
+  },
+  {
+    "title": "Modified Files",
+    "content": "If you've edited a file but haven't yet staged the changes for commit, the `git status` output will display these files under the section 'Changes not staged for commit'. These files are modified, but the changes are not yet part of the staging area. To include these changes in the next commit, you must use `git add <file>`. If you don't want to include these changes, you can either discard them with `git checkout <file>` or leave them as-is to add later.",
+    "slide_type": "text"
+  },
+  {
+    "title": "Untracked Files",
+    "content": "Untracked files are new files in your working directory that Git is not yet tracking. These files have not been staged for commit. The `git status` output will list these files under 'Untracked files'. To begin tracking these files and include them in the next commit, you must add them using `git add <file>`. If you want to ignore these files, you can create a `.gitignore` file to prevent them from appearing in the `git status` output.",
+    "slide_type": "text"
+  },
+  {
+    "title": "Basic `git status` Command",
+    "content": "```bash\n$ git status\n```",
+    "slide_type": "code"
+  },
+  {
+    "title": "Example Output of `git status`",
+    "content": "```bash\nOn branch main\nYour branch is up to date with 'origin/main'.\n\nChanges to be committed:\n  (use \"git reset\" to unstage)\n    modified:   file1.txt\n\nChanges not staged for commit:\n  (use \"git add <file>...\" to update what will be committed)\n    modified:   file2.txt\n\nUntracked files:\n  (use \"git add <file>...\" to include in what will be committed)\n    newfile.txt\n```",
+    "slide_type": "code"
+  },
+  {
+    "title": "Summary of `git status` Output",
+    "content": "`git status` provides a detailed snapshot of your current repository state. The key sections of the output include:\n- **Branch name and status relative to the remote**: It shows the name of the branch you're currently on, and whether it is up to date with the remote repository.\n- **Changes to be committed**: Files that have been staged and are ready to be committed. If any files are in this section, they will be included in the next commit.\n- **Changes not staged for commit**: Files that have been modified but not yet staged. These changes are not yet part of the next commit.\n- **Untracked files**: New files that Git is not tracking. These files need to be added if you want them to be included in a commit.",
+    "slide_type": "text"
+  },
+  {
+    "title": "When to Use `git status`",
+    "content": "`git status` is useful at many points during your workflow. It’s especially helpful before committing, as it lets you confirm that everything is staged correctly and that no unintended files are modified or forgotten. You should run this command frequently when you’re making changes to ensure you're aware of your repository’s status. It helps you check whether your working directory is clean or if there are any pending changes, so you can handle them accordingly.",
+    "slide_type": "text"
+  },
+  {
+    "title": "Common `git status` Mistakes",
+    "content": "While using `git status`, developers often make certain mistakes. Some common ones include:\n- **Forgetting to add untracked files**: If new files are created and you forget to `git add` them, they won't be part of the commit.\n- **Staging unintended changes**: Sometimes, files that should not be included in the commit get staged by mistake. Running `git status` helps identify these files, so you can unstage them using `git reset <file>`. \n- **Not noticing changes not staged for commit**: It's easy to miss that some modified files haven't been staged yet. `git status` ensures that you are aware of everything that needs attention before committing.",
+    "slide_type": "text"
+  }
+]

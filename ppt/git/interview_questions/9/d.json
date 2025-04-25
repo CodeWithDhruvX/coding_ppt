@@ -1,0 +1,61 @@
+[
+    {
+      "title": "Introduction to Git Commit",
+      "content": "In Git, committing changes is the act of saving your modified files to the local repository. A commit is essentially a snapshot of your changes that can be stored in the repository history. Once committed, these changes are tracked, and you can access them at any point in the future. Committing is essential for version control, allowing you to maintain a clean and organized project history, collaborate efficiently with others, and rollback or modify any unwanted changes.",
+      "slide_type": "text"
+    },
+    {
+      "title": "Why Commit Changes?",
+      "content": "Committing your changes in Git is essential for several reasons:\n\n1. **Track progress**: Commits provide a way to document your work as you progress through a project.\n2. **Collaboration**: When working in a team, committing your changes allows others to see and integrate your work into their own.\n3. **Version control**: Each commit creates a point in the project history that can be reverted to at any time. This is crucial for undoing mistakes or exploring past states of the project.\n4. **Isolation of changes**: Git commits help isolate different changes, making it easier to manage and debug code over time.",
+      "slide_type": "text"
+    },
+    {
+      "title": "Basic Commit Command",
+      "content": "The basic command to commit changes in Git is `git commit -m 'Your commit message'`. Here's what happens:\n\n1. The `git commit` command saves changes from the staging area to the repository.\n2. The `-m` flag indicates that you are providing a commit message directly in the command.\n3. The message (provided within the quotes) describes the changes made in the commit.\n\nThis message should be concise and reflect the purpose of the changes you made. A commit without a message is not recommended, as it won't provide context for future reference.",
+      "slide_type": "text"
+    },
+    {
+      "title": "Commit Message Format",
+      "content": "A good commit message should follow a standard format to make it easier to understand the history of the project. Here's the recommended format:\n\n1. **Short summary** (50 characters or less): This is the first line of your commit message. It should describe the purpose of your commit.\n2. **Detailed explanation** (optional): After the short summary, you can add a more detailed explanation (if needed). This can explain *why* a change was made, or provide context.\n\nExample:\n```\ngit commit -m 'Fix bug in user authentication'\n``` This message is clear, concise, and describes the change in a meaningful way.",
+      "slide_type": "text"
+    },
+    {
+      "title": "Best Practices for Commit Messages",
+      "content": "To maintain a clean and understandable project history, follow these best practices for commit messages:\n\n1. **Use the imperative mood**: Write your message as if you're giving a command (e.g., 'Fix', 'Add', 'Remove'). This matches the style Git uses for generated commit messages, like 'Merge pull request' or 'Update documentation'.\n2. **Keep it brief**: The subject line should be no more than 50 characters. If the commit requires more explanation, include it in the body.\n3. **Explain why, not just what**: Describe the reasoning behind the changes, not just what was changed. This helps other developers (and your future self) understand the context of the commit.\n4. **Separate subject from body**: Use a blank line to separate the short summary from the detailed explanation, if applicable.",
+      "slide_type": "text"
+    },
+    {
+      "title": "Example of a Good Commit Message",
+      "content": "Here is an example of a good commit message:\n\n```\ngit commit -m 'Refactor user profile API to improve performance'\n``` This message provides a clear description of what was changed ('Refactor user profile API') and why it was done ('to improve performance'). This is important for future reference, as anyone reviewing the commit history can quickly understand the reason for the changes.",
+      "slide_type": "text"
+    },
+    {
+      "title": "Viewing Commit History",
+      "content": "You can view the history of all commits in a repository using the `git log` command. This will display the commits in reverse chronological order, showing the commit hash, the author, the date, and the commit message.\n\nTo view the history, use:\n```\ngit log\n```\nThis command allows you to trace back changes and investigate the evolution of the codebase. You can also filter the log to show commits by specific authors, dates, or commit messages.",
+      "slide_type": "text"
+    },
+    {
+      "title": "Table: Commit Message Examples",
+      "content": [
+        {
+          "example": "git commit -m 'Add new feature to user dashboard'"
+        },
+        {
+          "example": "git commit -m 'Fix issue with login form validation'"
+        },
+        {
+          "example": "git commit -m 'Update README with setup instructions'"
+        },
+        {
+          "example": "git commit -m 'Refactor code to improve readability'"
+        }
+      ],
+      "slide_type": "table"
+    },
+    {
+      "title": "Summary",
+      "content": "To commit changes in Git, use the `git commit -m` command with a clear and concise commit message. Following best practices for writing commit messages will make it easier to maintain and collaborate on projects, as well as provide a history of changes that is understandable and useful for future development.",
+      "slide_type": "text"
+    }
+  ]
+  

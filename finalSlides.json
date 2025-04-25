@@ -1,53 +1,65 @@
 [
   {
-    "title": "Introduction to Stopping Containers",
-    "content": "When working with Docker, it's common to run containers for various applications or services. However, there are situations where you need to stop a running container—either to free up resources, apply changes, or shut down the service. Docker provides a convenient way to stop containers without removing them. This operation ensures that your container can be resumed later without data loss, making it a non-destructive action.",
+    "title": "What is Staging in Git?",
+    "content": "**Staging** in Git is a step between modifying files and committing those changes. It allows you to prepare the files you want to include in your next commit, providing an opportunity to review changes before finalizing them. In simpler terms, it's like selecting only the files or portions of files that you want to commit while leaving the others for later.\n\n- You edit files in your working directory.\n- You stage changes, essentially preparing them for the next commit.\n- Finally, you commit the staged changes to the repository.\n\nThis process helps in committing only relevant changes and organizing your commits logically.",
     "slide_type": "text"
   },
   {
-    "title": "Basic Stop Command",
-    "content": "```bash\ndocker stop \u003ccontainer_name_or_id\u003e\n```\n\nThis command gracefully stops a running container. Replace `\u003ccontainer_name_or_id\u003e` with either the container’s name or its unique ID. Docker first sends a SIGTERM signal to allow the container’s main process to shut down properly. If the process does not terminate within the timeout (default is 10 seconds), Docker then sends a SIGKILL signal to force stop it.",
+    "title": "Git Workflow Overview",
+    "content": "Git follows a three-step process for managing changes:\n\n1. **Working Directory**: This is where you make changes to files. You edit and modify your project here, but these changes are not yet tracked by Git.\n2. **Staging Area (Index)**: After editing a file, you stage it. This tells Git, 'These are the changes I want to include in the next commit.' It acts like a holding area before the actual commit.\n3. **Repository**: The commit takes the staged changes and stores them in Git's repository, where they become part of the project's history.\n\nEach step in this workflow ensures that you have full control over what gets included in each commit.",
+    "slide_type": "text"
+  },
+  {
+    "title": "Stage All Changes",
+    "content": "```bash\ngit add .\n```",
     "slide_type": "code"
   },
   {
-    "title": "How It Works",
-    "content": "The `docker stop` command works by sending a termination signal (SIGTERM) to the main process running inside the container. This allows the process to perform any cleanup tasks, such as closing files, saving state, or gracefully shutting down services. If the container doesn't stop within a default timeout period (usually 10 seconds), Docker sends a SIGKILL signal to forcefully terminate it. This two-step process is important to prevent data corruption and ensure proper resource cleanup.",
-    "slide_type": "text"
+    "title": "Stage Specific File",
+    "content": "```bash\ngit add filename.txt\n```",
+    "slide_type": "code"
   },
   {
-    "title": "Stop vs Kill",
+    "title": "Stage Part of a File",
+    "content": "```bash\ngit add -p filename.txt\n```",
+    "slide_type": "code"
+  },
+  {
+    "title": "Check Staged vs Unstaged",
+    "content": "```bash\ngit status\n```",
+    "slide_type": "code"
+  },
+  {
+    "title": "Undo Staged Changes",
+    "content": "```bash\ngit reset filename.txt\n```",
+    "slide_type": "code"
+  },
+  {
+    "title": "Visual Representation",
     "content": [
       {
-        "Command": "docker stop",
-        "Graceful Shutdown": "Yes",
-        "Signal Sent": "SIGTERM, then SIGKILL after timeout"
+        "Location": "Working Directory",
+        "Step": "Edit File"
       },
       {
-        "Command": "docker kill",
-        "Graceful Shutdown": "No",
-        "Signal Sent": "SIGKILL immediately"
+        "Location": "Staging Area",
+        "Step": "Stage File"
+      },
+      {
+        "Location": "Git Repository",
+        "Step": "Commit File"
       }
     ],
     "slide_type": "table"
   },
   {
-    "title": "Custom Timeout Example",
-    "content": "```bash\ndocker stop -t 5 \u003ccontainer_name_or_id\u003e\n```\n\nIn this example, the `-t 5` option sets a timeout of 5 seconds. Docker will wait 5 seconds after sending the SIGTERM signal before sending SIGKILL. This is useful when you know your container should shut down quickly, or if you want to shorten the default timeout period to prevent long delays.",
-    "slide_type": "code"
-  },
-  {
-    "title": "Stopping All Running Containers",
-    "content": "```bash\ndocker stop $(docker ps -q)\n```\n\nThis command uses command substitution to first list all running container IDs with `docker ps -q`, and then passes them to `docker stop`. It’s a quick and powerful way to shut down all running containers in a single line. Ideal for cleaning up your system or preparing for maintenance.",
-    "slide_type": "code"
-  },
-  {
-    "title": "Common Use Cases",
-    "content": "Stopping a container is useful in many scenarios:\n\n- **Before maintenance:** Stop containers to apply system updates or software patches.\n- **Testing environments:** Temporarily halt containers to switch configurations or test multiple setups.\n- **Resource optimization:** Free up system resources without deleting container data.\n- **Application restart:** After updating configuration files, stopping and restarting a container ensures the changes are loaded.\n\nUsing `docker stop` keeps your container’s state and volumes intact, so it can be started again later without losing data.",
+    "title": "Why Staging is Useful",
+    "content": "- **Organize Commits**: Staging allows you to commit only the changes that you want, helping to organize your work into logical, coherent units.\n- **Partial Commits**: You can stage only part of the changes in a file (e.g., specific lines) and commit them separately, which is useful when working on multiple tasks simultaneously.\n- **Reduce Commit Noise**: By staging only relevant changes, you avoid cluttering the commit history with unnecessary or incomplete changes.\n- **Improved Code Review**: Smaller, more meaningful commits are easier for team members to review and understand, leading to more efficient collaboration.",
     "slide_type": "text"
   },
   {
-    "title": "Recap",
-    "content": "To manage your Docker containers effectively, understanding how to stop them properly is key:\n\n- `docker stop` lets you shut down containers gracefully using SIGTERM.\n- Avoid `docker kill` unless you need an immediate termination with no cleanup.\n- Use `docker stop -t` to customize the timeout duration.\n- You can also stop all running containers at once for quick shutdown.\n\nBy mastering these commands, you'll ensure smoother development workflows and more reliable containerized applications.",
+    "title": "Quick Recap",
+    "content": "In summary, staging in Git provides the flexibility to prepare changes for commit. Here's a quick recap:\n\n- **`git add .`**: Stages all changes in the working directory.\n- **`git add filename.txt`**: Stages a specific file.\n- **`git status`**: Shows the status of your working directory and staging area, letting you know which changes are staged and which are not.\n- **`git reset filename.txt`**: Unstages a file, removing it from the staging area but leaving changes in the working directory.\n\nBy using the staging area effectively, you can have full control over your commit history and ensure that each commit is well-structured and logical.",
     "slide_type": "text"
   }
 ]
