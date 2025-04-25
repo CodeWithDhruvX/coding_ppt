@@ -1,42 +1,22 @@
 [
   {
-    "title": "Introduction to Service Discovery",
-    "content": "In Kubernetes, **service discovery** refers to the process of automatically detecting and accessing services running in the cluster. Since pods are dynamic — they can be created, destroyed, or moved between nodes — their IP addresses change frequently. Service discovery solves this challenge by providing stable endpoints (via Services) so applications can communicate reliably, even when the underlying pod IPs change.",
-    "slide_type": "text"
+    "title": "Example Dockerfile",
+    "content": "```Dockerfile\n# Use an official Python runtime as a base image\nFROM python:3.9-slim\n\n# Set the working directory inside the container\nWORKDIR /app\n\n# Copy the current directory contents into the container\nCOPY . /app\n\n# Install any needed packages specified in requirements.txt\nRUN pip install -r requirements.txt\n\n# Define the default command to run when the container starts\nCMD ['python', 'app.py']\n```\n\n**Explanation**:\n- `FROM python:3.9-slim`: This line tells Docker to use the official Python 3.9 slim image as the base for your container. This image comes with Python installed, making it easy to run Python applications.\n- `WORKDIR /app`: This command sets the working directory inside the container to `/app`. Any subsequent instructions, like `COPY` or `RUN`, will operate in this directory.\n- `COPY . /app`: Copies the contents of the current directory (where the Dockerfile is) to the `/app` directory inside the container.\n- `RUN pip install -r requirements.txt`: This installs the Python dependencies listed in the `requirements.txt` file. The `RUN` instruction executes this command inside the container during the image build process.\n- `CMD ['python', 'app.py']`: The `CMD` instruction defines the default command to run when the container starts. Here, it tells Docker to run `app.py` using Python.\n\nThis Dockerfile defines a simple image for a Python application.",
+    "slide_type": "code"
   },
   {
-    "title": "Why Service Discovery is Needed",
-    "content": "Kubernetes manages containerized applications in a highly dynamic environment. Each pod gets a unique IP address, but:\n- Pods can die and restart anytime (e.g., during a crash or rolling update)\n- New pods may get new IPs\n- Manually managing these changes is error-prone and not scalable\n\nService discovery allows apps to refer to each other using stable **names or endpoints**. This makes it possible for microservices to locate and communicate with each other consistently without worrying about changing IPs.",
-    "slide_type": "text"
+    "title": "Building the Docker Image",
+    "content": "To build the Docker image from the Dockerfile, use the following command in the terminal:\n\n```bash\ndocker build -t my-python-app .\n```\n\n**Explanation**:\n- `docker build`: The `docker build` command is used to build a Docker image from the instructions in the Dockerfile.\n- `-t my-python-app`: The `-t` option tags the image with a name, which is `my-python-app` in this case. You can optionally add a version tag (e.g., `my-python-app:v1`).\n- `.`: The dot represents the build context, which is the current directory. This tells Docker to look for the Dockerfile and any other files needed to build the image in this directory. If your Dockerfile is in a different directory, you can specify that path instead.\n\nThis command will build the Docker image using the instructions in the Dockerfile and give it the tag `my-python-app`.",
+    "slide_type": "code"
   },
   {
-    "title": "Kubernetes Services as Discovery Mechanism",
-    "content": "A **Service** in Kubernetes is a logical abstraction that defines a policy to access a set of pods. It groups pods using **labels**, and routes traffic to them using a single stable IP address and DNS name. This allows clients to communicate with the service without needing to know which pod is handling the request. Even if pods change, the service endpoint remains the same — providing seamless service discovery.",
-    "slide_type": "text"
+    "title": "Verifying the Image",
+    "content": "Once the image is built, you can verify that it was created successfully by running the following command:\n\n```bash\ndocker images\n```\n\n**Explanation**:\n- `docker images`: This command lists all the images available on your local machine. It shows information like the image name, tag, ID, size, and when it was created. You should see your `my-python-app` image in the list if the build was successful.\n\nYou can also search for a specific image by running `docker images my-python-app` to see if it is listed.",
+    "slide_type": "code"
   },
   {
-    "title": "DNS-Based Service Discovery",
-    "content": "Kubernetes runs a DNS service — typically **CoreDNS** — that watches for changes in services and pods. When a service is created, CoreDNS automatically assigns it a DNS name. For example, a service named `my-service` in the `default` namespace is resolvable via:\n\n- `my-service`\n- `my-service.default`\n- `my-service.default.svc.cluster.local`\n\nApplications can use these DNS names to reliably reach the service, even if the actual pod IPs behind it change. This DNS-based approach is preferred for modern microservice architectures due to its flexibility and automatic updates.",
-    "slide_type": "text"
-  },
-  {
-    "title": "How Cluster DNS Resolves Services",
-    "content": "The **CoreDNS** service in the cluster listens for Kubernetes API changes and maintains DNS records for all services. When a pod tries to access `my-service`, CoreDNS resolves it to the service's **ClusterIP** (a virtual IP address). Kubernetes then performs **internal load balancing** to forward the request to one of the healthy pods selected by the service. This DNS-based resolution abstracts the complexity of managing IP addresses manually and ensures high availability.",
-    "slide_type": "text"
-  },
-  {
-    "title": "Environment Variable Based Discovery",
-    "content": "When a pod starts, Kubernetes injects a set of environment variables that represent available services. These variables include the service’s IP address and port, like:\n\n- `MY_SERVICE_SERVICE_HOST=10.0.0.1`\n- `MY_SERVICE_SERVICE_PORT=80`\n\nThis allows legacy applications or simple scripts to discover and connect to services using environment variables. However, this method is static and doesn’t reflect new services added after the pod starts. It is more suitable for initial configurations or backward compatibility.",
-    "slide_type": "text"
-  },
-  {
-    "title": "Limitations of Environment Variable Discovery",
-    "content": "While using environment variables is simple and lightweight, it has some key limitations:\n\n- Variables are set only **once** during pod creation\n- If a new service is added later, running pods won’t know about it\n- Changes to services won't reflect in already-running pods\n\nFor dynamic and frequently changing environments, this approach is not ideal. **DNS-based service discovery** is the recommended method as it reflects real-time changes and provides more flexibility.",
-    "slide_type": "text"
-  },
-  {
-    "title": "Recap: Kubernetes Service Discovery",
-    "content": "**Kubernetes service discovery** is a critical component for building scalable and resilient microservices. Here’s what we’ve learned:\n\n- Services act as **stable access points** for groups of dynamic pods\n- **DNS (via CoreDNS)** automatically manages service names and IP resolution\n- Environment variables offer basic discovery but are static\n- Internal load balancing ensures traffic is spread across healthy pods\n\nTogether, these features help applications find and communicate with each other **reliably**, even as the infrastructure changes underneath.",
-    "slide_type": "text"
+    "title": "Running the Docker Container",
+    "content": "After building the image, you can run it as a container using the following command:\n\n```bash\ndocker run -p 5000:5000 my-python-app\n```\n\n**Explanation**:\n- `docker run`: This command starts a new container from the specified image.\n- `-p 5000:5000`: The `-p` flag maps port 5000 on the host machine to port 5000 inside the container. This is useful if your application inside the container is listening on port 5000 (for example, a web application). You can access the application by visiting `http://localhost:5000` on your host machine.\n- `my-python-app`: This is the name of the image to use for creating the container. Docker will create a container based on the `my-python-app` image you built earlier.",
+    "slide_type": "code"
   }
 ]

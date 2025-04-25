@@ -1,57 +1,69 @@
 [
   {
-    "title": "Introduction to Service Discovery",
-    "content": "In Kubernetes, **service discovery** allows pods to find and communicate with each other without hardcoding IP addresses. It dynamically assigns and resolves service locations, making communication between microservices seamless.",
+    "title": "Introduction to Docker Images",
+    "content": "A **Docker image** is the blueprint of your application or service that includes the application code, libraries, dependencies, and configuration files. Images are lightweight, portable, and easy to distribute. They are built from a set of instructions written in a **Dockerfile**, and once an image is built, it can be used to run containers. Containers are instances of these images, providing an isolated environment where the application runs consistently across any system.",
     "slide_type": "text"
   },
   {
-    "title": "Why Service Discovery is Needed",
-    "content": "- Pods in Kubernetes are ephemeral and can be restarted anytime\n- IP addresses of pods change frequently\n- Manually updating IPs is impractical\n- Service discovery ensures **reliable communication** despite these changes",
+    "title": "What is a Dockerfile?",
+    "content": "A **Dockerfile** is a text file that contains a series of instructions that define how to build a Docker image. Each instruction in the Dockerfile corresponds to a step in the image creation process, allowing you to define everything from the base image to the application dependencies. By using Dockerfiles, you can ensure that your images are reproducible, maintainable, and can be shared across teams. A Dockerfile serves as the foundation for building consistent Docker images for development, testing, and production environments.",
     "slide_type": "text"
   },
   {
-    "title": "Kubernetes Services as Discovery Mechanism",
-    "content": "Kubernetes uses **Service objects** to abstract a group of pods and provide a stable IP and DNS name. This abstraction enables **automatic service discovery**.",
+    "title": "Basic Structure of a Dockerfile",
+    "content": "A Dockerfile is a script that consists of several key instructions, each with its own purpose. Here's a breakdown of the most common instructions:\n\n- **FROM**: Defines the base image from which the Docker image is built. This is the first instruction in the Dockerfile and serves as the foundation for the image. For example, `FROM ubuntu:latest` uses the latest Ubuntu image.\n- **RUN**: Executes commands inside the container during the build process. It's typically used to install packages or dependencies, for example, `RUN apt-get install -y python3`.\n- **COPY**: Copies files from your host machine into the container. You can copy application code or other configuration files, for example, `COPY . /app`.\n- **CMD**: Specifies the default command to run when the container starts. This is usually the command that runs your application, such as `CMD [\"python\", \"app.py\"]`.",
     "slide_type": "text"
   },
   {
-    "title": "Service Types in Kubernetes",
+    "title": "Example Dockerfile",
+    "content": "```Dockerfile\n# Use an official Python runtime as a base image\nFROM python:3.9-slim\n\n# Set the working directory inside the container\nWORKDIR /app\n\n# Copy the current directory contents into the container\nCOPY . /app\n\n# Install any needed packages specified in requirements.txt\nRUN pip install -r requirements.txt\n\n# Define the default command to run when the container starts\nCMD ['python', 'app.py']\n```",
+    "slide_type": "code"
+  },
+  {
+    "title": "Building the Docker Image",
+    "content": "To build a Docker image from the Dockerfile, you use the `docker build` command. This command reads the Dockerfile and executes its instructions to create an image. You can specify the name of the image using the `-t` option. The `.` at the end of the command indicates the current directory as the context, meaning Docker will look for the Dockerfile and any files to copy from the current directory.\n\nExample:\n\n```bash\ndocker build -t my-python-app .\n```",
+    "slide_type": "code"
+  },
+  {
+    "title": "Explanation of Build Command",
+    "content": "When you run `docker build`, Docker reads the Dockerfile step by step. Here's a breakdown of the command:\n\n- `docker build`: The base command to build an image.\n- `-t my-python-app`: Tags the image with the name `my-python-app`. The `-t` flag allows you to assign a name and optionally a version tag to your image.\n- `.`: Refers to the current directory. This is the context from which Docker will read the Dockerfile and copy files. If your Dockerfile and other necessary files are in a different directory, you can provide the path instead.",
+    "slide_type": "text"
+  },
+  {
+    "title": "Verifying the Image",
+    "content": "After building the image, you can verify it by listing all the available Docker images on your system. The command `docker images` will display the images along with their tags, sizes, and IDs.\n\nFor example:\n\n```bash\ndocker images\n```",
+    "slide_type": "code"
+  },
+  {
+    "title": "Running the Docker Container",
+    "content": "Once the image is built, you can run it as a container. The `docker run` command is used to start a container from the image. You can map ports from the container to your host machine, so you can access your application. The following command runs the container and maps port 5000 inside the container to port 5000 on your host machine:\n\n```bash\ndocker run -p 5000:5000 my-python-app\n```",
+    "slide_type": "code"
+  },
+  {
+    "title": "Table: Common Dockerfile Instructions",
     "content": [
-      { "Type": "ClusterIP", "Description": "Default type. Accessible only within the cluster." },
-      { "Type": "NodePort", "Description": "Exposes the service on a static port on each node." },
-      { "Type": "LoadBalancer", "Description": "Creates an external load balancer in supported cloud providers." },
-      { "Type": "ExternalName", "Description": "Maps service to an external DNS name." }
+      {
+        "instruction": "FROM",
+        "description": "Specifies the base image. This is the foundation of your image and can be any official or custom image."
+      },
+      {
+        "instruction": "RUN",
+        "description": "Executes a command inside the container. It is often used to install packages or set up the container environment."
+      },
+      {
+        "instruction": "COPY",
+        "description": "Copies files or directories from the host machine into the container's filesystem."
+      },
+      {
+        "instruction": "CMD",
+        "description": "Specifies the default command to run when the container starts. Only one CMD instruction can be present in a Dockerfile."
+      }
     ],
     "slide_type": "table"
   },
   {
-    "title": "DNS-Based Service Discovery",
-    "content": "Kubernetes runs a **DNS pod and service** by default which watches the API server for new services and creates DNS records for them.\n\nPods can reach a service using:\n- `service-name`\n- `service-name.namespace`\n- `service-name.namespace.svc.cluster.local`",
-    "slide_type": "text"
-  },
-  {
-    "title": "How Cluster DNS Resolves Services",
-    "content": "When a pod sends a request to a service name, **CoreDNS** resolves it to the ClusterIP of that service using internal DNS resolution.",
-    "slide_type": "text"
-  },
-  {
-    "title": "Example: Accessing a Service via DNS",
-    "content": "```bash\ncurl http://my-service.default.svc.cluster.local\n```",
-    "slide_type": "code"
-  },
-  {
-    "title": "Environment Variable Based Discovery",
-    "content": "When a pod starts, Kubernetes injects environment variables for all services available at that time.\n\nExample:\n- `MY_SERVICE_SERVICE_HOST=10.0.0.1`\n- `MY_SERVICE_SERVICE_PORT=80`",
-    "slide_type": "text"
-  },
-  {
-    "title": "Limitations of Environment Variable Discovery",
-    "content": "- Works only for services existing at pod startup\n- Doesn’t detect services added later\n- DNS-based discovery is preferred for dynamic environments",
-    "slide_type": "text"
-  },
-  {
-    "title": "Recap: Kubernetes Service Discovery",
-    "content": "- Uses **Service** abstraction for stable endpoints\n- Relies on **DNS (CoreDNS)** for name resolution\n- **Environment variables** provide static info at startup\n- **ClusterIP** is the most used service type for internal discovery",
+    "title": "Conclusion",
+    "content": "In this guide, we covered how to build a Docker image from a Dockerfile. We discussed the basic structure of a Dockerfile, common instructions like `FROM`, `RUN`, `COPY`, and `CMD`, and how to use the `docker build` and `docker run` commands to create and execute containers. Building Docker images allows you to ensure that your applications are portable and consistent across different environments, simplifying development and deployment workflows.",
     "slide_type": "text"
   }
 ]

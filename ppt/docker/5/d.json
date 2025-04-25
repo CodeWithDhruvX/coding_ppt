@@ -1,0 +1,61 @@
+[
+    {
+      "title": "Introduction to Docker Image",
+      "content": "**Docker Image** is a lightweight, standalone, and executable software package that encapsulates all the necessary components to run an application. This includes:\n\n- **Source code**: The actual code that defines the application's behavior.\n- **Dependencies**: Required packages, libraries, and tools to support the code.\n- **System tools \u0026 settings**: Such as environment variables and runtime configurations.\n\nThink of it like a snapshot of a system at a specific point, ensuring the same behavior anywhere it's deployed. This enables reproducible and portable software development.",
+      "slide_type": "text"
+    },
+    {
+      "title": "What is a Docker Image?",
+      "content": "A Docker Image is a **read-only template** used to create Docker containers. It is designed to be consistent and portable, ensuring the application runs the same regardless of the environment.\n\n- **Blueprint Analogy**: Just like a building blueprint defines how to construct a house, a Docker image defines how to set up a container.\n- **Read-only Nature**: Once built, images cannot be changed. Containers are writable instances of these images.\n- **Usage**: You can reuse, share, and deploy Docker images across teams, CI/CD pipelines, and cloud platforms.",
+      "slide_type": "text"
+    },
+    {
+      "title": "How Docker Images Work",
+      "content": "Docker images are composed of **stacked layers**, where each layer adds or modifies files and settings from the previous layer. This makes images highly **efficient and modular**.\n\n- **Layer Caching**: When building an image, Docker checks if a layer has been built previously and reuses it, reducing build times.\n- **Immutability**: Each layer is read-only and doesn't change, which ensures the image's integrity.\n- **Storage Efficiency**: Shared layers among different images prevent duplication, conserving disk space.",
+      "slide_type": "text"
+    },
+    {
+      "title": "Example Dockerfile",
+      "content": "```Dockerfile\n# Use an official Node.js image from Docker Hub\nFROM node:18\n\n# Set the working directory inside the container\nWORKDIR /app\n\n# Copy all files from the current host directory into the container's /app directory\nCOPY . .\n\n# Install all project dependencies listed in package.json\nRUN npm install\n\n# Set the default command to run when the container starts\nCMD [\"npm\", \"start\"]\n```\n\nThis Dockerfile creates a Docker image for a Node.js application. It starts with a base image, sets up a workspace, installs dependencies, and specifies the startup command. Each instruction forms a separate image layer, making the build efficient.",
+      "slide_type": "code"
+    },
+    {
+      "title": "Build and Run Image",
+      "content": "```bash\n# Step 1: Build a Docker image from the Dockerfile in the current directory\n# -t tags the image with a name (e.g., my-app)\ndocker build -t my-app .\n\n# Step 2: Run a container from the built image\n# -p maps container's port 3000 to host's port 3000\ndocker run -p 3000:3000 my-app\n```\n\nThese commands demonstrate the workflow of turning a Dockerfile into a runnable application. The image is built first using `docker build`, and then launched using `docker run`, making it accessible on your machine through the mapped port.",
+      "slide_type": "code"
+    },
+    {
+      "title": "Docker Image vs Container",
+      "content": [
+        {
+          "comparison": "Docker Image",
+          "description": "Blueprint or template to create a container. Immutable and read-only."
+        },
+        {
+          "comparison": "Docker Container",
+          "description": "Running instance of an image. Mutable and interactive."
+        }
+      ],
+      "slide_type": "table"
+    },
+    {
+      "title": "Common Docker Image Commands",
+      "content": "```bash\n# View all local Docker images\ndocker images\n\n# Remove an image by its image ID or name\ndocker rmi \u003cimage_id\u003e\n\n# Download an image from Docker Hub (public registry)\ndocker pull ubuntu\n\n# Tag an image to prepare it for pushing to a registry\ndocker tag my-app myrepo/my-app:v1\n```\n\nThese commands help you manage Docker images:\n- `docker images`: Lists all images stored locally.\n- `docker rmi`: Deletes unnecessary images to free up space.\n- `docker pull`: Downloads images from remote repositories.\n- `docker tag`: Adds a custom name and version to an image for organization or sharing.",
+      "slide_type": "code"
+    },
+    {
+      "title": "Key Benefits of Docker Images",
+      "content": "Docker images revolutionize the way software is developed, tested, and deployed by providing several key benefits:\n\n- **Portability**: Since images encapsulate the entire environment, they can run identically on any system with Docker installed.\n- **Consistency**: Developers, testers, and operators work in the same environment, reducing the 'works on my machine' problem.\n- **Efficiency**: Layered architecture and caching reduce redundant processing and accelerate builds.\n- **Version Control**: Docker images can be tagged and versioned, allowing easy rollbacks and environment snapshots.",
+      "slide_type": "text"
+    },
+    {
+      "title": "Where are Images Stored?",
+      "content": "Docker images can be stored **locally on your machine** or **pushed to remote repositories** such as Docker Hub or private registries:\n\n- **Local Storage**: When you build an image, Docker saves it on your system. You can see all local images with `docker images`.\n- **Remote Repositories**: Share and deploy images through platforms like Docker Hub, AWS ECR, or Google Container Registry.\n- **Naming Convention**: Images are typically named in the format `repository/image-name:tag` (e.g., `nginx:latest`).\n\nThis separation of storage helps streamline team collaboration and CI/CD automation.",
+      "slide_type": "text"
+    },
+    {
+      "title": "Conclusion",
+      "content": "Docker images serve as the **foundation of container-based development**. By packaging all application dependencies and configurations into a single image, they provide a consistent runtime environment across systems.\n\nUnderstanding Docker images is essential for:\n- Building efficient DevOps pipelines\n- Creating scalable microservices\n- Simplifying deployment and orchestration\n\nMastering how Docker images work will help you develop, ship, and run applications more reliably and efficiently.",
+      "slide_type": "text"
+    }
+  ]

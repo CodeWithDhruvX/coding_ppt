@@ -1,0 +1,69 @@
+[
+    {
+      "title": "Introduction to Docker Images",
+      "content": "A **Docker image** is the blueprint of your application or service that includes the application code, libraries, dependencies, and configuration files. Images are lightweight, portable, and easy to distribute. They are built from a set of instructions written in a **Dockerfile**, and once an image is built, it can be used to run containers. Containers are instances of these images, providing an isolated environment where the application runs consistently across any system.",
+      "slide_type": "text"
+    },
+    {
+      "title": "What is a Dockerfile?",
+      "content": "A **Dockerfile** is a text file that contains a series of instructions that define how to build a Docker image. Each instruction in the Dockerfile corresponds to a step in the image creation process, allowing you to define everything from the base image to the application dependencies. By using Dockerfiles, you can ensure that your images are reproducible, maintainable, and can be shared across teams. A Dockerfile serves as the foundation for building consistent Docker images for development, testing, and production environments.",
+      "slide_type": "text"
+    },
+    {
+      "title": "Basic Structure of a Dockerfile",
+      "content": "A Dockerfile is a script that consists of several key instructions, each with its own purpose. Here's a breakdown of the most common instructions:\n\n- **FROM**: Defines the base image from which the Docker image is built. This is the first instruction in the Dockerfile and serves as the foundation for the image. For example, `FROM ubuntu:latest` uses the latest Ubuntu image.\n- **RUN**: Executes commands inside the container during the build process. It's typically used to install packages or dependencies, for example, `RUN apt-get install -y python3`.\n- **COPY**: Copies files from your host machine into the container. You can copy application code or other configuration files, for example, `COPY . /app`.\n- **CMD**: Specifies the default command to run when the container starts. This is usually the command that runs your application, such as `CMD [\"python\", \"app.py\"]`.",
+      "slide_type": "text"
+    },
+    {
+      "title": "Example Dockerfile",
+      "content": "```Dockerfile\n# Use an official Python runtime as a base image\nFROM python:3.9-slim\n\n# Set the working directory inside the container\nWORKDIR /app\n\n# Copy the current directory contents into the container\nCOPY . /app\n\n# Install any needed packages specified in requirements.txt\nRUN pip install -r requirements.txt\n\n# Define the default command to run when the container starts\nCMD ['python', 'app.py']\n```\n\n**Explanation**:\n- `FROM python:3.9-slim`: This line tells Docker to use the official Python 3.9 slim image as the base for your container. This image comes with Python installed, making it easy to run Python applications.\n- `WORKDIR /app`: This command sets the working directory inside the container to `/app`. Any subsequent instructions, like `COPY` or `RUN`, will operate in this directory.\n- `COPY . /app`: Copies the contents of the current directory (where the Dockerfile is) to the `/app` directory inside the container.\n- `RUN pip install -r requirements.txt`: This installs the Python dependencies listed in the `requirements.txt` file. The `RUN` instruction executes this command inside the container during the image build process.\n- `CMD ['python', 'app.py']`: The `CMD` instruction defines the default command to run when the container starts. Here, it tells Docker to run `app.py` using Python.\n\nThis Dockerfile defines a simple image for a Python application.",
+      "slide_type": "code"
+    },
+    {
+      "title": "Building the Docker Image",
+      "content": "To build the Docker image from the Dockerfile, use the following command in the terminal:\n\n```bash\ndocker build -t my-python-app .\n```\n\n**Explanation**:\n- `docker build`: The `docker build` command is used to build a Docker image from the instructions in the Dockerfile.\n- `-t my-python-app`: The `-t` option tags the image with a name, which is `my-python-app` in this case. You can optionally add a version tag (e.g., `my-python-app:v1`).\n- `.`: The dot represents the build context, which is the current directory. This tells Docker to look for the Dockerfile and any other files needed to build the image in this directory. If your Dockerfile is in a different directory, you can specify that path instead.\n\nThis command will build the Docker image using the instructions in the Dockerfile and give it the tag `my-python-app`.",
+      "slide_type": "code"
+    },
+    {
+      "title": "Explanation of Build Command",
+      "content": "When you run `docker build`, Docker reads the Dockerfile step by step. Here's a breakdown of the command:\n\n- `docker build`: The base command to build an image.\n- `-t my-python-app`: Tags the image with the name `my-python-app`. The `-t` flag allows you to assign a name and optionally a version tag to your image.\n- `.`: Refers to the current directory. This is the context from which Docker will read the Dockerfile and copy files. If your Dockerfile and other necessary files are in a different directory, you can provide the path instead.",
+      "slide_type": "text"
+    },
+    {
+      "title": "Verifying the Image",
+      "content": "Once the image is built, you can verify that it was created successfully by running the following command:\n\n```bash\ndocker images\n```\n\n**Explanation**:\n- `docker images`: This command lists all the images available on your local machine. It shows information like the image name, tag, ID, size, and when it was created. You should see your `my-python-app` image in the list if the build was successful.\n\nYou can also search for a specific image by running `docker images my-python-app` to see if it is listed.",
+      "slide_type": "code"
+    },
+    {
+      "title": "Running the Docker Container",
+      "content": "After building the image, you can run it as a container using the following command:\n\n```bash\ndocker run -p 5000:5000 my-python-app\n```\n\n**Explanation**:\n- `docker run`: This command starts a new container from the specified image.\n- `-p 5000:5000`: The `-p` flag maps port 5000 on the host machine to port 5000 inside the container. This is useful if your application inside the container is listening on port 5000 (for example, a web application). You can access the application by visiting `http://localhost:5000` on your host machine.\n- `my-python-app`: This is the name of the image to use for creating the container. Docker will create a container based on the `my-python-app` image you built earlier.",
+      "slide_type": "code"
+    },
+    {
+      "title": "Table: Common Dockerfile Instructions",
+      "content": [
+        {
+          "description": "Specifies the base image. This is the foundation of your image and can be any official or custom image.",
+          "instruction": "FROM"
+        },
+        {
+          "description": "Executes a command inside the container. It is often used to install packages or set up the container environment.",
+          "instruction": "RUN"
+        },
+        {
+          "description": "Copies files or directories from the host machine into the container's filesystem.",
+          "instruction": "COPY"
+        },
+        {
+          "description": "Specifies the default command to run when the container starts. Only one CMD instruction can be present in a Dockerfile.",
+          "instruction": "CMD"
+        }
+      ],
+      "slide_type": "table"
+    },
+    {
+      "title": "Conclusion",
+      "content": "In this guide, we covered how to build a Docker image from a Dockerfile. We discussed the basic structure of a Dockerfile, common instructions like `FROM`, `RUN`, `COPY`, and `CMD`, and how to use the `docker build` and `docker run` commands to create and execute containers. Building Docker images allows you to ensure that your applications are portable and consistent across different environments, simplifying development and deployment workflows.",
+      "slide_type": "text"
+    }
+  ]

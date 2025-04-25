@@ -1,0 +1,73 @@
+[
+    {
+      "title": "Introduction to Docker vs Virtual Machine",
+      "content": "Understanding the difference between **Docker** and a **Virtual Machine (VM)** is essential for modern software development and deployment. Both are technologies used to create isolated environments, but they differ significantly in terms of architecture, performance, and resource usage. Developers often choose between them based on their needs for speed, scalability, compatibility, or security.",
+      "slide_type": "text"
+    },
+    {
+      "title": "What is Docker?",
+      "content": "**Docker** is a containerization platform that allows developers to package applications along with all their dependencies into a single unit called a **container**. These containers run directly on the host operating system's kernel, which makes them extremely lightweight and fast. Docker helps eliminate the 'it works on my machine' problem by ensuring consistency across development, testing, and production environments. It is ideal for microservices, scalable deployments, and agile workflows.",
+      "slide_type": "text"
+    },
+    {
+      "title": "What is a Virtual Machine?",
+      "content": "A **Virtual Machine (VM)** emulates a complete physical computer. It runs a full operating system (called a guest OS) on top of a **hypervisor**, which itself runs on the host OS. Each VM includes virtual hardware such as CPU, memory, disk, and network interfaces. This makes VMs heavier and slower to start, but they provide strong isolation and are suitable for running different OS environments on a single physical machine.",
+      "slide_type": "text"
+    },
+    {
+      "title": "Architecture Comparison",
+      "content": [
+        {
+          "Component": "Host OS",
+          "Docker": "Shared with containers",
+          "Virtual Machine": "Separate for each VM"
+        },
+        {
+          "Component": "Guest OS",
+          "Docker": "Not required (uses host OS kernel)",
+          "Virtual Machine": "Required (full OS installed)"
+        },
+        {
+          "Component": "Startup Time",
+          "Docker": "Seconds",
+          "Virtual Machine": "Minutes"
+        },
+        {
+          "Component": "Resource Usage",
+          "Docker": "Lightweight, low overhead",
+          "Virtual Machine": "Heavy, more resource-intensive"
+        },
+        {
+          "Component": "Isolation",
+          "Docker": "Process-level",
+          "Virtual Machine": "Full system-level"
+        }
+      ],
+      "slide_type": "table"
+    },
+    {
+      "title": "Docker Container Example",
+      "content": "```bash\n# This command runs an Nginx web server container in detached mode (-d)\n# and maps port 80 on the host to port 80 inside the container\n# nginx is the official image pulled from Docker Hub\ndocker run -d -p 80:80 nginx\n```\n\nThis command demonstrates how easy it is to spin up a web server using Docker. Containers are lightweight, so the Nginx server starts in seconds. You can access it in your browser via `http://localhost`.",
+      "slide_type": "code"
+    },
+    {
+      "title": "Virtual Machine Setup Example",
+      "content": "```bash\n# This command creates a new virtual machine named 'MyVM'\n# using VirtualBox's command-line tool VBoxManage\nvboxmanage createvm --name MyVM --register\n```\n\nThis is the first step in setting up a VM. You would still need to configure CPU, memory, and attach a virtual disk and ISO for installation. VMs offer complete OS-level virtualization but require significantly more resources and manual setup compared to Docker containers.",
+      "slide_type": "code"
+    },
+    {
+      "title": "Use Cases: When to Use Docker",
+      "content": "**Docker** is best used in scenarios where speed, portability, and resource efficiency are crucial. It shines in:\n\n- **Microservices architecture**: Containers help break down applications into smaller, independently deployable services.\n- **CI/CD pipelines**: Docker accelerates integration and delivery cycles with reproducible builds.\n- **Lightweight deployment**: Containers start in seconds, making them perfect for scalable applications.\n- **Development environments**: Developers can use containers to quickly replicate production environments on their machines.",
+      "slide_type": "text"
+    },
+    {
+      "title": "Use Cases: When to Use VMs",
+      "content": "**Virtual Machines** are more suitable when complete isolation is required or when different operating systems need to run on the same hardware. They are ideal for:\n\n- **Running multiple OSes**: VMs allow Linux, Windows, or macOS to run simultaneously on the same host.\n- **Full system-level isolation**: Useful in environments that demand strong security boundaries.\n- **Legacy applications**: Some older apps may require a specific OS version that can't run in containers.\n- **Complex infrastructure simulations**: Ideal for simulating real-world deployments that require network-level virtualization.",
+      "slide_type": "text"
+    },
+    {
+      "title": "Key Takeaways",
+      "content": "- **Docker** provides lightweight, fast, and portable containers that are excellent for modern, cloud-native development.\n- **VMs** offer strong isolation and are suitable when full OS emulation is necessary.\n- Use **Docker** for fast deployment, microservices, and DevOps workflows.\n- Use **VMs** when dealing with legacy software, OS-level differences, or when stronger isolation is needed.\n\nBy understanding their strengths and trade-offs, you can choose the right tool for your specific use case.",
+      "slide_type": "text"
+    }
+  ]

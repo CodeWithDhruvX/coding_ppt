@@ -1,0 +1,103 @@
+[
+    {
+      "title": "Introduction to Docker Hub",
+      "content": "**Docker Hub** is a cloud-based registry service provided by Docker for finding, storing, and sharing container images. It acts as the default repository for Docker images, where users can share images publicly or privately. Docker Hub also offers additional features like automated builds, webhooks, and more. This is especially useful for developers who need to share their applications or environments in a consistent way across different systems or teams.",
+      "slide_type": "text"
+    },
+    {
+      "title": "Why Use Docker Hub?",
+      "content": "- **Share container images publicly or privately**: Docker Hub allows users to upload and share their Docker images. Public repositories can be accessed by anyone, while private repositories are limited to specified users.\n- **Discover official and community images**: Docker Hub hosts a wide range of official images for popular software like `nginx`, `mysql`, and `redis`, as well as community-contributed images.\n- **Automate builds and deployments**: Docker Hub supports Continuous Integration/Continuous Deployment (CI/CD) workflows. It can trigger builds automatically based on changes to a repository or codebase.\n- **Integrate with CI/CD pipelines**: You can integrate Docker Hub with tools like Jenkins, GitLab, or GitHub Actions to automate the process of building, testing, and deploying images.",
+      "slide_type": "text"
+    },
+    {
+      "title": "How Docker Hub Works",
+      "content": "- **Developers push images to Docker Hub**: When you build a Docker image locally, you can push it to Docker Hub, making it available for others to download and use.\n- **Users pull images from Docker Hub**: Other users can pull these images onto their machines and run them as containers, enabling easy sharing of applications and environments.\n- **Repositories organize images**: Images on Docker Hub are stored in repositories. Each repository can contain multiple versions of the image, identified by tags like `latest`, `v1.0`, `stable`, etc.\n- **Tags represent different versions**: When you push an image to Docker Hub, you can specify a tag to differentiate between different versions of the image. For example, a `v1.0` tag might represent the first stable release of an application.",
+      "slide_type": "text"
+    },
+    {
+      "title": "Docker Hub vs Docker Registry",
+      "content": [
+        {
+          "Description": "Public cloud-based registry provided by Docker, Inc., with a large repository of images available for public and private use.",
+          "Feature": "Docker Hub"
+        },
+        {
+          "Description": "A self-hosted registry that allows organizations to manage their own private image storage. It is flexible and can be customized for specific security and access needs.",
+          "Feature": "Docker Registry"
+        },
+        {
+          "Description": "Docker Hub is accessible via the public URL hub.docker.com, while Docker Registry can be deployed on a private server for internal use.",
+          "Feature": "Access"
+        },
+        {
+          "Description": "Docker Hub is best for sharing and discovering public images, while Docker Registry is more suitable for enterprises that require private control over their container images.",
+          "Feature": "Use Case"
+        }
+      ],
+      "slide_type": "table"
+    },
+    {
+      "title": "Basic Docker Hub Commands",
+      "content": "```bash\n# Login to Docker Hub\n# This command will prompt you for your Docker Hub username and password.\n# It authenticates your local Docker client with Docker Hub, allowing you to push or pull images.\n\ndocker login\n\n# Pull an image from Docker Hub\n# This command fetches the latest version of the 'nginx' image from Docker Hub.\n# Docker will look for the image in the local cache first. If not found, it pulls from Docker Hub.\n\ndocker pull nginx\n\n# Tag an image\n# After building your local image, you can tag it for uploading to Docker Hub.\n# Here, we tag 'myapp' with a repository name 'myusername/myapp' and the tag 'latest'.\n# This will associate your local image with your Docker Hub repository.\n\ndocker tag myapp myusername/myapp:latest\n\n# Push an image to Docker Hub\n# This command uploads your locally tagged image to Docker Hub.\n# The tag 'myusername/myapp:latest' must match the name and tag of a repository you own.\n# If the repository does not exist, Docker will create it for you.\n\ndocker push myusername/myapp:latest\n```",
+      "slide_type": "code"
+    },
+    {
+      "title": "Docker Hub Account Types",
+      "content": [
+        {
+          "Account Type": "Free",
+          "Features": "Allows unlimited public repositories and up to 1 private repository. The free account also has a limited number of pulls per day for public repositories."
+        },
+        {
+          "Account Type": "Pro",
+          "Features": "Provides unlimited private repositories, higher pull rates, and priority support. Pro users also get access to advanced features like team collaboration tools."
+        },
+        {
+          "Account Type": "Team",
+          "Features": "Provides a team-based approach, with role-based access to private repositories and enhanced security features like SSO integration."
+        },
+        {
+          "Account Type": "Enterprise",
+          "Features": "Designed for large organizations, offering advanced security features, audit logs, and integration with enterprise systems. Enterprise plans also include support for self-hosted Docker Registries."
+        }
+      ],
+      "slide_type": "table"
+    },
+    {
+      "title": "Official Images on Docker Hub",
+      "content": "- **Official Images** are images maintained by Docker or trusted partners. They are typically the go-to choice for running popular applications in a containerized environment.\n- They follow best practices in terms of security, stability, and performance. These images are tested and updated regularly to ensure reliability.\n- **Prefix `library/`**: Official images are often prefixed with `library/` (e.g., `library/nginx`), distinguishing them from community-contributed images.\n- Official images are widely adopted and serve as a solid foundation for many applications, from web servers to databases.",
+      "slide_type": "text"
+    },
+    {
+      "title": "Best Practices for Docker Hub",
+      "content": "- **Use meaningful tags**: Tags should clearly represent the version or state of the image, such as `v1.0`, `stable`, or `latest`. Avoid using ambiguous tags like `latest` for production environments.\n- **Keep images lightweight**: Minimize the size of your images by avoiding unnecessary dependencies and files. This improves performance and reduces the attack surface.\n- **Regularly update images**: Docker images can quickly become outdated due to security vulnerabilities or new features. It's essential to stay up to date with the latest releases of your software and rebuild your images accordingly.\n- **Document usage**: A well-written README file in your repository will help users understand how to use the image and what dependencies are required. Include instructions on how to run the container and configure it for different use cases.",
+      "slide_type": "text"
+    },
+    {
+      "title": "Alternatives to Docker Hub",
+      "content": [
+        {
+          "Description": "A container image service integrated with GitHub repositories. It allows developers to store and share container images alongside their code.",
+          "Registry": "GitHub Container Registry"
+        },
+        {
+          "Description": "Amazon Elastic Container Registry is a fully managed Docker container registry provided by AWS, offering private repositories and deep integration with AWS services.",
+          "Registry": "Amazon ECR"
+        },
+        {
+          "Description": "Google Cloud's container registry service that allows users to store container images, with tight integration into Google's cloud ecosystem.",
+          "Registry": "Google Artifact Registry"
+        },
+        {
+          "Description": "An open-source registry that provides high-availability and security for storing Docker images. It's designed for enterprises that require private image storage with additional features like vulnerability scanning and role-based access control.",
+          "Registry": "Harbor"
+        }
+      ],
+      "slide_type": "table"
+    },
+    {
+      "title": "Conclusion",
+      "content": "Docker Hub plays a central role in the Docker ecosystem, allowing developers to share and store container images. Whether you are an individual developer or part of a larger organization, Docker Hub provides a reliable and easy-to-use solution for managing containerized applications. Its integration with CI/CD pipelines and the availability of official and community images make it an essential tool in modern software development and DevOps workflows.",
+      "slide_type": "text"
+    }
+  ]

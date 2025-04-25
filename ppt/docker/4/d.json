@@ -1,0 +1,68 @@
+[
+    {
+      "title": "Introduction to Docker Containers",
+      "content": "A **Docker container** is a lightweight, standalone, and executable unit of software. It packages everything needed to run an application—such as code, runtime, system tools, system libraries, and settings—so that the application runs quickly and reliably across different computing environments. Containers are based on images, and multiple containers can run from the same image simultaneously.",
+      "slide_type": "text"
+    },
+    {
+      "title": "Why Use Docker Containers?",
+      "content": "- **Consistency**: Ensures the application behaves the same regardless of the environment (development, testing, or production).\n- **Speed**: Containers start almost instantly, improving development workflows and deployment speed.\n- **Lightweight**: Uses system resources more efficiently compared to traditional virtual machines.\n- **Isolation**: Applications run in isolated containers, reducing the risk of conflicts between software components.\n- **Portability**: Containers can be easily moved between clouds or systems.",
+      "slide_type": "text"
+    },
+    {
+      "title": "Container vs Virtual Machine",
+      "content": [
+        {
+          "Aspect": "Architecture",
+          "Container": "Shares host OS kernel",
+          "Virtual Machine": "Includes full OS"
+        },
+        {
+          "Aspect": "Size",
+          "Container": "Megabytes",
+          "Virtual Machine": "Gigabytes"
+        },
+        {
+          "Aspect": "Startup Time",
+          "Container": "Seconds",
+          "Virtual Machine": "Minutes"
+        },
+        {
+          "Aspect": "Performance",
+          "Container": "Near-native",
+          "Virtual Machine": "Overhead due to OS"
+        }
+      ],
+      "slide_type": "table"
+    },
+    {
+      "title": "How Containers Work",
+      "content": "Containers work by using features of the host operating system such as **namespaces** and **control groups (cgroups)** to provide process isolation and resource limits. Unlike virtual machines, containers do not require a separate OS kernel. Instead, they share the host OS kernel while maintaining isolation from other containers. This allows containers to be lightweight and fast. Docker uses a client-server architecture: the Docker client communicates with the Docker daemon, which does the heavy lifting of building, running, and managing containers.",
+      "slide_type": "text"
+    },
+    {
+      "title": "Docker Container Example",
+      "content": "To run a simple Linux-based container using Docker, follow these steps:\n\n```bash\n# Pull a minimal Linux image from Docker Hub\ndocker pull alpine\n```\nThis command downloads the `alpine` image from Docker Hub. Alpine is a very small Linux distribution, ideal for containers.\n\n```bash\n# Run a container from the Alpine image with interactive terminal\ndocker run -it alpine /bin/sh\n```\nThis command starts a container from the `alpine` image, gives you an interactive shell, and allows you to explore the environment inside the container.",
+      "slide_type": "code"
+    },
+    {
+      "title": "Docker Container Lifecycle",
+      "content": "The container lifecycle consists of several stages:\n\n- **Create**: A container is created from a Docker image using `docker create`.\n- **Start**: The container starts running and executes its specified command.\n- **Stop**: The running process inside the container is terminated gracefully.\n- **Restart**: A stopped container can be restarted without re-creating it.\n- **Remove**: Containers that are no longer needed can be deleted using `docker rm`. Understanding this lifecycle helps manage containers efficiently and automate workflows using tools like Docker Compose or Kubernetes.",
+      "slide_type": "text"
+    },
+    {
+      "title": "Benefits of Containers",
+      "content": "- **Portability**: Containers run the same regardless of the environment, which means fewer bugs and easier deployments.\n- **Efficiency**: Containers are much smaller in size than virtual machines and use fewer resources, allowing more applications to run on the same hardware.\n- **Isolation**: Applications and services are isolated from each other, which enhances security and simplifies debugging.\n- **Scalability**: Containers can be easily replicated or scaled across a cluster, making them ideal for microservices and distributed systems.\n- **DevOps Friendly**: Containers streamline CI/CD pipelines and support infrastructure-as-code practices.",
+      "slide_type": "text"
+    },
+    {
+      "title": "Common Docker Commands",
+      "content": "Here are some commonly used Docker commands to manage containers:\n\n```bash\n# List all running containers\ndocker ps\n```\nDisplays active containers along with their IDs, names, status, and ports.\n\n```bash\n# Start a container by ID or name\ndocker start \u003ccontainer_id\u003e\n```\nUsed to start an existing stopped container.\n\n```bash\n# Stop a running container\ndocker stop \u003ccontainer_id\u003e\n```\nGracefully shuts down the container process.\n\n```bash\n# Remove a stopped container\ndocker rm \u003ccontainer_id\u003e\n```\nDeletes the container from your system to free up resources. You can only remove containers that are stopped.",
+      "slide_type": "code"
+    },
+    {
+      "title": "Summary",
+      "content": "Docker containers have revolutionized the way software is developed, tested, and deployed. They provide a consistent, portable, and lightweight runtime environment. By encapsulating everything the software needs to run, containers eliminate the \"it works on my machine\" problem. Their speed, resource efficiency, and compatibility with orchestration tools like Kubernetes make them a cornerstone in modern DevOps and cloud-native architectures.",
+      "slide_type": "text"
+    }
+  ]
