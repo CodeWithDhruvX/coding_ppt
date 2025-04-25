@@ -10,6 +10,10 @@
     "slide_code": {
       "title": "Slide Type Code",
       "prompt": "add depth information in the content where slide_type is code"
+    },
+    "slide_hindi_language":{
+      "title": "Slide Hindi Language",
+      "prompt": "Convert this text into Hindi where most of the explanation is in Hindi, but key technical terms or concepts should remain in English."
     }
   }
   
