@@ -1,0 +1,82 @@
+[
+    {
+      "title": "Introduction to Docker Containers",
+      "content": "**Docker containers** are lightweight, portable environments that allow you to package applications along with all their dependencies. They ensure that software runs the same way across different machines—be it your local development environment or a production server. Containers are isolated from each other and the host system, making them ideal for microservices, testing, and consistent deployment.",
+      "slide_type": "text"
+    },
+    {
+      "title": "What Does 'Running a Container' Mean?",
+      "content": "When you 'run a container' in Docker, you are launching a live instance of a Docker image. This means you're starting a new process based on a pre-built image which contains your application and its environment. The container runs in a sandboxed environment with its own file system, network interfaces, and resources. It's similar to running a mini virtual machine, but it's more efficient and faster because it shares the host OS kernel.",
+      "slide_type": "text"
+    },
+    {
+      "title": "Docker Run Command Syntax",
+      "content": "```bash\ndocker run [OPTIONS] IMAGE [COMMAND] [ARG...]\n```\n- **OPTIONS**: Various flags to control how the container behaves (e.g., `-d` for detached mode, `-p` for port mapping)\n- **IMAGE**: The Docker image to base the container on (e.g., `nginx`, `ubuntu`)\n- **COMMAND [ARG...]**: Optional command to run inside the container (e.g., `bash`, `npm start`)\n\nThis syntax gives you fine-grained control over how the container is executed.",
+      "slide_type": "code"
+    },
+    {
+      "title": "Basic Example: Run a Container",
+      "content": "```bash\ndocker run hello-world\n```\nThis command pulls the `hello-world` image from Docker Hub (if not already available) and runs a small container that outputs a welcome message. It’s the simplest way to confirm Docker is installed and functioning correctly on your system.",
+      "slide_type": "code"
+    },
+    {
+      "title": "Running Containers in Interactive Mode",
+      "content": "```bash\ndocker run -it ubuntu\n```\n- The `-i` flag keeps STDIN open even if not attached.\n- The `-t` flag allocates a pseudo-TTY (terminal interface).\n\nTogether, `-it` allows you to interact with the container via command line (like using Bash). In this example, you're dropped into an Ubuntu container where you can run Linux commands as if you're on a regular Ubuntu system.",
+      "slide_type": "code"
+    },
+    {
+      "title": "Running in Detached Mode",
+      "content": "```bash\ndocker run -d nginx\n```\n- The `-d` flag runs the container in the background (detached mode).\n- The `nginx` image starts a web server by default.\n\nThis is useful for running long-lived services, like a web server or database, without tying up your terminal. You can manage or stop it later using Docker commands.",
+      "slide_type": "code"
+    },
+    {
+      "title": "Common Docker Run Options",
+      "content": [
+        {
+          "Description": "Run container in background (detached mode)",
+          "Option": "-d"
+        },
+        {
+          "Description": "Map host port to container port",
+          "Option": "-p"
+        },
+        {
+          "Description": "Mount a volume",
+          "Option": "-v"
+        },
+        {
+          "Description": "Assign a name to the container",
+          "Option": "--name"
+        },
+        {
+          "Description": "Set environment variables",
+          "Option": "-e"
+        },
+        {
+          "Description": "Remove container after it exits",
+          "Option": "--rm"
+        }
+      ],
+      "slide_type": "table"
+    },
+    {
+      "title": "Naming and Port Mapping",
+      "content": "```bash\ndocker run --name webserver -p 8080:80 nginx\n```\n- `--name webserver` makes it easier to refer to the container in future commands (like `docker stop webserver`).\n- `-p 8080:80` maps port 8080 on your host to port 80 inside the container, which is the default port where `nginx` serves content.\n\nThis setup allows you to access the nginx server running inside the container by visiting `http://localhost:8080` on your host machine.",
+      "slide_type": "code"
+    },
+    {
+      "title": "View Running Containers",
+      "content": "```bash\ndocker ps\n```\nThis command lists all currently running containers, showing details like container ID, image used, when it started, exposed ports, and names.\n\nTo see all containers (including stopped ones), use:\n```bash\ndocker ps -a\n```",
+      "slide_type": "code"
+    },
+    {
+      "title": "Stop and Remove a Container",
+      "content": "```bash\n# Stop the container\ndocker stop webserver\n\n# Remove the container\ndocker rm webserver\n```\n- `docker stop` sends a SIGTERM signal to gracefully shut down the container.\n- `docker rm` deletes the container instance from your system (but not the image).\n\nThese steps are essential to clean up unused containers and free up system resources.",
+      "slide_type": "code"
+    },
+    {
+      "title": "Summary",
+      "content": "- The `docker run` command is the core way to launch containers.\n- You can run containers interactively (`-it`) or in the background (`-d`) depending on your use case.\n- By naming containers and mapping ports, you make them easier to manage and access.\n- Docker provides a powerful, isolated environment to run applications consistently across systems—helping in CI/CD, testing, development, and production deployment workflows.",
+      "slide_type": "text"
+    }
+  ]

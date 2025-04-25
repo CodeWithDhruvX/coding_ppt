@@ -1,22 +1,53 @@
 [
   {
-    "title": "Example Dockerfile",
-    "content": "```Dockerfile\n# Use an official Python runtime as a base image\nFROM python:3.9-slim\n\n# Set the working directory inside the container\nWORKDIR /app\n\n# Copy the current directory contents into the container\nCOPY . /app\n\n# Install any needed packages specified in requirements.txt\nRUN pip install -r requirements.txt\n\n# Define the default command to run when the container starts\nCMD ['python', 'app.py']\n```\n\n**Explanation**:\n- `FROM python:3.9-slim`: This line tells Docker to use the official Python 3.9 slim image as the base for your container. This image comes with Python installed, making it easy to run Python applications.\n- `WORKDIR /app`: This command sets the working directory inside the container to `/app`. Any subsequent instructions, like `COPY` or `RUN`, will operate in this directory.\n- `COPY . /app`: Copies the contents of the current directory (where the Dockerfile is) to the `/app` directory inside the container.\n- `RUN pip install -r requirements.txt`: This installs the Python dependencies listed in the `requirements.txt` file. The `RUN` instruction executes this command inside the container during the image build process.\n- `CMD ['python', 'app.py']`: The `CMD` instruction defines the default command to run when the container starts. Here, it tells Docker to run `app.py` using Python.\n\nThis Dockerfile defines a simple image for a Python application.",
+    "title": "Introduction to Stopping Containers",
+    "content": "When working with Docker, it's common to run containers for various applications or services. However, there are situations where you need to stop a running container—either to free up resources, apply changes, or shut down the service. Docker provides a convenient way to stop containers without removing them. This operation ensures that your container can be resumed later without data loss, making it a non-destructive action.",
+    "slide_type": "text"
+  },
+  {
+    "title": "Basic Stop Command",
+    "content": "```bash\ndocker stop <container_name_or_id>\n```\n\nThis command gracefully stops a running container. Replace `<container_name_or_id>` with either the container’s name or its unique ID. Docker first sends a SIGTERM signal to allow the container’s main process to shut down properly. If the process does not terminate within the timeout (default is 10 seconds), Docker then sends a SIGKILL signal to force stop it.",
     "slide_type": "code"
   },
   {
-    "title": "Building the Docker Image",
-    "content": "To build the Docker image from the Dockerfile, use the following command in the terminal:\n\n```bash\ndocker build -t my-python-app .\n```\n\n**Explanation**:\n- `docker build`: The `docker build` command is used to build a Docker image from the instructions in the Dockerfile.\n- `-t my-python-app`: The `-t` option tags the image with a name, which is `my-python-app` in this case. You can optionally add a version tag (e.g., `my-python-app:v1`).\n- `.`: The dot represents the build context, which is the current directory. This tells Docker to look for the Dockerfile and any other files needed to build the image in this directory. If your Dockerfile is in a different directory, you can specify that path instead.\n\nThis command will build the Docker image using the instructions in the Dockerfile and give it the tag `my-python-app`.",
+    "title": "How It Works",
+    "content": "The `docker stop` command works by sending a termination signal (SIGTERM) to the main process running inside the container. This allows the process to perform any cleanup tasks, such as closing files, saving state, or gracefully shutting down services. If the container doesn't stop within a default timeout period (usually 10 seconds), Docker sends a SIGKILL signal to forcefully terminate it. This two-step process is important to prevent data corruption and ensure proper resource cleanup.",
+    "slide_type": "text"
+  },
+  {
+    "title": "Stop vs Kill",
+    "content": [
+      {
+        "Command": "docker stop",
+        "Signal Sent": "SIGTERM, then SIGKILL after timeout",
+        "Graceful Shutdown": "Yes"
+      },
+      {
+        "Command": "docker kill",
+        "Signal Sent": "SIGKILL immediately",
+        "Graceful Shutdown": "No"
+      }
+    ],
+    "slide_type": "table"
+  },
+  {
+    "title": "Custom Timeout Example",
+    "content": "```bash\ndocker stop -t 5 <container_name_or_id>\n```\n\nIn this example, the `-t 5` option sets a timeout of 5 seconds. Docker will wait 5 seconds after sending the SIGTERM signal before sending SIGKILL. This is useful when you know your container should shut down quickly, or if you want to shorten the default timeout period to prevent long delays.",
     "slide_type": "code"
   },
   {
-    "title": "Verifying the Image",
-    "content": "Once the image is built, you can verify that it was created successfully by running the following command:\n\n```bash\ndocker images\n```\n\n**Explanation**:\n- `docker images`: This command lists all the images available on your local machine. It shows information like the image name, tag, ID, size, and when it was created. You should see your `my-python-app` image in the list if the build was successful.\n\nYou can also search for a specific image by running `docker images my-python-app` to see if it is listed.",
+    "title": "Stopping All Running Containers",
+    "content": "```bash\ndocker stop $(docker ps -q)\n```\n\nThis command uses command substitution to first list all running container IDs with `docker ps -q`, and then passes them to `docker stop`. It’s a quick and powerful way to shut down all running containers in a single line. Ideal for cleaning up your system or preparing for maintenance.",
     "slide_type": "code"
   },
   {
-    "title": "Running the Docker Container",
-    "content": "After building the image, you can run it as a container using the following command:\n\n```bash\ndocker run -p 5000:5000 my-python-app\n```\n\n**Explanation**:\n- `docker run`: This command starts a new container from the specified image.\n- `-p 5000:5000`: The `-p` flag maps port 5000 on the host machine to port 5000 inside the container. This is useful if your application inside the container is listening on port 5000 (for example, a web application). You can access the application by visiting `http://localhost:5000` on your host machine.\n- `my-python-app`: This is the name of the image to use for creating the container. Docker will create a container based on the `my-python-app` image you built earlier.",
-    "slide_type": "code"
+    "title": "Common Use Cases",
+    "content": "Stopping a container is useful in many scenarios:\n\n- **Before maintenance:** Stop containers to apply system updates or software patches.\n- **Testing environments:** Temporarily halt containers to switch configurations or test multiple setups.\n- **Resource optimization:** Free up system resources without deleting container data.\n- **Application restart:** After updating configuration files, stopping and restarting a container ensures the changes are loaded.\n\nUsing `docker stop` keeps your container’s state and volumes intact, so it can be started again later without losing data.",
+    "slide_type": "text"
+  },
+  {
+    "title": "Recap",
+    "content": "To manage your Docker containers effectively, understanding how to stop them properly is key:\n\n- `docker stop` lets you shut down containers gracefully using SIGTERM.\n- Avoid `docker kill` unless you need an immediate termination with no cleanup.\n- Use `docker stop -t` to customize the timeout duration.\n- You can also stop all running containers at once for quick shutdown.\n\nBy mastering these commands, you'll ensure smoother development workflows and more reliable containerized applications.",
+    "slide_type": "text"
   }
 ]

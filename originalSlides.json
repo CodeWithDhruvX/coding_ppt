@@ -1,69 +1,53 @@
 [
   {
-    "title": "Introduction to Docker Images",
-    "content": "A **Docker image** is the blueprint of your application or service that includes the application code, libraries, dependencies, and configuration files. Images are lightweight, portable, and easy to distribute. They are built from a set of instructions written in a **Dockerfile**, and once an image is built, it can be used to run containers. Containers are instances of these images, providing an isolated environment where the application runs consistently across any system.",
+    "title": "Introduction to Stopping Containers",
+    "content": "When working with Docker, it's common to run containers for various applications or services. However, there are situations where you need to stop a running container—either to free up resources, apply changes, or shut down the service. Docker provides a convenient way to stop containers without removing them. This operation ensures that your container can be resumed later without data loss, making it a non-destructive action.",
     "slide_type": "text"
   },
   {
-    "title": "What is a Dockerfile?",
-    "content": "A **Dockerfile** is a text file that contains a series of instructions that define how to build a Docker image. Each instruction in the Dockerfile corresponds to a step in the image creation process, allowing you to define everything from the base image to the application dependencies. By using Dockerfiles, you can ensure that your images are reproducible, maintainable, and can be shared across teams. A Dockerfile serves as the foundation for building consistent Docker images for development, testing, and production environments.",
+    "title": "Basic Stop Command",
+    "content": "```bash\ndocker stop \u003ccontainer_name_or_id\u003e\n```",
+    "slide_type": "code"
+  },
+  {
+    "title": "How It Works",
+    "content": "The `docker stop` command works by sending a termination signal (SIGTERM) to the main process running inside the container. This allows the process to perform any cleanup tasks, such as closing files, saving state, or gracefully shutting down services. If the container doesn't stop within a default timeout period (usually 10 seconds), Docker sends a SIGKILL signal to forcefully terminate it. This two-step process is important to prevent data corruption and ensure proper resource cleanup.",
     "slide_type": "text"
   },
   {
-    "title": "Basic Structure of a Dockerfile",
-    "content": "A Dockerfile is a script that consists of several key instructions, each with its own purpose. Here's a breakdown of the most common instructions:\n\n- **FROM**: Defines the base image from which the Docker image is built. This is the first instruction in the Dockerfile and serves as the foundation for the image. For example, `FROM ubuntu:latest` uses the latest Ubuntu image.\n- **RUN**: Executes commands inside the container during the build process. It's typically used to install packages or dependencies, for example, `RUN apt-get install -y python3`.\n- **COPY**: Copies files from your host machine into the container. You can copy application code or other configuration files, for example, `COPY . /app`.\n- **CMD**: Specifies the default command to run when the container starts. This is usually the command that runs your application, such as `CMD [\"python\", \"app.py\"]`.",
-    "slide_type": "text"
-  },
-  {
-    "title": "Example Dockerfile",
-    "content": "```Dockerfile\n# Use an official Python runtime as a base image\nFROM python:3.9-slim\n\n# Set the working directory inside the container\nWORKDIR /app\n\n# Copy the current directory contents into the container\nCOPY . /app\n\n# Install any needed packages specified in requirements.txt\nRUN pip install -r requirements.txt\n\n# Define the default command to run when the container starts\nCMD ['python', 'app.py']\n```",
-    "slide_type": "code"
-  },
-  {
-    "title": "Building the Docker Image",
-    "content": "To build a Docker image from the Dockerfile, you use the `docker build` command. This command reads the Dockerfile and executes its instructions to create an image. You can specify the name of the image using the `-t` option. The `.` at the end of the command indicates the current directory as the context, meaning Docker will look for the Dockerfile and any files to copy from the current directory.\n\nExample:\n\n```bash\ndocker build -t my-python-app .\n```",
-    "slide_type": "code"
-  },
-  {
-    "title": "Explanation of Build Command",
-    "content": "When you run `docker build`, Docker reads the Dockerfile step by step. Here's a breakdown of the command:\n\n- `docker build`: The base command to build an image.\n- `-t my-python-app`: Tags the image with the name `my-python-app`. The `-t` flag allows you to assign a name and optionally a version tag to your image.\n- `.`: Refers to the current directory. This is the context from which Docker will read the Dockerfile and copy files. If your Dockerfile and other necessary files are in a different directory, you can provide the path instead.",
-    "slide_type": "text"
-  },
-  {
-    "title": "Verifying the Image",
-    "content": "After building the image, you can verify it by listing all the available Docker images on your system. The command `docker images` will display the images along with their tags, sizes, and IDs.\n\nFor example:\n\n```bash\ndocker images\n```",
-    "slide_type": "code"
-  },
-  {
-    "title": "Running the Docker Container",
-    "content": "Once the image is built, you can run it as a container. The `docker run` command is used to start a container from the image. You can map ports from the container to your host machine, so you can access your application. The following command runs the container and maps port 5000 inside the container to port 5000 on your host machine:\n\n```bash\ndocker run -p 5000:5000 my-python-app\n```",
-    "slide_type": "code"
-  },
-  {
-    "title": "Table: Common Dockerfile Instructions",
+    "title": "Stop vs Kill",
     "content": [
       {
-        "instruction": "FROM",
-        "description": "Specifies the base image. This is the foundation of your image and can be any official or custom image."
+        "Command": "docker stop",
+        "Graceful Shutdown": "Yes",
+        "Signal Sent": "SIGTERM, then SIGKILL after timeout"
       },
       {
-        "instruction": "RUN",
-        "description": "Executes a command inside the container. It is often used to install packages or set up the container environment."
-      },
-      {
-        "instruction": "COPY",
-        "description": "Copies files or directories from the host machine into the container's filesystem."
-      },
-      {
-        "instruction": "CMD",
-        "description": "Specifies the default command to run when the container starts. Only one CMD instruction can be present in a Dockerfile."
+        "Command": "docker kill",
+        "Graceful Shutdown": "No",
+        "Signal Sent": "SIGKILL immediately"
       }
     ],
     "slide_type": "table"
   },
   {
-    "title": "Conclusion",
-    "content": "In this guide, we covered how to build a Docker image from a Dockerfile. We discussed the basic structure of a Dockerfile, common instructions like `FROM`, `RUN`, `COPY`, and `CMD`, and how to use the `docker build` and `docker run` commands to create and execute containers. Building Docker images allows you to ensure that your applications are portable and consistent across different environments, simplifying development and deployment workflows.",
+    "title": "Custom Timeout Example",
+    "content": "```bash\ndocker stop -t 5 \u003ccontainer_name_or_id\u003e\n```  \nThis sets a 5-second timeout before forcefully killing the container.",
+    "slide_type": "code"
+  },
+  {
+    "title": "Stopping All Running Containers",
+    "content": "```bash\ndocker stop $(docker ps -q)\n```  \nThis command stops all running containers by passing their IDs to `docker stop`.",
+    "slide_type": "code"
+  },
+  {
+    "title": "Common Use Cases",
+    "content": "Stopping a container is useful in many scenarios:\n\n- **Before maintenance:** Stop containers to apply system updates or software patches.\n- **Testing environments:** Temporarily halt containers to switch configurations or test multiple setups.\n- **Resource optimization:** Free up system resources without deleting container data.\n- **Application restart:** After updating configuration files, stopping and restarting a container ensures the changes are loaded.\n\nUsing `docker stop` keeps your container’s state and volumes intact, so it can be started again later without losing data.",
+    "slide_type": "text"
+  },
+  {
+    "title": "Recap",
+    "content": "To manage your Docker containers effectively, understanding how to stop them properly is key:\n\n- `docker stop` lets you shut down containers gracefully using SIGTERM.\n- Avoid `docker kill` unless you need an immediate termination with no cleanup.\n- Use `docker stop -t` to customize the timeout duration.\n- You can also stop all running containers at once for quick shutdown.\n\nBy mastering these commands, you'll ensure smoother development workflows and more reliable containerized applications.",
     "slide_type": "text"
   }
 ]
