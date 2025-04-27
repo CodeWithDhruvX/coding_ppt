@@ -93,6 +93,19 @@
 			  "runOn": "folderOpen"
 			},
             "problemMatcher": []
+        },
+        {
+            "label": "Code generation",
+            "type": "shell",
+            "command": "python",
+            "args": [
+                "creation/code_prompt.py"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "problemMatcher": []
         }
     ]
 }

@@ -163,7 +163,7 @@ mode_dropdown['values'] = (
     "Architecture Mode",
     "Code Creation Mode",   # <-- Added new mode
 )
-mode_dropdown.current(1)  # Default to Detailed Mode
+mode_dropdown.current(7)  # Default to Detailed Mode
 mode_dropdown.pack(side="left", padx=5)
 
 # Checkbox for "Best Practices + Mistakes" in Code Creation Mode
