@@ -119,6 +119,20 @@
                 "isDefault": true
             },
             "problemMatcher": []
+        },
+        {
+            "label": "Create the folder",
+            "type": "shell",
+            "command": "powershell",
+            "args": [
+                "-ExecutionPolicy", "ByPass", 
+                "-File", "${workspaceFolder}/CreateFolderAndFile.ps1"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "problemMatcher": []
         }
     ]
 }
