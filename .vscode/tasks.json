@@ -47,7 +47,7 @@
             "problemMatcher": []
           },
           {
-            "label": "English Conversation ",
+            "label": "PPT data generate",
             "type": "shell",
             "command": "python",
             "args": [
@@ -79,6 +79,20 @@
             "runOptions": {
                 "runOn": "folderOpen"
             },
+        },
+        {
+            "label": "Open Chrome Tabs",
+			"type": "shell",
+            "command": "powershell",
+            "args": [
+                "-Command",
+                "Start-Process 'chrome' 'https://www.notion.so/Golang-Interview-Questions-List-1cf3e7a910ef81eaa5d5e6d5fc32f7a5'; Start-Process 'chrome' 'https://www.notion.so/1813e7a910ef80708e6de1865b8dc143?v=1813e7a910ef81e5a36b000c7a64420d';Start-Process 'chrome' 'https://chatgpt.com/';"
+            ],
+
+			"runOptions": {
+			  "runOn": "folderOpen"
+			},
+            "problemMatcher": []
         },
         {
             "label": "Open Chrome Tabs",

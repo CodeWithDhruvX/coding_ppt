@@ -95,12 +95,13 @@ duration_entry = tk.Entry(root)
 duration_entry.insert(0, "5")  # default value
 duration_entry.pack(fill=tk.X, padx=10, pady=(0, 5))
 
+tk.Button(root, text="Copy to Clipboard", command=copy_script).pack(pady=(0, 10))
 tk.Button(root, text="Generate YouTube Prompt", command=generate_script).pack(pady=5)
 
 tk.Label(root, text="Formatted Prompt Output:").pack(anchor='w', padx=10)
 output_text = scrolledtext.ScrolledText(root, wrap=tk.WORD, height=20)
 output_text.pack(fill=tk.BOTH, expand=True, padx=10, pady=5)
 
-tk.Button(root, text="Copy to Clipboard", command=copy_script).pack(pady=(0, 10))
+
 
 root.mainloop()
