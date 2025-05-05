@@ -1,0 +1,75 @@
+[
+    {
+      "title": "Introduction to Pod Communication",
+      "content": "Pods in Kubernetes often need to communicate with each other to work as a system. Kubernetes offers multiple mechanisms for pod-to-pod communication, whether they're on the same node or across different nodes.",
+      "slide_type": "text"
+    },
+    {
+      "title": "Basic Networking Model",
+      "content": "- Every Pod gets its own unique IP address.\n- All containers in a Pod share the same network namespace.\n- Pods can communicate with each other using these IPs without NAT (Network Address Translation).",
+      "slide_type": "text"
+    },
+    {
+      "title": "Same Node Communication",
+      "content": "When Pods are on the same node, they can communicate directly using their IP addresses through the local network interface. This is the simplest and fastest path.",
+      "slide_type": "text"
+    },
+    {
+      "title": "Cross-Node Communication",
+      "content": "Pods across different nodes communicate via the cluster network. Kubernetes ensures that the network setup allows all Pods to reach each other without NAT, even across nodes.",
+      "slide_type": "text"
+    },
+    {
+      "title": "How DNS Helps Pod Communication",
+      "content": "- Kubernetes has a built-in DNS service.\n- Each Service gets a DNS entry.\n- Pods can use service names like `my-service.default.svc.cluster.local` to discover and connect to others without hardcoding IPs.",
+      "slide_type": "text"
+    },
+    {
+      "title": "Using Services for Stable Communication",
+      "content": "Even though Pods have IPs, they are ephemeral. Use **Services** to abstract away dynamic Pod IPs and provide a stable interface for communication.",
+      "slide_type": "text"
+    },
+    {
+      "title": "Code Example: Pod to Service Communication",
+      "content": "import requests\n\n# A Python example from one Pod trying to reach a Service\nresponse = requests.get('http://my-service.default.svc.cluster.local:8080')\nprint(response.text)",
+      "slide_type": "code"
+    },
+    {
+      "title": "Table: Pod Communication Scenarios",
+      "content": [
+        {
+          "Scenario": "Same Node",
+          "Communication Method": "Direct via Pod IP"
+        },
+        {
+          "Scenario": "Different Nodes",
+          "Communication Method": "Cluster Network via Pod IP"
+        },
+        {
+          "Scenario": "Using a Service",
+          "Communication Method": "Via DNS name resolving to a Service IP"
+        },
+        {
+          "Scenario": "Cross-Namespace",
+          "Communication Method": "DNS with namespace, e.g., my-service.other-namespace"
+        }
+      ],
+      "slide_type": "table"
+    },
+    {
+      "title": "Visual Tip: Cluster Networking Analogy",
+      "content": "Think of Kubernetes like a city:\n\n- Pods = homes with people (containers) inside.\n- Node = neighborhood.\n- Services = post offices that know everyone in the area.\n- DNS = phonebook to look up addresses.\n\nThey all talk over a giant city-wide road network!",
+      "slide_type": "text"
+    },
+    {
+      "title": "Quick Challenge: Test Your Understanding",
+      "content": "### Questions:\n\n1. **True or False**: Pods can communicate directly using IPs even across nodes.\n2. What is the role of a **Service** in Pod communication?\n3. Which of these DNS names is correct for accessing a Service in another namespace?\n   - a) `my-service.local`\n   - b) `my-service.default`\n   - c) `my-service.other-namespace.svc.cluster.local`\n4. **Bonus**: Why shouldn’t you rely on Pod IPs for long-term communication?",
+      "slide_type": "text"
+    },
+    {
+      "title": "Solutions: Quick Challenge",
+      "content": "# Answers:\n\n1. **True** – Thanks to Kubernetes networking, Pod IPs are routable across nodes.\n2. A **Service** provides a stable endpoint to communicate with Pods, even if Pod IPs change.\n3. **Correct Answer: c)** – Fully qualified service name includes namespace and cluster domain.\n4. **Bonus** – Pod IPs can change after restarts or rescheduling. Services abstract that away, ensuring reliable communication.",
+      "slide_type": "code"
+    }
+  ]
+  

@@ -1,0 +1,116 @@
+[
+    {
+      "title": "Kubernetes क्या है?",
+      "content": "Kubernetes (K8s) एक ओपन-सोर्स container orchestration platform है जिसे containerized applications की deployment, scaling, और management को automate करने के लिए बनाया गया है। इसे Google ने अपने internal सिस्टम Borg के आधार पर विकसित किया और अब इसे Cloud Native Computing Foundation (CNCF) द्वारा maintain किया जाता है। Kubernetes underlying infrastructure को abstract करता है और distributed systems को reliably चलाने के लिए एक शक्तिशाली और flexible तरीका प्रदान करता है। यह Docker और containerd जैसे कई container runtimes को support करता है और cloud providers व on-premise data centers के साथ integrate होता है।",
+      "slide_type": "text"
+    },
+    {
+      "title": "क्यों चुनें Kubernetes?",
+      "content": "Kubernetes से पहले, कई servers पर applications को deploy करना manual, inconsistent और error-prone था। Kubernetes ने इस प्रक्रिया को declarative configuration द्वारा बदल दिया, जहाँ आप यह परिभाषित करते हैं कि आपको क्या चाहिए, न कि कैसे। यह load balancing, scaling, self-healing और rollback को automate करता है, जिससे downtime कम होता है और operations ज़्यादा भरोसेमंद होते हैं। DevOps और SRE टीमें अब systems को ज़्यादा resilient और repeatable तरीके से manage कर सकती हैं।",
+      "slide_type": "text"
+    },
+    {
+      "title": "Kubernetes की संरचना (Architecture Overview)",
+      "content": "Kubernetes master-worker (या control plane-node) architecture पर काम करता है। Control Plane cluster की global decisions लेता है (जैसे scheduling), cluster state बनाए रखता है और lifecycle events को manage करता है। Worker Nodes पर actual containerized workloads चलते हैं। मुख्य components में हैं: API Server (cluster का frontend), Scheduler (workload assign करता है), Controller Manager (desired state सुनिश्चित करता है), etcd (key-value store), kubelet (containers चलाता है), और kube-proxy (network routing करता है)।",
+      "slide_type": "text"
+    },
+    {
+      "title": "Kubernetes Control Plane Components",
+      "content": "### Control Plane:\n- **API Server**: यह central gateway के रूप में काम करता है, REST operations को validate और process करता है और cluster state को etcd में manage करता है।\n- **etcd**: एक highly available और consistent key-value store जो cluster के सभी डेटा का backing store होता है।\n- **Controller Manager**: अलग-अलग background controllers को चलाता है जो cluster को desired state में रखने का कार्य करते हैं।\n- **Scheduler**: नए Pods को resource requirements और constraints के अनुसार उचित nodes पर assign करता है।",
+      "slide_type": "text"
+    },
+    {
+      "title": "Kubernetes Node Components",
+      "content": "### Node:\n- **kubelet**: एक agent है जो सुनिश्चित करता है कि दिए गए PodSpecs के अनुसार containers चल रहे हैं और healthy हैं। यह control plane से communicate करता है और node की स्थिति रिपोर्ट करता है।\n- **kube-proxy**: nodes पर network rules को manage करता है ताकि अंदर और बाहर से Pods तक नेटवर्क access संभव हो।\n- **Container Runtime**: containers को चलाने वाला software जैसे Docker, containerd, जो Kubernetes Container Runtime Interface (CRI) के अनुसार काम करता है।",
+      "slide_type": "text"
+    },
+    {
+      "title": "Kubernetes के मुख्य अवधारणाएँ",
+      "slide_type": "table",
+      "content": [
+        {"Concept": "Pod", "Description": "सबसे छोटा deployable unit, containers को encapsulate करता है।"},
+        {"Concept": "Service", "Description": "Pods के group के लिए एक स्थायी network endpoint।"},
+        {"Concept": "Deployment", "Description": "ReplicaSets को manage करता है और desired state बनाए रखता है।"},
+        {"Concept": "ReplicaSet", "Description": "निर्धारित संख्या में Pods को चलाने की गारंटी देता है।"},
+        {"Concept": "ConfigMap", "Description": "एप्लिकेशन के लिए configuration data स्टोर करता है।"},
+        {"Concept": "Secret", "Description": "संवेदनशील डेटा जैसे पासवर्ड सुरक्षित रूप से स्टोर करता है।"},
+        {"Concept": "Namespace", "Description": "multi-tenancy के लिए logical partition।"},
+        {"Concept": "Ingress", "Description": "सेवाओं के लिए बाहरी access को manage करता है।"},
+        {"Concept": "Volume", "Description": "Pods को persistent storage प्रदान करता है।"},
+        {"Concept": "StatefulSet", "Description": "stateful apps को स्थिर पहचान के साथ manage करता है।"},
+        {"Concept": "DaemonSet", "Description": "हर Node पर एक Pod की copy चलाता है।"},
+        {"Concept": "Job / CronJob", "Description": "batch या scheduled tasks को चलाता है।"}
+      ]
+    },
+    {
+      "title": "एक बेसिक Kubernetes YAML उदाहरण",
+      "content": "```yaml\napiVersion: v1\nkind: Pod\nmetadata:\n  name: my-app\nspec:\n  containers:\n  - name: app-container\n    image: nginx\n    ports:\n    - containerPort: 80\n```",
+      "slide_type": "code"
+    },
+    {
+      "title": "Kubernetes कैसे काम करता है",
+      "content": "1. आप YAML फ़ाइल में अपनी application और infrastructure की requirements को define करते हैं।\n2. `kubectl apply -f` command से इसे submit करते हैं।\n3. API Server configuration को validate करता है और desired state को etcd में store करता है।\n4. Scheduler unassigned Pods को observe करता है और उन्हें appropriate Nodes पर place करता है।\n5. उस Node पर kubelet PodSpec को पढ़ता है और आवश्यक containers को Container Runtime के माध्यम से चालू करता है।\n6. Controllers लगातार cluster की निगरानी करते हैं और desired state को बनाए रखने के लिए आवश्यक action लेते हैं।",
+      "slide_type": "text"
+    },
+    {
+      "title": "Kubernetes Ecosystem Tools",
+      "content": "### प्रसिद्ध टूल्स:\n- **Helm**: reusable charts और templated YAML से deployment को आसान बनाता है।\n- **Prometheus & Grafana**: performance monitoring और alerting के लिए metrics एकत्र करते हैं और visualize करते हैं।\n- **Istio / Linkerd**: traffic routing, security (mTLS), और observability प्रदान करने वाले service mesh टूल्स।\n- **Argo CD**: Git से सीधे Kubernetes resources को manage करने वाला declarative GitOps टूल।\n- **Kustomize**: बिना मूल YAML बदले overlays और patches के साथ configuration को customize करता है।",
+      "slide_type": "text"
+    },
+    {
+      "title": "Kubernetes के लाभ",
+      "content": "- **Scalability**: CPU/memory उपयोग या custom metrics के आधार पर apps को अपने आप scale करता है।\n- **High Availability**: failures को gracefully संभालता है, replicas और health checks से।\n- **Portability**: किसी भी platform पर चल सकता है — cloud, data centers, या local machines।\n- **Extensibility**: CRDs, webhooks और operator patterns से क्षमताएं बढ़ाता है।\n- **Declarative Management**: YAML के माध्यम से desired state define कर सकते हैं जिसे Kubernetes enforce करता है।",
+      "slide_type": "text"
+    },
+    {
+      "title": "Kubernetes के सामान्य उपयोग",
+      "content": "- **Microservices Architecture**: distributed microservices को isolate, independently scale और discover करना आसान बनाता है।\n- **CI/CD Pipelines**: Jenkins, Argo CD, या Tekton जैसे tools से testing, building और deployment को automate करता है।\n- **Real-time Data Processing**: Kafka, Spark या Flink के साथ high-throughput event processing करता है।\n- **Machine Learning Pipelines**: Kubeflow, MLflow जैसे tools के माध्यम से ML मॉडल्स को train और deploy करता है।\n- **Edge Computing**: lightweight distributions जैसे K3s से edge devices पर workloads चलाता है।\n- **SaaS Deployment**: Namespaces, Network Policies और quotas से multi-tenant SaaS apps को manage करता है।",
+      "slide_type": "text"
+    },
+    {
+      "title": "Kubernetes की सुरक्षा विशेषताएँ",
+      "content": "- **RBAC (Role-Based Access Control)**: users और services को Kubernetes resources तक पहुँच के लिए fine-grained permissions प्रदान करता है।\n- **Secrets Management**: tokens और passwords जैसे sensitive डेटा को सुरक्षित तरीके से manage करता है।\n- **Network Policies**: Pods के बीच network traffic को allow या restrict करने के लिए rules परिभाषित करता है।\n- **PodSecurityPolicies (Deprecated)**: पहले pod-level सुरक्षा enforce करने के लिए इस्तेमाल होता था, अब इसे replace किया गया है:\n  - **Kyverno**: Kubernetes-native policy engine।\n  - **OPA Gatekeeper**: Open Policy Agent द्वारा policies लागू करता है।",
+      "slide_type": "text"
+    },
+    {
+      "title": "वास्तविक दुनिया के Kubernetes उदाहरण",
+      "content": "- **Airbnb**: Kubernetes का उपयोग microservices को चलाने और self-service environments से development velocity बढ़ाने के लिए करता है।\n- **Spotify**: अपने backend services और workflows को manage करने के लिए Kubernetes पर निर्भर करता है।\n- **CERN**: वैज्ञानिक workloads और compute clusters को manage करने के लिए Kubernetes का प्रयोग करता है।",
+      "slide_type": "text"
+    },
+    {
+      "title": "Kubernetes के विकल्प",
+      "content": "- **Docker Swarm**: एक सरल orchestration tool है जो beginners के लिए अच्छा है, लेकिन Kubernetes जैसी flexibility नहीं देता।\n- **HashiCorp Nomad**: एक lightweight orchestrator जो containers और non-container workloads दोनों को support करता है।\n- **OpenShift**: Red Hat द्वारा बनाया गया enterprise Kubernetes distribution जिसमें built-in CI/CD और developer tools होते हैं।\n- **Amazon ECS**: AWS का native container orchestration platform है, जो आसान है लेकिन Kubernetes जितना portable नहीं।",
+      "slide_type": "text"
+    }
+  ]
+//   To dosto, ab hum dekhte hain — Kubernetes actually kaam kaise karta hai.
+
+// Soch lo tumne ek chhoti si web app banayi hai — jaise ek student portal, jisme login hota hai, assignments dikhaayi dete hain, etc. Ab tum chahte ho ki yeh app internet pe live chale — stable way me, bina manual setup ke. Yahi kaam Kubernetes karta hai — automation ke through.
+
+// Ab step by step samajhte hain:
+// 1. YAML file me define karte hain:
+// Sabse pehle hum ek YAML file likhte hain. Isme hum batate hain ki hume kaun se containers chahiye, kitni memory chahiye, ports kya hain, replicas kitne chahiye — basically hamari app ki full list of requirements.
+// Jaise job interview me resume dete ho, waise hi app ka resume hota hai yeh YAML.
+
+// 2. kubectl apply -f command se submit karte hain:
+// Phir hum terminal me ek command chalate hain — kubectl apply -f. Ye command bolti hai Kubernetes ko:
+// “Bhai, ye meri YAML file le lo, aur jo maine bola hai, waise hi meri app ko chala do.”
+
+// 3. API Server check karta hai aur etcd me store karta hai:
+// Kubernetes ka API Server pehle check karta hai ki file sahi hai ya nahi. Agar valid hai, to is configuration ko etcd naam ke database me store kar leta hai.
+// Soch lo etcd ek memory diary hai — jisme likha hota hai: “Mujhe 3 app instances chahiye, aur har ek me 512MB RAM honi chahiye.”
+
+// 4. Scheduler decide karta hai ki Pods kaha chalenge:
+// Ab Scheduler ka kaam hai ye dekhna ki system me kaun se Pods abhi tak kisi machine pe assign nahi hue hain. Phir wo decide karta hai ki kaunsa Pod kis Node pe jayega — matlab kis computer pe app chalayi jayegi.
+// Jaise teacher dekhta hai kaun se student ko kaun sa assignment dena hai.
+
+// 5. Node pe kubelet container chalata hai:
+// Ab jis Node pe Pod assign hua, waha ka local agent — jiska naam hai kubelet — wo YAML me diya hua PodSpec padhta hai, aur decide karta hai ki kaun sa container banana hai.
+// Phir ye container actually start hota hai Container Runtime ke through — jaise Docker.
+
+// 6. Controllers cluster pe nazar rakhte hain:
+// Last me Controllers ka role hota hai. Wo lagatar cluster ko monitor karte hain. Agar koi container crash ho gaya, ya koi Pod down ho gaya — to controller usse fir se restart karta hai, taki app kaam karti rahe.
+// Jaise ek responsible teacher, jo dekhta hai ki sab students kaam me lage hue hain — aur koi bore ya confused na ho.
+
+// So overall, Kubernetes ek tarah ka manager hai — jo tumhari app ko deploy bhi karta hai, monitor bhi karta hai, aur automatically errors fix bhi karta hai.
+// Isliye jab tum production me apps banate ho — especially jo live users ke liye hoti hain — tab Kubernetes bahut kaam aata hai.

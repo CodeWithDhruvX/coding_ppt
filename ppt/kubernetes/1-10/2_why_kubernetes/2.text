@@ -1,0 +1,127 @@
+--- Kubernetes क्यूँ ज़रूरी है? [text] ---
+### Kubernetes एक open-source container orchestration platform है।
+- ये containerized applications को multiple servers पर manage करता है।
+- Deployment, scaling, और failure recovery जैसे काम खुद करता है।
+- Developers को manual configuration की जरूरत नहीं पड़ती।
+- High availability और fault-tolerance ensure करता है।
+
+--- Container Management Code Example [code] ---
+```yaml
+apiVersion: v1
+kind: Pod
+metadata:
+  name: my-app
+spec:
+  containers:
+  - name: app-container
+    image: my-app-image:v1
+```
+
+--- Automated Deployment और Rollback [text] ---
+### Kubernetes में rolling updates और rollback आसान है।
+- Zero downtime deployment possible है।
+- Error आने पर पुराने version में rollback कर सकते हैं।
+- Continuous delivery pipeline में helpful होता है।
+
+--- Rolling Update YAML Example [code] ---
+```yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: rolling-update-demo
+spec:
+  replicas: 3
+  strategy:
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        app: demo
+    spec:
+      containers:
+      - name: demo
+        image: demo:v2
+```
+
+--- Self-Healing क्या है? [text] ---
+### Kubernetes desired state maintain करता है:
+- Container crash होने पर खुद से restart करता है।
+- Health check fail होने पर container हटा देता है।
+- Cluster को हमेशा defined configuration जैसा बनाए रखता है।
+
+--- Liveness Probe YAML Code [code] ---
+```yaml
+livenessProbe:
+  httpGet:
+    path: /healthz
+    port: 8080
+  initialDelaySeconds: 3
+  periodSeconds: 3
+```
+
+--- Auto-Scaling कैसे काम करता है? [text] ---
+### Kubernetes में Horizontal Pod Autoscaler होता है:
+- CPU या memory usage देख कर pods की संख्या बढ़ाता या घटाता है।
+- High traffic में ज़्यादा pods और low traffic में कम pods चलाता है।
+
+--- Auto-Scaling YAML Example [code] ---
+```yaml
+apiVersion: autoscaling/v2
+kind: HorizontalPodAutoscaler
+metadata:
+  name: hpa-demo
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: demo-app
+  minReplicas: 1
+  maxReplicas: 5
+  metrics:
+  - type: Resource
+    resource:
+      name: cpu
+      target:
+        type: Utilization
+        averageUtilization: 50
+```
+
+--- Service Discovery और Load Balancing [text] ---
+### Kubernetes में हर service का एक DNS name और stable IP होता है:
+- `kube-proxy` की मदद से traffic healthy pods को भेजा जाता है।
+- Developers को pod IPs की चिंता नहीं करनी पड़ती।
+
+--- Service YAML Example [code] ---
+```yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: my-service
+spec:
+  selector:
+    app: my-app
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 8080
+```
+
+--- Quick Challenge: Test Your Understanding [text] ---
+### निम्नलिखित सवालों के जवाब दीजिए:
+
+1. Kubernetes में `livenessProbe` क्या करता है?
+2. Rolling update और rollback का फायदा क्या है?
+3. Kubernetes में pod scaling किस आधार पर होती है?
+4. Service abstraction का main purpose क्या है?
+5. YAML में `replicas: 3` का क्या मतलब है?
+
+--- Solutions: Quick Challenge [code] ---
+### जवाब:
+
+1. `livenessProbe` container की health check करता है और fail होने पर उसे restart करता है।
+2. Rolling update से downtime नहीं होता और rollback से error आने पर पुराने version में वापस जा सकते हैं।
+3. Pod scaling `CPU` और `memory` usage के आधार पर होती है।
+4. Service abstraction pods के IP address hide करता है और stable DNS/IP देता है।
+5. `replicas: 3` का मतलब है कि 3 identical pod instances run होंगे।
+
+
