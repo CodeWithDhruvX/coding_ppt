@@ -1,0 +1,58 @@
+✅ 1. Save the YAML
+Create a file named my-app-pod.yaml with the following content:
+
+yaml
+Copy
+Edit
+apiVersion: v1
+kind: Pod
+metadata:
+  name: my-app
+spec:
+  containers:
+  - name: app-container
+    image: my-app-image:v1
+✅ 2. Start Minikube (if not already running)
+bash
+Copy
+Edit
+minikube start
+✅ 3. Load your Docker image into Minikube (if it's local)
+If my-app-image:v1 is built locally and not pushed to Docker Hub or any other registry:
+
+bash
+Copy
+Edit
+eval $(minikube docker-env)
+docker build -t my-app-image:v1 .
+This makes the image available inside Minikube’s Docker daemon.
+
+✅ 4. Apply the YAML
+bash
+Copy
+Edit
+kubectl apply -f my-app-pod.yaml
+✅ 5. Check Pod Status
+bash
+Copy
+Edit
+kubectl get pods
+kubectl describe pod my-app
+✅ 6. View Logs (Optional)
+bash
+Copy
+Edit
+kubectl logs my-app
+
+
+
+docker tag my-app dhruv4096/my-app:v1
+docker push dhruv4096/my-app:v1
+kubectl port-forward pod/my-app 8080:8080
+
+
+kubectl delete pod my-app
+
+
+docker rmi my-app-image:v1
+

@@ -14,17 +14,12 @@
             },
             "problemMatcher": [],
             "detail": "Run json_to_ppt_v8.py to convert JSON into PowerPoint.",
-            "runOptions": {
-                "runOn": "folderOpen"
-            },
         },
         {
             "label": "Go modified object",
             "type": "shell",
             "command": "go run replace.go",
-            "args": [
-                
-            ],
+            "args": [],
             "group": {
                 "kind": "build",
                 "isDefault": true
@@ -37,16 +32,16 @@
             "type": "shell",
             "command": "powershell",
             "args": [
-              "-Command",
-              "& '${workspaceFolder}\\creation\\dist\\english_prompt_creator.exe'"
+                "-Command",
+                "& '${workspaceFolder}\\creation\\dist\\english_prompt_creator.exe'"
             ],
             "group": {
-              "kind": "build",
-              "isDefault": true
+                "kind": "build",
+                "isDefault": true
             },
             "problemMatcher": []
-          },
-          {
+        },
+        {
             "label": "PPT data generate",
             "type": "shell",
             "command": "python",
@@ -59,9 +54,6 @@
             },
             "problemMatcher": [],
             "detail": "Run json_to_ppt_v8.py to convert JSON into PowerPoint.",
-            "runOptions": {
-                "runOn": "folderOpen"
-            },
         },
         {
             "label": "Hindi Conversation",
@@ -76,36 +68,31 @@
             },
             "problemMatcher": [],
             "detail": "Run json_to_ppt_v8.py to convert JSON into PowerPoint.",
-            "runOptions": {
-                "runOn": "folderOpen"
-            },
         },
         {
             "label": "Open Chrome Tabs",
-			"type": "shell",
+            "type": "shell",
             "command": "powershell",
             "args": [
                 "-Command",
                 "Start-Process 'chrome' 'https://www.notion.so/Golang-Interview-Questions-List-1cf3e7a910ef81eaa5d5e6d5fc32f7a5'; Start-Process 'chrome' 'https://www.notion.so/1813e7a910ef80708e6de1865b8dc143?v=1813e7a910ef81e5a36b000c7a64420d';Start-Process 'chrome' 'https://chatgpt.com/';"
             ],
-
-			"runOptions": {
-			  "runOn": "folderOpen"
-			},
+            "runOptions": {
+                "runOn": "folderOpen"
+            },
             "problemMatcher": []
         },
         {
             "label": "Open Chrome Tabs",
-			"type": "shell",
+            "type": "shell",
             "command": "powershell",
             "args": [
                 "-Command",
                 "Start-Process 'chrome' 'https://www.notion.so/Golang-Interview-Questions-List-1cf3e7a910ef81eaa5d5e6d5fc32f7a5'; Start-Process 'chrome' 'https://www.notion.so/1813e7a910ef80708e6de1865b8dc143?v=1813e7a910ef81e5a36b000c7a64420d';Start-Process 'chrome' 'https://chatgpt.com/';"
             ],
-
-			"runOptions": {
-			  "runOn": "folderOpen"
-			},
+            "runOptions": {
+                "runOn": "folderOpen"
+            },
         }
         {
             "label": "Code generation",
@@ -125,8 +112,10 @@
             "type": "shell",
             "command": "powershell",
             "args": [
-                "-ExecutionPolicy", "ByPass", 
-                "-File", "${workspaceFolder}/CreateFolderAndFile.ps1"
+                "-ExecutionPolicy",
+                "ByPass",
+                "-File",
+                "${workspaceFolder}/CreateFolderAndFile.ps1"
             ],
             "group": {
                 "kind": "build",
