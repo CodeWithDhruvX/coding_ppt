@@ -143,15 +143,5 @@
     "title": "Rune and Byte Example",
     "content": "var r rune = '₹'\nvar b byte = 'A'\nfmt.Println(r, b)",
     "slide_type": "code"
-  },
-  {
-    "title": "Type Conversion in Go",
-    "content": "### Explicit Type Conversion:\n- Go implicit type conversion की अनुमति नहीं देता\n- Syntax: `T(value)`\n\nयह type safety बढ़ाता है और unexpected behavior से बचाता है।",
-    "slide_type": "text"
-  },
-  {
-    "title": "Type Conversion Example",
-    "content": "var x int = 42\nvar y float64 = float64(x)\nfmt.Println(y)",
-    "slide_type": "code"
   }
 ]
