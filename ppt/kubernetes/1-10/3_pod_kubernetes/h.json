@@ -1,0 +1,65 @@
+[
+    {
+      "title": "Kubernetes में Pod क्या है?",
+      "content": "### Pod Kubernetes में सबसे छोटा और सरल deployable unit है।\n- यह क्लस्टर में चल रही एक प्रक्रिया (process) का एक instance दर्शाता है।\n- इसे एक wrapper की तरह सोचें जो एक या अधिक containers को एक साथ एक execution context में चलाता है।",
+      "slide_type": "text"
+    },
+    {
+      "title": "Pod में Single या Multiple Containers",
+      "content": "### अधिकांश Pods में:\n- एक **single container** होता है (सबसे आम स्थिति)।\n- या फिर **multiple containers** होते हैं जो आपस में काफ़ी जुड़े होते हैं और network व storage जैसे संसाधन साझा करते हैं।\n\n> उदाहरण: एक web server और एक sidecar container जो logging करता है।",
+      "slide_type": "text"
+    },
+    {
+      "title": "Pod में Shared Resources",
+      "content": "### Pod के अंदर containers साझा करते हैं:\n- **Network namespace** (समान IP और ports)।\n- **Storage volumes** (डेटा साझा करने के लिए)।\n- **Process namespace** (optional)।\n\nइससे containers एक-दूसरे से आसानी से `localhost` के माध्यम से संपर्क कर सकते हैं।",
+      "slide_type": "text"
+    },
+    {
+      "title": "Pod का Lifecycle",
+      "content": "### Pods अस्थायी होते हैं:\n- ये **self-healing** नहीं होते।\n- अगर कोई Pod crash हो जाए, तो Kubernetes उसी Pod को दोबारा शुरू नहीं करता।\n- इसके बजाय, **Deployment** या **ReplicaSet** जैसे Controllers नए Pod को बनाते हैं।",
+      "slide_type": "text"
+    },
+    {
+      "title": "Pod में Networking",
+      "content": "### Pod Networking:\n- प्रत्येक Pod को क्लस्टर के भीतर एक **unique IP** मिलता है।\n- Containers `localhost` का उपयोग करके आपस में बात करते हैं।\n- बाहरी world से संपर्क के लिए Kubernetes में **Service** का उपयोग किया जाता है।",
+      "slide_type": "text"
+    },
+    {
+      "title": "Pod में Volumes",
+      "content": "### Pods shared volumes define कर सकते हैं:\n- ये **Ephemeral** या **Persistent** हो सकते हैं।\n- इन्हें containers के बीच logs या cache डेटा साझा करने के लिए प्रयोग किया जाता है।",
+      "slide_type": "text"
+    },
+    {
+      "title": "Pod Status Phases",
+      "content": "### Pod निम्नलिखित phases में जा सकता है:\n- `Pending`: Pod स्वीकार हुआ लेकिन अभी चला नहीं है।\n- `Running`: कम से कम एक container चल रहा है।\n- `Succeeded`: सभी containers सफलतापूर्वक पूरे हो गए।\n- `Failed`: कोई container error के साथ बंद हुआ।\n- `Unknown`: स्थिति पता नहीं चल पा रही।",
+      "slide_type": "text"
+    },
+    {
+      "title": "वास्तविक उदाहरण - Sidecar Pod",
+      "content": "### उदाहरण स्थिति:\nआप एक Node.js app चलाना चाहते हैं जो फाइल में log करता है और एक sidecar container वह log शिप करता है।\n\n- `node-app` container (ट्रैफिक serve करता है और logs को volume में लिखता है)\n- `log-shipper` container (logs को volume से पढ़कर शिप करता है)",
+      "slide_type": "text"
+    },
+    {
+      "title": "Sidecar Pod - YAML उदाहरण",
+      "content": "```yaml\napiVersion: v1\nkind: Pod\nmetadata:\n  name: logging-pod\nspec:\n  containers:\n  - name: node-app\n    image: node:18\n    volumeMounts:\n    - name: shared-logs\n      mountPath: /var/log/app\n  - name: log-shipper\n    image: alpine\n    command: [\"/bin/sh\", \"-c\", \"tail -f /var/log/app/app.log\"]\n    volumeMounts:\n    - name: shared-logs\n      mountPath: /var/log/app\n  volumes:\n  - name: shared-logs\n    emptyDir: {}\n```",
+      "slide_type": "code"
+    },
+    {
+      "title": "Multi-Container Pods कब न उपयोग करें",
+      "content": "### Best Practices:\n- जब containers आपस में बहुत जुड़े हों तभी multi-container Pods का प्रयोग करें।\n- यदि services स्वतंत्र हों (जैसे frontend और backend), तो अलग-अलग Pods में रखें।\n\nबहुत सारे containers एक ही Pod में रखने से **management और scaling** कठिन हो जाता है।",
+      "slide_type": "text"
+    },
+    {
+      "title": "सारांश - Kubernetes में Pods",
+      "slide_type": "table",
+      "content": [
+        { "Feature": "Definition", "Description": "Kubernetes में सबसे छोटी deployable unit" },
+        { "Feature": "Contains", "Description": "एक या अधिक tightly coupled containers" },
+        { "Feature": "Shares", "Description": "Network, Volumes, Process namespace (optional)" },
+        { "Feature": "Managed by", "Description": "Deployment या ReplicaSet जैसे Controllers" },
+        { "Feature": "Lifecycle", "Description": "अस्थायी (ephemeral), failure पर replace होता है" },
+        { "Feature": "Communication", "Description": "Internal via localhost, External via Service" }
+      ]
+    }
+  ]
+  

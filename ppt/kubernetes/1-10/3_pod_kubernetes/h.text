@@ -1,0 +1,106 @@
+1. What is a Pod in Kubernetes?
+Pod Kubernetes में सबसे छोटा और सरल deployable unit है।
+यह क्लस्टर में चल रही एक प्रक्रिया (process) का एक instance दर्शाता है।
+
+इसे आप एक wrapper की तरह समझ सकते हैं जो एक या एक से अधिक containers को एक साथ रखता है और उन्हें एक ही execution context में चलाता है।
+
+2. Single or Multiple Containers in a Pod
+अधिकांश Pods में:
+एक single container होता है (सबसे आम उपयोग)।
+
+या फिर multiple containers होते हैं जो आपस में बहुत नज़दीकी से जुड़े होते हैं और जिन्हें network व storage जैसी shared resources की आवश्यकता होती है।
+
+उदाहरण: एक web server और एक sidecar container जो logging का कार्य करता है।
+
+3. Shared Resources in a Pod
+Pod के अंदर containers ये संसाधन आपस में share करते हैं:
+Network namespace (सभी containers को एक ही IP और port space मिलता है)।
+
+Storage volumes (data को share करने के लिए)।
+
+Process namespace (optional)।
+
+इससे containers आपस में localhost के माध्यम से आसानी से communicate कर सकते हैं।
+
+4. Pod Lifecycle
+Pods अस्थायी (ephemeral) होते हैं:
+ये स्वयं को ठीक नहीं कर सकते।
+
+अगर कोई Pod बंद हो जाता है, तो Kubernetes उसी Pod को दोबारा शुरू नहीं करता।
+
+इसके बजाय, Deployment या ReplicaSet जैसे Controllers नया Pod recreate करते हैं।
+
+5. Networking in a Pod
+Pod Networking:
+हर Pod को क्लस्टर के अंदर एक unique IP address मिलता है।
+
+Containers आपस में localhost के ज़रिए communicate करते हैं।
+
+क्लस्टर से बाहर communication के लिए Kubernetes में Services का उपयोग होता है।
+
+6. Volumes in a Pod
+Pods में shared volumes define किए जा सकते हैं:
+ये Ephemeral या Persistent हो सकते हैं।
+
+इनका उपयोग logs या cache जैसे डेटा को containers के बीच share करने के लिए किया जाता है।
+
+7. Pod Status Phases
+Pod निम्न phases से गुज़रता है:
+Pending: Pod स्वीकार किया गया है, लेकिन अभी चल नहीं रहा।
+
+Running: कम से कम एक container चल रहा है।
+
+Succeeded: सभी containers सफलतापूर्वक पूरे हो गए।
+
+Failed: containers error के साथ बंद हो गए।
+
+Unknown: Pod की स्थिति पता नहीं लग पा रही।
+
+8. Real-World Example - Sidecar Pod
+उदाहरण स्थिति:
+मान लीजिए आप एक Node.js ऐप चलाना चाहते हैं जो फाइल में log करता है, और एक sidecar container उस log को भेजता है।
+
+node-app container (ट्रैफिक serve करता है, logs को volume में लिखता है)
+
+log-shipper container (volume से logs पढ़ता है और भेजता है)
+
+9. Sidecar Pod - YAML Example
+yaml
+Copy
+Edit
+apiVersion: v1
+kind: Pod
+metadata:
+  name: logging-pod
+spec:
+  containers:
+  - name: node-app
+    image: node:18
+    volumeMounts:
+    - name: shared-logs
+      mountPath: /var/log/app
+  - name: log-shipper
+    image: alpine
+    command: ["/bin/sh", "-c", "tail -f /var/log/app/app.log"]
+    volumeMounts:
+    - name: shared-logs
+      mountPath: /var/log/app
+  volumes:
+  - name: shared-logs
+    emptyDir: {}
+10. When Not to Use Multi-Container Pods
+Best Practices:
+केवल तभी multi-container Pods का उपयोग करें जब containers tightly coupled हों।
+
+अगर services स्वतंत्र हैं (जैसे frontend और backend), तो उन्हें अलग-अलग Pods में रखें।
+
+बहुत सारे containers एक ही Pod में होना = manage और scale करना मुश्किल।
+
+11. Summary - Pods in Kubernetes
+विशेषता (Feature)	विवरण (Description)
+Definition	Kubernetes में सबसे छोटी deployable unit
+Contains	एक या अधिक tightly coupled containers
+Shares	Network, Volumes, Process namespace (optional)
+Managed by	Deployment या ReplicaSet जैसे Controllers
+Lifecycle	अस्थायी (ephemeral), failure पर replace किया जाता है
+Communication	Internal via localhost, External via Service

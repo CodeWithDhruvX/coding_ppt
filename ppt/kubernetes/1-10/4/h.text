@@ -1,0 +1,70 @@
+--- Kubernetes में Node का परिचय [text] ---
+**Node** Kubernetes क्लस्टर की सबसे बुनियादी यूनिट है। यह या तो एक वर्चुअल मशीन (VM) या एक फिजिकल सर्वर हो सकता है, जिस पर कंटेनराइज्ड एप्लिकेशन चलते हैं। हर node पर वो सभी सर्विसेज़ होती हैं जो Pods को चलाने के लिए जरूरी होती हैं, जैसे कि container runtime, kubelet, और kube-proxy। Kubernetes इन nodes की मदद से एप्लिकेशन वर्कलोड को डिस्ट्रिब्यूट और मैनेज करता है ताकि सिस्टम कुशलता से काम कर सके।
+
+--- Kubernetes में Node के प्रकार [text] ---
+Kubernetes में nodes को मुख्यतः दो प्रकारों में बाँटा जाता है:
+
+- **Master Node**: यह पूरा क्लस्टर मैनेज करता है और कंटेनर्स की scheduling और deployment को ऑर्केस्ट्रेट करता है। इसमें Control Plane के मुख्य कंपोनेंट्स होते हैं जैसे API server, scheduler, और controller manager।
+
+- **Worker Node**: ये वो मशीनें होती हैं जहाँ पर एप्लिकेशन वर्कलोड (Pods के रूप में) रन होते हैं। Master Node इन Workers को मैनेज करता है और ये Nodes अपनी स्थिति को लगातार रिपोर्ट करते रहते हैं ताकि क्लस्टर में शामिल रह सकें।
+
+इस विभाजन से Kubernetes हाई अवेलेबिलिटी और स्केलेबिलिटी को बनाए रखता है।
+
+--- Node के प्रमुख घटक [text] ---
+हर node में कुछ अहम कंपोनेंट्स होते हैं जो इसे Kubernetes क्लस्टर में फंक्शनल बनाते हैं:
+
+- **kubelet**: यह हर node पर चलने वाला एजेंट होता है जो यह सुनिश्चित करता है कि सभी कंटेनर्स ठीक से चल रहे हैं। यह Control Plane से इंस्ट्रक्शंस प्राप्त करता है।
+- **kube-proxy**: यह क्लस्टर के अंदर सर्विसेज़ के बीच नेटवर्क ट्रैफिक को रूट और फॉरवर्ड करता है। यह NAT रूल्स को भी मैनेज करता है।
+- **Container Runtime**: यह कंटेनर्स को रन करने के लिए जिम्मेदार होता है। सामान्यतः उपयोग होने वाले runtime हैं containerd और Docker। यह ऑपरेटिंग सिस्टम से इंटरफेस करता है ताकि कंटेनर्स को स्टार्ट, स्टॉप और मैनेज किया जा सके।
+
+इन कंपोनेंट्स के साथ, node कंटेनराइज्ड एप्लिकेशन को सुरक्षित और विश्वसनीय ढंग से होस्ट कर सकता है।
+
+--- Node का उदाहरण (YAML विवरण) [code] ---
+apiVersion: v1
+kind: Node
+metadata:
+  name: example-node
+spec:
+  podCIDR: 10.244.0.0/24
+  providerID: aws:///us-west-2a/i-0abcd1234efgh5678
+status:
+  conditions:
+    - type: Ready
+      status: "True"
+
+--- Node के Lifecycle States [table] ---
+[{'State': 'Ready', 'Description': 'Node स्वस्थ है और Pods को स्वीकार कर सकता है।'}, {'State': 'NotReady', 'Description': 'Node तक पहुंच नहीं है या यह अस्वस्थ है।'}, {'State': 'Unknown', 'Description': 'नेटवर्क समस्याओं के कारण Node की स्थिति ज्ञात नहीं।'}]
+
+--- Cluster में Nodes कैसे जोड़े जाते हैं [text] ---
+Nodes को क्लस्टर में जोड़ने के लिए आमतौर पर `kubeadm` जैसे टूल्स का उपयोग किया जाता है, जो Node को बूटस्ट्रैप करने और Secure तरीके से Control Plane से जोड़ने की सुविधा देता है।
+
+उदाहरण के लिए, एक नया worker node `kubeadm join` कमांड की मदद से क्लस्टर में जुड़ सकता है, जिसमें एक token और master node का एड्रेस शामिल होता है। Cloud-native environments में, nodes को auto-scaling और Infrastructure-as-Code टूल्स से डायनामिक रूप से provision किया जा सकता है।
+
+एक बार node जुड़ जाने पर, Control Plane उस पर pods को शेड्यूल करता है, यह देखकर कि कितने resources उपलब्ध हैं, कौन से tolerations हैं, और क्या affinity rules लागू होते हैं।
+
+--- CLI द्वारा Nodes की जाँच [code] ---
+```bash
+# सभी Nodes की सूची प्राप्त करें
+kubectl get nodes
+
+# किसी विशेष Node की विस्तृत जानकारी प्राप्त करें
+kubectl describe node <node-name>
+```
+
+--- Nodes पर Taints और Tolerations [text] ---
+**Taints** और **Tolerations** ऐसे मैकेनिज़्म हैं जो Kubernetes में यह नियंत्रित करते हैं कि कौन से Pods किस Node पर रन हो सकते हैं। इससे यह सुनिश्चित किया जाता है कि विशेष प्रकार के वर्कलोड केवल उपयुक्त हार्डवेयर पर ही चलें।
+
+- **Taints** nodes पर लगाए जाते हैं और उन pods को हटा देते हैं जो उन्हें tolerate नहीं करते।
+- **Tolerations** pods पर लगाए जाते हैं ताकि वे उन nodes पर चल सकें जिन पर समान taints लागू हैं।
+
+यह फीचर उपयोगी होता है:
+- हाई-परफॉर्मेंस वर्कलोड्स को डेडिकेटेड हार्डवेयर पर चलाने के लिए।
+- कुछ एप्लिकेशन्स को compliance या security कारणों से isolate करने के लिए।
+- महत्वपूर्ण एप्लिकेशन्स को resource contention से बचाने के लिए।
+
+--- निष्कर्ष [text] ---
+सारांश में, **Nodes Kubernetes क्लस्टर के execution units होते हैं**। ये सभी जरूरी कंपोनेंट्स को होस्ट करते हैं जो कंटेनराइज्ड एप्लिकेशन चलाने के लिए जरूरी हैं। चाहे आप क्लाउड में हों, किसी डेटा सेंटर में हों या ऑन-प्रिमाइसेस इन्फ्रास्ट्रक्चर में, nodes की समझ होना scalability, performance और reliability को बनाए रखने के लिए ज़रूरी है।
+
+Node management को अच्छे से समझकर DevOps टीमें infrastructure का बेहतरीन उपयोग कर सकती हैं और cloud-native applications के लिए एक stable व secure वातावरण सुनिश्चित कर सकती हैं।
+
+
