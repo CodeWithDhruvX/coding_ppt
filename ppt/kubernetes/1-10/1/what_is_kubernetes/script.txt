@@ -57,13 +57,13 @@ Jaise socho tumhare paas ek common deployment config hai, par alag environments 
 🎯 Overall, agar tum serious ho Kubernetes sikhnay me, toh ye ecosystem tools tumhara life easy banayenge. Ye tools beginners ke liye initially thode intimidating lag sakte hain, par once samajh aa gaya — productivity double ho jaati hai.
 
 ---
-
+=============================================================================
 Agle slide ke liye ready ho?
 
 
 
 
-=============================================================================
+
 
 Bilkul! Chalo shuru karte hain **first slide** se — Hinglish tone me, friendly aur simple explanation ke saath.
 
@@ -215,8 +215,6 @@ Aur ek aur interesting cheez — Airbnb ne bola ki Kubernetes se unka developmen
 Phir aata hai **Spotify** — jaha hum log music sunte hain. Unka backend bhi kaafi bada hai, specially playlists, recommendations, streaming…
 Toh Spotify bhi Kubernetes pe dependent hai — taaki unka backend system smoothly chale, downtime na ho, aur naye features jaldi deploy ho sakein.
 
-Aur ek thoda hatke example — **CERN**. Ye ek scientific research organization hai — jaha Large Hadron Collider jaisa setup hai. Yaha pe bohot heavy compute tasks hote hain, scientific workloads.
-CERN Kubernetes ka use karta hai *clusters* manage karne ke liye — matlab multiple servers jinko ek team ki tarah manage karna hota hai. Ye use-case thoda advanced hai, but idea yehi hai — Kubernetes se complex kaam simple ho jata hai.
 
 👨‍🏫 Toh in teeno examples se ek simple baat samjho — **Kubernetes sirf coding ke liye nahi, balki production-level systems manage karne ke liye bhi use hota hai.**
 Agar tum future me backend ya DevOps ya cloud engineering me jaate ho — toh Kubernetes aana kaafi useful hoga.
