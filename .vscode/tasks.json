@@ -42,7 +42,7 @@
             "problemMatcher": []
         },
         {
-            "label": "PPT data generate",
+            "label": "Prompts Data",
             "type": "shell",
             "command": "python",
             "args": [

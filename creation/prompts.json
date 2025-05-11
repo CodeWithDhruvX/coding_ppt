@@ -22,7 +22,27 @@
     "slide_hindi_language":{
       "title": "Slide Hindi Language",
       "prompt": "Convert this text into Hindi where most of the explanation is in Hindi, but key technical terms or concepts should remain in English."
+    },
+    "quiz_end":{
+      "title": "Quiz End",
+      "prompt": "Create a Hinglish YouTube script for my tech channel. The topic is a fun Kubernetes quiz or challenge. The tone should be casual, energetic, and friendly — like talking to friends.\n  <paste object> \n questions (no answers), and encourage viewers to comment their answers and subscribe to the channel. End with a strong call to action."
     }
-
+    
   }
   
+// end intro
+//   Toh chalo, karte hain ek quick Kubernetes Pod Challenge 💥
+// Sahi jawab comment mein likhna — let’s see kaun hai asli K8s champion! 😎
+
+// Agar aapko yeh quiz interesting laga ho ya kuch naya seekhne ko mila ho —
+// ek like zaroor thokna! 👍
+
+
+// Aur agar aap enjoy karte ho tech quizzes, Toh bhai kya kar rahe ho? Channel ko subscribe karo aur bell icon daba do! 🛎️
+// Taaki agli baar jab hum naye challenges leke aayein, aap miss na karo.
+
+// [Outro – Friendly sign-off]
+
+// Main milta hoon agle video mein ek naye topic ke saath —
+// Tab tak ke liye,
+// Keep learning, keep growing! 🚀
