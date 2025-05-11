@@ -1,0 +1,59 @@
+[
+    {
+      "title": "Introduction to Kubernetes Cluster",
+      "content": "A **Kubernetes Cluster** एक बुनियादी संरचना है जहां Kubernetes कंटेनरीकृत अनुप्रयोगों को प्रबंधित और चलाता है। इसमें कई मशीनें (जिन्हें nodes कहा जाता है) होती हैं, जो मिलकर काम करती हैं। ये nodes शारीरिक सर्वर हो सकते हैं या वर्चुअल मशीनें हो सकती हैं। Kubernetes इन nodes को इस तरह से समन्वयित करता है ताकि अनुप्रयोग विश्वसनीय रूप से चल सकें, मांग के अनुसार स्केल हो सकें, और विफलताओं से स्वतः रिकवरी हो सके। यह आधारभूत अवसंरचना को अमूर्त (abstract) करता है, जिससे डेवलपर्स को हार्डवेयर के बारे में चिंता किए बिना अनुप्रयोगों पर ध्यान केंद्रित करने में मदद मिलती है।",
+      "slide_type": "text"
+    },
+    {
+      "title": "Core Components of a Cluster",
+      "content": "- **Master Node (Control Plane)**: क्लस्टर का मस्तिष्क, जो क्लस्टर के बारे में निर्णय लेता है जैसे कि शेड्यूलिंग, घटनाओं का पता लगाना और प्रतिक्रिया देना।\n- **Worker Nodes**: वह मशीनें जहां आपका एप्लिकेशन वास्तव में चलता है। इनका प्रबंधन Control Plane द्वारा किया जाता है।\n- **Kubelet**: हर worker node पर एक एजेंट जो यह सुनिश्चित करता है कि Pods में कंटेनर अपेक्षित रूप से चल रहे हैं।\n- **Pods**: Kubernetes का सबसे छोटा और सरल ऑब्जेक्ट। एक Pod क्लस्टर में चलने वाली प्रक्रिया का एकल उदाहरण होता है और इसमें एक या एक से अधिक कंटेनर हो सकते हैं।",
+      "slide_type": "text"
+    },
+    {
+      "title": "Kubernetes Cluster Architecture",
+      "content": "```plaintext\n+-----------------------------+\n|         Control Plane       |\n|-----------------------------|\n|  API Server | Scheduler     |\n|  Controller Manager | etcd  |\n+-----------------------------+\n        |          |\n        v          v\n+-----------------------------+\n|         Worker Nodes        |\n|-----------------------------|\n|  Kubelet | Kube Proxy | Pods |\n+-----------------------------+\n```",
+      "slide_type": "code"
+    },
+    {
+      "title": "Control Plane Components",
+      "content": "- **API Server**: Kubernetes control plane का फ्रंट-एंड। यह उपयोगकर्ताओं से RESTful अनुरोधों को संभालता है और अन्य क्लस्टर घटकों से संवाद करता है।\n- **Scheduler**: नए बनाए गए Pods को देखता है और उन्हें संसाधन उपलब्धता और अन्य बाधाओं के आधार पर उपयुक्त node पर असाइन करता है।\n- **Controller Manager**: क्लस्टर की इच्छित स्थिति बनाए रखने के लिए कंट्रोलर्स जैसे ReplicationController और NodeController को संभालता है।\n- **etcd**: एक वितरित की-वैल्यू स्टोर है जो सभी क्लस्टर डेटा को स्टोर करता है, यह सुनिश्चित करता है कि Kubernetes हमेशा सिस्टम की वर्तमान और इच्छित स्थिति को जानता है।",
+      "slide_type": "text"
+    },
+    {
+      "title": "Worker Node Components",
+      "content": "- **Kubelet**: यह सुनिश्चित करता है कि containers Pods में चल रहे हैं। इसे API Server से निर्देश मिलते हैं और यह स्थिति की रिपोर्ट करता है।\n- **Kube Proxy**: नेटवर्क नियमों को बनाए रखता है और Pods से आने-जाने वाले नेटवर्क ट्रैफिक को संभालता है, जो सेवाओं के बीच संचार सक्षम करता है।\n- **Container Runtime**: वह सॉफ़्टवेयर जो कंटेनरों को चलाने के लिए जिम्मेदार होता है। Docker पारंपरिक रूप से इस्तेमाल किया जाता था, लेकिन containerd और CRI-O जैसे विकल्प भी समर्थित हैं।\n- **Pods**: प्रत्येक Pod एक या एक से अधिक कंटेनरों को चलाता है और स्टोरेज और नेटवर्क संसाधनों को साझा करता है, जो इसे Kubernetes का एक बुनियादी डिप्लॉयबल यूनिट बनाता है।",
+      "slide_type": "text"
+    },
+    {
+      "title": "Cluster Benefits",
+      "content": "- **High availability of applications**: Kubernetes स्वचालित रूप से वर्कलोड वितरित करता है और विफल कंटेनरों को फिर से शेड्यूल करता है, जिससे न्यूनतम डाउनटाइम सुनिश्चित होता है।\n- **Automatic scaling**: वास्तविक समय के मेट्रिक्स के आधार पर, Kubernetes Pods की संख्या बढ़ा या घटा सकता है ताकि मांग के अनुसार स्केलिंग की जा सके।\n- **Self-healing**: Kubernetes अनुप्रयोगों की स्थिति को लगातार मॉनिटर करता है और स्वचालित रूप से उन कंटेनरों को बदलता है जो क्रैश हो जाते हैं या उत्तरदायी नहीं होते।\n- **Centralized configuration**: ConfigMaps और Secrets का उपयोग करके ऐप सेटिंग्स और क्रेडेंशियल्स को प्रबंधित किया जा सकता है, बिना इन्हें ऐप में हार्डकोड किए।",
+      "slide_type": "text"
+    },
+    {
+      "title": "Cluster Use Cases",
+      "content": "- **Deploying microservices**: Kubernetes के सेवा खोज और नेटवर्किंग का उपयोग करके कई लूजली कपल्ड सेवाओं को आसानी से प्रबंधित किया जा सकता है।\n- **Running CI/CD pipelines**: Kubernetes-आधारित उपकरणों जैसे Jenkins और Argo CD का उपयोग करके निर्माण, परीक्षण और तैनाती को स्वचालित किया जा सकता है।\n- **Hosting scalable web applications**: Horizontal Pod Autoscaler का उपयोग करके विभिन्न ट्रैफिक लोड को स्वचालित रूप से संभाला जा सकता है।\n- **Processing large-scale batch jobs**: Kubernetes Jobs और CronJobs का उपयोग करके कई nodes पर शेड्यूल किए गए और ऑन-डिमांड डेटा प्रोसेसिंग कार्य चलाए जा सकते हैं।",
+      "slide_type": "text"
+    },
+    {
+      "title": "Control Plane vs Worker Nodes",
+      "content": [
+        {
+          "component": "Control Plane",
+          "example_services": "API Server, Scheduler, Controller Manager",
+          "role": "क्लस्टर की स्थिति और समन्वयन का प्रबंधन करता है।"
+        },
+        {
+          "component": "Worker Nodes",
+          "example_services": "Kubelet, Kube Proxy, Pods",
+          "role": "कंटेनरों और वर्कलोड्स को निष्पादित करता है।"
+        }
+      ],
+      "slide_type": "table"
+    },
+    {
+      "title": "Summary",
+      "content": "एक **Kubernetes Cluster** वह संसाधन और उपकरण प्रदान करता है जो आधुनिक अनुप्रयोगों को बड़े पैमाने पर चलाने के लिए आवश्यक होते हैं। Control Plane और Worker Nodes के बीच जिम्मेदारियों का विभाजन करके, Kubernetes कंटेनरों के तैनाती को लचीला, स्केलेबल और कुशल बनाता है। इन घटकों के बीच इंटरएक्शन को समझकर आप उत्पादन-ग्रेड अनुप्रयोगों को क्लाउड या ऑन-प्रिमाइसेस में प्रभावी ढंग से डिजाइन, तैनात और प्रबंधित कर सकते हैं।",
+      "slide_type": "text"
+    }
+  ]
+  

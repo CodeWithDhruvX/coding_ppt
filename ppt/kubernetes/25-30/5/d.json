@@ -1,0 +1,53 @@
+[
+    {
+      "title": "Canary Deployment क्या है?",
+      "content": "### Overview\n- Canary Deployment एक Progressive Delivery Strategy है।\n- इसमें नया `version` पहले एक छोटे हिस्से के `users` को मिलता है।\n- Gradually, नया `version` ज्यादा `traffic` को serve करता है।\n- Failure होने पर rollback आसान होता है।",
+      "slide_type": "text"
+    },
+    {
+      "title": "Basic YAML Example देखें",
+      "content": "```yaml\napiVersion: apps/v1\nkind: Deployment\nmetadata:\n  name: canary-demo\nspec:\n  replicas: 5\n  selector:\n    matchLabels:\n      app: myapp\n  template:\n    metadata:\n      labels:\n        app: myapp\n        version: canary\n    spec:\n      containers:\n      - name: myapp\n        image: myapp:v2\n```",
+      "slide_type": "code"
+    },
+    {
+      "title": "क्यों करें Canary Deployment?",
+      "content": "### फायदे:\n- Production में नया `release` धीरे-धीरे deploy होता है।\n- Risk कम होता है।\n- Real-user feedback जल्दी मिलता है।\n- आसान Monitoring और `metrics` gathering।",
+      "slide_type": "text"
+    },
+    {
+      "title": "Service Split YAML",
+      "content": "```yaml\napiVersion: v1\nkind: Service\nmetadata:\n  name: myapp-service\nspec:\n  selector:\n    app: myapp\n  ports:\n  - port: 80\n    targetPort: 8080\n```",
+      "slide_type": "code"
+    },
+    {
+      "title": "Canary में Traffic कैसे Split करें?",
+      "content": "### Traffic Routing\n- Istio, Linkerd जैसे Service Mesh tools से possible है।\n- `VirtualService` resource का use कर सकते हैं।\n- Example: 90% old version को, 10% canary को।",
+      "slide_type": "text"
+    },
+    {
+      "title": "Istio VirtualService Example",
+      "content": "```yaml\napiVersion: networking.istio.io/v1alpha3\nkind: VirtualService\nmetadata:\n  name: myapp-virtualservice\nspec:\n  hosts:\n  - myapp.example.com\n  http:\n  - route:\n    - destination:\n        host: myapp\n        subset: stable\n      weight: 90\n    - destination:\n        host: myapp\n        subset: canary\n      weight: 10\n```",
+      "slide_type": "code"
+    },
+    {
+      "title": "Monitoring जरूरी क्यों?",
+      "content": "### Canary Success/Fail Check\n- Real-time `metrics`, `logs` और `alerts` ज़रूरी होते हैं।\n- Tools: Prometheus, Grafana, Fluentd\n- अगर issue आता है तो fast `rollback` किया जा सकता है।",
+      "slide_type": "text"
+    },
+    {
+      "title": "Prometheus Metric Query Example",
+      "content": "```promql\nrate(http_requests_total{job=\"myapp\", version=\"canary\"}[1m])\n```",
+      "slide_type": "code"
+    },
+    {
+      "title": "Quick Challenge: Test Your Understanding",
+      "content": "### Questions:\n1. Canary Deployment का main benefit क्या है?\n2. `VirtualService` में `weight` क्या control करता है?\n3. क्या rollback करना आसान होता है Canary Deployment में? क्यों?\n4. कौन से tools Monitoring के लिए use होते हैं?\n5. नीचे YAML में कौन सा field traffic control करता है?\n```yaml\n- destination:\n    host: myapp\n    subset: canary\n  weight: 10\n```",
+      "slide_type": "text"
+    },
+    {
+      "title": "Solutions: Quick Challenge",
+      "content": "### Answers:\n1. नया version को धीरे-धीरे release कर सकते हैं, जिससे risk कम होता है।\n2. `weight` field traffic का percentage control करता है।\n3. हाँ, rollback आसान होता है क्योंकि कम users impact होते हैं।\n4. Prometheus, Grafana, Fluentd\n5. `weight: 10` का मतलब है केवल 10% traffic canary को जाएगा।",
+      "slide_type": "code"
+    }
+  ]
+  

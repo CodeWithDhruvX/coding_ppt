@@ -1,0 +1,43 @@
+[
+    {
+      "title": "ClusterIP सेवा क्या है?",
+      "content": "### ClusterIP सेवा का परिचय\n- Kubernetes में `Service` नेटवर्किंग का एक महत्वपूर्ण हिस्सा है।\n- `ClusterIP` सेवा डिफ़ॉल्ट प्रकार होती है।\n- यह सेवा `Pods` के लिए एक स्थिर IP प्रदान करती है।\n- केवल क्लस्टर के अंदर से एक्सेस की जा सकती है।\n- उपयोग में तब आती है जब आप आंतरिक संचार (internal communication) चाहते हैं।",
+      "slide_type": "text"
+    },
+    {
+      "title": "ClusterIP सेवा YAML उदाहरण",
+      "content": "```yaml\napiVersion: v1\nkind: Service\nmetadata:\n  name: my-clusterip-service\nspec:\n  type: ClusterIP\n  selector:\n    app: my-app\n  ports:\n    - protocol: TCP\n      port: 80\n      targetPort: 9376\n```",
+      "slide_type": "code"
+    },
+    {
+      "title": "ClusterIP के लाभ",
+      "content": "### फायदे:\n- - `Pods` का स्थिर DNS नाम मिलता है।\n- - स्केलेबल और लोड बैलेंसिंग सपोर्ट करता है।\n- - क्लस्टर के अंदर सुरक्षा सुनिश्चित करता है।",
+      "slide_type": "text"
+    },
+    {
+      "title": "ClusterIP के साथ curl परीक्षण",
+      "content": "```bash\nkubectl run test --image=busybox --rm -it -- /bin/sh\n# अंदर जाकर:\ncurl http://my-clusterip-service:80\n```",
+      "slide_type": "code"
+    },
+    {
+      "title": "ClusterIP कब चुनें?",
+      "content": "### उपयोग का केस:\n- जब आपको केवल क्लस्टर के अंदर सेवा एक्सेस करनी हो।\n- बैकएंड `microservices` आपस में बात करने के लिए।\n- जब आप `LoadBalancer` या `NodePort` की ज़रूरत नहीं समझते।",
+      "slide_type": "text"
+    },
+    {
+      "title": "kubectl से ClusterIP सेवा देखना",
+      "content": "```bash\nkubectl get svc\n# Output:\nNAME                   TYPE        CLUSTER-IP      PORT(S)    AGE\nmy-clusterip-service   ClusterIP   10.96.0.1       80/TCP     2m\n```",
+      "slide_type": "code"
+    },
+    {
+      "title": "Quick Challenge: Test Your Understanding",
+      "content": "### निम्नलिखित में से सही विकल्प चुनें:\n\n1. `ClusterIP` सेवा को कौन एक्सेस कर सकता है?\n   - A. कोई भी इंटरनेट यूज़र\n   - B. केवल क्लस्टर के अंदर से\n   - C. LoadBalancer ही एक्सेस कर सकता है\n\n2. YAML में `type: ClusterIP` क्या करता है?\n   - A. सेवा को इंटरनेट से जोड़ता है\n   - B. सेवा को केवल क्लस्टर के अंदर उपलब्ध करता है\n   - C. Pods को restart करता है\n\n3. क्या `ClusterIP` सेवा IP स्थिर रहती है?\n   - A. हाँ\n   - B. नहीं\n   - C. यह हर बार बदलती है",
+      "slide_type": "text"
+    },
+    {
+      "title": "Solutions: Quick Challenge",
+      "content": "### उत्तर:\n\n1. ✅ B. केवल क्लस्टर के अंदर से\n   - ClusterIP सेवाएँ क्लस्टर के बाहर से एक्सेस नहीं की जा सकतीं।\n\n2. ✅ B. सेवा को केवल क्लस्टर के अंदर उपलब्ध करता है\n   - `type: ClusterIP` सेवा को internal-only बनाता है।\n\n3. ✅ A. हाँ\n   - ClusterIP एक स्थिर IP प्रदान करता है जब तक सेवा delete न की जाए।",
+      "slide_type": "code"
+    }
+  ]
+  

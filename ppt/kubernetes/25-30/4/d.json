@@ -1,0 +1,43 @@
+[
+    {
+      "title": "Deployment को Pause करना",
+      "content": "### Pause करने का कारण:\n- जब आप Deployment को update कर रहे हों और rollout रोकना चाहें।\n- Manual steps के लिए या errors को debug करने के लिए।\n\n### कमांड:\n- Deployment को pause करने के लिए:\n```bash\nkubectl rollout pause deployment/<deployment-name>\n```\n\n- इससे deployment का नया rollout रुक जाता है।",
+      "slide_type": "text"
+    },
+    {
+      "title": "Pause Command का उदाहरण",
+      "content": "```bash\n# 'frontend' नाम का Deployment pause करें\nkubectl rollout pause deployment/frontend\n\n# Pause के बाद आप spec को update कर सकते हैं\nkubectl edit deployment/frontend\n```",
+      "slide_type": "code"
+    },
+    {
+      "title": "Deployment को Resume करना",
+      "content": "### Resume करने का कारण:\n- जब आप manual updates के बाद rollout को फिर से शुरू करना चाहें।\n\n### कमांड:\n- Deployment को resume करने के लिए:\n```bash\nkubectl rollout resume deployment/<deployment-name>\n```\n\n- Resume के बाद rollout फिर से शुरू हो जाता है।",
+      "slide_type": "text"
+    },
+    {
+      "title": "Resume Command का उदाहरण",
+      "content": "```bash\n# 'frontend' नाम का Deployment resume करें\nkubectl rollout resume deployment/frontend\n\n# यह command rollout को फिर से चालू कर देगी\n```",
+      "slide_type": "code"
+    },
+    {
+      "title": "Pause/Resume की स्थिति देखना",
+      "content": "### Rollout Status देखने के लिए:\n- यह जानने के लिए कि Deployment paused है या नहीं:\n```bash\nkubectl rollout status deployment/<deployment-name>\n```\n\n- Paused Deployment में कोई नया rollout नहीं दिखेगा।",
+      "slide_type": "text"
+    },
+    {
+      "title": "Rollout Status Check Command",
+      "content": "```bash\n# rollout status देखें\nkubectl rollout status deployment/frontend\n\n# Output से पता चलेगा कि rollout रुका हुआ है या जारी है\n```",
+      "slide_type": "code"
+    },
+    {
+      "title": "Quick Challenge: Test Your Understanding",
+      "content": "### कुछ आसान सवाल:\n\n1. `kubectl rollout pause deployment/frontend` का क्या असर होगा?\n2. एक paused deployment को resume कैसे करते हैं?\n3. Rollout status देखने की सही command क्या है?\n4. Pause करने का एक उपयोगी scenario बताइए।",
+      "slide_type": "text"
+    },
+    {
+      "title": "Solutions: Quick Challenge",
+      "content": "### जवाब:\n\n1. यह `frontend` deployment का rollout रोक देगा, जिससे आप बिना auto rollout के changes कर सकते हैं।\n2. Command: `kubectl rollout resume deployment/frontend`\n3. Command: `kubectl rollout status deployment/frontend`\n4. जब आप live environment में config change कर रहे हों और impact को control करना हो, तब pause करना बेहतर होता है।",
+      "slide_type": "code"
+    }
+  ]
+  

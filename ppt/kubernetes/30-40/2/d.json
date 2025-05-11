@@ -1,0 +1,53 @@
+[
+    {
+      "title": "कुबेरनेट्स सर्विस क्या है?",
+      "content": "### परिचय\n- `Kubernetes Service` एक स्थायी IP और DNS प्रदान करता है जिससे `Pods` को एक्सेस किया जा सकता है।\n- यह `Pod` के lifecycle से स्वतंत्र होता है।\n- चार मुख्य प्रकार हैं: `ClusterIP`, `NodePort`, `LoadBalancer`, और `ExternalName`।",
+      "slide_type": "text"
+    },
+    {
+      "title": "ClusterIP: डिफ़ॉल्ट सर्विस प्रकार",
+      "content": "### ClusterIP\n- यह डिफ़ॉल्ट `Service Type` होता है।\n- केवल `cluster` के अंदर से एक्सेस किया जा सकता है।\n- बाहरी ट्रैफ़िक को अनुमति नहीं देता।\n\n### YAML उदाहरण\n```yaml\napiVersion: v1\nkind: Service\nmetadata:\n  name: my-service\nspec:\n  type: ClusterIP\n  selector:\n    app: MyApp\n  ports:\n    - protocol: TCP\n      port: 80\n      targetPort: 9376\n```",
+      "slide_type": "code"
+    },
+    {
+      "title": "NodePort: बाहरी एक्सेस का तरीका",
+      "content": "### NodePort\n- `Service` को cluster के बाहरी नेटवर्क से एक्सेस किया जा सकता है।\n- एक `port` को प्रत्येक `Node` पर ओपन करता है (रेंज: 30000–32767)।\n- URL: `http://<NodeIP>:<NodePort>`",
+      "slide_type": "text"
+    },
+    {
+      "title": "NodePort YAML उदाहरण",
+      "content": "```yaml\napiVersion: v1\nkind: Service\nmetadata:\n  name: my-nodeport-service\nspec:\n  type: NodePort\n  selector:\n    app: MyApp\n  ports:\n    - protocol: TCP\n      port: 80\n      targetPort: 9376\n      nodePort: 30036\n```",
+      "slide_type": "code"
+    },
+    {
+      "title": "LoadBalancer: क्लाउड एक्सपोज़र",
+      "content": "### LoadBalancer\n- केवल क्लाउड प्रदाताओं में उपलब्ध।\n- `External IP` प्रदान करता है जो ट्रैफ़िक को `Pods` तक रूट करता है।\n- यह `ClusterIP` और `NodePort` दोनों को जोड़ता है।",
+      "slide_type": "text"
+    },
+    {
+      "title": "LoadBalancer YAML उदाहरण",
+      "content": "```yaml\napiVersion: v1\nkind: Service\nmetadata:\n  name: my-loadbalancer-service\nspec:\n  type: LoadBalancer\n  selector:\n    app: MyApp\n  ports:\n    - protocol: TCP\n      port: 80\n      targetPort: 9376\n```",
+      "slide_type": "code"
+    },
+    {
+      "title": "ExternalName: DNS से रीडायरेक्ट",
+      "content": "### ExternalName\n- `Service` को किसी DNS नाम की ओर रीडायरेक्ट करता है।\n- कोई `selector` या `port` define नहीं होता।\n- `externalName` से DNS नाम रिटर्न करता है।",
+      "slide_type": "text"
+    },
+    {
+      "title": "ExternalName YAML उदाहरण",
+      "content": "```yaml\napiVersion: v1\nkind: Service\nmetadata:\n  name: my-external-service\nspec:\n  type: ExternalName\n  externalName: example.com\n```",
+      "slide_type": "code"
+    },
+    {
+      "title": "Quick Challenge: Test Your Understanding",
+      "content": "### निम्नलिखित में से सही उत्तर चुनें:\n\n1. `NodePort` किस पोर्ट रेंज में होता है?\n   - A) 2000–5000\n   - B) 30000–32767\n   - C) 8000–9000\n\n2. `ExternalName` Service क्या करता है?\n   - A) LoadBalancer सेट करता है\n   - B) Node पर पोर्ट खोलता है\n   - C) DNS नाम पर रीडायरेक्ट करता है\n\n3. किस `Service type` में external IP आता है?\n   - A) ClusterIP\n   - B) LoadBalancer\n   - C) None",
+      "slide_type": "text"
+    },
+    {
+      "title": "Solutions: Quick Challenge",
+      "content": "### उत्तर:\n\n1. **B) 30000–32767**\n   - `NodePort` पोर्ट्स इस रेंज में होते हैं।\n\n2. **C) DNS नाम पर रीडायरेक्ट करता है**\n   - `ExternalName` केवल DNS alias प्रदान करता है।\n\n3. **B) LoadBalancer**\n   - `LoadBalancer` एक external IP assign करता है जिससे बाहर से traffic आ सके।",
+      "slide_type": "code"
+    }
+  ]
+  

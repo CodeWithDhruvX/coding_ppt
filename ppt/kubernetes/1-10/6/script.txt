@@ -1,0 +1,81 @@
+यहाँ आपके स्लाइड्स को हिंदी में अनुवाद किया गया है, जिसमें प्रमुख तकनीकी शब्द (जैसे Kubernetes, Namespace, RBAC आदि) को ज्यों का त्यों रखा गया है:
+
+Introduction to Kubernetes Namespaces
+Kubernetes में Namespaces वर्चुअल क्लस्टर की तरह काम करते हैं जो एक ही फिज़िकल Kubernetes क्लस्टर के अंदर होते हैं। ये यूज़र्स को अलग-अलग टीमों या प्रोजेक्ट्स के बीच resources बाँटने में मदद करते हैं। इस abstraction के ज़रिए बड़े environments में workloads को बेहतर ढंग से organize और manage किया जा सकता है। Namespaces एक नाम की scope प्रदान करते हैं, जिससे आप अलग-अलग namespaces में एक ही नाम के resources रख सकते हैं बिना किसी conflict के।
+
+Why Use Namespaces?
+Isolation: Namespaces के ज़रिए आप development, testing और production जैसे environments को isolate कर सकते हैं ताकि वे एक-दूसरे में interfere न करें।
+
+Organization: Kubernetes के objects (जैसे pods, services आदि) को logically group और manage करने में मदद मिलती है।
+
+Access Control: आप Role-Based Access Control (RBAC) लागू कर सकते हैं जिससे अलग-अलग users या teams सिर्फ अपने assigned namespace तक ही access रख सकें।
+
+Resource Quotas: Admins हर namespace के लिए CPU, memory, pods की संख्या जैसी resource limits तय कर सकते हैं जिससे fair usage सुनिश्चित हो और कोई भी resource overuse न कर सके।
+
+Default Namespaces in Kubernetes
+Namespace	Purpose
+default	उन objects के लिए जो किसी namespace में assign नहीं होते
+kube-system	Kubernetes system components के लिए उपयोग किया जाता है
+kube-public	publicly readable namespace, ज़्यादातर cluster info के लिए
+kube-node-lease	nodes के heartbeats को manage करने के लिए इस्तेमाल होता है
+
+Creating a Namespace
+yaml
+Copy
+Edit
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: dev-environment
+ऊपर दिया गया YAML config एक नया Namespace बनाता है जिसका नाम dev-environment है।
+
+Creating a Resource in a Namespace
+yaml
+Copy
+Edit
+apiVersion: v1
+kind: Pod
+metadata:
+  name: my-pod
+  namespace: dev-environment
+spec:
+  containers:
+  - name: my-container
+    image: nginx
+इस YAML फाइल के ज़रिए एक Pod को dev-environment namespace में create किया गया है।
+
+Switching Between Namespaces (kubectl)
+bash
+Copy
+Edit
+# kubectl का default namespace सेट करें
+kubectl config set-context --current --namespace=dev-environment
+
+# सभी namespaces की लिस्ट देखें
+kubectl get namespaces
+
+# किसी specific namespace में pods देखें
+kubectl get pods -n dev-environment
+इन commands का उपयोग करके आप namespace से संबंधित tasks आसानी से कर सकते हैं।
+
+Best Practices with Namespaces
+Separate by environment: development, staging और production को अलग-अलग namespaces में रखें ताकि accidental changes से बचा जा सके।
+
+Use RBAC per namespace: हर namespace के लिए RBAC policies define करें ताकि user access control स्पष्ट और सुरक्षित हो।
+
+Apply ResourceQuotas: CPU, memory, और object limits enforce करें ताकि resources का दुरुपयोग न हो।
+
+Avoid overloading a namespace: एक namespace में बहुत सारे unrelated resources रखने से troubleshooting और management कठिन हो सकता है। logical grouping का पालन करें।
+
+Standardize naming conventions: नामकरण के consistent नियम अपनाएँ ताकि namespace से यह स्पष्ट हो कि वह किस टीम, प्रोजेक्ट या environment से संबंधित है।
+
+Conclusion
+Namespaces एक शक्तिशाली तरीका हैं जिससे आप complex Kubernetes environments को manage कर सकते हैं। ये multi-tenant architectures, secure access control, और efficient resource usage के लिए ज़रूरी हैं। Workloads को isolate करके, policies enforce करके और better organization के ज़रिए ये Kubernetes setup को scalable और maintainable बनाते हैं।
+
+
+===============================================================================================
+
+
+
+
+

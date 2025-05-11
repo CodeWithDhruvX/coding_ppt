@@ -1,0 +1,43 @@
+[
+    {
+      "title": "Kubernetes Service क्या है?",
+      "content": "### परिचय\n- `Service` एक Kubernetes object है जो pods को network के ज़रिये access करने की सुविधा देता है।\n- यह pods के IP बदलने पर भी एक स्थायी endpoint प्रदान करता है।\n- `kubectl expose` कमांड से किसी pod या deployment को service से जोड़ सकते हैं।",
+      "slide_type": "text"
+    },
+    {
+      "title": "Service के लिए YAML उदाहरण",
+      "content": "```yaml\napiVersion: v1\nkind: Service\nmetadata:\n  name: my-service\nspec:\n  selector:\n    app: MyApp\n  ports:\n    - protocol: TCP\n      port: 80\n      targetPort: 9376\n```",
+      "slide_type": "code"
+    },
+    {
+      "title": "Service के प्रकार",
+      "content": "### मुख्य प्रकार:\n- `ClusterIP`: केवल cluster के अंदर access\n- `NodePort`: external access के लिए node के port पर expose\n- `LoadBalancer`: cloud provider के load balancer से expose\n\n### विशेषताएँ:\n- `selector` field से pod से connect\n- `endpoints` automatic generate होते हैं",
+      "slide_type": "text"
+    },
+    {
+      "title": "NodePort का YAML उदाहरण",
+      "content": "```yaml\napiVersion: v1\nkind: Service\nmetadata:\n  name: nodeport-example\nspec:\n  type: NodePort\n  selector:\n    app: example\n  ports:\n    - port: 80\n      targetPort: 8080\n      nodePort: 30036\n```",
+      "slide_type": "code"
+    },
+    {
+      "title": "Service और DNS",
+      "content": "### DNS integration:\n- हर service को Kubernetes cluster में एक DNS name मिलता है:\n  - उदाहरण: `my-service.default.svc.cluster.local`\n- यह name pods या अन्य services से access किया जा सकता है\n\n### उदाहरण:\n- `curl http://my-service`\n- `ping my-service`",
+      "slide_type": "text"
+    },
+    {
+      "title": "DNS से Service को Access करना",
+      "content": "```bash\n# busybox pod से किसी service को ping करना\nkubectl run -it --rm --image=busybox dns-test --restart=Never -- sh\n# अब shell में:\nping my-service\n```",
+      "slide_type": "code"
+    },
+    {
+      "title": "Quick Challenge: Test Your Understanding",
+      "content": "### निम्नलिखित प्रश्नों के उत्तर दें:\n\n1. `ClusterIP`, `NodePort` और `LoadBalancer` में क्या अंतर है?\n2. `selector` का role Service में क्या होता है?\n3. नीचे दिए YAML में क्या गलत है?\n```yaml\nspec:\n  type: NodePort\n  ports:\n    - port: 80\n      targetPort: 8080\n```\n4. DNS name से Service कैसे access करते हैं?\n",
+      "slide_type": "text"
+    },
+    {
+      "title": "Solutions: Quick Challenge",
+      "content": "### उत्तर:\n\n1. **अंतर:**\n   - `ClusterIP`: केवल internal access\n   - `NodePort`: external access via node's IP and port\n   - `LoadBalancer`: external access via cloud load balancer\n\n2. **`selector`:** यह बताता है कि service किस pod को target करेगी।\n\n3. **YAML में गड़बड़ी:** `nodePort` field missing है। NodePort में इसे specify करना चाहिए:\n```yaml\nnodePort: 30036\n```\n\n4. **DNS access:** आप service को उसके नाम से access कर सकते हैं:\n```bash\ncurl http://my-service\n```",
+      "slide_type": "code"
+    }
+  ]
+  
