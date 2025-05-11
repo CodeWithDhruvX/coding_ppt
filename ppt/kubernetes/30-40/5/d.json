@@ -1,0 +1,43 @@
+[
+    {
+      "title": "Kubernetes में LoadBalancer सेवा क्या है?",
+      "content": "Kubernetes में, `LoadBalancer` सेवा एक प्रकार की सेवा होती है जो external traffic को क्लस्टर के भीतर एक या अधिक Pods तक पहुँचाती है। यह आमतौर पर external clients को एक स्थिर IP address प्रदान करती है जिससे वह Kubernetes क्लस्टर के साथ संवाद कर सकते हैं।",
+      "slide_type": "text"
+    },
+    {
+      "title": "LoadBalancer का कार्य कैसे करता है?",
+      "content": "LoadBalancer service, external traffic को स्वचालित रूप से distribute करता है। यह नेटवर्क ट्रैफ़िक को एक स्थिर IP पर लाता है और क्लस्टर के Pods के बीच ट्रैफ़िक को load करता है। Kubernetes cloud-provider integration का उपयोग करके यह external IP को dynamically provision करता है।",
+      "slide_type": "text"
+    },
+    {
+      "title": "LoadBalancer के कोड उदाहरण",
+      "content": "यहां एक Kubernetes YAML उदाहरण है जो एक LoadBalancer service को प्रदर्शित करता है:\n\n```yaml\napiVersion: v1\nkind: Service\nmetadata:\n  name: my-loadbalancer-service\nspec:\n  selector:\n    app: my-app\n  ports:\n    - protocol: TCP\n      port: 80\n      targetPort: 8080\n  type: LoadBalancer\n```\nयह YAML एक LoadBalancer service को configure करता है जो app 'my-app' के लिए external traffic को 80 पोर्ट पर route करता है।",
+      "slide_type": "code"
+    },
+    {
+      "title": "LoadBalancer में Auto Scaling",
+      "content": "LoadBalancer service क्लस्टर में Pods के लिए auto-scaling को facilitate कर सकती है। जैसे ही traffic बढ़ता है, Kubernetes नए Pods को provision करके load को balance करता है।\n- Kubernetes Horizontal Pod Autoscaler (HPA) के साथ इसका संयोजन स्वचालित रूप से Pods की संख्या बढ़ाता है।",
+      "slide_type": "text"
+    },
+    {
+      "title": "LoadBalancer और Cloud Integration",
+      "content": "कई cloud providers, जैसे कि AWS, GCP, और Azure, Kubernetes के LoadBalancer service को integrate करते हैं। इसका मतलब है कि Kubernetes स्वचालित रूप से cloud-specific load balancer को configure और provision कर सकता है।",
+      "slide_type": "text"
+    },
+    {
+      "title": "LoadBalancer के साथ उदाहरण",
+      "content": "यहाँ AWS पर एक LoadBalancer service को प्रदर्शित करने का YAML उदाहरण है:\n\n```yaml\napiVersion: v1\nkind: Service\nmetadata:\n  name: example-service\n  annotations:\n    service.beta.kubernetes.io/aws-load-balancer-type: 'nlb'\nspec:\n  ports:\n    - port: 80\n      targetPort: 8080\n  selector:\n    app: example-app\n  type: LoadBalancer\n```\nयह YAML AWS Network LoadBalancer (NLB) को configure करता है।",
+      "slide_type": "code"
+    },
+    {
+      "title": "Quick Challenge: Test Your Understanding",
+      "content": "### Quick Challenge\n1. LoadBalancer service क्या करती है?\n2. Kubernetes में external traffic को Pods तक पहुँचाने के लिए किस सेवा का उपयोग किया जाता है?\n3. LoadBalancer service किस प्रकार की cloud-provider integration का समर्थन करती है?",
+      "slide_type": "text"
+    },
+    {
+      "title": "Solutions: Quick Challenge",
+      "content": "### Solutions\n1. LoadBalancer service external traffic को Kubernetes Pods तक पहुँचाती है।\n2. Kubernetes में external traffic को Pods तक पहुँचाने के लिए LoadBalancer service का उपयोग किया जाता है।\n3. LoadBalancer service कई cloud providers के साथ integrate होती है जैसे AWS, GCP, और Azure।\n\nयहां एक छोटे उदाहरण के साथ इसका उत्तर है:\n\n```yaml\napiVersion: v1\nkind: Service\nmetadata:\n  name: example-service\nspec:\n  type: LoadBalancer\n  ports:\n    - port: 80\n  selector:\n    app: my-app\n```\nयह YAML एक सामान्य LoadBalancer service को परिभाषित करता है।",
+      "slide_type": "code"
+    }
+  ]
+  

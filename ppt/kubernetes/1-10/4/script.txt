@@ -426,3 +426,10 @@ DevOps teams ko node management se apne infrastructure ko improve karne mein mad
 Yeh slide tumhe ek basic idea de raha hai ki Kubernetes nodes kaise kaam karte hain aur unko manage karna kyu zaroori hai. Agar tumhare paas yeh samajh hai, toh tum efficiently Kubernetes ka use kar paoge apne applications ko run karne ke liye, bina kisi issue ke!
 
 This keeps it very friendly and simple for a beginner, while also emphasizing the importance of the topic in real coding and infrastructure work.
+
+
+
+
+===================================================================
+
+

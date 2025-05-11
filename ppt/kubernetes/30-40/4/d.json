@@ -1,0 +1,43 @@
+[
+    {
+      "title": "NodePort सेवा क्या है?",
+      "content": "NodePort एक प्रकार की Kubernetes सेवा है, जो आपको आपके क्लस्टर के बाहर से सीधे सर्विस तक पहुँचने की अनुमति देती है। इसे उपयोगकर्ता या अन्य प्रणालियों द्वारा एक्सेस किया जा सकता है।",
+      "slide_type": "text"
+    },
+    {
+      "title": "NodePort सेटअप का उदाहरण",
+      "content": "आप एक NodePort सेवा को YAML के माध्यम से इस तरह से सेट कर सकते हैं:\n\n```yaml\napiVersion: v1\nkind: Service\nmetadata:\n  name: my-service\nspec:\n  selector:\n    app: my-app\n  ports:\n    - port: 80\n      targetPort: 8080\n      nodePort: 30001\n  type: NodePort\n```",
+      "slide_type": "code"
+    },
+    {
+      "title": "NodePort का कार्य कैसे करता है?",
+      "content": "NodePort, क्लस्टर के हर नोड पर एक पोर्ट खोलता है (default 30000-32767 रेंज)। जब आप इस पोर्ट पर एक अनुरोध भेजते हैं, तो वह Kubernetes द्वारा एक Pod तक मार्गदर्शित किया जाता है।",
+      "slide_type": "text"
+    },
+    {
+      "title": "NodePort एक्सेस उदाहरण",
+      "content": "क्लस्टर के बाहर से NodePort सेवा को एक्सेस करने के लिए, आप निम्नलिखित URL का उपयोग कर सकते हैं:\n\n```bash\nhttp://<NodeIP>:<NodePort>\n```",
+      "slide_type": "code"
+    },
+    {
+      "title": "NodePort और LoadBalancer में अंतर",
+      "content": "NodePort और LoadBalancer दोनों ही क्लस्टर के बाहर सेवाओं को एक्सपोज़ करते हैं, लेकिन NodePort केवल पोर्ट के माध्यम से एक्सेस करता है जबकि LoadBalancer एक बाहरी लोड बैलेंसर के माध्यम से।",
+      "slide_type": "text"
+    },
+    {
+      "title": "NodePort और LoadBalancer का उदाहरण",
+      "content": "यहां NodePort और LoadBalancer की सेवा YAML उदाहरण है:\n\n```yaml\n# NodePort Service\napiVersion: v1\nkind: Service\nmetadata:\n  name: my-service\nspec:\n  type: NodePort\n  selector:\n    app: my-app\n  ports:\n    - port: 80\n      nodePort: 30001\n\n# LoadBalancer Service\napiVersion: v1\nkind: Service\nmetadata:\n  name: my-service\nspec:\n  type: LoadBalancer\n  selector:\n    app: my-app\n  ports:\n    - port: 80\n```",
+      "slide_type": "code"
+    },
+    {
+      "title": "Quick Challenge: Test Your Understanding",
+      "content": "- What is the default port range for NodePort?\n- How do you access a NodePort service externally?\n- What is the key difference between NodePort and LoadBalancer services?",
+      "slide_type": "text"
+    },
+    {
+      "title": "Solutions: Quick Challenge",
+      "content": "- Default port range for NodePort: `30000-32767`\n- You access a NodePort service externally using `http://<NodeIP>:<NodePort>`.\n- The key difference is that NodePort exposes a port on each node, while LoadBalancer provides an external load balancer to route traffic.",
+      "slide_type": "code"
+    }
+  ]
+  

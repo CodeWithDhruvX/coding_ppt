@@ -1,0 +1,43 @@
+[
+    {
+      "title": "Kubernetes Deployment क्या है?",
+      "content": "### परिचय\n- `Deployment` Kubernetes का एक object है जो application को manage करने के लिए use होता है।\n- यह desired state define करता है कि कितने `Pod` और कौन-से `Container` चलने चाहिए।\n- अगर कोई Pod crash हो जाए तो `Deployment` उसे automatically restart कर देता है।",
+      "slide_type": "text"
+    },
+    {
+      "title": "Deployment YAML का उदाहरण",
+      "content": "```yaml\napiVersion: apps/v1\nkind: Deployment\nmetadata:\n  name: my-app\nspec:\n  replicas: 3\n  selector:\n    matchLabels:\n      app: my-app\n  template:\n    metadata:\n      labels:\n        app: my-app\n    spec:\n      containers:\n      - name: my-container\n        image: nginx:1.21\n```",
+      "slide_type": "code"
+    },
+    {
+      "title": "Deployment के फायदे",
+      "content": "### मुख्य फायदे\n- Zero downtime deployment (`RollingUpdate` strategy)\n- Scalability: `replicas` की संख्या बढ़ा/घटा सकते हैं\n- Auto-healing: crashed pods को दोबारा launch करना\n- Version control through `revisionHistoryLimit`",
+      "slide_type": "text"
+    },
+    {
+      "title": "Rolling Update Strategy का YAML",
+      "content": "```yaml\nstrategy:\n  type: RollingUpdate\n  rollingUpdate:\n    maxUnavailable: 1\n    maxSurge: 1\n```",
+      "slide_type": "code"
+    },
+    {
+      "title": "kubectl से Deployment Commands",
+      "content": "### सामान्य commands\n- `kubectl apply -f deployment.yaml`\n- `kubectl get deployments`\n- `kubectl describe deployment my-app`\n- `kubectl rollout restart deployment my-app`\n- `kubectl delete deployment my-app`",
+      "slide_type": "text"
+    },
+    {
+      "title": "kubectl Output का एक Example",
+      "content": "```shell\n$ kubectl get deployments\nNAME      READY   UP-TO-DATE   AVAILABLE   AGE\nmy-app    3/3     3            3           5m\n```",
+      "slide_type": "code"
+    },
+    {
+      "title": "Quick Challenge: Test Your Understanding",
+      "content": "### प्रश्न:\n1. `Deployment` किस Kubernetes object को manage करता है?\n2. Rolling update में `maxUnavailable` का क्या मतलब है?\n3. एक deployment को restart करने का command क्या है?\n4. YAML में `replicas: 5` का क्या असर होगा?\n5. नीचे दिए गए YAML में से कौन-सी line image को specify करती है?\n\n```yaml\ncontainers:\n- name: test\n  image: redis:6.2\n```",
+      "slide_type": "text"
+    },
+    {
+      "title": "Solutions: Quick Challenge",
+      "content": "### उत्तर:\n1. `Deployment` एक या अधिक `Pods` को manage करता है।\n2. `maxUnavailable` define करता है कि update के दौरान कितने pods unavailable हो सकते हैं।\n3. `kubectl rollout restart deployment <deployment-name>`\n4. इसका मतलब होगा कि 5 pods चलेंगे इस deployment के लिए।\n5. `image: redis:6.2` — यह container image को define करता है।",
+      "slide_type": "code"
+    }
+  ]
+  

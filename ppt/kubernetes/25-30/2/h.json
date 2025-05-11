@@ -1,0 +1,53 @@
+[
+    {
+      "title": "Deployment Rollback क्या है?",
+      "content": "### परिचय\n- Kubernetes में `Deployment` rollback का मतलब है पिछले stable version पर वापस जाना।\n- यह तब उपयोगी होता है जब नया version खराब हो या bug हो।\n- Rollback करने से पुराने pods फिर से चलने लगते हैं।",
+      "slide_type": "text"
+    },
+    {
+      "title": "Rollback command का syntax",
+      "content": "### Rollback command\n```bash\nkubectl rollout undo deployment/<deployment-name>\n```\n- उदाहरण:\n```bash\nkubectl rollout undo deployment/my-app\n```\n- यह command पिछले successful state पर लौटाता है।",
+      "slide_type": "code"
+    },
+    {
+      "title": "Rollback कैसे काम करता है?",
+      "content": "### Working of Rollback\n- Kubernetes `ReplicaSet` versions को track करता है।\n- हर बार जब आप `apply` करते हैं, एक नया revision बनता है।\n- Rollback होने पर पुराना revision फिर से active हो जाता है।",
+      "slide_type": "text"
+    },
+    {
+      "title": "Revision history देखना",
+      "content": "### Revision Logs\n```bash\nkubectl rollout history deployment/<deployment-name>\n```\n- उदाहरण:\n```bash\nkubectl rollout history deployment/my-app\n```\n- यह सभी पुराने revisions और descriptions दिखाता है।",
+      "slide_type": "code"
+    },
+    {
+      "title": "Rollback को customize करना",
+      "content": "### Customize rollback\n- आप specific revision पर rollback कर सकते हैं:\n```bash\nkubectl rollout undo deployment/<deployment-name> --to-revision=<number>\n```\n- `revision` number `rollout history` से लें।",
+      "slide_type": "text"
+    },
+    {
+      "title": "Revision को target करना",
+      "content": "### Example: Specific Revision\n```bash\nkubectl rollout undo deployment/my-app --to-revision=2\n```\n- यह Deployment को revision 2 पर rollback करेगा।",
+      "slide_type": "code"
+    },
+    {
+      "title": "Rollback की स्थिति देखना",
+      "content": "### Rollback Status\n- Rollback चल रहा है या नहीं देखने के लिए:\n```bash\nkubectl rollout status deployment/<deployment-name>\n```\n- यह current progress दिखाता है।",
+      "slide_type": "text"
+    },
+    {
+      "title": "Rollback Status Example",
+      "content": "### Status Command Example\n```bash\nkubectl rollout status deployment/my-app\n```\n- Output:\n```bash\ndeployment \"my-app\" successfully rolled out\n```",
+      "slide_type": "code"
+    },
+    {
+      "title": "Quick Challenge: Test Your Understanding",
+      "content": "### सवाल:\n1. `kubectl rollout undo` किस लिए उपयोग होता है?\n2. आप किसी specific revision पर rollback कैसे करेंगे?\n3. Rollback का status कैसे देख सकते हैं?\n\n**Hint:** Commands और concepts को याद करें।",
+      "slide_type": "text"
+    },
+    {
+      "title": "Solutions: Quick Challenge",
+      "content": "### जवाब:\n1. `kubectl rollout undo` पुराने deployment version पर वापस जाने के लिए होता है।\n2. Specific revision:\n```bash\nkubectl rollout undo deployment/my-app --to-revision=2\n```\n3. Status देखने के लिए:\n```bash\nkubectl rollout status deployment/my-app\n```\n\nयह commands Rollback को manage करने में मदद करते हैं।",
+      "slide_type": "code"
+    }
+  ]
+  

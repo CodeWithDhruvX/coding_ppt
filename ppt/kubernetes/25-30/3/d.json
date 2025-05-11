@@ -1,0 +1,53 @@
+[
+    {
+      "title": "Kubernetes में Rolling Update क्या है?",
+      "content": "### परिचय\n- Kubernetes में `Rolling Update` एक deployment strategy है\n- यह पुराने Pods को धीरे-धीरे नए Pods से replace करता है\n- Application downtime नहीं होता\n- Zero downtime deployment के लिए उपयोगी",
+      "slide_type": "text"
+    },
+    {
+      "title": "Rolling Update का Code Flow",
+      "content": "```yaml\napiVersion: apps/v1\nkind: Deployment\nmetadata:\n  name: my-app\nspec:\n  replicas: 3\n  strategy:\n    type: RollingUpdate\n    rollingUpdate:\n      maxSurge: 1\n      maxUnavailable: 1\n  template:\n    spec:\n      containers:\n      - name: my-app\n        image: my-app:v2\n```",
+      "slide_type": "code"
+    },
+    {
+      "title": "maxSurge और maxUnavailable",
+      "content": "### Key Parameters\n- `maxSurge`: कितने extra Pods एक समय में create हो सकते हैं\n- `maxUnavailable`: एक समय में कितने Pods unavailable हो सकते हैं\n- ये दोनों update speed और availability को control करते हैं",
+      "slide_type": "text"
+    },
+    {
+      "title": "Parameter Example YAML",
+      "content": "```yaml\nstrategy:\n  type: RollingUpdate\n  rollingUpdate:\n    maxSurge: 2\n    maxUnavailable: 0\n```",
+      "slide_type": "code"
+    },
+    {
+      "title": "kubectl से Rolling Update करें",
+      "content": "### Update करने का तरीका\n- Image tag change करके Rolling Update trigger करें\n- Command:\n```sh\nkubectl set image deployment/my-app my-app=my-app:v2\n```",
+      "slide_type": "text"
+    },
+    {
+      "title": "kubectl command example",
+      "content": "```bash\nkubectl set image deployment/my-app my-app=my-app:v2\n```",
+      "slide_type": "code"
+    },
+    {
+      "title": "Rollout Status और Undo",
+      "content": "### Rollout Track और Undo\n- Rollout status check करें:\n```sh\nkubectl rollout status deployment/my-app\n```\n- Rollback करें:\n```sh\nkubectl rollout undo deployment/my-app\n```",
+      "slide_type": "text"
+    },
+    {
+      "title": "Status और Undo Commands",
+      "content": "```bash\n# Status देखें\nkubectl rollout status deployment/my-app\n\n# Undo करें\nkubectl rollout undo deployment/my-app\n```",
+      "slide_type": "code"
+    },
+    {
+      "title": "Quick Challenge: Test Your Understanding",
+      "content": "### चलिए देखें आपने कितना सीखा!\n1. Rolling Update में कौन से दो key parameters होते हैं?\n2. Zero downtime का क्या मतलब है?\n3. `kubectl set image` command का क्या use है?\n4. Deployment को rollback करने के लिए कौन सा command use होता है?",
+      "slide_type": "text"
+    },
+    {
+      "title": "Solutions: Quick Challenge",
+      "content": "### उत्तर:\n1. `maxSurge` और `maxUnavailable`\n   - ये control करते हैं कि update के दौरान कितने Pods एकसाथ change होंगे\n2. Zero downtime: Application कभी भी completely बंद नहीं होती\n3. `kubectl set image`:\n```sh\nkubectl set image deployment/my-app my-app=my-app:v2\n```\n   - इससे image version update होता है\n4. Rollback command:\n```sh\nkubectl rollout undo deployment/my-app\n```",
+      "slide_type": "code"
+    }
+  ]
+  
