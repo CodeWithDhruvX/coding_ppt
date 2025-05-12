@@ -1,0 +1,140 @@
+यह रहा आपका Docker और Kubernetes पर आधारित स्लाइड कंटेंट, जिसमें अधिकांश विवरण हिंदी में है लेकिन टेक्निकल टर्म्स (जैसे Docker, Kubernetes, container, orchestration, etc.) को अंग्रेज़ी में ही रखा गया है:
+
+---
+
+### **Introduction to Docker and Kubernetes**
+
+**Docker** और **Kubernetes** आज के DevOps टूलकिट का एक अहम हिस्सा हैं, जो एप्लिकेशन को एक समान, कुशल और ऑटोमेटेड तरीके से डिप्लॉय और स्केल करने की सुविधा देते हैं।
+
+* **Docker** का फोकस *containerization* पर है, जिसमें एप्लिकेशन और उसकी dependencies को एक अलग, isolated environment में पैक किया जाता है।
+* **Kubernetes** एक *container orchestration system* है, जो production में containers को manage करता है — high availability, scaling और fault tolerance सुनिश्चित करता है।
+
+इन दोनों का उपयोग करके developers और operations टीम cloud-native architecture में applications को आसानी से build, ship और run कर सकते हैं।
+
+---
+
+### **What is Docker?**
+
+**Docker** एक open-source platform है जो developers को lightweight और portable containers के अंदर एप्लिकेशन बनाने, डिप्लॉय करने और रन करने में सक्षम बनाता है।
+
+Containers एक standardized software unit होते हैं जिसमें कोड और उसकी सभी dependencies होती हैं, जिससे एप्लिकेशन किसी भी environment में fast और reliably रन होती है। इससे "It works on my machine" वाली समस्या हल होती है, क्योंकि environment consistent रहता है।
+
+Docker tools देता है:
+
+* container images बनाने के लिए,
+* containers रन करने के लिए,
+* container lifecycles manage करने के लिए,
+* और images को Docker Hub जैसे registry में शेयर करने के लिए।
+
+---
+
+### **What is Kubernetes?**
+
+**Kubernetes** एक open-source container orchestration platform है जिसे Google ने develop किया और अब इसे Cloud Native Computing Foundation (CNCF) maintain करता है।
+
+यह एप्लिकेशन containers को deploy, scale और operate करने को automate करता है, वो भी machines के clusters में। Kubernetes की खासियतें:
+
+* **Self-healing**: खराब containers को खुद-ब-खुद replace करता है।
+* **Load balancing**: ट्रैफिक को समान रूप से distribute करता है।
+* **Auto-scaling**: demand के अनुसार एप्लिकेशन को स्केल करता है।
+* **Rolling updates**: बिना downtime के एप्लिकेशन को अपडेट करता है।
+
+Kubernetes underlying infrastructure को abstract कर देता है, जिससे developers को सिर्फ deployment पर ध्यान देना होता है, servers की management पर नहीं।
+
+---
+
+### **Key Differences Between Docker and Kubernetes**
+
+| Feature    | Docker                               | Kubernetes                                              |
+| ---------- | ------------------------------------ | ------------------------------------------------------- |
+| Function   | Containers को package और run करता है | Containers को manage और orchestrate करता है             |
+| Scope      | एक ही container या host तक सीमित     | Multiple containers को clusters में manage करता है      |
+| Scaling    | Manual या Docker Swarm से होता है    | Automatic और highly scalable है                         |
+| Networking | Basic container networking देता है   | Advanced networking और service discovery देता है        |
+| Storage    | Volumes और mounts को support करता है | Persistent volumes और storage classes को manage करता है |
+| Complexity | Simple और lightweight                | Complex लेकिन बहुत powerful है                          |
+
+---
+
+### **Docker Workflow Example**
+
+```bash
+# Docker example to build and run a container
+$ docker build -t myapp .
+$ docker run -d -p 8080:80 myapp
+```
+
+ऊपर दिए गए उदाहरण में Docker image बनाई जा रही है और फिर उस image से एक container रन किया जा रहा है जो लोकल पोर्ट 8080 को container के पोर्ट 80 से जोड़ता है।
+
+---
+
+### **Kubernetes Workflow Example**
+
+```yaml
+# Simple Kubernetes deployment YAML
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: myapp-deployment
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: myapp
+  template:
+    metadata:
+      labels:
+        app: myapp
+    spec:
+      containers:
+      - name: myapp
+        image: myapp:latest
+        ports:
+        - containerPort: 80
+```
+
+यह YAML फ़ाइल Kubernetes में एक deployment को define करती है जो 3 replicas के साथ एक containerized application को चलाता है।
+
+---
+
+### **When to Use Docker vs Kubernetes**
+
+**Docker** और **Kubernetes** अलग-अलग समस्याओं को हल करते हैं, लेकिन एक-दूसरे के पूरक हैं।
+
+* **Docker** का उपयोग तब करें जब आपको अपने एप्लिकेशन को हल्के तरीके से package और run करना हो। यह development, testing और छोटे apps को single host पर deploy करने के लिए आदर्श है।
+* **Kubernetes** तब उपयोगी है जब आपको complex और distributed applications को production में manage करना हो। यह high availability, automated deployments और मजबूत scaling के लिए बेहतर है।
+
+बड़े systems में Docker containers बनाए जाते हैं और Kubernetes उन containers को clusters में orchestrate करता है।
+
+---
+
+### **Can Docker and Kubernetes Work Together?**
+
+हाँ — **Docker** और **Kubernetes** अक्सर एक साथ modern DevOps workflows में उपयोग किए जाते हैं।
+
+* Docker का उपयोग container images बनाने और package करने में होता है।
+* Kubernetes उन Docker images को लेकर containers को multiple machines पर रन करता है।
+
+Kubernetes container images को registries से खींचता है और configuration के अनुसार deploy करता है। हालांकि Kubernetes अब containerd जैसे अन्य runtimes को भी support करता है, Docker अभी भी image creation और CI/CD में बहुत उपयोग होता है।
+
+इस प्रकार, Kubernetes Docker को extend करता है deployment, health management, networking और scaling के लिए।
+
+---
+
+### **Summary: Docker vs Kubernetes**
+
+चलते-चलते एक संक्षिप्त तुलना:
+
+* **Docker** आपको container बनाने की सुविधा देता है, जो isolated environments में एप्लिकेशन रन करते हैं।
+* **Kubernetes** इन containers को manage करता है — वो भी large-scale deployments में।
+
+इसे इस तरह समझिए:
+
+* Docker का काम है *containers को build और ship* करना।
+* Kubernetes का काम है *containers को run और manage* करना — वो भी reliably और production-level पर।
+
+Cloud-native applications और microservices architecture को सही से deploy करने के लिए इन दोनों की समझ ज़रूरी है।
+
+---
+
+क्या आप इस कंटेंट का Hinglish version भी चाहते हैं जिसमें बोलचाल की भाषा ज़्यादा इस्तेमाल हो?
