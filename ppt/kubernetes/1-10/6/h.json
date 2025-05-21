@@ -25,7 +25,7 @@
           "Purpose": "सार्वजनिक रूप से readable namespace, आमतौर पर क्लस्टर info के लिए।"
         },
         {
-          "Namespace": "kube-node-lease",
+          "Namespace": "kube-node-lease ",
           "Purpose": "node heartbeats के लिए उपयोग किया जाता है।"
         }
       ],
@@ -49,7 +49,7 @@
     {
       "title": "Namespaces के साथ Best Practices",
       "content": "- **Environment के आधार पर अलग करें**: dev, staging, और production को अलग-अलग namespaces में रखें ताकि नियंत्रण और सुरक्षा बेहतर रहे।\n- **RBAC लागू करें**: हर namespace में RBAC policies सेट करें ताकि users की पहुँच सीमित और सुरक्षित हो।\n- **ResourceQuotas का उपयोग करें**: resources पर लिमिट लगाने के लिए quotas लागू करें ताकि misuse या accidental overuse न हो।\n- **Namespace को overloaded न करें**: बहुत सारे unrelated resources एक ही namespace में होने से प्रबंधन मुश्किल हो सकता है।\n- **Naming conventions अपनाएं**: नामकरण में एकरूपता रखें ताकि यह साफ हो कि कौन सा namespace किस टीम, प्रोजेक्ट या environment से जुड़ा है।",
-      "slide_type": "text"
+      "slide_type": "text"  
     },
     {
       "title": "निष्कर्ष",
