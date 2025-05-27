@@ -1,0 +1,21 @@
+Chosen Method: SOAR Framework (Situation, Obstacle, Action, Result)
+
+The SOAR storytelling method is ideal for behavioral interview questions like “How do you handle disagreements in a team setting?” because it helps present a clear narrative arc—setting the stage with the situation, showing the challenge, highlighting decisive actions, and closing with measurable results. This structured flow is especially impactful in corporate settings like IT services and consulting, where collaboration and stakeholder alignment are critical to success.
+
+Script Based on the Slide Content (Indian Corporate Work Context – IT Services MNC)
+Slide 1: Team Conflict During Product Launch
+Let me take you back to a key moment during my time at a leading IT services MNC in Bangalore. I was part of a cross-functional team working on a digital transformation solution for a UK-based retail client. We were gearing up for a major product launch that had a lot of visibility—both internally and for the client. Tensions arose when our marketing stakeholders insisted on including customer-requested features in the initial release, while our engineering team was pushing back, citing bandwidth and technical debt. What started as a difference in priorities quickly turned into a roadblock.
+
+Slide 2: Escalating Tension and Misalignment
+The disagreement began affecting our progress. Daily stand-ups turned into heated debates, and decision-making stalled. With each passing day, it became evident that we were not just risking the deadline—we were risking the trust we had built with the client. Internally, the lack of consensus began to hurt team morale. Everyone was pulling in different directions, and it felt like we were in a deadlock.
+
+Slide 3: Facilitating Constructive Dialogue
+Sensing the urgency, I took the initiative to schedule a structured conflict-resolution meeting. I reached out to each stakeholder beforehand to understand their concerns, framing the conversation around shared objectives rather than individual wins. During the meeting, I facilitated open discussion—encouraging marketing to articulate the 'why' behind each feature, and prompting engineering to explain the effort and risk involved. Instead of debating, we started listening. I proposed a phased rollout strategy—launch the MVP with core features and commit to a second release for the remaining items. This middle path gave everyone a voice and brought the team back together.
+
+Slide 4: Achieving Consensus and On-Time Delivery
+That alignment turned everything around. The team rallied behind the phased approach, and we hit our launch milestone on schedule. Not only did we meet the client’s expectations, but we also showed them a transparent and mature delivery process. Internally, trust and collaboration were restored. Everyone—from marketing to development—felt heard and respected. We documented the phased delivery plan and even turned it into a best practice template for future projects.
+
+Slide 5: Key Takeaway: Turning Conflict into Collaboration
+This experience taught me a valuable lesson: disagreements are not the problem—how we handle them is. In complex environments like IT consulting, conflict is inevitable. But when approached with empathy, structure, and a focus on shared goals, conflict becomes a catalyst for innovation. I’ve since applied this approach across global teams—whether I’m working with a client in London or a developer in Hyderabad. It’s become one of my most reliable tools in building high-performing, collaborative teams.
+
+This story not only demonstrates conflict resolution but also shows leadership, communication, and stakeholder management—key traits for any corporate professional looking to grow in today's dynamic workplaces.

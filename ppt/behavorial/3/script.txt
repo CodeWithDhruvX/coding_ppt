@@ -1,0 +1,51 @@
+**Storytelling Method Used: SOAR (Situation, Obstacle, Action, Result)**
+The SOAR method is ideal for behavioral questions like “Give an example of a successful team project. What was your role?” because it helps structure the narrative in a clear and impactful way. It allows the listener to follow the journey — from the challenge faced to the strategic actions taken and the ultimate impact — while highlighting the individual’s contribution within a team setting.
+
+---
+
+### 🎤 **Script for Presentation / LinkedIn Post / YouTube Video**
+
+---
+
+**🎬 Slide 1: Collaborating on a Product Launch (Situation)**
+Let me take you back to a key moment during my time at a leading IT services firm in Bengaluru. I was part of a cross-functional team assigned to launch a new digital self-service portal for one of our major retail clients in the UK. This portal was designed to reduce call center dependency by 30% and needed to go live within just three months.
+
+We had stakeholders from product management, marketing, UX design, and offshore development — all working in different time zones. I was representing the consulting arm, acting as the bridge between client expectations and our delivery teams.
+
+---
+
+**⚠️ Slide 2: Navigating Communication Challenges (Obstacle)**
+Within the first few weeks, it became evident that we had serious communication breakdowns. The marketing team and development team had conflicting understandings of feature priorities. UX feedback was delayed due to timezone differences. These misalignments resulted in missed internal deadlines and rising tension among departments.
+
+If we didn’t fix it fast, we’d risk not just the project, but client trust.
+
+---
+
+**🔧 Slide 3: Establishing Clear Processes (Action Taken)**
+I proposed setting up structured weekly alignment calls — one with internal stakeholders and another with the client. To streamline visibility, I also created a centralised dashboard using Microsoft Teams and Power BI that tracked dependencies, status, blockers, and ownership.
+
+But more importantly, I took the initiative to serve as the 'collaboration catalyst'. I actively connected the dots between UX, marketing, and development, clarifying requirements, managing client feedback, and ensuring everyone was aligned on delivery milestones.
+
+---
+
+**🚀 Slide 4: Successful Launch and Team Recognition (Result)**
+Thanks to these changes, we got back on track. We launched the self-service portal on time and within budget. Post-launch metrics showed a 40% drop in service tickets within the first two months — exceeding our 30% goal. The client was thrilled and mentioned our team in their internal quarterly awards.
+
+More personally, I received an 'Excellence in Collaboration' award within my BU — something that truly validated the effort.
+
+---
+
+**🎯 Slide 5: My Role and Key Takeaway**
+In this project, I wasn’t just a consultant — I became the glue holding the team together. Acting as a project coordinator and a cultural translator between departments was key to our success.
+
+**What I learned:** In MNC environments, where teams are globally distributed, proactive communication isn’t a nice-to-have — it’s *mission-critical*. Leadership often shows up not through hierarchy, but through clarity, empathy, and coordination.
+
+---
+
+### 🙌 Final Thought
+
+Projects succeed not just because of great ideas or tools — but because of people who can bring everyone onto the same page. That’s the role I strive to play on every team I join.
+
+---
+
+Let me know if you'd like a version of this tailored for video voiceover, blog, or LinkedIn storytelling post.

@@ -1,0 +1,20 @@
+I chose the SOAR (Situation, Obstacle, Action, Result) storytelling method because it provides a clear, structured way to communicate complex experiences succinctly and effectively. This method fits perfectly with behavioral interview questions like "Share an example of when you led a team to achieve a goal" since it breaks down the narrative into easily digestible parts while highlighting leadership and problem-solving skills.
+
+Story Script:
+
+Let me share a recent experience from my time working in an IT services firm here in India, which perfectly illustrates how leading a diverse team can bring impactful results.
+
+Situation:
+I was tasked with leading a cross-functional team composed of engineers, marketing specialists, and customer support professionals. Our goal was to develop and launch a new feature in one of our flagship software products, aimed at increasing user engagement. The catch? We had only three months to deliver, which is a tight deadline in the typical MNC cycle.
+
+Obstacle:
+The biggest challenge we faced was aligning the different priorities across departments. Engineers were focused on building a robust solution, marketing wanted creative campaigns ready for launch day, and support was concerned about readiness for potential user issues. On top of that, communication gaps between these teams risked project delays. Our timelines were non-negotiable, and the pressure was on to keep everyone moving in the same direction.
+
+Action:
+To tackle these challenges, I kicked off the project with workshops designed to establish clear, measurable objectives for every team member. We agreed on a detailed roadmap breaking down the project into milestones, so everyone knew exactly what to expect and when. I set up weekly progress meetings and introduced a shared communication platform, ensuring transparency and swift issue resolution. This approach helped break down silos, foster collaboration, and keep the momentum going.
+
+Result:
+Thanks to these efforts, we launched the new feature on schedule. The result? A 15% increase in user engagement within the first month itself and overwhelmingly positive feedback from customers. More importantly, the project brought our departments closer and set a benchmark for how cross-team collaboration should work. Senior leadership recognized the success, which boosted morale across the teams.
+
+Takeaway:
+What this experience taught me is that strong leadership isn’t just about managing tasks but about aligning people with different perspectives towards a shared goal. In the Indian corporate environment—especially in MNCs with diverse teams—clear communication, structured planning, and fostering collaboration can turn tight deadlines into success stories. Leadership is ultimately about creating an environment where every team member feels connected to the goal and empowered to contribute.
