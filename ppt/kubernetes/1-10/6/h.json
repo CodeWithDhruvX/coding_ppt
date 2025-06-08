@@ -1,60 +1,59 @@
 [
-    {
-      "title": "Kubernetes Namespaces का परिचय",
-      "content": "Kubernetes में **Namespaces** एक ही फिजिकल क्लस्टर के भीतर वर्चुअल क्लस्टर्स की तरह काम करते हैं। ये उपयोगकर्ताओं को विभिन्न टीमों या प्रोजेक्ट्स के बीच रिसोर्सेज बाँटने की सुविधा देते हैं। यह एब्स्ट्रैक्शन बड़े वातावरण में वर्कलोड को व्यवस्थित और प्रभावी रूप से प्रबंधित करने में मदद करता है। Namespace नामों के लिए एक **scope** प्रदान करता है, जिसका मतलब है कि आप अलग-अलग Namespaces में एक ही नाम के रिसोर्सेज रख सकते हैं बिना किसी टकराव के।",
-      "slide_type": "text"
-    },
-    {
-      "title": "Namespace का उपयोग क्यों करें?",
-      "content": "- **Isolation**: Namespaces आपको development, testing, और production जैसे environment को isolate करने की सुविधा देते हैं ताकि एक का असर दूसरे पर न पड़े।\n- **Organization**: Kubernetes objects (जैसे pods, services आदि) को logical ढंग से group और manage करने में मदद करता है।\n- **Access Control**: आप Role-Based Access Control (RBAC) लागू कर सकते हैं ताकि विभिन्न users या teams केवल अपने designated namespace तक ही access कर सकें।\n- **Resource Quotas**: एडमिन्स प्रति Namespace CPU, memory, और pods की संख्या जैसी रिसोर्स लिमिट सेट कर सकते हैं ताकि कोई एक यूज़र सारे रिसोर्स न ले जाए।",
-      "slide_type": "text"
-    },
-    {
-      "title": "Kubernetes के Default Namespaces",
-      "content": [
-        {
-          "Namespace": "default",
-          "Purpose": "वे objects जिनका कोई namespace निर्दिष्ट नहीं होता, उन्हें यहाँ रखा जाता है।"
-        },
-        {
-          "Namespace": "kube-system",
-          "Purpose": "Kubernetes system components द्वारा उपयोग किया जाता है।"
-        },
-        {
-          "Namespace": "kube-public",
-          "Purpose": "सार्वजनिक रूप से readable namespace, आमतौर पर क्लस्टर info के लिए।"
-        },
-        {
-          "Namespace": "kube-node-lease ",
-          "Purpose": "node heartbeats के लिए उपयोग किया जाता है।"
-        }
-      ],
-      "slide_type": "table"
-    },
-    {
-      "title": "Namespace बनाना",
-      "content": "```yaml\napiVersion: v1\nkind: Namespace\nmetadata:\n  name: dev-environment\n```",
-      "slide_type": "code"
-    },
-    {
-      "title": "Namespace में Resource बनाना",
-      "content": "```yaml\napiVersion: v1\nkind: Pod\nmetadata:\n  name: my-pod\n  namespace: dev-environment\nspec:\n  containers:\n  - name: my-container\n    image: nginx\n```",
-      "slide_type": "code"
-    },
-    {
-      "title": "Namespace बदलना (kubectl के ज़रिए)",
-      "content": "```bash\n# kubectl के लिए default namespace सेट करें\nkubectl config set-context --current --namespace=dev-environment\n\n# सभी namespaces की लिस्ट देखें\nkubectl get namespaces\n\n# किसी विशेष namespace में pods देखें\nkubectl get pods -n dev-environment\n```",
-      "slide_type": "code"
-    },
-    {
-      "title": "Namespaces के साथ Best Practices",
-      "content": "- **Environment के आधार पर अलग करें**: dev, staging, और production को अलग-अलग namespaces में रखें ताकि नियंत्रण और सुरक्षा बेहतर रहे।\n- **RBAC लागू करें**: हर namespace में RBAC policies सेट करें ताकि users की पहुँच सीमित और सुरक्षित हो।\n- **ResourceQuotas का उपयोग करें**: resources पर लिमिट लगाने के लिए quotas लागू करें ताकि misuse या accidental overuse न हो।\n- **Namespace को overloaded न करें**: बहुत सारे unrelated resources एक ही namespace में होने से प्रबंधन मुश्किल हो सकता है।\n- **Naming conventions अपनाएं**: नामकरण में एकरूपता रखें ताकि यह साफ हो कि कौन सा namespace किस टीम, प्रोजेक्ट या environment से जुड़ा है।",
-      "slide_type": "text"  
-    },
-    {
-      "title": "निष्कर्ष",
-      "content": "Namespaces Kubernetes क्लस्टर को logically विभाजित करने का एक शक्तिशाली तरीका प्रदान करते हैं। यह multi-tenant architecture, secure access control और resource management को आसान और कुशल बनाते हैं। Workloads को isolate कर के, policies लागू कर के और बेहतर organization प्रदान कर के, namespaces एक scalable और maintainable Kubernetes setup के लिए आवश्यक हैं।",
-      "slide_type": "text"
-    }
-  ]
-  
+  {
+    "title": "Kubernetes Namespaces का परिचय",
+    "content": "Kubernetes में **Namespaces** एक ही फिजिकल क्लस्टर के भीतर वर्चुअल क्लस्टर्स की तरह काम करते हैं। ये उपयोगकर्ताओं को विभिन्न टीमों या प्रोजेक्ट्स के बीच रिसोर्सेज बाँटने की सुविधा देते हैं। यह एब्स्ट्रैक्शन बड़े वातावरण में वर्कलोड को व्यवस्थित और प्रभावी रूप से प्रबंधित करने में मदद करता है। Namespace नामों के लिए एक **scope** प्रदान करता है, जिसका मतलब है कि आप अलग-अलग Namespaces में एक ही नाम के रिसोर्सेज रख सकते हैं बिना किसी टकराव के। ये multi-tenant systems में बहुत फायदेमंद साबित होते हैं जहाँ अलग-अलग users/teams shared infrastructure पर काम कर रहे होते हैं।",
+    "slide_type": "text"
+  },
+  {
+    "title": "Namespace का उपयोग क्यों करें?",
+    "content": "- **Isolation**: Namespaces आपको development, testing, और production जैसे environment को isolate करने की सुविधा देते हैं ताकि एक का असर दूसरे पर न पड़े। इससे accidental changes को कंट्रोल किया जा सकता है।\n- **Organization**: Kubernetes objects (जैसे pods, services आदि) को logical ढंग से group और manage करने में मदद करता है, जिससे debugging और monitoring आसान हो जाती है।\n- **Access Control**: आप Role-Based Access Control (RBAC) लागू कर सकते हैं ताकि विभिन्न users या teams केवल अपने designated namespace तक ही access कर सकें, जिससे सुरक्षा बढ़ती है।\n- **Resource Quotas**: एडमिन्स प्रति Namespace CPU, memory, और pods की संख्या जैसी रिसोर्स लिमिट सेट कर सकते हैं ताकि कोई एक यूज़र सारे रिसोर्स न ले जाए और अन्य users प्रभावित न हों। यह fair resource sharing सुनिश्चित करता है।",
+    "slide_type": "text"
+  },
+  {
+    "title": "Kubernetes के Default Namespaces",
+    "content": [
+      {
+        "Namespace": "default",
+        "Purpose": "वे objects जिनका कोई namespace निर्दिष्ट नहीं होता, उन्हें यहाँ रखा जाता है। छोटे प्रोजेक्ट्स और quick testing के लिए आमतौर पर यही प्रयोग होता है।"
+      },
+      {
+        "Namespace": "kube-system",
+        "Purpose": "Kubernetes system components द्वारा उपयोग किया जाता है, जैसे कि kube-dns, controller-manager, और scheduler। इसे modify करते समय विशेष ध्यान देना चाहिए।"
+      },
+      {
+        "Namespace": "kube-public",
+        "Purpose": "सार्वजनिक रूप से readable namespace, आमतौर पर क्लस्टर info के लिए। इसमें मौजूद resources को anonymous users भी पढ़ सकते हैं (read-only)।"
+      },
+      {
+        "Namespace": "kube-node-lease ",
+        "Purpose": "node heartbeats के लिए उपयोग किया जाता है। यह lease objects को manage करता है जो node health को efficiently monitor करने में मदद करता है।"
+      }
+    ],
+    "slide_type": "table"
+  },
+  {
+    "title": "Namespace बनाना",
+    "content": "```yaml\napiVersion: v1\nkind: Namespace\nmetadata:\n  name: dev-environment\n```\nऊपर दिया गया YAML definition एक नया namespace बनाता है जिसका नाम `dev-environment` है। यह step foundational होता है जब आप multi-environment cluster setup करना चाहते हैं।",
+    "slide_type": "code"
+  },
+  {
+    "title": "Namespace में Resource बनाना",
+    "content": "```yaml\napiVersion: v1\nkind: Pod\nmetadata:\n  name: my-pod\n  namespace: dev-environment\nspec:\n  containers:\n  - name: my-container\n    image: nginx\n```\nयह YAML एक Pod को `dev-environment` namespace के अंदर create करता है। इससे यह सुनिश्चित होता है कि pod अलग environment में run हो और उसका isolation बना रहे।",
+    "slide_type": "code"
+  },
+  {
+    "title": "Namespace बदलना (kubectl के ज़रिए)",
+    "content": "```bash\n# kubectl के लिए default namespace सेट करें\nkubectl config set-context --current --namespace=dev-environment\n\n# सभी namespaces की लिस्ट देखें\nkubectl get namespaces\n\n# किसी विशेष namespace में pods देखें\nkubectl get pods -n dev-environment\n```\nइन commands का उपयोग कर के आप CLI context बदल सकते हैं, जिससे बार-बार namespace flag देने की ज़रूरत नहीं पड़ती। यह productivity बढ़ाता है और human error को कम करता है।",
+    "slide_type": "code"
+  },
+  {
+    "title": "Namespaces के साथ Best Practices",
+    "content": "- **Environment के आधार पर अलग करें**: dev, staging, और production को अलग-अलग namespaces में रखें ताकि नियंत्रण और सुरक्षा बेहतर रहे और accidental changes से बचा जा सके।\n- **RBAC लागू करें**: हर namespace में RBAC policies सेट करें ताकि users की पहुँच सीमित और सुरक्षित हो। यह principle of least privilege को follow करता है।\n- **ResourceQuotas का उपयोग करें**: resources पर लिमिट लगाने के लिए quotas लागू करें ताकि misuse या accidental overuse न हो। इससे clusters stable रहते हैं।\n- **Namespace को overloaded न करें**: बहुत सारे unrelated resources एक ही namespace में होने से प्रबंधन मुश्किल हो सकता है, जिससे troubleshooting भी कठिन होती है।\n- **Naming conventions अपनाएं**: नामकरण में एकरूपता रखें ताकि यह साफ हो कि कौन सा namespace किस टीम, प्रोजेक्ट या environment से जुड़ा है, जैसे `team1-dev`, `team1-prod` आदि।",
+    "slide_type": "text"  
+  },
+  {
+    "title": "निष्कर्ष",
+    "content": "Namespaces Kubernetes क्लस्टर को logically विभाजित करने का एक शक्तिशाली तरीका प्रदान करते हैं। यह multi-tenant architecture, secure access control और resource management को आसान और कुशल बनाते हैं। Workloads को isolate कर के, policies लागू कर के और बेहतर organization प्रदान कर के, namespaces एक scalable और maintainable Kubernetes setup के लिए आवश्यक हैं। किसी भी large-scale deployment या enterprise cluster में namespaces एक fundamental tool बन जाते हैं।",
+    "slide_type": "text"
+  }
+]

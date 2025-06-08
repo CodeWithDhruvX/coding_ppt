@@ -14,10 +14,10 @@ Container runtime — jaise Docker ya containerd, jiske bina container chalega h
 
 Kubelet — yeh ek agent hota hai jo Kubernetes ke orders follow karta hai. Jaise tumhare teacher bolte hain “yeh assignment complete karo”, waise hi Kubelet ensure karta hai ki jo pods run hone chahiye, woh sahi se run ho rahe hain.
 
-Kube-proxy — yeh networking ka kaam sambhalta hai. Jaise ek receptionist hota hai jo sabko sahi room me bhejta hai, waise hi kube-proxy network traffic ko sahi pod tak pahuchata hai.
+Kube-proxy — yeh networking ka kaqqam sambhalta hai. Jaise ek receptionist hota hai jo sabko sahi room me bhejta hai, waise hi kube-proxy network traffic ko sahi pod tak pahuchata hai.
 
 Ab sawal aata hai — yeh node zaruri kyu hai?
-
+q
 Simple: Kubernetes kisi ek machine pe sab kuch run nahi karta. Woh multiple nodes use karta hai taaki workload divide ho jaye — jaise group project me har student apna part kare. Isse performance bhi acchi rehti hai aur agar ek node down ho jaye, to doosri nodes handle kar leti hain — yani high availability.
 
 Isliye, agar tum future me Go apps ko production me deploy karne wale ho, to samajhna zaruri hai ki tumhara app exactly kis machine pe chal raha hai, aur us machine ka setup kya hai — aur wahi machine hoti hai, Node.
@@ -46,17 +46,17 @@ Soch lo jaise ek college group project chal raha ho. Ek banda hota hai jo pura p
 👨‍💻 Worker Node: Ye actual kaam karte hain — matlab yahin par tumhari app chal rahi hoti hai, pods ke form me. Master node unko instructions deta rehta hai. Socho jaise ek team member ko bol diya ki 'tu login page bana', aur wo bindaas kaam me lag gaya. Bas, wahi kaam Worker Node karta hai.
 
 🧠 Why is this important?
-Agar tum real world me cloud applications bana rahe ho — jaise Flipkart ya Zomato jaisi apps — to unko scalable aur reliable rakhna zaroori hota hai. Aur Master-Worker ka ye setup isme help karta hai. Agar ek Worker down ho gaya, to Master doosre Worker pe kaam shift kar deta hai — bina user ko dikkat aaye.
+Agar tum real world me cloud applications bana rahe ho — jaise Flipkart ya Zomato jaisi apps — to unko scalable aur reliable rakhna zaroori hota hai. Aur Master-Worker ka ye setup ismq11e help karta hai. Agar ek Worker down ho gaya, to Master doosre Worker pe kaam shift kar deta hai — bina user ko dikkat aaye.
 
 To agar tum DevOps ya cloud engineer banna chahte ho, ya ek scalable backend banana chahte ho, to ye concept clear hona bahut zaroori hai.
 
 Bas, itna yaad rakho — Master sochta hai, Worker karta hai. Simple!"
 
-Agle slide bhejo jab ready ho ✌️
+Agle slide bhejo jab ready ho ✌️q
 Kya doosri slide bhejoge?
 
 
-
+qqqqq
 
 
 ==============================================================================
@@ -80,7 +80,7 @@ Doosra hai – kube-proxy
 Ab maan lo ki aapke ghar me 4 log hain aur sabke phones hai, lekin ek hi Wi-Fi router hai. Ab jab koi Netflix chala raha hota hai aur koi online class attend kar raha hota hai, toh router decide karta hai ki kis data request ko kahaan bhejna hai.
 
 Wahi kaam yeh kube-proxy karta hai.
-Yeh node pe network traffic ko manage karta hai — yani kaunsa container kis service se connect hoga, data kahaan se aayega, kahaan jayega — sab routing ka kaam yeh karta hai.
+Yeh node pe network traffic1 ko manage karta hai — yani kaunsa container kis service se connect hoga, data kahaan se aayega, kahaan jayega — sab routing ka kaam yeh karta hai.
 
 Teesra hai – Container Runtime
 Ab yeh toh core part hai — bina iske container chalega hi nahi.

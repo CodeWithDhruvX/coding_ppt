@@ -1,43 +1,43 @@
 [
-    {
-      "title": "Introduction to Zero Value in Go",
-      "content": "In Go, every variable is given a default value when declared but not explicitly initialized. This default is known as the **zero value**.",
-      "slide_type": "text"
-    },
-    {
-      "title": "Why Zero Value Matters",
-      "content": "- Helps prevent undefined or garbage values\n- Makes code safer by ensuring variables are always initialized\n- Supports Go's design philosophy of simplicity and safety",
-      "slide_type": "text"
-    },
-    {
-      "title": "Zero Value Examples in Go",
-      "content": "package main\n\nimport \"fmt\"\n\nfunc main() {\n    var i int           // zero value: 0\n    var f float64       // zero value: 0.0\n    var b bool          // zero value: false\n    var s string        // zero value: \"\"\n\n    fmt.Println(i, f, b, s)\n}",
-      "slide_type": "code"
-    },
-    {
-      "title": "Zero Value Table",
-      "content": [
-        { "Type": "int", "Zero Value": "0" },
-        { "Type": "float64", "Zero Value": "0.0" },
-        { "Type": "bool", "Zero Value": "false" },
-        { "Type": "string", "Zero Value": "\"\"" },
-        { "Type": "pointer", "Zero Value": "nil" },
-        { "Type": "slice", "Zero Value": "nil" },
-        { "Type": "map", "Zero Value": "nil" },
-        { "Type": "channel", "Zero Value": "nil" },
-        { "Type": "interface", "Zero Value": "nil" },
-        { "Type": "function", "Zero Value": "nil" }
-      ],
-      "slide_type": "table"
-    },
-    {
-      "title": "Zero Value in Structs",
-      "content": "type Person struct {\n    name string\n    age  int\n}\n\nfunc main() {\n    var p Person // name: \"\", age: 0 (zero values for fields)\n    fmt.Println(p)\n}",
-      "slide_type": "code"
-    },
-    {
-      "title": "Key Takeaways",
-      "content": "- Zero values are Go's default initial values for variables\n- Helps avoid uninitialized variables\n- Always know the default behavior when declaring variables without initialization",
-      "slide_type": "text"
-    }
-  ]
+  {
+    "title": "Introduction to Zero Value in Go",
+    "content": "In Go, every variable is automatically assigned a default value when it is declared but not explicitly initialized.\nThis default is known as the **zero value**.\nUnlike some languages where uninitialized variables may lead to unpredictable behavior, Go ensures safety and reliability by always initializing variables.\nThis behavior helps prevent bugs and makes the language more beginner-friendly.",
+    "slide_type": "text"
+  },
+  {
+    "title": "Why Zero Value Matters",
+    "content": "- ✅ Helps prevent undefined or garbage values that may occur in other programming languages\n- 🛡️ Makes code safer by ensuring variables always start with a known state\n- 💡 Supports Go's design philosophy of simplicity, safety, and readability\n- 🧠 Encourages writing predictable and bug-resistant code without extra effort\n- 🧰 Especially useful when working with structs, arrays, or large programs where forgetting to initialize can cause subtle issues",
+    "slide_type": "text"
+  },
+  {
+    "title": "Zero Value Examples in Go",
+    "content": "package main\n\nimport \"fmt\"\n\nfunc main() {\n    var i int           // zero value: 0\n    var f float64       // zero value: 0.0\n    var b bool          // zero value: false\n    var s string        // zero value: \"\"\n\n    fmt.Println(i, f, b, s)\n}\n\nThis code shows how different types are automatically assigned their zero values.\nYou don’t need to manually set default values unless you want something other than the zero value.",
+    "slide_type": "code"
+  },
+  {
+    "title": "Zero Value Table",
+    "content": [
+      { "Type": "int", "Zero Value": "0" },
+      { "Type": "float64", "Zero Value": "0.0" },
+      { "Type": "bool", "Zero Value": "false" },
+      { "Type": "string", "Zero Value": "\"\"" },
+      { "Type": "pointer", "Zero Value": "nil" },
+      { "Type": "slice", "Zero Value": "nil" },
+      { "Type": "map", "Zero Value": "nil" },
+      { "Type": "channel", "Zero Value": "nil" },
+      { "Type": "interface", "Zero Value": "nil" },
+      { "Type": "function", "Zero Value": "nil" }
+    ],
+    "slide_type": "table"
+  },
+  {
+    "title": "Zero Value in Structs",
+    "content": "type Person struct {\n    name string\n    age  int\n}\n\nfunc main() {\n    var p Person // name: \"\", age: 0 (zero values for fields)\n    fmt.Println(p)\n}\n\nWhen you declare a struct without initializing it, all its fields get their respective zero values.\nThis ensures the struct is in a valid state and prevents runtime errors due to uninitialized fields.",
+    "slide_type": "code"
+  },
+  {
+    "title": "Key Takeaways",
+    "content": "- ✅ **Zero values** are Go’s way of initializing variables to safe defaults\n- 💻 They eliminate the risk of using **uninitialized variables**, which is common in other languages\n- 🧠 Always understand and consider the **default behavior** when working with new variables\n- 🔧 Knowing zero values helps you write cleaner, safer, and more predictable Go code\n- 📦 It's especially useful when designing APIs, structs, and handling large codebases",
+    "slide_type": "text"
+  }
+]
