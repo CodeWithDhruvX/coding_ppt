@@ -1,0 +1,24 @@
+The SOAR framework is particularly effective for behavioral interview questions like “How do you handle disagreements in a team setting?” because it helps provide a structured, narrative-driven response that highlights both the challenge and your approach to resolving it. By walking through the Situation, Obstacle, Action, and Result, the story offers a full picture of not just what happened, but how and why it unfolded that way—exactly what recruiters and leaders look for in high-stakes corporate roles.
+
+🎤 Script Based on the Slide Content:
+[Slide 1: Team Project Kickoff – Differing Opinions Emerge]
+
+Let me take you back to a project I led while working at an MNC in Bangalore. We were gearing up to launch a new analytics solution for a Fortune 500 client—a major initiative involving both the engineering and marketing teams. During our kickoff discussions, a disagreement quickly surfaced: marketing wanted to emphasize flashy, user-friendly features that could be demonstrated to stakeholders, while engineering pushed back, citing technical feasibility and time constraints. It became clear that both teams had valid points, but they were speaking entirely different languages.
+
+[Slide 2: Tension and Misalignment]
+
+As weeks passed, the tension only increased. Meetings became fragmented. People started having side conversations, and workstreams began to silo. The marketing team was frustrated that engineering was “blocking innovation,” and engineering felt misunderstood and overcommitted. The disagreement was no longer just about features—it was about trust. And without realignment, we risked derailing a high-visibility delivery.
+
+[Slide 3: Facilitating Constructive Dialogue]
+
+Recognizing the stakes, I stepped in—not as a manager, but as a facilitator. I proposed a joint alignment workshop with a clear ground rule: no judgment, just clarity. I gave each team space to voice their constraints and goals. Using a shared digital whiteboard and breakout sessions, we mapped out dependencies and ranked features by client impact versus development effort. I also involved a client-facing SME to provide external perspective and anchor our decisions in business value.
+
+[Slide 4: Agreement and Unified Direction]
+
+By the end of that session, something shifted. Both teams agreed on a phased release strategy. Engineering committed to a core MVP, while marketing got buy-in on a feature roadmap they could use for stakeholder communication. Collaboration started to flow again—teams began co-creating rather than competing. We hit every milestone afterward, and the client was delighted with both the delivery speed and product polish.
+
+[Slide 5: Key Takeaway – Collaborative Conflict Resolution]
+
+This experience reinforced something I now carry with me: disagreements aren't setbacks—they’re signals. They reveal where alignment is missing and where leadership is needed. In an Indian corporate setup—especially in IT services or consulting where timelines are tight and teams are diverse—constructive conflict resolution is not just a soft skill; it’s a strategic capability. My approach today? Don’t avoid disagreements. Lean in, listen hard, and lead with empathy and structure.
+
+This story is a great example of how you can turn friction into forward motion—something every project leader must master in dynamic work environments.

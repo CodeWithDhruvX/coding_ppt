@@ -1,0 +1,44 @@
+**Storytelling Method Chosen: SOAR (Situation – Obstacle – Action – Result)**
+
+The SOAR method is ideal for behavioral interview questions like “Tell me about a time you helped a teammate struggling with their task” because it offers a clear, structured approach to conveying not just what happened, but how the challenge was navigated, the specific actions taken, and the impact of those actions. It focuses on storytelling with purpose, making it relatable, outcome-driven, and reflective.
+
+Below is the **detailed story script**, aligned with the PowerPoint slides previously created. The tone is conversational yet professional, and the setting is contextualized for an Indian corporate environment, particularly in IT services.
+
+---
+
+### **Slide 1: Challenging Product Launch Timeline**
+
+*"Let me take you back to a high-stakes product launch during my time at a leading IT services firm in Bangalore. We were working on a client-facing module for a major U.S.-based retail client, with a strict four-week delivery timeline. Our cross-functional team of six, including developers, QA, and a solution architect, was laser-focused on delivering a stable, scalable feature under tight deadlines. One of my teammates, a junior developer who had just transitioned from another project, was assigned to build a critical backend service for the module."*
+
+---
+
+### **Slide 2: Teammate Struggled with Integration**
+
+*"As we entered the second sprint, I noticed he was unusually quiet during our daily stand-ups. His updates were vague, and he hadn’t pushed much code. During a casual coffee break, he confided in me—he was struggling to understand the legacy integration components and felt overwhelmed by the pressure. Given that his piece was integral to the entire workflow, his delay was starting to bottleneck our QA pipeline and potentially the go-live date."*
+
+---
+
+### **Slide 3: Offering Support and Sharing Expertise**
+
+*"Instead of escalating the issue right away, I took a more collaborative approach. I started by setting up short daily syncs with him after stand-up—just 15 minutes to review progress and clarify doubts. I created a simplified guide that explained our integration architecture, use of APIs, and where to find reusable code blocks. We did a couple of peer programming sessions, where I walked him through similar services I’d built. The goal wasn’t to do it for him but to equip him with the tools and confidence to do it himself."*
+
+---
+
+### **Slide 4: Collaborative Success and Improved Confidence**
+
+*"Within a week, the difference was visible. He not only completed his component, but also documented it so well that our QA lead called it the cleanest handoff of the sprint. We completed the module on time, and the client demo went off without a hitch. A few weeks later, he was confidently handling another integration task on his own. He even volunteered to mentor a new hire, which was a big win for our team culture."*
+
+---
+
+### **Slide 5: Reflection and Team Impact**
+
+*"This experience reinforced something fundamental for me—technical knowledge is important, but empathy and mentorship multiply impact. In fast-moving projects, it’s easy to point fingers when something slips. But taking a step back to support a teammate not only salvaged a deliverable but also strengthened team morale. That culture of support, I believe, is what sets high-performing teams apart in our industry."*
+
+---
+
+**Closing Thought (optional for video or LinkedIn):**
+*"In today’s high-pressure corporate environment, especially in MNC and IT service firms, we often focus so much on outcomes that we forget the human element. Sometimes, the best way to accelerate delivery is to slow down just enough to lift someone else up."*
+
+---
+
+Would you like me to convert this into a polished LinkedIn post, a YouTube video script, or a narrated presentation script?
