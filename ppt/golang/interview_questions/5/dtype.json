@@ -10,11 +10,6 @@
     "slide_type": "text"
   },
   {
-    "title": "Zero Value Examples in Go",
-    "content": "package main\n\nimport \"fmt\"\n\nfunc main() {\n    var i int           // zero value: 0\n    var f float64       // zero value: 0.0\n    var b bool          // zero value: false\n    var s string        // zero value: \"\"\n\n    fmt.Println(i, f, b, s)\n}\n\nThis code shows how different types are automatically assigned their zero values.\nYou don’t need to manually set default values unless you want something other than the zero value.",
-    "slide_type": "code"
-  },
-  {
     "title": "Zero Value Table",
     "content": [
       { "Type": "int", "Zero Value": "0" },
@@ -31,13 +26,13 @@
     "slide_type": "table"
   },
   {
-    "title": "Zero Value in Structs",
-    "content": "type Person struct {\n    name string\n    age  int\n}\n\nfunc main() {\n    var p Person // name: \"\", age: 0 (zero values for fields)\n    fmt.Println(p)\n}\n\nWhen you declare a struct without initializing it, all its fields get their respective zero values.\nThis ensures the struct is in a valid state and prevents runtime errors due to uninitialized fields.",
+    "title": "Quick Challenge: Test Your Understanding",
+    "content": "1. What is the zero value of a `bool` variable in Go?\n   - A. true  \n   - B. false  \n   - C. 0  \n   - D. nil\n\n2. What will be printed?\n```go\nvar s string\nfmt.Println(s)\n```\n   - A. nil  \n   - B. empty string  \n   - C. undefined  \n   - D. error\n\n3. Which of the following types has `nil` as its zero value?\n   - A. string  \n   - B. int  \n   - C. map  \n   - D. bool\n\n4. What is the output?\n```go\nvar nums []int\nfmt.Println(nums == nil)\n```\n   - A. true  \n   - B. false  \n   - C. error  \n   - D. []\n",
     "slide_type": "code"
   },
   {
-    "title": "Key Takeaways",
-    "content": "- ✅ **Zero values** are Go’s way of initializing variables to safe defaults\n- 💻 They eliminate the risk of using **uninitialized variables**, which is common in other languages\n- 🧠 Always understand and consider the **default behavior** when working with new variables\n- 🔧 Knowing zero values helps you write cleaner, safer, and more predictable Go code\n- 📦 It's especially useful when designing APIs, structs, and handling large codebases",
-    "slide_type": "text"
+    "title": "Solutions: Quick Challenge",
+    "content": "```go\n// 1. Correct answer: B. false\n// Explanation: Zero value of bool is false.\n\n// 2. Correct answer: B. empty string\n// Explanation: string zero value is \"\" (empty string).\n\n// 3. Correct answer: C. map\n// Explanation: map is a reference type; its zero value is nil.\n\n// 4. Correct answer: A. true\n// Explanation: Uninitialized slice is nil, so nums == nil is true.\n```",
+    "slide_type": "code"
   }
 ]

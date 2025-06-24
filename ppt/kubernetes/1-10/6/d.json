@@ -1,59 +1,42 @@
 [
-    {
-      "title": "Introduction to Kubernetes Namespaces",
-      "content": "In Kubernetes, **Namespaces** act like virtual clusters within a single physical Kubernetes cluster. They allow users to divide resources among multiple teams or projects. This abstraction helps in organizing and managing workloads efficiently in large environments. Namespaces provide a scope for names, meaning you can have resources with the same name in different namespaces without conflicts.",
-      "slide_type": "text"
-    },
-    {
-      "title": "Why Use Namespaces?",
-      "content": "- **Isolation**: Namespaces allow you to isolate environments like development, testing, and production within the same cluster, preventing accidental interference.\n- **Organization**: Helps manage and group related Kubernetes objects (pods, services, etc.) logically.\n- **Access Control**: You can implement fine-grained Role-Based Access Control (RBAC) so that different users or teams can only access their designated namespace.\n- **Resource Quotas**: Administrators can limit the resource usage (CPU, memory, number of pods) per namespace, ensuring fair usage and avoiding resource hogging.",
-      "slide_type": "text"
-    },
-    {
-      "title": "Default Namespaces in Kubernetes",
-      "content": [
-        {
-          "Namespace": "default",
-          "Purpose": "Default namespace for objects not assigned to any other namespace"
-        },
-        {
-          "Namespace": "kube-system",
-          "Purpose": "Used by Kubernetes system components"
-        },
-        {
-          "Namespace": "kube-public",
-          "Purpose": "Publicly readable namespace, mostly used for cluster info"
-        },
-        {
-          "Namespace": "kube-node-lease",
-          "Purpose": "Used for node heartbeats"
-        }
-      ],
-      "slide_type": "table"
-    },
-    {
-      "title": "Creating a Namespace",
-      "content": "```yaml\napiVersion: v1\nkind: Namespace\nmetadata:\n  name: dev-environment\n```",
-      "slide_type": "code"
-    },
-    {
-      "title": "Creating a Resource in a Namespace",
-      "content": "```yaml\napiVersion: v1\nkind: Pod\nmetadata:\n  name: my-pod\n  namespace: dev-environment\nspec:\n  containers:\n  - name: my-container\n    image: nginx\n```",
-      "slide_type": "code"
-    },
-    {
-      "title": "Switching Between Namespaces (kubectl)",
-      "content": "```bash\n# Set default namespace for kubectl\nkubectl config set-context --current --namespace=dev-environment\n\n# List all namespaces\nkubectl get namespaces\n\n# View pods in a specific namespace\nkubectl get pods -n dev-environment\n```",
-      "slide_type": "code"
-    },
-    {
-      "title": "Best Practices with Namespaces",
-      "content": "- **Separate by environment**: Use namespaces to separate dev, staging, and production for better control and to avoid accidental changes across environments.\n- **Use RBAC per namespace**: Define access policies using Kubernetes RBAC to restrict what users can do within each namespace.\n- **Apply ResourceQuotas**: Enforce limits on resources like CPU, memory, and the number of objects to prevent abuse or accidental overuse.\n- **Avoid overloading a namespace**: Too many unrelated resources in a single namespace can make troubleshooting and management difficult. Aim for logical grouping.\n- **Standardize naming conventions**: Adopt consistent naming to easily identify which team, project, or environment a namespace belongs to.",
-      "slide_type": "text"
-    },
-    {
-      "title": "Conclusion",
-      "content": "Namespaces provide a powerful way to manage complex Kubernetes environments by offering logical separation within a cluster. They are essential for multi-tenant architectures, secure access control, and efficient resource management. By isolating workloads, enforcing policies, and improving organization, namespaces contribute significantly to a scalable and maintainable Kubernetes setup.",
-      "slide_type": "text"
-    }
-  ]
+  {
+    "title": "Kubernetes Namespaces का परिचय",
+    "content": "### क्या है Namespace?\n- Kubernetes में `Namespace` एक virtual क्लस्टर की तरह होता है।\n- यह एक ही physical cluster में multiple environments (जैसे dev, staging, prod) को isolate करने के लिए उपयोग होता है।\n- `kubectl get namespaces` से available namespaces देख सकते हैं।",
+    "slide_type": "text"
+  },
+  {
+    "title": "Namespace बनाने का Code",
+    "content": "```yaml\napiVersion: v1\nkind: Namespace\nmetadata:\n  name: dev-environment\n```\n### Command:\n```bash\nkubectl apply -f namespace.yaml\n```",
+    "slide_type": "code"
+  },
+  {
+    "title": "Resource Isolation का Concept",
+    "content": "### क्यों ज़रूरी है Isolation?\n- अलग-अलग टीमों के लिए अलग-अलग `Namespaces` बनाना सुरक्षित होता है।\n- इससे resource conflicts से बचा जा सकता है।\n- आप same name वाले pods अलग-अलग namespaces में रख सकते हैं।",
+    "slide_type": "text"
+  },
+  {
+    "title": "Resource Access Namespace के साथ",
+    "content": "```bash\nkubectl get pods --namespace=dev-environment\nkubectl create deployment nginx --image=nginx --namespace=dev-environment\n```",
+    "slide_type": "code"
+  },
+  {
+    "title": "Default Namespace का Role",
+    "content": "### Default Namespace:\n- अगर आप कोई namespace specify नहीं करते, तो Kubernetes `default` namespace use करता है।\n- Example: `kubectl get pods` का मतलब है `kubectl get pods --namespace=default`",
+    "slide_type": "text"
+  },
+  {
+    "title": "Namespaces List और Context Switch",
+    "content": "```bash\nkubectl get namespaces\nkubectl config set-context --current --namespace=dev-environment\nkubectl config view --minify | grep namespace\n```",
+    "slide_type": "code"
+  },
+  {
+    "title": "Quick Challenge: Test Your Understanding",
+    "content": "### नीचे दिए गए प्रश्नों के उत्तर दीजिए:\n\n**Q1.** `Namespace` का मुख्य उपयोग क्या है?\n- A) Logs collect करने के लिए  \n- B) Cluster में isolation create करने के लिए  \n- C) Load balancing के लिए  \n- D) Docker images build करने के लिए\n\n**Q2.** `default` namespace किस स्थिति में use होता है?\n- A) जब आप pod create कर रहे हैं with `--namespace`  \n- B) जब आप explicitly `namespace` नहीं देते  \n- C) जब cluster restart होता है  \n- D) जब pod crash हो जाता है\n\n**Q3.** नीचे दिए गए YAML का output क्या होगा?\n```yaml\napiVersion: v1\nkind: Namespace\nmetadata:\n  name: test-env\n```\n- A) Pod create होगा  \n- B) Deployment बनेगा  \n- C) Namespace create होगा  \n- D) Error आएगा\n\n**Q4.** Namespace switch करने के लिए कौन सा command सही है?\n- A) `kubectl config use-context`  \n- B) `kubectl get context`  \n- C) `kubectl config set-context --current --namespace=dev`  \n- D) `kubectl switch ns`",
+    "slide_type": "text"
+  },
+  {
+    "title": "Solutions: Quick Challenge",
+    "content": "### उत्तर:\n\n**Q1 Answer:** B\n> Namespace isolation प्रदान करता है जिससे multi-team setup में conflicts नहीं होते।\n\n**Q2 Answer:** B\n> यदि आप कोई `--namespace` नहीं देते, तो Kubernetes `default` namespace use करता है।\n\n**Q3 Answer:** C\n> यह YAML एक नया Namespace `test-env` create करता है।\n\n**Q4 Answer:** C\n> यह command current context में namespace switch करता है।",
+    "slide_type": "code"
+  }
+]

@@ -1,0 +1,127 @@
+"Generate a structured JSON object using above information. The object should contain the following fields:
+
+videoFile: Absolute file path of the video (e.g., "C:/Users/YourName/Videos/video.mp4").
+
+title: A catchy title with emojis and keywords (e.g., "🚀 Master YouTube Automation with Python! (Step-by-Step Guide)").
+
+description: A detailed video description with bullet points, emojis, and hashtags.
+
+tags: A list of relevant tags related to the content.
+
+categoryName: The category of the video (e.g., "Education").
+
+privacyStatus: Either "private", "public", or "unlisted".
+
+thumbnail: Absolute file path of the thumbnail image (e.g., "C:/Users/YourName/Videos/thumbnail.png").
+
+playlistName: The playlist where this video should be added.
+
+publishAt: Scheduled date and time in "YYYY-MM-DD HH:MM:SS" format.
+
+madeForKids: Boolean value (true or false).
+
+ageRestriction: Boolean value (true or false).
+
+✅ Ensure:
+
+Title is ≤100 characters.
+
+please conisder that this is interview questions
+
+
+
+
+
+
+
+
+
+
+
+
+=======================================================================================================
+
+What is the zero value of a bool variable in Go?
+
+A. true
+
+B. false
+
+C. 0
+
+D. nil
+
+What will be printed?
+
+go
+Copy
+Edit
+var s string
+fmt.Println(s)
+A. nil
+
+B. empty string
+
+C. undefined
+
+D. error
+
+Which of the following types has nil as its zero value?
+
+A. string
+
+B. int
+
+C. map
+
+D. bool
+
+What is the output?
+
+go
+Copy
+Edit
+var nums []int
+fmt.Println(nums == nil)
+A. true
+
+B. false
+
+C. error
+
+D. []
+
+
+"Generate a structured array of json JSON object using above array of json. The object should contain the following fields:
+
+videoFile: Absolute file path of the video (e.g., "C:/Users/YourName/Videos/video.mp4").
+
+title: A catchy title with emojis and keywords (e.g., "🚀 Master YouTube Automation with Python! (Step-by-Step Guide)").
+
+description: A detailed video description with bullet points, emojis, and hashtags. make sure that it will follow youtube description box length
+
+tags: A list of relevant tags related to the content.
+
+categoryName: The category of the video (e.g., "Education").
+
+privacyStatus: Either "private", "public", or "unlisted".
+
+thumbnail: Absolute file path of the thumbnail image (e.g., "C:/Users/YourName/Videos/thumbnail.png").
+
+playlistName: The playlist where this video should be added.
+
+publishAt: Scheduled date and time in "YYYY-MM-DD HH:MM:SS" format.
+
+madeForKids: Boolean value (true or false).
+
+ageRestriction: Boolean value (true or false).
+
+✅ Ensure:
+
+Title is ≤100 characters.
+
+seo optimized title and description
+
+this is a short video
+
+please conisder that this is interview questions
