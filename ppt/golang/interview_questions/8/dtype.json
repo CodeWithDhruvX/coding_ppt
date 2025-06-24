@@ -47,18 +47,8 @@
       "slide_type": "table"
     },
     {
-      "title": "Best Practices",
-      "content": "- Use `const` for values that never change (e.g., Pi, version).\n- Use `:=` for quick local variable declarations inside functions.\n- Use `var` when you need global variables or want to specify type explicitly.",
-      "slide_type": "text"
-    },
-    {
       "title": "Common Mistakes to Avoid",
       "content": "- Trying to use `:=` outside a function.\n- Forgetting to initialize a `const`.\n- Declaring variables with `var` but never using them.",
-      "slide_type": "text"
-    },
-    {
-      "title": "Takeaway",
-      "content": "Understand when to use `var`, `:=`, and `const` to write efficient and clean Go code. Each has its purpose—use them wisely based on scope, mutability, and readability.",
       "slide_type": "text"
     }
   ]
