@@ -1,6 +1,20 @@
 {
     "version": "2.0.0",
     "tasks": [
+           {
+            "label": "English Prompt",
+            "type": "shell",
+            "command": "python",
+            "args": [
+                "creation/english_prompt_creator.py"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "problemMatcher": [],
+            "detail": "Run json_to_ppt_v8.py to convert JSON into PowerPoint.",
+        },
         {
             "label": "Run JSON to PPT",
             "type": "shell",

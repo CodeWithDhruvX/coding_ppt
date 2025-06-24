@@ -78,9 +78,9 @@ def copy_script():
     content = output_text.get("1.0", tk.END).strip()
     if content:
         pyperclip.copy(content)
-        messagebox.showinfo("Copied", "Script copied to clipboard!")
-    else:
-        messagebox.showwarning("Warning", "There’s nothing to copy.")
+        # messagebox.showinfo("Copied", "Script copied to clipboard!")
+    # else:
+    #     messagebox.showwarning("Warning", "There’s nothing to copy.")
 
 # Setup GUI
 root = tk.Tk()

@@ -114,7 +114,7 @@ publishAt: Scheduled date and time in "YYYY-MM-DD HH:MM:SS" format.
 
 madeForKids: Boolean value (true or false).
 
-ageRestriction: Boolean value (true or false).
+ageRestriction: Boolean value (true or false).                          
 
 ✅ Ensure:
 

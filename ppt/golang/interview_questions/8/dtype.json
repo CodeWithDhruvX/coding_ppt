@@ -48,7 +48,7 @@
     },
     {
       "title": "Common Mistakes to Avoid",
-      "content": "- Trying to use `:=` outside a function.\n- Forgetting to initialize a `const`.\n- Declaring variables with `var` but never using them.",
+      "content": "- Trying to u se `:=` outside a function.\n- Forgetting to initialize a `const`.\n- Declaring variables with `var` but never using them.",
       "slide_type": "text"
     }
   ]

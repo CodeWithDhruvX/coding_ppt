@@ -15,11 +15,6 @@
       "slide_type": "code"
     },
     {
-      "title": "Output of the Code",
-      "content": "```\nInit function is running...\nMain function is running...\n```",
-      "slide_type": "code"
-    },
-    {
       "title": "Multiple init() Functions",
       "content": "A single Go file or package **can have multiple `init()` functions**. They are executed in the order they appear in the file.",
       "slide_type": "text"
@@ -27,11 +22,6 @@
     {
       "title": "Multiple init() Example",
       "content": "package main\n\nimport \"fmt\"\n\nfunc init() {\n    fmt.Println(\"Init #1\")\n}\n\nfunc init() {\n    fmt.Println(\"Init #2\")\n}\n\nfunc main() {\n    fmt.Println(\"Main\")\n}",
-      "slide_type": "code"
-    },
-    {
-      "title": "Execution Order",
-      "content": "```\nInit #1\nInit #2\nMain\n```",
       "slide_type": "code"
     },
     {
@@ -62,11 +52,6 @@
     {
       "title": "Best Practices for init()",
       "content": "- Avoid complex logic in `init()`\n- Do not use it for critical business logic\n- Keep `init()` minimal and clear\n- Prefer explicit initialization in `main()` when possible",
-      "slide_type": "text"
-    },
-    {
-      "title": "Key Takeaways",
-      "content": "- `init()` is auto-executed before `main()`\n- Great for setting up default state or config\n- Runs once per package\n- Use it wisely and avoid heavy logic",
       "slide_type": "text"
     }
   ]
