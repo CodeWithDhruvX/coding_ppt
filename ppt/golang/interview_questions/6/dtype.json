@@ -72,11 +72,6 @@
       "title": "When to Use Constants",
       "content": "- When the value never changes (e.g., Pi, tax rate, status codes)\n- To improve readability and maintainability\n- To avoid magic numbers in code",
       "slide_type": "text"
-    },
-    {
-      "title": "Recap: Defining Constants in Go",
-      "content": "- Use `const` keyword\n- Constants are immutable and evaluated at compile-time\n- Can be typed or untyped\n- Grouping constants improves readability",
-      "slide_type": "text"
     }
   ]
   
