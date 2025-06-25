@@ -52,11 +52,6 @@
         { "Scenario": "Large files with many operations", "Why Avoid": "Better to manage resources explicitly" }
       ],
       "slide_type": "table"
-    },
-    {
-      "title": "Summary",
-      "content": "- `defer` schedules a function to run after the current function finishes.\n- Great for cleanup tasks.\n- Executes in reverse order (LIFO).\n- Evaluate its impact on performance in tight loops.",
-      "slide_type": "text"
     }
   ]
   
