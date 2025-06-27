@@ -52,11 +52,6 @@
         { "case": "Pointer return", "effect": "Can affect what the pointer points to" }
       ],
       "slide_type": "table"
-    },
-    {
-      "title": "Best practices with defer",
-      "content": "- Use named returns if deferred functions must modify results.\n- Prefer clarity over clever tricks.\n- Be mindful of performance in loops (defer is not free).",
-      "slide_type": "text"
     }
   ]
   

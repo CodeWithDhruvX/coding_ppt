@@ -23,7 +23,7 @@ def generate_script():
         except:
             minute = 5
 
-        output = f"""I’m creating a {minute} minute educational YouTube video about Golang, aimed at beginner programmers in India.
+        output = f"""I’m creating a {minute} minute educational YouTube video about Topic, aimed at beginner programmers in India.
 
 Here are the slides in JSON format:
 
@@ -65,7 +65,7 @@ Start with the first slide:
 ⛔ Rules:
 - No intro or outro.
 - Do not explain multiple slides at once — only one slide per explanation.
-- Assume the viewer is new to Golang and programming.
+- Assume the viewer is new to Topic and programming.
 - when the slide_type text, then only explain the theory part. don't include any code"""
 
         output_text.delete("1.0", tk.END)
@@ -84,7 +84,7 @@ def copy_script():
 
 # Setup GUI
 root = tk.Tk()
-root.title("Golang Slide Prompt Formatter")
+root.title("Topic Slide Prompt Formatter")
 
 tk.Label(root, text="Enter Single Slide JSON:").pack(anchor='w', padx=10, pady=(10, 0))
 input_text = scrolledtext.ScrolledText(root, wrap=tk.WORD, height=10)

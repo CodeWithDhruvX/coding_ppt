@@ -1,0 +1,58 @@
+Generate structured interview questions for the following 7 technologies:
+1. Go (Golang)
+2. Kubernetes
+3. TypeScript
+4. Angular
+5. Microservices
+6. Docker
+7. Azure
+
+For each technology, generate:
+- 3 Beginner-level questions
+- 3 Intermediate-level questions
+- 3 Advanced-level questions
+
+Each question should include the following fields:
+- **Technology**
+- **Level** (Beginner, Intermediate, or Advanced)
+- **Concept** (technical concept being tested)
+- **Real-World Scenario** (practical application use case)
+- **Interview Question** (based on the concept and scenario)
+
+Output the results in **table format** with the columns:
+**Technology | Level | Concept | Real-World Scenario | Interview Question**
+
+Ensure all questions are **unique**, non-repetitive, and relevant to real-world professional roles like Developers, DevOps, SREs, Architects, and Frontend/Backend Engineers.
+
+
+==============================================================
+
+
+concept + real-world scenario + role-based category interview questions project management
+
+
+
+
+=============================================================
+
+
+
+Generate interview question data using the following 4-column format:
+
+Concept: A key technical or theoretical topic in [INSERT TECHNOLOGY or DOMAIN].
+
+Real-World Scenario: A practical, industry-relevant example or problem that highlights the use of the concept in action.
+
+Role-Based Category: The job role or specialization the question is relevant to (e.g., Backend Developer, DevOps Engineer, Project Manager, Data Analyst, etc.).
+
+Interview Question: A question that tests the candidate’s understanding of the concept through the lens of the real-world scenario and is relevant to the specified role.
+
+Ensure the output:
+
+Explains the concept clearly through the scenario.
+
+Aligns the question with day-to-day job responsibilities.
+
+Uses domain-specific language familiar to professionals.
+
+Is suitable for interviews (not too theoretical, and focused on problem-solving or decision-making).
