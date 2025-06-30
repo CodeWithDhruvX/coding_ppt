@@ -1,0 +1,12 @@
+"Act as a professional YouTube livestream host. Create an engaging and friendly ending script for a live session based on the topic: currunt script. The tone should be warm, casual, and community-driven (Hinglish style). Include the following:
+
+A quick recap of what we covered
+
+Thanking the audience for watching
+
+A call to action to like, subscribe, and share
+
+Tease or mention the next upcoming content or livestream
+docker vs kubernetes
+
+A fun or emotional sign-off line (use Hinglish)"**

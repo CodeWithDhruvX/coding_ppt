@@ -1,4 +1,4 @@
-🎬 Slide 1 Script: "Kubernetes Namespaces का परिचय"
+
 “Okay bhai, ab maan le tu ek college ke computer lab me hai, jahan ek hi server sab logon ko diya gaya hai — first year ke students bhi, final year ke bhi, aur tere jaise placements ki tayari karne wale bhi. Ab sabka data, sabke apps agar ek hi server pe hoga bina kisi boundary ke, to pura system hi gadbad ho jayega, right?
 
 Isi problem ko solve karta hai — Kubernetes Namespace.
@@ -32,7 +32,7 @@ To short me — jab tu real-world me team projects pe kaam karega, ya production
 ====================================================================================
 
 
-To bhai ab baat karte hain ki Kubernetes me Namespace kaise banate hain. Dekho, ek tarike se samjho — jaise college me har branch ka alag section hota hai: CS-A, CS-B, EC-A… waise hi Kubernetes me bhi hum alag-alag "namespaces" bana sakte hain taaki resources ek dusre se mix na ho jaayein.
+To chalo ab baat karte hain ki Kubernetes me Namespace kaise banate hain. Dekho, ek tarike se samjho — jaise college me har branch ka alag section hota hai: CS-A, CS-B, EC-A… waise hi Kubernetes me bhi hum alag-alag "namespaces" bana sakte hain taaki resources ek dusre se mix na ho jaayein.
 
 Ab chalo is YAML code ko line by line samajhte hain:
 
@@ -104,9 +104,9 @@ Waise hi, Namespace bhi Kubernetes me ek safe zone deta hai — jahan tum apna k
 
 
 
-To bhai, aaj hum baat karenge ki Kubernetes mein jab hum alag-alag environment ya projects ke liye resources manage karte hain, to kaise namespace use karke apne commands ko specify karte hain.
+To chalo, aab hum baat karenge ki Kubernetes mein jab hum alag-alag environment ya projects ke liye resources manage karte hain, to kaise namespace use karke apne commands ko specify karte hain.
 
-Slide mein do commands diye hain, chalo unko ek-ek karke samajhte hain:
+yha pe do commands diye hain, chalo unko ek-ek karke samajhte hain:
 
 bash
 Copy
@@ -173,7 +173,7 @@ Toh ye default namespace wahi "default notebook" jaisa hai — jo automatic use 
 
 Bas dosto, itna hi samajh lo ki agar tum kubectl command mein namespace nahi doge, toh Kubernetes tumhare liye automatically default namespace lega.
 
-Agle slide mein hum aur examples ke saath namespace ka istemal dekhenge.
+Agle yha pe hum aur examples ke saath namespace ka istemal dekhenge.
 
 
 
@@ -181,13 +181,12 @@ Agle slide mein hum aur examples ke saath namespace ka istemal dekhenge.
 
 
 
-Sure! Yeh raha tumhare diye hue slide ke basis par ek friendly, simple Hinglish YouTube script jo bilkul beginner-friendly hai:
 
 ---
 
 **Slide Title: Namespaces List और Context Switch**
 
-Chalo doston, aaj hum baat karenge Kubernetes ke namespaces ke baare mein. Matlab ek cluster ke andar alag-alag jagah jahan hum apne resources ko organize kar sakte hain.
+Chalo doston, aab hum baat karenge Kubernetes ke namespaces ke baare mein. Matlab ek cluster ke andar alag-alag jagah jahan hum apne resources ko organize kar sakte hain.
 
 Sabse pehle command dekhte hain:
 
@@ -289,7 +288,7 @@ Yeh challenge tumhe help karega confidently Kubernetes namespaces samajhne me �
 ===============================================================================================
 
 
-Chalo doston, ab main tumhe is slide mein diye gaye questions ke answers simple language mein samjhata hoon.
+Chalo doston, ab main tumhe is yha pe diye gaye questions ke answers simple language mein samjhata hoon.
 
 Q1 ka answer hai B, matlab Namespace ka main use hota hai resource isolation ke liye.
 Socho tumhare paas ek classroom hai jahan alag-alag groups apni alag-alag assignments pe kaam kar rahe hain. Agar sab ek hi jagah par kaam karein bina kisi division ke, to sabka kaam confuse ho jayega. Bilkul waise hi, Kubernetes mein Namespace ek tarah ka alag container ya environment hota hai jisme ek project ke resources isolate ho jaate hain. Matlab, ek project ka code doosre project mein mix nahi hota. Isse clarity aur safety dono badhti hai.
@@ -303,7 +302,7 @@ YAML ek tarah ka configuration file hota hai jisse Kubernetes ko batate hain ki 
 Q4 ka answer C hai, jo command hai kubectl config set-context --current --namespace=dev-environment wo tumhara current context ka namespace change kar deta hai.
 Matlab tumhe baar-baar har command mein --namespace=dev-environment likhna nahi padega, wo automatically set ho jayega. Ye time bachata hai aur error chances kam kar deta hai, especially jab tum daily Kubernetes use karte ho.
 
-Bas doston, ye hi tha aaj ka quick challenge ke answers ka simple explanation. Yeh sab concepts tumhare liye bahut useful hain jab tum real projects mein Kubernetes ke saath kaam karoge.
+Bas doston, ye hi tha aab ka quick challenge ke answers ka simple explanation. Yeh sab concepts tumhare liye bahut useful hain jab tum real projects mein Kubernetes ke saath kaam karoge.
 
 Aise hi practice karte raho, dheere-dheere sab samajh mein aa jayega. Agar doubt ho to comment karna!
 
