@@ -10,11 +10,6 @@
       "slide_type": "code"
     },
     {
-      "title": "Simple Constant Example",
-      "content": "```go\nconst Pi float64 = 3.14159\nfmt.Println(Pi) // Output: 3.14159\n```",
-      "slide_type": "code"
-    },
-    {
       "title": "Implicit Typing with Constants",
       "content": "Go allows omission of the type if the type can be inferred.\n\n```go\nconst Pi = 3.14159\nfmt.Printf(\"%T\", Pi) // Output: float64\n```",
       "slide_type": "code"
@@ -67,11 +62,6 @@
         }
       ],
       "slide_type": "table"
-    },
-    {
-      "title": "When to Use Constants",
-      "content": "- When the value never changes (e.g., Pi, tax rate, status codes)\n- To improve readability and maintainability\n- To avoid magic numbers in code",
-      "slide_type": "text"
     }
   ]
   

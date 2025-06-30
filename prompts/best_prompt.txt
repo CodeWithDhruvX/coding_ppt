@@ -28,7 +28,7 @@ Ensure all questions are **unique**, non-repetitive, and relevant to real-world 
 ==============================================================
 
 
-concept + real-world scenario + role-based category interview questions project management
+concept + real-world scenario + role-based +  interview questions in the table format for all this areas
 
 
 

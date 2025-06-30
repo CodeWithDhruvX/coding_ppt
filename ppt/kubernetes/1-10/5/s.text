@@ -1,4 +1,4 @@
-Toh sabse pehle humare paas hai Kubernetes Cluster ke baare mein ek slide. Ab yeh "Kubernetes Cluster" kya hota hai, chalo samajhte hain.
+Ab yeh "Kubernetes Cluster" kya hota hai, chalo samajhte hain.
 
 Kubernetes Cluster ek basic structure hai jahan pe hum apne containerized applications ko manage aur run kar sakte hain. Matlab agar tumne Docker containers ka use kiya hai, toh tumhe yeh samajhna asaan hoga.
 
@@ -8,23 +8,20 @@ Kubernetes ka kaam hai in nodes ko coordinate karna, taaki tumhare applications 
 
 Aapne dekha hoga ki kabhi kabhi websites ya apps zyada load hone par slow ho jaati hain. Kubernetes ki madad se tumhare applications demand ke hisaab se scale karte hain. Matlab agar zyada users aa rahe hain, toh Kubernetes automatically aur nodes ko add karega, taaki tumhara application smoothly chale.
 
-Iska benefit yeh hai ki tumhein hardware ke baare mein bilkul sochne ki zarurat nahi hai. Tum bas apne applications pe dhyan de sakte ho, aur Kubernetes usko manage karega.
+Iska benefit yeh hai ki tumhein hardware ke baare mein bilkul sochne ki zarurat nahi hai. Tum bas apne applications pe dhyan de sakte ho, aur Kubernetes usko manage karegqa.
 
 Agar tum ek software developer ho, toh yeh concept tumhein bahut kaam aayega jab tum large scale pe applications deploy karoge, ya jab tumhein multiple servers manage karne honge.
 
 Toh in short, Kubernetes Cluster tumhare applications ko smoothly, efficiently, aur scale karte hue run karne mein madad karta hai, bina tumhein har ek machine ko manually manage karne ki zarurat ke. Yeh tumhare kaam ko bohot asaan bana deta hai.
-
-Next time jab tumhe apne applications ko scale ya manage karna ho, ya jab tumhare paas multiple servers ho, toh yeh concept tumhe bahut helpful lagega.
+q
+Next time jab tumhe apne applictions ko scale ya manage karna ho, ya jab tumhare paas multiple servers ho, toh yeh concept tumhe bahut helpful lagega.
 
 Toh yeh tha ek basic intro Kubernetes Cluster ka. Agle slide mein hum kuch aur interesting cheez dekhenge!
 
 
 
-==============================================================================================
+==============================================================================================1
 
-
-
-Slide 1: Core Components of a Cluster
 
 Aaj hum baat karenge cluster ke core components ke baare mein. Samajhna zaroori hai yeh cheez, agar aap Golang ya kisi bhi distributed system ke baare mein seekhna chahte ho. Chaliye, ek-ek cheez ko samajhte hain.
 
@@ -47,19 +44,6 @@ Real-life Example: Jaise tumhare teacher ko yeh ensure karna padta hai ki sab st
 Ab Pods ka concept samajhte hain. Pod Kubernetes ka sabse basic unit hota hai. Ek pod ek single application ka process hota hai. Tumhare pod mein ek ya usse zyada containers ho sakte hain, jo ek group mein kaam karte hain.
 
 Real-life Example: Tumne apne coding assignment mein ek task diya tha ki ek app ko banayein. Tumhara app ek pod hai, aur uske andar multiple containers (functions, resources) kaam karte hain. Jaise ek pod ek application ka representation hai, waise ek container ek chhota part ho sakta hai us application ka.
-
-Summary:
-Toh doston, aaj humne seekha:
-
-Master Node: Cluster ka brain, jo sab decisions leta hai.
-
-Worker Nodes: Jahan humara code run hota hai.
-
-Kubelet: Worker Node par ek agent, jo ensure karta hai ki pods properly chal rahe hain.
-
-Pods: Kubernetes ka smallest unit, jo ek process run karta hai.
-
-Yeh core components samajhna zaroori hai kyunki agar aap distributed systems ya cloud computing seekh rahe ho, toh yeh concepts har jagah use honge!
 
 
 
