@@ -1,0 +1,149 @@
+I am a complete beginner in system design, but I want to think and answer like a FANG-level engineer.
+
+Based on the system design question below, please guide me step-by-step like a mentor. For each step, teach me the concept I need, help me think critically, and explain with real-world examples (especially Indian apps like Zomato, Paytm, IRCTC).
+
+Use the following format:
+
+Step 1: Understand the Problem
+
+What is being asked?
+
+What clarifying questions should I ask?
+
+What's the real-world analogy for this problem?
+
+Step 2: Identify Functional and Non-Functional Requirements
+
+Help me list both types with examples.
+
+Step 3: High-Level Architecture
+
+Guide me to draw (or imagine) a simple block diagram.
+
+What core components (client, server, DB, cache, etc.) are typically used?
+
+Step 4: Core Concepts Involved
+
+Explain the technical concepts I need to know (caching, load balancer, pub-sub, rate limiting, etc.).
+
+Give beginner-level definitions with examples.
+
+Step 5: Scale the System
+
+How would I handle more users?
+
+What bottlenecks could happen?
+
+What trade-offs might I face (like consistency vs availability)?
+
+Step 6: Real-World Touch
+
+How would Zomato or IRCTC build this?
+
+Where do users feel the impact (slow loading, errors, etc.)?
+
+Step 7: Interview Readiness
+
+What would an interviewer expect me to say?
+
+What mistakes should I avoid as a beginner?
+
+Here is the question:
+"<insert your system design question here>"
+
+
+
+
+
+
+
+
+
+
+======================================================================================================================
+Faang level:
+
+
+
+
+
+🔥 Prompt 1: Expert Architect System Design Framework
+Act like a Principal Software Architect at a FANG company. Based on the input question, break down the system design using the following structured layers:
+
+Requirements Gathering – Functional and non-functional.
+
+High-Level Design – Components, APIs, services, communication patterns.
+
+Detailed Design – Databases, caching, messaging, load balancers, etc.
+
+Scalability & Bottlenecks – Vertical/horizontal scaling, trade-offs.
+
+Real-World Analogies & Use Cases – Explain with relatable analogies (like traffic systems, Swiggy, UPI).
+
+Justify Design Choices – CAP theorem, consistency vs availability, latency trade-offs.
+
+Explain like you're mentoring a junior engineer preparing for system design interviews.
+
+🧠 Prompt 2: Deep Dive System Design Thinking
+Assume the role of a Staff Engineer at Netflix or Google. Given the following system design question, structure the answer in this layered format:
+
+Use Case & Constraints Analysis
+
+Component Breakdown & Interactions
+
+Data Modeling & Storage Decisions
+
+API Design and Contracts
+
+Performance Optimization & Caching
+
+Monitoring, Logging, and Observability
+
+Security and Rate Limiting
+
+End with possible bottlenecks, trade-offs made, and what you'd improve in version 2.0.
+
+🚀 Prompt 3: FANG-Level Trade-Off Driven Design
+Design the system step-by-step with each layer focusing on trade-offs:
+
+Problem Understanding – List assumptions.
+
+Design Goals – Prioritize based on scalability, latency, consistency, etc.
+
+High-Level Architecture – Service layout, data flow, deployment models.
+
+Critical Decisions – What tech stack and why? What to scale first?
+
+Trade-Offs – Explain each major decision: caching vs DB hits, SQL vs NoSQL, etc.
+
+Always highlight what could go wrong and how you would mitigate it.
+
+🧱 Prompt 4: Real-World Simulation-Based Design
+Design this system as if you are building it for a real-world large-scale Indian app like IRCTC, Paytm, or Zomato:
+
+Problem Context
+
+User Journey
+
+Backend System Breakdown
+
+Data Flow with Diagrams
+
+How you'd handle sudden spikes in traffic (e.g., festive offers)
+
+Fallbacks, Circuit Breakers, and Redundancy
+
+Provide insights into how design choices evolve as the user base scales from 10k to 100M.
+
+💼 Prompt 5: Role-Based Design Focus
+Design the system by focusing on your role. Based on the question input, answer from the perspective of:
+
+Backend Engineer – Focus on APIs, data storage, and performance.
+
+DevOps/SRE – Focus on deployment, observability, high availability.
+
+Product Manager – Focus on feature breakdown, priorities, MVP vs v2.
+
+Security Engineer – Focus on threat modeling, auth/authz, encryption.
+
+Data Engineer – Focus on pipelines, batch vs stream processing.
